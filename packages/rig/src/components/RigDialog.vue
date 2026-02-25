@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { computed, watch, ref, onUnmounted, nextTick, useId } from 'vue'
+import { computed, watch, ref, onUnmounted, nextTick, useId, inject } from 'vue'
 import type { RigDialogProps } from '../types'
+import { THEME_INJECTION_KEY } from '../composables/useTheme'
 
 const props = withDefaults(defineProps<RigDialogProps>(), {
   modelValue: false,
@@ -15,9 +16,23 @@ const emit = defineEmits<{
 
 const dialogRef = ref<HTMLElement | null>(null)
 const previousActiveElement = ref<Element | null>(null)
-const savedOverflow = ref<string>('')
+
+/** Ref-counted scroll lock for concurrent dialogs */
+const scrollLockCount = (() => {
+  if (typeof globalThis !== 'undefined') {
+    const key = '__rig_scroll_lock_count__'
+    const g = globalThis as unknown as Record<string, { value: number; savedOverflow: string }>
+    if (!(key in g)) {
+      g[key] = { value: 0, savedOverflow: '' }
+    }
+    return g[key]
+  }
+  return { value: 0, savedOverflow: '' }
+})()
+
 const descriptionId = useId()
 const titleId = useId()
+const themeState = inject(THEME_INJECTION_KEY, null)
 
 const sizeClasses: Record<NonNullable<RigDialogProps['size']>, string> = {
   sm: 'max-w-sm',
@@ -87,14 +102,20 @@ watch(() => props.modelValue, (open) => {
   if (typeof document === 'undefined') return
   if (open) {
     previousActiveElement.value = document.activeElement
-    savedOverflow.value = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
+    if (scrollLockCount.value === 0) {
+      scrollLockCount.savedOverflow = document.body.style.overflow
+      document.body.style.overflow = 'hidden'
+    }
+    scrollLockCount.value++
     nextTick(() => {
       // Focus dialog
       dialogRef.value?.focus()
     })
   } else {
-    document.body.style.overflow = savedOverflow.value
+    scrollLockCount.value = Math.max(0, scrollLockCount.value - 1)
+    if (scrollLockCount.value === 0) {
+      document.body.style.overflow = scrollLockCount.savedOverflow
+    }
     // Restore focus
     if (previousActiveElement.value instanceof HTMLElement) {
       previousActiveElement.value.focus()
@@ -103,8 +124,11 @@ watch(() => props.modelValue, (open) => {
 })
 
 onUnmounted(() => {
-  if (typeof document !== 'undefined') {
-    document.body.style.overflow = savedOverflow.value
+  if (typeof document !== 'undefined' && props.modelValue) {
+    scrollLockCount.value = Math.max(0, scrollLockCount.value - 1)
+    if (scrollLockCount.value === 0) {
+      document.body.style.overflow = scrollLockCount.savedOverflow
+    }
   }
 })
 </script>
@@ -121,6 +145,8 @@ onUnmounted(() => {
     >
       <div
         v-if="modelValue"
+        :data-theme="themeState?.theme.value"
+        :data-mode="themeState?.scheme.value"
         class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
         @click="onBackdropClick"
         @keydown="onKeydown"

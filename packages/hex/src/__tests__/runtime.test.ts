@@ -37,15 +37,15 @@ describe('Runtime helpers', () => {
       expect(el.getAttribute('data-mode')).toBe('dark')
     })
 
-    it('defaults to dark when no mode is set', () => {
+    it('toggles to light when no mode is set (assumes dark default)', () => {
       const result = toggleMode(el)
-      expect(result).toBe('dark')
+      expect(result).toBe('light')
     })
 
-    it('defaults to dark when mode is invalid', () => {
+    it('toggles to light when mode is invalid (assumes dark default)', () => {
       el.setAttribute('data-mode', 'invalid')
       const result = toggleMode(el)
-      expect(result).toBe('dark')
+      expect(result).toBe('light')
     })
   })
 
@@ -68,6 +68,12 @@ describe('Runtime helpers', () => {
       el.setAttribute('data-mode', 'invalid')
       const state = getThemeState(el)
       expect(state.mode).toBeNull()
+    })
+
+    it('returns null themeId for invalid theme value', () => {
+      el.setAttribute('data-theme', 'not-a-theme')
+      const state = getThemeState(el)
+      expect(state.themeId).toBeNull()
     })
   })
 })

@@ -4,11 +4,13 @@
  */
 
 import { writeFileSync, mkdirSync } from 'node:fs'
-import { join } from 'node:path'
+import { join, dirname } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { themes } from '../themes/index'
 import { generateThemeCSS } from '../utils/css'
 
-const outDir = join(import.meta.dirname, '../../dist/themes')
+const __dirname = dirname(fileURLToPath(import.meta.url))
+const outDir = join(__dirname, '../../dist/themes')
 
 try {
   mkdirSync(outDir, { recursive: true })

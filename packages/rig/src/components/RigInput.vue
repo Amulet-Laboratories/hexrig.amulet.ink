@@ -20,7 +20,7 @@ const errorId = computed(() => `${inputId.value}-error`)
 
 const describedBy = computed(() => {
   const parts: string[] = []
-  if (props.description) parts.push(descriptionId.value)
+  if (props.description && !props.error) parts.push(descriptionId.value)
   if (props.error) parts.push(errorId.value)
   return parts.length > 0 ? parts.join(' ') : undefined
 })
@@ -61,6 +61,7 @@ const onInput = (event: Event) => {
       :placeholder="placeholder"
       :disabled="disabled"
       :required="required"
+      :aria-label="!label ? placeholder ?? 'Input' : undefined"
       :aria-describedby="describedBy"
       :aria-invalid="error ? true : undefined"
       :class="inputClasses"

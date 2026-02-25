@@ -28,18 +28,27 @@ export function useTheme(defaults?: { theme?: ThemeId; scheme?: SchemeId | 'auto
 
   const scheme = ref<SchemeId>(resolveScheme())
 
+  // Track whether the user has explicitly set a scheme
+  const userExplicitScheme = ref(false)
+
   // Listen for system scheme changes when 'auto'
   if (typeof window !== 'undefined' && defaults?.scheme === 'auto') {
     const mq = window.matchMedia('(prefers-color-scheme: dark)')
     const handler = (e: MediaQueryListEvent) => {
-      scheme.value = e.matches ? 'dark' : 'light'
+      // Only auto-update if user hasn't explicitly overridden
+      if (!userExplicitScheme.value) {
+        scheme.value = e.matches ? 'dark' : 'light'
+      }
     }
     mq.addEventListener('change', handler)
     onScopeDispose(() => mq.removeEventListener('change', handler))
   }
 
   const setTheme = (id: ThemeId) => { theme.value = id }
-  const setScheme = (s: SchemeId) => { scheme.value = s }
+  const setScheme = (s: SchemeId) => {
+    userExplicitScheme.value = true
+    scheme.value = s
+  }
   const toggleScheme = () => {
     scheme.value = scheme.value === 'dark' ? 'light' : 'dark'
   }

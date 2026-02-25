@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted } from 'vue'
+import { computed, watchEffect } from 'vue'
 import { Icon } from '@iconify/vue'
 import type { RigIconProps } from '../types'
 
@@ -9,7 +9,7 @@ const props = withDefaults(defineProps<RigIconProps>(), {
   decorative: true,
 })
 
-onMounted(() => {
+watchEffect(() => {
   if (!props.decorative && !props.label) {
     console.warn(
       `[RigIcon] Non-decorative icon "${props.name}" is missing a "label" prop. ` +

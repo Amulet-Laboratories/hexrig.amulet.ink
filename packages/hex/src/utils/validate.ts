@@ -29,21 +29,20 @@ export interface ValidationResult {
 /** Parse a hex color string to RGB. Supports #RGB, #RRGGBB, #RRGGBBAA. */
 function hexToRgb(hex: string): [number, number, number] | null {
   const cleaned = hex.replace('#', '')
+  let r: number, g: number, b: number
   if (cleaned.length === 3) {
-    return [
-      parseInt(cleaned[0] + cleaned[0], 16),
-      parseInt(cleaned[1] + cleaned[1], 16),
-      parseInt(cleaned[2] + cleaned[2], 16),
-    ]
+    r = parseInt(cleaned[0] + cleaned[0], 16)
+    g = parseInt(cleaned[1] + cleaned[1], 16)
+    b = parseInt(cleaned[2] + cleaned[2], 16)
+  } else if (cleaned.length === 6 || cleaned.length === 8) {
+    r = parseInt(cleaned.substring(0, 2), 16)
+    g = parseInt(cleaned.substring(2, 4), 16)
+    b = parseInt(cleaned.substring(4, 6), 16)
+  } else {
+    return null
   }
-  if (cleaned.length === 6 || cleaned.length === 8) {
-    return [
-      parseInt(cleaned.substring(0, 2), 16),
-      parseInt(cleaned.substring(2, 4), 16),
-      parseInt(cleaned.substring(4, 6), 16),
-    ]
-  }
-  return null
+  if (isNaN(r) || isNaN(g) || isNaN(b)) return null
+  return [r, g, b]
 }
 
 /** Calculate relative luminance per WCAG 2.1 */
@@ -72,8 +71,12 @@ function contrastRatio(color1: string, color2: string): number | null {
 function isValidColor(value: string): boolean {
   // #RGB, #RRGGBB, #RRGGBBAA
   if (/^#[0-9a-fA-F]{3}([0-9a-fA-F]{3}([0-9a-fA-F]{2})?)?$/.test(value)) return true
-  // rgb(r, g, b) or rgba(r, g, b, a) — numeric values only
-  if (/^rgba?\(\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*\d{1,3}\s*(,\s*(0|1|0?\.\d+)\s*)?\)$/.test(value)) return true
+  // rgb(r, g, b) or rgba(r, g, b, a) — validate 0-255 range
+  const rgbaMatch = value.match(/^rgba?\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*(,\s*(0|1|0?\.\d+)\s*)?\)$/)
+  if (rgbaMatch) {
+    const [, r, g, b] = rgbaMatch
+    return [r, g, b].every((c) => Number(c) >= 0 && Number(c) <= 255)
+  }
   return false
 }
 
@@ -162,9 +165,15 @@ function validateFormats(theme: HexTheme, mode: ModeId, errors: ValidationError[
   }
 
   for (const [group, values] of Object.entries(groups)) {
+    const cssGroupPrefix: Record<string, string> = {
+      surfaces: 'surface',
+      borders: 'border',
+      accents: 'accent',
+    }
+    const cssPrefix = cssGroupPrefix[group] ?? group
     for (const [key, value] of Object.entries(values)) {
       if (!isValidColor(value)) {
-        errors.push({ theme: theme.id, mode, category: 'format', token: `${group}.${key}`, message: `Invalid color format "${value}" for --${group === 'surfaces' ? 'surface' : group === 'borders' ? 'border' : group === 'accents' ? 'accent' : group}-${key}` })
+        errors.push({ theme: theme.id, mode, category: 'format', token: `${group}.${key}`, message: `Invalid color format "${value}" for --${cssPrefix}-${key}` })
       }
     }
   }
@@ -226,7 +235,7 @@ function validateContrast(theme: HexTheme, mode: ModeId, errors: ValidationError
     const ratio = contrastRatio(textColor, surfaceColor)
     if (ratio === null) {
       if (textColor.startsWith('rgba') || surfaceColor.startsWith('rgba')) {
-        warnings.push(`${theme.id}/${mode}: Cannot compute contrast for ${pair.label} (rgba value)`)
+        warnings.push(`${theme.id}/${mode}: Cannot compute exact contrast for ${pair.label} (rgba value — contrast depends on compositing)`)
       }
       continue
     }
@@ -248,7 +257,7 @@ function validateContrast(theme: HexTheme, mode: ModeId, errors: ValidationError
 // ---------------------------------------------------------------------------
 
 const DURATION_RE = /^\d+(\.\d+)?(ms|s)$/
-const EASING_RE = /^(ease|linear|ease-in|ease-out|ease-in-out|cubic-bezier\(.+\))$/
+const EASING_RE = /^(ease|linear|ease-in|ease-out|ease-in-out|cubic-bezier\(\s*-?\d+(\.\d+)?\s*,\s*-?\d+(\.\d+)?\s*,\s*-?\d+(\.\d+)?\s*,\s*-?\d+(\.\d+)?\s*\))$/
 
 function validateMotionAndFonts(theme: HexTheme, errors: ValidationError[], warnings: string[]): void {
   // Duration values

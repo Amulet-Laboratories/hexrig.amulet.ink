@@ -1,4 +1,4 @@
-import { ref, readonly, inject, provide, type InjectionKey, type Ref } from 'vue'
+import { ref, readonly, inject, provide, onScopeDispose, type InjectionKey, type Ref } from 'vue'
 import type { ToastOptions, ToastInstance, UseToastReturn } from '../types'
 
 interface ToastState {
@@ -53,6 +53,7 @@ export function provideToast(): void {
  */
 export function useToast(): UseToastReturn {
   const state = getState()
+  const localTimerIds: string[] = []
 
   const show = (options: ToastOptions): string => {
     const id = `toast-${++state.idCounter}-${Date.now()}`
@@ -75,6 +76,7 @@ export function useToast(): UseToastReturn {
         dismiss(id)
       }, instance.duration)
       state.timers.set(id, timer)
+      localTimerIds.push(id)
     }
 
     return id
@@ -86,6 +88,8 @@ export function useToast(): UseToastReturn {
       clearTimeout(timer)
       state.timers.delete(id)
     }
+    const idx = localTimerIds.indexOf(id)
+    if (idx !== -1) localTimerIds.splice(idx, 1)
     state.toasts.value = state.toasts.value.filter((t) => t.id !== id)
   }
 
@@ -94,8 +98,21 @@ export function useToast(): UseToastReturn {
       clearTimeout(timer)
     }
     state.timers.clear()
+    localTimerIds.length = 0
     state.toasts.value = []
   }
+
+  // Clean up timers created by this composable instance on scope dispose
+  onScopeDispose(() => {
+    for (const id of localTimerIds) {
+      const timer = state.timers.get(id)
+      if (timer) {
+        clearTimeout(timer)
+        state.timers.delete(id)
+      }
+    }
+    localTimerIds.length = 0
+  })
 
   return {
     show,

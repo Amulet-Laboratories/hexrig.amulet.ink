@@ -1,6 +1,6 @@
 {
   "name": "@amulet-laboratories/hex",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Five-theme design token system — VSCode extension + web tokens (CSS custom properties + TypeScript).",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -45,6 +45,7 @@
     "hex"
   ],
   "license": "MIT",
+  "sideEffects": false,
   "repository": {
     "type": "git",
     "url": "https://github.com/amulet-laboratories/hexrig.amulet.ink"

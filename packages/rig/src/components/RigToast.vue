@@ -1,5 +1,9 @@
 <script setup lang="ts">
+import { inject } from 'vue'
 import { useToast } from '../composables/useToast'
+import { THEME_INJECTION_KEY } from '../composables/useTheme'
+
+const themeState = inject(THEME_INJECTION_KEY, null)
 
 const { toasts, dismiss } = useToast()
 
@@ -31,6 +35,8 @@ const iconPaths: Record<string, string> = {
 <template>
   <Teleport to="body">
     <div
+      :data-theme="themeState?.theme.value"
+      :data-mode="themeState?.scheme.value"
       class="fixed bottom-4 end-4 z-[100] flex w-full max-w-sm flex-col gap-2 pointer-events-none"
       aria-live="polite"
       aria-atomic="false"

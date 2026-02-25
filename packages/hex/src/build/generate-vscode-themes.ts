@@ -4,11 +4,13 @@
  */
 
 import { writeFileSync, mkdirSync } from 'node:fs'
-import { join } from 'node:path'
+import { join, dirname } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { themes } from '../themes/index'
 import { generateVSCodeTheme } from '../utils/vscode'
 
-const outDir = join(import.meta.dirname, '../../themes')
+const __dirname = dirname(fileURLToPath(import.meta.url))
+const outDir = join(__dirname, '../../themes')
 
 try {
   mkdirSync(outDir, { recursive: true })

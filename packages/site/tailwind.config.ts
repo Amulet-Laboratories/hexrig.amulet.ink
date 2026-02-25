@@ -2,8 +2,8 @@ import type { Config } from 'tailwindcss'
 
 export default {
   content: [
-    './src/**/*.vue',
-    './src/**/!(*.stories).ts',
+    './src/**/*.{vue,ts}',
+    './index.html',
   ],
   theme: {
     extend: {

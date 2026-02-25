@@ -65,7 +65,7 @@ const classes = computed(() => {
     <button
       v-if="removable"
       type="button"
-      class="ml-0.5 inline-flex h-[44px] w-[44px] -mr-2 -my-1 items-center justify-center rounded-full hover:bg-black/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring"
+      class="relative ml-0.5 inline-flex h-4 w-4 -mr-1 items-center justify-center rounded-full hover:bg-black/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring before:absolute before:inset-[-10px] before:content-['']"
       aria-label="Remove"
       @click="emit('remove')"
     >

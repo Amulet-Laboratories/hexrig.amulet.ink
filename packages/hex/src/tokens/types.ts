@@ -12,7 +12,7 @@
 export type ThemeId = 'hearth' | 'abyss' | 'hollow' | 'keep' | 'cove'
 export type ModeId = 'dark' | 'light'
 
-/** @deprecated use ModeId instead */
+/** @deprecated Use ModeId instead. Will be removed in v1.0.0. */
 export type SchemeId = ModeId
 
 // ---------------------------------------------------------------------------
@@ -164,7 +164,7 @@ export type HexThemeRegistry = Record<ThemeId, HexTheme>
 export const HEX_THEME_ATTR = 'data-theme' as const
 export const HEX_MODE_ATTR = 'data-mode' as const
 
-/** @deprecated use HEX_MODE_ATTR instead */
+/** @deprecated Use HEX_MODE_ATTR instead. Will be removed in v1.0.0. */
 export const HEX_SCHEME_ATTR = HEX_MODE_ATTR
 
 // ---------------------------------------------------------------------------

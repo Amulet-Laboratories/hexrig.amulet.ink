@@ -2,6 +2,62 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.2.0] — 2026-02-25
+
+### Production Hardening
+
+Full production readiness audit and fix pass across Hex and Rig.
+
+#### Critical Fixes
+
+- **Rig type declarations** — Added `vite-plugin-dts` with `rollupTypes: true`; `dist/index.d.ts` now ships (16 KB)
+- **Rig package exports** — Removed broken `./components/*` and `./composables/*` subpath exports (single-bundle architecture)
+- **Dialog/Toast teleport theming** — Teleported wrappers now inject `THEME_INJECTION_KEY` and apply `data-theme`/`data-mode`
+- **useMotion DOM observation** — Rewritten to find closest `[data-theme]` element, observe `document.body` with `subtree: true`
+- **useTheme explicit scheme tracking** — Media query listener only auto-updates when user hasn't explicitly called `setScheme()`
+
+#### High Priority Fixes
+
+- **Tree-shaking** — `sideEffects: false` (hex), `sideEffects: ["**/*.css"]` (rig)
+- **RigInput ARIA** — `aria-describedby` only includes descriptionId when description is rendered; `aria-label` fallback when no label
+- **useToast timer cleanup** — Tracks local timer IDs; `onScopeDispose` clears them all
+- **toggleMode null safety** — Treats null/invalid mode as `'dark'`, toggles to `'light'` on first call
+- **Build portability** — `fileURLToPath(import.meta.url)` + `dirname()` instead of `import.meta.dirname`
+
+#### Medium Priority Fixes
+
+- **RigDialog scroll lock** — Ref-counted via `globalThis` for concurrent dialogs (no longer clobbers)
+- **Tailwind CSS size** — Content excludes `*.stories.ts` (19.41 KB → 16.59 KB)
+- **RigBadge touch target** — Remove button uses `before:` pseudo-element for 44×44px target
+- **RigThemeProvider** — Default text color changed to `text-text-primary`
+- **CSS sanitization** — `sanitizeCSSValue` strips `url()`, `expression()`, newlines
+- **Color validation** — `isValidColor` validates 0–255 RGB range
+- **hexToRgb** — Returns null for NaN results instead of `NaN, NaN, NaN`
+- **RigIcon** — Uses `watchEffect` for reactive re-render on prop changes
+
+### Marketing Site (`packages/site`)
+
+New marketing landing page at [hexrig.amulet.ink](https://hexrig.amulet.ink) — demonstrates the system live.
+
+- **5 sections**: Hero, Themes, Components, Tokens, Footer
+- **Live theme switching**: Click theme dots or press `T` to cycle, `M` to toggle dark/light
+- **All 5 themes rendered**: Each section responds to active theme in real-time
+- **Component gallery**: Buttons (6 variants), cards (3 elevations), inputs (3 states), alerts (4 tones), badges, typography
+- **Token visualization**: Color swatch grids, motion animation bars, type scale preview
+- **Storybook at `/storybook/`**: Cross-linked from nav and footer
+- **Google Fonts**: All 17 theme font families loaded
+- **Tailwind**: Full token-to-CSS-variable mapping
+- **Vite**: Static SPA build to `dist/`
+- **Deploy pipeline**: `pnpm build:deploy` — hex → rig → site → storybook → copy storybook into site dist
+
+### Infrastructure
+
+- Added `build:deploy` root script for full deployment pipeline
+- Storybook manager config (`.storybook/manager.ts`)
+- Netlify deployment configuration
+- Updated README with comprehensive documentation
+- 147 tests passing (9 suites)
+
 ## [0.1.0] — 2026-02-25
 
 ### Initial Release

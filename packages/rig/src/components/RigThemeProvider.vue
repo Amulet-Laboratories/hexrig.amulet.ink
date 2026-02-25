@@ -38,7 +38,7 @@ provideTheme(themeApi)
   <div
     :data-theme="themeApi.theme.value"
     :data-mode="themeApi.scheme.value"
-    class="bg-surface-base text-text-secondary font-body"
+    class="bg-surface-base text-text-primary font-body"
   >
     <slot />
   </div>

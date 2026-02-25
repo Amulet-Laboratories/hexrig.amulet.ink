@@ -59,8 +59,16 @@ export { generateVSCodeTheme } from './utils/vscode'
 // Runtime helpers
 // ---------------------------------------------------------------------------
 
-import type { HexTheme, ModeId } from './tokens/types'
+import type { HexTheme, ModeId, ThemeId } from './tokens/types'
 import { HEX_THEME_ATTR, HEX_MODE_ATTR } from './tokens/types'
+
+/** All valid theme IDs */
+const VALID_THEME_IDS: ReadonlySet<string> = new Set<string>(['hearth', 'abyss', 'hollow', 'keep', 'cove'])
+
+/** Validate that a string is a valid ThemeId */
+function asThemeId(value: string | null): ThemeId | null {
+  return value && VALID_THEME_IDS.has(value) ? (value as ThemeId) : null
+}
 
 /**
  * Apply a Hex theme to a DOM element by setting data attributes.
@@ -72,6 +80,9 @@ export function applyTheme(
   mode: ModeId
 ): void {
   if (typeof document === 'undefined') return
+  if (!element) {
+    throw new Error('applyTheme: element must be a valid HTMLElement')
+  }
   element.setAttribute(HEX_THEME_ATTR, theme.id)
   element.setAttribute(HEX_MODE_ATTR, mode)
 }
@@ -83,12 +94,13 @@ function asModeId(value: string | null): ModeId | null {
 
 /**
  * Toggle between dark and light modes on an element.
- * Returns the new mode.
+ * Returns the new mode. Treats absent/invalid mode as 'dark' (the default).
  */
 export function toggleMode(element: HTMLElement): ModeId {
   if (typeof document === 'undefined') return 'dark'
   const current = asModeId(element.getAttribute(HEX_MODE_ATTR))
-  const next: ModeId = current === 'dark' ? 'light' : 'dark'
+  // If no valid mode is set, assume dark so toggling goes to light
+  const next: ModeId = (current ?? 'dark') === 'dark' ? 'light' : 'dark'
   element.setAttribute(HEX_MODE_ATTR, next)
   return next
 }
@@ -96,10 +108,10 @@ export function toggleMode(element: HTMLElement): ModeId {
 /**
  * Read the current theme id and mode from an element.
  */
-export function getThemeState(element: HTMLElement): { themeId: string | null; mode: ModeId | null } {
+export function getThemeState(element: HTMLElement): { themeId: ThemeId | null; mode: ModeId | null } {
   if (typeof document === 'undefined') return { themeId: null, mode: null }
   return {
-    themeId: element.getAttribute(HEX_THEME_ATTR),
+    themeId: asThemeId(element.getAttribute(HEX_THEME_ATTR)),
     mode: asModeId(element.getAttribute(HEX_MODE_ATTR)),
   }
 }

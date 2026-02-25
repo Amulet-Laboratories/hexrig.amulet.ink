@@ -94,8 +94,6 @@ packages/
 
 **Exports:**
 - `@amulet-laboratories/rig` — all components + composables + types
-- `@amulet-laboratories/rig/components/*` — individual components
-- `@amulet-laboratories/rig/composables/*` — individual composables
 - `@amulet-laboratories/rig/style.css` — compiled Tailwind styles
 
 ## Composables
@@ -122,13 +120,13 @@ colors: {
   surface: { base: 'var(--surface-base)', raised: 'var(--surface-raised)', /* ... */ },
   text: { primary: 'var(--text-primary)', secondary: 'var(--text-secondary)', /* ... */ },
   border: { DEFAULT: 'var(--border-default)', subtle: 'var(--border-subtle)', strong: 'var(--border-strong)' },
-  accent: { DEFAULT: 'var(--accent-default)', hover: 'var(--accent-hover)', /* ... */ },
+  accent: { DEFAULT: 'var(--accent-primary)', hover: 'var(--accent-hover)', /* ... */ },
   status: { success: 'var(--status-success)', warning: 'var(--status-warning)', /* ... */ },
   focus: { ring: 'var(--focus-ring)' },
 },
 fontFamily: { display: 'var(--font-display)', body: 'var(--font-body)', /* ... */ },
 transitionDuration: { fast: 'var(--duration-fast)', normal: 'var(--duration-normal)', slow: 'var(--duration-slow)' },
-transitionTimingFunction: { standard: 'var(--easing-standard)', entrance: 'var(--easing-entrance)', exit: 'var(--easing-exit)' },
+transitionTimingFunction: { standard: 'var(--easing-default)', entrance: 'var(--easing-entrance)', exit: 'var(--easing-exit)' },
 ```
 
 Usage: `bg-surface-base`, `text-text-primary`, `border-border-subtle`, `duration-fast`, `ease-standard`.

@@ -1,8 +1,13 @@
 import type { HexTheme, ModeId } from '../tokens/types'
 
-/** Sanitize a CSS value to prevent injection (no semicolons, braces, or comments) */
+/** Sanitize a CSS value to prevent injection (strips semicolons, braces, comments, url(), expression(), and newlines) */
 function sanitizeCSSValue(value: string): string {
-  return value.replace(/[{};]/g, '').replace(/\/\*/g, '').replace(/\*\//g, '')
+  return value
+    .replace(/[{};\r\n]/g, '')
+    .replace(/\/\*/g, '')
+    .replace(/\*\//g, '')
+    .replace(/url\s*\(/gi, '')
+    .replace(/expression\s*\(/gi, '')
 }
 
 /**
