@@ -18,7 +18,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "type-check": "pnpm -r typecheck",
-    "clean": "rm -rf storybook-static packages/*/dist packages/*/.vite",
+    "clean": "rm -rf storybook-static node_modules packages/*/dist packages/*/.vite packages/*/node_modules",
     "storybook": "storybook dev -p 6006",
     "build:storybook": "storybook build -o storybook-static"
   },
