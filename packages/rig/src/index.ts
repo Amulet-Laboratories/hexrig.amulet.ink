@@ -21,6 +21,22 @@ export { default as RigAlert } from './components/RigAlert.vue'
 export { default as RigCard } from './components/RigCard.vue'
 export { default as RigDialog } from './components/RigDialog.vue'
 export { default as RigToast } from './components/RigToast.vue'
+export { default as RigContainer } from './components/RigContainer.vue'
+export { default as RigStack } from './components/RigStack.vue'
+export { default as RigGrid } from './components/RigGrid.vue'
+export { default as RigSpacer } from './components/RigSpacer.vue'
+export { default as RigSpinner } from './components/RigSpinner.vue'
+export { default as RigSkeleton } from './components/RigSkeleton.vue'
+export { default as RigProgress } from './components/RigProgress.vue'
+export { default as RigTooltip } from './components/RigTooltip.vue'
+export { default as RigTabs } from './components/RigTabs.vue'
+export { default as RigAccordion } from './components/RigAccordion.vue'
+export { default as RigBreadcrumb } from './components/RigBreadcrumb.vue'
+export { default as RigAvatar } from './components/RigAvatar.vue'
+export { default as RigSelect } from './components/RigSelect.vue'
+export { default as RigCheckbox } from './components/RigCheckbox.vue'
+export { default as RigSwitch } from './components/RigSwitch.vue'
+export { default as RigTag } from './components/RigTag.vue'
 
 // Composables
 export { useTheme, provideTheme } from './composables/useTheme'
@@ -30,7 +46,7 @@ export { useToast, provideToast } from './composables/useToast'
 // Types
 export type {
   ThemeId,
-  SchemeId,
+  ModeId,
   RigTextProps,
   RigButtonProps,
   RigInputProps,
@@ -43,6 +59,26 @@ export type {
   RigDialogProps,
   RigThemeProviderProps,
   RigToastProps,
+  RigContainerProps,
+  RigStackProps,
+  RigGridProps,
+  RigSpacerProps,
+  RigSpinnerProps,
+  RigSkeletonProps,
+  RigProgressProps,
+  RigTooltipProps,
+  RigTabItem,
+  RigTabsProps,
+  RigAccordionItem,
+  RigAccordionProps,
+  RigBreadcrumbItem,
+  RigBreadcrumbProps,
+  RigAvatarProps,
+  RigSelectOption,
+  RigSelectProps,
+  RigCheckboxProps,
+  RigSwitchProps,
+  RigTagProps,
   ToastOptions,
   ToastInstance,
   UseThemeReturn,

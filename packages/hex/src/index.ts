@@ -11,7 +11,6 @@
 export type {
   ThemeId,
   ModeId,
-  SchemeId,
   HexSurfaces,
   HexText,
   HexBorders,
@@ -21,29 +20,32 @@ export type {
   HexSyntaxTokens,
   HexTerminalColors,
   HexMotion,
+  HexSpacing,
+  HexShape,
+  HexElevation,
   HexFont,
   HexFonts,
   HexModeTokens,
   HexTheme,
   HexThemeRegistry,
+  HexCollection,
 } from './tokens/types'
 
 export {
   HEX_THEME_ATTR,
   HEX_MODE_ATTR,
-  HEX_SCHEME_ATTR,
   SURFACE_KEYS,
   TEXT_KEYS,
   BORDER_KEYS,
   ACCENT_KEYS,
   STATUS_KEYS,
   FOCUS_KEYS,
+  ELEVATION_KEYS,
+  SPACING_KEYS,
+  SHAPE_KEYS,
   SYNTAX_TOKEN_KEYS,
   TERMINAL_KEYS,
 } from './tokens/types'
-
-// Themes
-export { themes, themeIds, hearth, abyss, hollow, keep, cove } from './themes/index'
 
 // Validation
 export { validateTheme } from './utils/validate'

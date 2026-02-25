@@ -3,9 +3,13 @@
   "private": true,
   "type": "module",
   "description": "Hex design token system + Rig component library — a Gesamtkunstwerk for the web.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Amulet-Laboratories/hexrig.amulet.ink"
+  },
   "scripts": {
     "build": "pnpm -r build",
-    "build:deploy": "pnpm --filter hex build && pnpm --filter rig build && pnpm --filter site build && pnpm exec storybook build -o storybook-static && cp -r storybook-static packages/site/dist/storybook",
+    "build:deploy": "pnpm --filter hex build && pnpm --filter hex-origins build && pnpm --filter rig build && pnpm --filter site build && pnpm exec storybook build -o storybook-static && cp -r storybook-static packages/site/dist/storybook",
     "dev": "pnpm -r --parallel dev",
     "lint": "eslint packages/",
     "format": "prettier --write .",
@@ -46,7 +50,7 @@
     }
   },
   "engines": {
-    "node": ">=20",
+    "node": ">=22",
     "pnpm": ">=9"
   },
   "packageManager": "pnpm@9.15.0"

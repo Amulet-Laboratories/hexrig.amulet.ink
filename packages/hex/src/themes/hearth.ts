@@ -17,7 +17,23 @@ export const hearth: HexTheme = {
       default: 'cubic-bezier(0.4, 0.0, 0.2, 1)',
       entrance: 'cubic-bezier(0.0, 0.0, 0.2, 1)',
       exit: 'cubic-bezier(0.4, 0.0, 1, 1)',
+      expressive: 'cubic-bezier(0.68, -0.55, 0.27, 1.55)',
     },
+  },
+
+  spacing: {
+    xs: '4px',
+    sm: '8px',
+    md: '16px',
+    lg: '24px',
+    xl: '40px',
+    '2xl': '64px',
+    '3xl': '96px',
+  },
+
+  shape: {
+    radius: '8px',
+    radiusFull: '9999px',
   },
 
   fonts: {
@@ -62,6 +78,7 @@ export const hearth: HexTheme = {
     accents: { primary: '#c9956d', secondary: '#a87b56', hover: '#d4a57a', active: '#b08050', muted: '#1f1a14' },
     status: { success: '#5a9a66', warning: '#d4a03c', error: '#c75c5c', info: '#6a90b0' },
     focus: { ring: 'rgba(201, 149, 109, 0.5)', outline: '#c9956d' },
+    shadows: { sm: '0 1px 2px rgba(0, 0, 0, 0.3)', md: '0 4px 8px rgba(0, 0, 0, 0.4)', lg: '0 8px 24px rgba(0, 0, 0, 0.5)' },
     syntax: { comment: '#7a746d', keyword: '#c07050', storage: '#c9a050', string: '#8a9a70', number: '#b07878', function: '#c9956d', operator: '#c9956d', punctuation: '#7a746d', type: '#d4a57a' },
     terminal: { black: '#0f0d0a', red: '#c75c5c', green: '#5a9a66', yellow: '#d4a03c', blue: '#6a90b0', magenta: '#b068a0', cyan: '#48b0c8', white: '#f5f1ed', brightBlack: '#7a746d', brightRed: '#d06a6a', brightGreen: '#6aaa76', brightYellow: '#e0b050', brightBlue: '#7aa0c0', brightMagenta: '#c078b0', brightCyan: '#58c0d8', brightWhite: '#ffffff' },
   },
@@ -73,6 +90,7 @@ export const hearth: HexTheme = {
     accents: { primary: '#7a5530', secondary: '#654525', hover: '#6a4a28', active: '#5a3e20', muted: '#f0e8de' },
     status: { success: '#2e6e38', warning: '#9a7a28', error: '#a04040', info: '#3a6888' },
     focus: { ring: 'rgba(154, 111, 66, 0.4)', outline: '#9a6f42' },
+    shadows: { sm: '0 1px 3px rgba(0, 0, 0, 0.08)', md: '0 4px 12px rgba(0, 0, 0, 0.1)', lg: '0 8px 32px rgba(0, 0, 0, 0.12)' },
     syntax: { comment: '#8a8279', keyword: '#9a4a30', storage: '#8a6a20', string: '#4a7040', number: '#905060', function: '#7a5530', operator: '#7a5530', punctuation: '#8a8279', type: '#7a5a30' },
     terminal: { black: '#1a1714', red: '#a04040', green: '#2e6e38', yellow: '#9a7a28', blue: '#3a6888', magenta: '#885090', cyan: '#0a8098', white: '#f5f1ed', brightBlack: '#8a8279', brightRed: '#b05050', brightGreen: '#3e7e48', brightYellow: '#aa8a38', brightBlue: '#4a7898', brightMagenta: '#986098', brightCyan: '#1a90a8', brightWhite: '#ffffff' },
   },

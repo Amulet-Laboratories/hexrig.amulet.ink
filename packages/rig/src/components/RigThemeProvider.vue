@@ -5,12 +5,12 @@ import { useTheme, provideTheme } from '../composables/useTheme'
 
 const props = withDefaults(defineProps<RigThemeProviderProps>(), {
   theme: 'hearth',
-  scheme: 'auto',
+  mode: 'auto',
 })
 
 const themeApi = useTheme({
   theme: props.theme,
-  scheme: props.scheme,
+  mode: props.mode,
 })
 
 // Sync props to state when they change
@@ -19,16 +19,16 @@ watch(() => props.theme, (val) => {
   themeApi.setTheme(val)
 })
 
-watch(() => props.scheme, (val) => {
+watch(() => props.mode, (val) => {
   if (val === 'auto') {
     // Re-resolve from system preference
     if (typeof window !== 'undefined') {
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-      themeApi.setScheme(prefersDark ? 'dark' : 'light')
+      themeApi.setMode(prefersDark ? 'dark' : 'light')
     }
     return
   }
-  themeApi.setScheme(val)
+  themeApi.setMode(val)
 })
 
 provideTheme(themeApi)
@@ -37,7 +37,7 @@ provideTheme(themeApi)
 <template>
   <div
     :data-theme="themeApi.theme.value"
-    :data-mode="themeApi.scheme.value"
+    :data-mode="themeApi.mode.value"
     class="bg-surface-base text-text-primary font-body"
   >
     <slot />

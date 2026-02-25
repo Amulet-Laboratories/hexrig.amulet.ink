@@ -13,7 +13,7 @@ const meta = {
       control: 'select',
       options: ['hearth', 'abyss', 'hollow', 'keep', 'cove'],
     },
-    scheme: {
+    mode: {
       control: 'select',
       options: ['dark', 'light', 'auto'],
     },
@@ -31,7 +31,7 @@ export const Default: Story = {
       <RigThemeProvider v-bind="args">
         <RigSurface elevation="raised" padding="lg" border>
           <RigText variant="heading" class="mb-2">Theme Preview</RigText>
-          <RigText color="secondary" class="mb-4">This content uses the {{ args.theme }} theme in {{ args.scheme }} mode.</RigText>
+          <RigText color="secondary" class="mb-4">This content uses the {{ args.theme }} theme in {{ args.mode }} mode.</RigText>
           <div class="flex gap-3">
             <RigButton>Primary Action</RigButton>
             <RigButton variant="outline">Secondary</RigButton>
@@ -43,7 +43,7 @@ export const Default: Story = {
   }),
   args: {
     theme: 'hearth',
-    scheme: 'dark',
+    mode: 'dark',
   },
 }
 
@@ -53,7 +53,7 @@ export const SideBySide: Story = {
     components: { RigThemeProvider, RigText, RigButton, RigSurface },
     template: `
       <div class="grid grid-cols-2 gap-4">
-        <RigThemeProvider v-for="theme in ['hearth', 'abyss', 'hollow', 'keep', 'cove']" :key="theme" :theme="theme" scheme="dark">
+        <RigThemeProvider v-for="theme in ['hearth', 'abyss', 'hollow', 'keep', 'cove']" :key="theme" :theme="theme" mode="dark">
           <RigSurface elevation="raised" padding="md" border>
             <RigText variant="overline" color="muted" class="mb-1">{{ theme }}</RigText>
             <RigText variant="heading" class="mb-3">Heading</RigText>
@@ -66,13 +66,13 @@ export const SideBySide: Story = {
   }),
 }
 
-export const SchemeToggle: Story = {
+export const ModeToggle: Story = {
   name: 'Dark vs Light',
   render: () => ({
     components: { RigThemeProvider, RigText, RigButton, RigSurface },
     template: `
       <div class="grid grid-cols-2 gap-4">
-        <RigThemeProvider theme="hearth" scheme="dark">
+        <RigThemeProvider theme="hearth" mode="dark">
           <RigSurface elevation="raised" padding="md" border>
             <RigText variant="overline" color="muted" class="mb-1">Dark</RigText>
             <RigText variant="heading" class="mb-3">Hearth Dark</RigText>
@@ -83,7 +83,7 @@ export const SchemeToggle: Story = {
             </div>
           </RigSurface>
         </RigThemeProvider>
-        <RigThemeProvider theme="hearth" scheme="light">
+        <RigThemeProvider theme="hearth" mode="light">
           <RigSurface elevation="raised" padding="md" border>
             <RigText variant="overline" color="muted" class="mb-1">Light</RigText>
             <RigText variant="heading" class="mb-3">Hearth Light</RigText>

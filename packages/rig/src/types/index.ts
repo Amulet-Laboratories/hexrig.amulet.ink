@@ -2,11 +2,10 @@
 type RouteLocationRaw = string | Record<string, unknown>
 
 // ---------------------------------------------------------------------------
-// Theme types (mirrors Hex)
+// Theme types (re-exported from Hex)
 // ---------------------------------------------------------------------------
 
-export type ThemeId = 'hearth' | 'abyss' | 'hollow' | 'keep' | 'cove'
-export type SchemeId = 'dark' | 'light'
+export type { ThemeId, ModeId } from '@amulet-laboratories/hex'
 
 // ---------------------------------------------------------------------------
 // Component prop types
@@ -98,6 +97,166 @@ export interface RigCardProps {
   as?: 'div' | 'article' | 'a' | 'router-link'
   href?: string
   to?: RouteLocationRaw
+  ariaLabel?: string
+}
+
+// RigContainer
+export interface RigContainerProps {
+  as?: 'div' | 'section' | 'article' | 'main' | 'header' | 'footer' | 'nav'
+  size?: 'sm' | 'md' | 'lg' | 'full'
+  center?: boolean
+  padding?: boolean
+}
+
+// RigStack
+export interface RigStackProps {
+  as?: 'div' | 'section' | 'article' | 'nav' | 'ul' | 'ol' | 'fieldset'
+  direction?: 'vertical' | 'horizontal'
+  gap?: 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl'
+  align?: 'start' | 'center' | 'end' | 'stretch' | 'baseline'
+  justify?: 'start' | 'center' | 'end' | 'between' | 'around' | 'evenly'
+  wrap?: boolean
+}
+
+// RigGrid
+export interface RigGridProps {
+  as?: 'div' | 'section' | 'article' | 'ul' | 'ol'
+  cols?: 1 | 2 | 3 | 4 | 5 | 6
+  gap?: 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl'
+  align?: 'start' | 'center' | 'end' | 'stretch'
+}
+
+// RigSpacer
+export interface RigSpacerProps {
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl'
+  axis?: 'vertical' | 'horizontal'
+}
+
+// RigSpinner
+export interface RigSpinnerProps {
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+  tone?: 'accent' | 'current' | 'muted'
+  label?: string
+}
+
+// RigSkeleton
+export interface RigSkeletonProps {
+  variant?: 'text' | 'heading' | 'circle' | 'rect' | 'card'
+  lines?: number
+  animated?: boolean
+}
+
+// RigProgress
+export interface RigProgressProps {
+  value?: number
+  max?: number
+  size?: 'sm' | 'md' | 'lg'
+  tone?: 'accent' | 'success' | 'warning' | 'error' | 'info'
+  label?: string
+  indeterminate?: boolean
+}
+
+// RigTooltip
+export interface RigTooltipProps {
+  content: string
+  placement?: 'top' | 'bottom' | 'left' | 'right'
+  delay?: number
+  disabled?: boolean
+}
+
+// RigTabs
+export interface RigTabItem {
+  value: string
+  label: string
+  disabled?: boolean
+}
+
+export interface RigTabsProps {
+  modelValue: string
+  tabs: RigTabItem[]
+  label?: string
+  variant?: 'underline' | 'pill'
+  size?: 'sm' | 'md' | 'lg'
+}
+
+// RigAccordion
+export interface RigAccordionItem {
+  value: string
+  label: string
+  content?: string
+  disabled?: boolean
+}
+
+export interface RigAccordionProps {
+  items: RigAccordionItem[]
+  multiple?: boolean
+  defaultOpen?: string[]
+}
+
+// RigBreadcrumb
+export interface RigBreadcrumbItem {
+  label: string
+  href?: string
+}
+
+export interface RigBreadcrumbProps {
+  items: RigBreadcrumbItem[]
+  separator?: string
+}
+
+// RigAvatar
+export interface RigAvatarProps {
+  src?: string
+  name?: string
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+  shape?: 'circle' | 'square'
+}
+
+// RigSelect
+export interface RigSelectOption {
+  value: string
+  label: string
+  disabled?: boolean
+}
+
+export interface RigSelectProps {
+  modelValue?: string
+  label?: string
+  description?: string
+  error?: string
+  placeholder?: string
+  options: RigSelectOption[]
+  disabled?: boolean
+  required?: boolean
+  id?: string
+}
+
+// RigCheckbox
+export interface RigCheckboxProps {
+  modelValue?: boolean
+  label?: string
+  description?: string
+  error?: string
+  disabled?: boolean
+  id?: string
+}
+
+// RigSwitch
+export interface RigSwitchProps {
+  modelValue?: boolean
+  label?: string
+  description?: string
+  disabled?: boolean
+  id?: string
+}
+
+// RigTag
+export interface RigTagProps {
+  label?: string
+  variant?: 'solid' | 'soft' | 'outline'
+  size?: 'sm' | 'md' | 'lg'
+  removable?: boolean
+  disabled?: boolean
 }
 
 // RigDialog
@@ -113,7 +272,7 @@ export interface RigDialogProps {
 // RigThemeProvider
 export interface RigThemeProviderProps {
   theme?: ThemeId
-  scheme?: SchemeId | 'auto'
+  mode?: ModeId | 'auto'
 }
 
 // RigToast
@@ -146,14 +305,15 @@ export interface ToastInstance extends Required<Omit<ToastOptions, 'action' | 'd
 // Composable return types
 // ---------------------------------------------------------------------------
 
+import type { ThemeId, ModeId } from '@amulet-laboratories/hex'
 import type { Ref, ComputedRef } from 'vue'
 
 export interface UseThemeReturn {
   theme: Ref<ThemeId>
-  scheme: Ref<SchemeId>
+  mode: Ref<ModeId>
   setTheme: (id: ThemeId) => void
-  setScheme: (scheme: SchemeId) => void
-  toggleScheme: () => void
+  setMode: (mode: ModeId) => void
+  toggleMode: () => void
 }
 
 export interface UseMotionReturn {

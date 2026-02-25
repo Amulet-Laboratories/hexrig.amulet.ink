@@ -10,7 +10,7 @@ const props = withDefaults(defineProps<RigIconProps>(), {
 })
 
 watchEffect(() => {
-  if (!props.decorative && !props.label) {
+  if (import.meta.env.DEV && !props.decorative && !props.label) {
     console.warn(
       `[RigIcon] Non-decorative icon "${props.name}" is missing a "label" prop. ` +
       'This creates an inaccessible unlabeled image (WCAG 1.1.1). ' +

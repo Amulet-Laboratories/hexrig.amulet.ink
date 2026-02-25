@@ -13,6 +13,22 @@ const componentNames = [
   'RigCard',
   'RigDialog',
   'RigToast',
+  'RigContainer',
+  'RigStack',
+  'RigGrid',
+  'RigSpacer',
+  'RigSpinner',
+  'RigSkeleton',
+  'RigProgress',
+  'RigTooltip',
+  'RigTabs',
+  'RigAccordion',
+  'RigBreadcrumb',
+  'RigAvatar',
+  'RigSelect',
+  'RigCheckbox',
+  'RigSwitch',
+  'RigTag',
 ] as const
 
 describe('rig component exports', () => {

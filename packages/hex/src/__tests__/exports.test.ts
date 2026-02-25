@@ -1,12 +1,5 @@
 import { describe, it, expect } from 'vitest'
 import {
-  themes,
-  themeIds,
-  hearth,
-  abyss,
-  hollow,
-  keep,
-  cove,
   HEX_THEME_ATTR,
   HEX_MODE_ATTR,
   SURFACE_KEYS,
@@ -15,25 +8,14 @@ import {
   ACCENT_KEYS,
   STATUS_KEYS,
   FOCUS_KEYS,
+  ELEVATION_KEYS,
+  SPACING_KEYS,
+  SHAPE_KEYS,
   SYNTAX_TOKEN_KEYS,
   TERMINAL_KEYS,
 } from '@hex/index'
 
 describe('hex exports', () => {
-  it('exports all five theme objects', () => {
-    expect(hearth).toBeDefined()
-    expect(abyss).toBeDefined()
-    expect(hollow).toBeDefined()
-    expect(keep).toBeDefined()
-    expect(cove).toBeDefined()
-  })
-
-  it('exports themes registry with all theme ids', () => {
-    expect(themes).toBeDefined()
-    expect(themeIds).toEqual(expect.arrayContaining(['hearth', 'abyss', 'hollow', 'keep', 'cove']))
-    expect(themeIds).toHaveLength(5)
-  })
-
   it('exports correct constants', () => {
     expect(HEX_THEME_ATTR).toBe('data-theme')
     expect(HEX_MODE_ATTR).toBe('data-mode')
@@ -56,6 +38,19 @@ describe('hex exports', () => {
     expect(FOCUS_KEYS).toHaveLength(2)
     expect(FOCUS_KEYS).toContain('ring')
     expect(FOCUS_KEYS).toContain('outline')
+
+    expect(ELEVATION_KEYS).toHaveLength(3)
+    expect(ELEVATION_KEYS).toContain('sm')
+    expect(ELEVATION_KEYS).toContain('md')
+    expect(ELEVATION_KEYS).toContain('lg')
+
+    expect(SPACING_KEYS).toHaveLength(7)
+    expect(SPACING_KEYS).toContain('xs')
+    expect(SPACING_KEYS).toContain('3xl')
+
+    expect(SHAPE_KEYS).toHaveLength(2)
+    expect(SHAPE_KEYS).toContain('radius')
+    expect(SHAPE_KEYS).toContain('radiusFull')
 
     expect(TERMINAL_KEYS).toHaveLength(16)
   })

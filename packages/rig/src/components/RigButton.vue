@@ -26,7 +26,7 @@ const sizeClasses: Record<NonNullable<RigButtonProps['size']>, string> = {
 const variantToneClasses = computed(() => {
   const { variant, tone } = props
 
-  const base = 'inline-flex items-center justify-center rounded-theme font-body font-medium transition-colors duration-normal ease-standard focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring'
+  const base = 'inline-flex items-center justify-center rounded font-body font-medium transition-colors duration-normal ease-standard focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring'
 
   const map: Record<string, string> = {
     'solid-accent': `${base} bg-accent text-text-on-accent hover:bg-accent-hover active:bg-accent-active`,

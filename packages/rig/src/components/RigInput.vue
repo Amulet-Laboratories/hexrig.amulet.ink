@@ -26,7 +26,7 @@ const describedBy = computed(() => {
 })
 
 const inputClasses = computed(() => {
-  const base = 'block w-full rounded-theme border bg-surface-sunken px-3 py-2 font-body text-base text-text-primary placeholder:text-text-muted shadow-inner transition-colors duration-fast ease-standard focus:outline-none focus:border-focus-ring focus:ring-2 focus:ring-focus-ring'
+  const base = 'block w-full rounded border bg-surface-sunken px-3 py-2 font-body text-base text-text-primary placeholder:text-text-muted shadow-inner transition-colors duration-fast ease-standard focus:outline-none focus:border-focus-ring focus:ring-2 focus:ring-focus-ring'
 
   if (props.error) {
     return `${base} border-status-error`

@@ -2,6 +2,7 @@
 import { computed, watch, ref, onUnmounted, nextTick, useId, inject } from 'vue'
 import type { RigDialogProps } from '../types'
 import { THEME_INJECTION_KEY } from '../composables/useTheme'
+import { ICON_DISMISS } from './shared'
 
 const props = withDefaults(defineProps<RigDialogProps>(), {
   modelValue: false,
@@ -20,12 +21,12 @@ const previousActiveElement = ref<Element | null>(null)
 /** Ref-counted scroll lock for concurrent dialogs */
 const scrollLockCount = (() => {
   if (typeof globalThis !== 'undefined') {
-    const key = '__rig_scroll_lock_count__'
-    const g = globalThis as unknown as Record<string, { value: number; savedOverflow: string }>
-    if (!(key in g)) {
+    const key = Symbol.for('rig-scroll-lock')
+    const g = globalThis as unknown as Record<symbol, { value: number; savedOverflow: string } | undefined>
+    if (!g[key]) {
       g[key] = { value: 0, savedOverflow: '' }
     }
-    return g[key]
+    return g[key]!
   }
   return { value: 0, savedOverflow: '' }
 })()
@@ -41,7 +42,7 @@ const sizeClasses: Record<NonNullable<RigDialogProps['size']>, string> = {
 }
 
 const classes = computed(() => {
-  return `relative w-full ${sizeClasses[props.size]} rounded-theme bg-surface-raised shadow-xl p-6 font-body text-text-primary`
+  return `relative w-full ${sizeClasses[props.size]} rounded bg-surface-raised shadow-xl p-6 font-body text-text-primary`
 })
 
 const close = () => {
@@ -146,7 +147,7 @@ onUnmounted(() => {
       <div
         v-if="modelValue"
         :data-theme="themeState?.theme.value"
-        :data-mode="themeState?.scheme.value"
+        :data-mode="themeState?.mode.value"
         class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
         @click="onBackdropClick"
         @keydown="onKeydown"
@@ -173,12 +174,12 @@ onUnmounted(() => {
           <button
             v-if="dismissible"
             type="button"
-            class="absolute right-4 top-4 inline-flex h-11 w-11 items-center justify-center rounded-theme text-text-muted hover:text-text-primary hover:bg-surface-overlay focus:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring"
+            class="absolute right-4 top-4 inline-flex h-11 w-11 items-center justify-center rounded text-text-muted hover:text-text-primary hover:bg-surface-overlay focus:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring"
             aria-label="Close dialog"
             @click="close"
           >
             <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M18 6L6 18M6 6l12 12" />
+              <path :d="ICON_DISMISS" />
             </svg>
           </button>
 

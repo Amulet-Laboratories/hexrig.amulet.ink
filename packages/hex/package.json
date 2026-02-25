@@ -1,7 +1,7 @@
 {
   "name": "@amulet-laboratories/hex",
-  "version": "0.2.0",
-  "description": "Five-theme design token system — VSCode extension + web tokens (CSS custom properties + TypeScript).",
+  "version": "0.5.0",
+  "description": "Hex design token engine — type system, CSS generation, validation, and Tailwind preset for themed design systems.",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -12,29 +12,24 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
-    "./themes/*.css": "./dist/themes/*.css",
-    "./themes/*": {
-      "types": "./dist/themes/*.d.ts",
-      "import": "./dist/themes/*.js",
-      "require": "./dist/themes/*.cjs"
+    "./tailwind": {
+      "types": "./dist/tailwind/index.d.ts",
+      "import": "./dist/tailwind/index.js",
+      "require": "./dist/tailwind/index.cjs"
     }
   },
   "files": [
-    "dist",
-    "themes"
+    "dist"
   ],
   "scripts": {
-    "build": "tsup && pnpm build:css && pnpm build:vscode",
-    "build:css": "tsx src/build/generate-css.ts",
-    "build:vscode": "tsx src/build/generate-vscode-themes.ts",
+    "build": "tsup",
     "dev": "tsup --watch",
-    "typecheck": "tsc --noEmit",
-    "validate": "tsx src/build/validate-all.ts"
+    "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
     "@types/node": "^25.3.0",
+    "tailwindcss": "^3.4.0",
     "tsup": "^8.3.0",
-    "tsx": "^4.19.0",
     "typescript": "^5.7.0"
   },
   "keywords": [
@@ -48,6 +43,6 @@
   "sideEffects": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/apassanisi/hexrig.amulet.ink"
+    "url": "https://github.com/Amulet-Laboratories/hexrig.amulet.ink"
   }
 }

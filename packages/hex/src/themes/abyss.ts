@@ -18,7 +18,23 @@ export const abyss: HexTheme = {
       default: 'cubic-bezier(0.0, 0.0, 0.2, 1)',
       entrance: 'cubic-bezier(0.0, 0.0, 0.1, 1)',
       exit: 'cubic-bezier(0.2, 0.0, 1, 1)',
+      expressive: 'cubic-bezier(0.0, 0.0, 0.0, 1)',
     },
+  },
+
+  spacing: {
+    xs: '4px',
+    sm: '8px',
+    md: '14px',
+    lg: '22px',
+    xl: '36px',
+    '2xl': '56px',
+    '3xl': '80px',
+  },
+
+  shape: {
+    radius: '4px',
+    radiusFull: '9999px',
   },
 
   fonts: {
@@ -63,6 +79,7 @@ export const abyss: HexTheme = {
     accents: { primary: '#aef66d', secondary: '#8ad050', hover: '#c2ff8a', active: '#90d858', muted: '#0c1a2e' },
     status: { success: '#5acc6a', warning: '#e0c050', error: '#f06060', info: '#6a9ae0' },
     focus: { ring: 'rgba(174, 246, 109, 0.5)', outline: '#aef66d' },
+    shadows: { sm: '0 1px 3px rgba(0, 0, 0, 0.5)', md: '0 4px 12px rgba(0, 0, 0, 0.6)', lg: '0 12px 36px rgba(0, 0, 0, 0.7)' },
     syntax: { comment: '#5a6aaa', keyword: '#2d4fe0', storage: '#aef66d', string: '#dff081', number: '#f06060', function: '#a0b2ff', operator: '#aef66d', punctuation: '#5a6aaa', type: '#cad3f7' },
     terminal: { black: '#060d2b', red: '#f06060', green: '#5acc6a', yellow: '#e0c050', blue: '#2d4fe0', magenta: '#a0b2ff', cyan: '#40c8d8', white: '#cad3f7', brightBlack: '#4a5a9a', brightRed: '#ff7070', brightGreen: '#6adc7a', brightYellow: '#eacc60', brightBlue: '#5a70f0', brightMagenta: '#b8c4ff', brightCyan: '#50d8e8', brightWhite: '#e8ecfa' },
   },
@@ -74,6 +91,7 @@ export const abyss: HexTheme = {
     accents: { primary: '#1a5a10', secondary: '#164a0c', hover: '#144a0e', active: '#103c08', muted: '#dce6d8' },
     status: { success: '#2a7030', warning: '#8a7020', error: '#b03030', info: '#1a3a90' },
     focus: { ring: 'rgba(26, 90, 16, 0.4)', outline: '#1a5a10' },
+    shadows: { sm: '0 1px 2px rgba(0, 0, 0, 0.06)', md: '0 4px 8px rgba(0, 0, 0, 0.08)', lg: '0 8px 24px rgba(0, 0, 0, 0.1)' },
     syntax: { comment: '#5a6aaa', keyword: '#1a3a90', storage: '#1a5a10', string: '#6a7a10', number: '#b03030', function: '#0d1b56', operator: '#1a5a10', punctuation: '#5a6aaa', type: '#2040a0' },
     terminal: { black: '#060d2b', red: '#b03030', green: '#2a7030', yellow: '#8a7020', blue: '#1a3a90', magenta: '#6a50b0', cyan: '#0a7868', white: '#e0e4f8', brightBlack: '#4a5a9a', brightRed: '#c04040', brightGreen: '#3a8040', brightYellow: '#9a8030', brightBlue: '#2a4aa0', brightMagenta: '#7a60c0', brightCyan: '#1a8878', brightWhite: '#f4f6ff' },
   },

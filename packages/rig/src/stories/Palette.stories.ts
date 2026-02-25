@@ -81,7 +81,7 @@ export const ColorPalette: Story = {
           <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
             <div v-for="token in section.tokens" :key="token.name">
               <div
-                class="h-16 rounded-theme border border-border-subtle mb-2"
+                class="h-16 rounded border border-border-subtle mb-2"
                 :style="{ backgroundColor: 'var(' + token.var + ')' }"
               />
               <RigText variant="caption" class="font-mono">{{ token.name }}</RigText>

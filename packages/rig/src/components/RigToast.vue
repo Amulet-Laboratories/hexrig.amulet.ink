@@ -2,41 +2,18 @@
 import { inject } from 'vue'
 import { useToast } from '../composables/useToast'
 import { THEME_INJECTION_KEY } from '../composables/useTheme'
+import { ICON_PATHS, ICON_COLOR_CLASSES, ICON_DISMISS, TOAST_TONE_CLASSES } from './shared'
 
 const themeState = inject(THEME_INJECTION_KEY, null)
 
 const { toasts, dismiss } = useToast()
-
-const toneClasses: Record<string, string> = {
-  success: 'border-status-success/30 bg-surface-raised',
-  warning: 'border-status-warning/30 bg-surface-raised',
-  error: 'border-status-error/30 bg-surface-raised',
-  info: 'border-border bg-surface-raised',
-  neutral: 'border-border bg-surface-raised',
-}
-
-const iconColorClasses: Record<string, string> = {
-  success: 'text-status-success',
-  warning: 'text-status-warning',
-  error: 'text-status-error',
-  info: 'text-status-info',
-  neutral: 'text-text-muted',
-}
-
-const iconPaths: Record<string, string> = {
-  success: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z',
-  warning: 'M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.07 16.5c-.77.833.192 2.5 1.732 2.5z',
-  error: 'M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z',
-  info: 'M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z',
-  neutral: 'M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z',
-}
 </script>
 
 <template>
   <Teleport to="body">
     <div
       :data-theme="themeState?.theme.value"
-      :data-mode="themeState?.scheme.value"
+      :data-mode="themeState?.mode.value"
       class="fixed bottom-4 end-4 z-[100] flex w-full max-w-sm flex-col gap-2 pointer-events-none"
       aria-live="polite"
       aria-atomic="false"
@@ -52,15 +29,15 @@ const iconPaths: Record<string, string> = {
         <div
           v-for="toast in toasts"
           :key="toast.id"
-          class="pointer-events-auto w-full rounded-theme border shadow-lg p-4 font-body"
-          :class="toneClasses[toast.tone]"
-          role="status"
+          class="pointer-events-auto w-full rounded border shadow-lg p-4 font-body"
+          :class="TOAST_TONE_CLASSES[toast.tone]"
+          :role="toast.tone === 'error' ? 'alert' : 'status'"
         >
           <div class="flex gap-3">
             <!-- Icon -->
             <svg
               class="h-5 w-5 shrink-0 mt-0.5"
-              :class="iconColorClasses[toast.tone]"
+              :class="ICON_COLOR_CLASSES[toast.tone]"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -69,7 +46,7 @@ const iconPaths: Record<string, string> = {
               stroke-linejoin="round"
               aria-hidden="true"
             >
-              <path :d="iconPaths[toast.tone]" />
+              <path :d="ICON_PATHS[toast.tone]" />
             </svg>
 
             <!-- Content -->
@@ -95,7 +72,7 @@ const iconPaths: Record<string, string> = {
               @click="dismiss(toast.id)"
             >
               <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path d="M18 6L6 18M6 6l12 12" />
+                <path :d="ICON_DISMISS" />
               </svg>
             </button>
           </div>

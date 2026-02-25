@@ -71,7 +71,7 @@ export const AllColors: Story = {
         <RigText color="secondary">Secondary text</RigText>
         <RigText color="muted">Muted text</RigText>
         <RigText color="accent">Accent text</RigText>
-        <div class="bg-accent p-2 rounded-theme inline-block">
+        <div class="bg-accent p-2 rounded inline-block">
           <RigText color="on-accent">On-accent text</RigText>
         </div>
         <RigText color="success">Success text</RigText>

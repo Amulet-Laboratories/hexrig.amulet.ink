@@ -20,7 +20,7 @@ const elevationClasses: Record<NonNullable<RigCardProps['elevation']>, string> =
 
 const classes = computed(() => {
   const parts = [
-    'rounded-theme overflow-hidden font-body',
+    'rounded overflow-hidden font-body',
     elevationClasses[props.elevation],
   ]
 
@@ -57,6 +57,7 @@ const onKeydown = (event: KeyboardEvent) => {
     :to="to"
     :tabindex="interactive ? 0 : undefined"
     :role="interactive && as !== 'a' && as !== 'router-link' ? 'button' : undefined"
+    :aria-label="interactive ? ariaLabel : undefined"
     @click="onActivate"
     @keydown="onKeydown"
   >

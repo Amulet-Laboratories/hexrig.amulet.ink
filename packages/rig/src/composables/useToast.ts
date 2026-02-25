@@ -9,7 +9,20 @@ interface ToastState {
 
 const TOAST_INJECTION_KEY: InjectionKey<ToastState> = Symbol('hex-toast')
 
-let clientState: ToastState | null = null
+/** HMR-safe client singleton — survives module re-evaluation */
+const CLIENT_STATE_KEY = Symbol.for('hex-toast-client')
+
+function getClientState(): ToastState {
+  const g = globalThis as unknown as Record<symbol, ToastState | undefined>
+  if (!g[CLIENT_STATE_KEY]) {
+    g[CLIENT_STATE_KEY] = {
+      toasts: ref<ToastInstance[]>([]),
+      timers: new Map(),
+      idCounter: 0,
+    }
+  }
+  return g[CLIENT_STATE_KEY]!
+}
 
 function getState(): ToastState {
   // In a component context, try injection first
@@ -18,14 +31,7 @@ function getState(): ToastState {
 
   // Client-side singleton (safe because browser is inherently single-tenant)
   if (typeof window !== 'undefined') {
-    if (!clientState) {
-      clientState = {
-        toasts: ref<ToastInstance[]>([]),
-        timers: new Map(),
-        idCounter: 0,
-      }
-    }
-    return clientState
+    return getClientState()
   }
 
   // SSR fallback — fresh state per call (avoids cross-request leaks)

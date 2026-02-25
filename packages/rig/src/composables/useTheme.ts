@@ -1,15 +1,16 @@
 import { ref, inject, provide, onScopeDispose, type InjectionKey } from 'vue'
-import type { ThemeId, SchemeId, UseThemeReturn } from '../types'
+import type { ThemeId, ModeId } from '@amulet-laboratories/hex'
+import type { UseThemeReturn } from '../types'
 
 export const THEME_INJECTION_KEY: InjectionKey<UseThemeReturn> = Symbol('hex-theme')
 
 /**
- * useTheme composable — reactive theme/scheme state.
+ * useTheme composable — reactive theme/mode state.
  *
  * When called inside a RigThemeProvider, returns its injected state.
  * When called standalone (root setup), creates new state.
  */
-export function useTheme(defaults?: { theme?: ThemeId; scheme?: SchemeId | 'auto' }): UseThemeReturn {
+export function useTheme(defaults?: { theme?: ThemeId; mode?: ModeId | 'auto' }): UseThemeReturn {
   // Try to inject from parent ThemeProvider
   const injected = inject(THEME_INJECTION_KEY, null)
   if (injected) return injected
@@ -17,27 +18,26 @@ export function useTheme(defaults?: { theme?: ThemeId; scheme?: SchemeId | 'auto
   // Standalone usage — create new state
   const theme = ref<ThemeId>(defaults?.theme ?? 'hearth')
 
-  // Resolve 'auto' scheme via prefers-color-scheme
-  const resolveScheme = (): SchemeId => {
-    if (defaults?.scheme && defaults.scheme !== 'auto') return defaults.scheme
+  // Resolve 'auto' mode via prefers-color-scheme
+  const resolveMode = (): ModeId => {
+    if (defaults?.mode && defaults.mode !== 'auto') return defaults.mode
     if (typeof window !== 'undefined') {
       return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
     }
     return 'dark'
   }
 
-  const scheme = ref<SchemeId>(resolveScheme())
+  const mode = ref<ModeId>(resolveMode())
 
-  // Track whether the user has explicitly set a scheme
-  const userExplicitScheme = ref(false)
+  // Track whether the user has explicitly set a mode
+  const userExplicitMode = ref(false)
 
-  // Listen for system scheme changes when 'auto'
-  if (typeof window !== 'undefined' && defaults?.scheme === 'auto') {
+  // Always register MQ listener — auto-updates only apply when user hasn't overridden
+  if (typeof window !== 'undefined') {
     const mq = window.matchMedia('(prefers-color-scheme: dark)')
     const handler = (e: MediaQueryListEvent) => {
-      // Only auto-update if user hasn't explicitly overridden
-      if (!userExplicitScheme.value) {
-        scheme.value = e.matches ? 'dark' : 'light'
+      if (!userExplicitMode.value) {
+        mode.value = e.matches ? 'dark' : 'light'
       }
     }
     mq.addEventListener('change', handler)
@@ -45,20 +45,20 @@ export function useTheme(defaults?: { theme?: ThemeId; scheme?: SchemeId | 'auto
   }
 
   const setTheme = (id: ThemeId) => { theme.value = id }
-  const setScheme = (s: SchemeId) => {
-    userExplicitScheme.value = true
-    scheme.value = s
+  const setMode = (m: ModeId) => {
+    userExplicitMode.value = true
+    mode.value = m
   }
-  const toggleScheme = () => {
-    scheme.value = scheme.value === 'dark' ? 'light' : 'dark'
+  const toggleMode = () => {
+    mode.value = mode.value === 'dark' ? 'light' : 'dark'
   }
 
   const api: UseThemeReturn = {
     theme,
-    scheme,
+    mode,
     setTheme,
-    setScheme,
-    toggleScheme,
+    setMode,
+    toggleMode,
   }
 
   return api

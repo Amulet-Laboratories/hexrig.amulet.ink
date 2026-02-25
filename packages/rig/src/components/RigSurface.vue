@@ -39,7 +39,7 @@ const classes = computed(() => {
     paddingClasses[props.padding],
     borderClasses.value,
   ]
-  if (props.rounded) parts.push('rounded-theme')
+  if (props.rounded) parts.push('rounded')
   return parts.filter(Boolean).join(' ')
 })
 </script>

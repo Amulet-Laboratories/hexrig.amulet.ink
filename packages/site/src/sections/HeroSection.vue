@@ -44,22 +44,22 @@ const themeWords: Record<ThemeId, string> = {
       </div>
       <div class="flex items-center gap-4">
         <button
-          class="px-3 py-1.5 text-xs font-mono text-text-muted border border-border-subtle rounded-theme hover:border-border-strong hover:text-text-secondary transition-colors duration-fast"
+          class="px-3 py-1.5 text-xs font-mono text-text-muted border border-border-subtle rounded hover:border-border-strong hover:text-text-secondary transition-colors duration-fast"
           @click="$emit('toggle-mode')"
         >
           {{ mode }}
         </button>
         <a
           href="/storybook/"
-          class="px-3 py-1.5 text-xs font-mono text-text-muted border border-border-subtle rounded-theme hover:border-accent hover:text-accent transition-colors duration-fast"
+          class="px-3 py-1.5 text-xs font-mono text-text-muted border border-border-subtle rounded hover:border-accent hover:text-accent transition-colors duration-fast"
         >
           storybook
         </a>
         <a
-          href="https://github.com/apassanisi/hexrig.amulet.ink"
+          href="https://github.com/Amulet-Laboratories/hexrig.amulet.ink"
           target="_blank"
           rel="noopener"
-          class="px-3 py-1.5 text-xs font-mono text-text-muted border border-border-subtle rounded-theme hover:border-border-strong hover:text-text-secondary transition-colors duration-fast"
+          class="px-3 py-1.5 text-xs font-mono text-text-muted border border-border-subtle rounded hover:border-border-strong hover:text-text-secondary transition-colors duration-fast"
         >
           github
         </a>
@@ -93,7 +93,7 @@ const themeWords: Record<ThemeId, string> = {
 
       <!-- CTA area — install command -->
       <div class="mt-14 flex items-center justify-center gap-4">
-        <div class="inline-flex items-center gap-3 px-5 py-3 bg-surface-raised border border-border-subtle rounded-theme font-mono text-sm text-text-secondary select-all">
+        <div class="inline-flex items-center gap-3 px-5 py-3 bg-surface-raised border border-border-subtle rounded font-mono text-sm text-text-secondary select-all">
           <span class="text-text-muted">$</span>
           <span>pnpm add @amulet-laboratories/hex @amulet-laboratories/rig</span>
         </div>

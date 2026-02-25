@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@amulet-laboratories/hex": "workspace:*",
+    "@amulet-laboratories/hex-origins": "workspace:*",
     "@amulet-laboratories/rig": "workspace:*",
     "vue": "^3.5.0"
   },

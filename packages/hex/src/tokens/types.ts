@@ -12,9 +12,6 @@
 export type ThemeId = 'hearth' | 'abyss' | 'hollow' | 'keep' | 'cove'
 export type ModeId = 'dark' | 'light'
 
-/** @deprecated Use ModeId instead. Will be removed in v1.0.0. */
-export type SchemeId = ModeId
-
 // ---------------------------------------------------------------------------
 // Token group interfaces
 // ---------------------------------------------------------------------------
@@ -99,7 +96,40 @@ export interface HexTerminalColors {
 
 export interface HexMotion {
   duration: { fast: string; normal: string; slow: string }
-  easing: { default: string; entrance: string; exit: string }
+  easing: { default: string; entrance: string; exit: string; expressive: string }
+}
+
+// ---------------------------------------------------------------------------
+// Spacing tokens
+// ---------------------------------------------------------------------------
+
+export interface HexSpacing {
+  xs: string
+  sm: string
+  md: string
+  lg: string
+  xl: string
+  '2xl': string
+  '3xl': string
+}
+
+// ---------------------------------------------------------------------------
+// Shape tokens
+// ---------------------------------------------------------------------------
+
+export interface HexShape {
+  radius: string
+  radiusFull: string
+}
+
+// ---------------------------------------------------------------------------
+// Elevation tokens (per-mode — shadows differ by dark/light)
+// ---------------------------------------------------------------------------
+
+export interface HexElevation {
+  sm: string
+  md: string
+  lg: string
 }
 
 // ---------------------------------------------------------------------------
@@ -133,6 +163,7 @@ export interface HexModeTokens {
   accents: HexAccents
   status: HexStatus
   focus: HexFocus
+  shadows: HexElevation
   syntax: HexSyntaxTokens
   terminal: HexTerminalColors
 }
@@ -146,6 +177,8 @@ export interface HexTheme {
   name: string
   narrative: string
   motion: HexMotion
+  spacing: HexSpacing
+  shape: HexShape
   fonts: HexFonts
   dark: HexModeTokens
   light: HexModeTokens
@@ -158,14 +191,22 @@ export interface HexTheme {
 export type HexThemeRegistry = Record<ThemeId, HexTheme>
 
 // ---------------------------------------------------------------------------
+// Collection — a named set of themes
+// ---------------------------------------------------------------------------
+
+export interface HexCollection {
+  id: string
+  name: string
+  narrative: string
+  themes: HexTheme[]
+}
+
+// ---------------------------------------------------------------------------
 // Data attribute names
 // ---------------------------------------------------------------------------
 
 export const HEX_THEME_ATTR = 'data-theme' as const
 export const HEX_MODE_ATTR = 'data-mode' as const
-
-/** @deprecated Use HEX_MODE_ATTR instead. Will be removed in v1.0.0. */
-export const HEX_SCHEME_ATTR = HEX_MODE_ATTR
 
 // ---------------------------------------------------------------------------
 // All required token keys (for validation)
@@ -193,6 +234,18 @@ export const STATUS_KEYS: readonly (keyof HexStatus)[] = [
 
 export const FOCUS_KEYS: readonly (keyof HexFocus)[] = [
   'ring', 'outline',
+] as const
+
+export const ELEVATION_KEYS: readonly (keyof HexElevation)[] = [
+  'sm', 'md', 'lg',
+] as const
+
+export const SPACING_KEYS: readonly (keyof HexSpacing)[] = [
+  'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl',
+] as const
+
+export const SHAPE_KEYS: readonly (keyof HexShape)[] = [
+  'radius', 'radiusFull',
 ] as const
 
 export const SYNTAX_TOKEN_KEYS: readonly (keyof HexSyntaxTokens)[] = [

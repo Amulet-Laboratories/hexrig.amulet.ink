@@ -22,9 +22,20 @@ export function useMotion(elementRef?: Ref<HTMLElement | null | undefined>): Use
   /** Find the closest ancestor (or self) that has data-theme set */
   function findThemedElement(): HTMLElement {
     if (elementRef?.value) return elementRef.value
-    // Walk up from body to find a themed element
     const themed = document.querySelector<HTMLElement>('[data-theme]')
     return themed ?? document.documentElement
+  }
+
+  /** Read a CSS var with reactive tracking on theme/mode changes */
+  function trackedVar(name: string, fallback: string): string {
+    // Subscribe to DOM attribute mutations and injected theme state
+    void themeRevision.value
+    if (injectedTheme) {
+      void injectedTheme.theme.value
+      void injectedTheme.mode.value
+    }
+    if (typeof document === 'undefined') return fallback
+    return getComputedStyle(findThemedElement()).getPropertyValue(name).trim() || fallback
   }
 
   if (typeof window !== 'undefined') {
@@ -35,7 +46,6 @@ export function useMotion(elementRef?: Ref<HTMLElement | null | undefined>): Use
     }
     mq.addEventListener('change', handler)
 
-    // Observe the document for attribute mutations on any element with data-theme/data-mode
     const observer = new MutationObserver(() => {
       themeRevision.value++
     })
@@ -51,49 +61,18 @@ export function useMotion(elementRef?: Ref<HTMLElement | null | undefined>): Use
     })
   }
 
-  const getVar = (name: string, fallback: string): string => {
-    if (typeof document === 'undefined') return fallback
-    const el = findThemedElement()
-    return getComputedStyle(el).getPropertyValue(name).trim() || fallback
-  }
-
   const duration = computed(() => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-    themeRevision.value // subscribe to DOM attribute changes
-    // Also react to injected theme state changes
-    if (injectedTheme) {
-      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      injectedTheme.theme.value
-      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      injectedTheme.scheme.value
-    }
     if (prefersReducedMotion.value) return '0ms'
-    return getVar('--duration-normal', '200ms')
+    return trackedVar('--duration-normal', '200ms')
   })
 
   const durationSlow = computed(() => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-    themeRevision.value
-    if (injectedTheme) {
-      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      injectedTheme.theme.value
-      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      injectedTheme.scheme.value
-    }
     if (prefersReducedMotion.value) return '0ms'
-    return getVar('--duration-slow', '500ms')
+    return trackedVar('--duration-slow', '500ms')
   })
 
   const easing = computed(() => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-    themeRevision.value
-    if (injectedTheme) {
-      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      injectedTheme.theme.value
-      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      injectedTheme.scheme.value
-    }
-    return getVar('--easing-default', 'cubic-bezier(0.4, 0, 0.2, 1)')
+    return trackedVar('--easing-default', 'cubic-bezier(0.4, 0, 0.2, 1)')
   })
 
   return {

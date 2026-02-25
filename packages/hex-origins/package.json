@@ -1,0 +1,60 @@
+{
+  "name": "@amulet-laboratories/hex-origins",
+  "version": "0.5.0",
+  "description": "Origins collection — five foundational themes for the Hex design token system.",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./themes/*.css": "./dist/themes/*.css",
+    "./themes/*": {
+      "types": "./dist/themes/*.d.ts",
+      "import": "./dist/themes/*.js",
+      "require": "./dist/themes/*.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "themes"
+  ],
+  "scripts": {
+    "build": "tsup && pnpm build:css && pnpm build:vscode",
+    "build:css": "tsx src/build/generate-css.ts",
+    "build:vscode": "tsx src/build/generate-vscode-themes.ts",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "validate": "tsx src/build/validate-all.ts"
+  },
+  "dependencies": {
+    "@amulet-laboratories/hex": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^25.3.0",
+    "tsup": "^8.3.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  },
+  "keywords": [
+    "design-tokens",
+    "themes",
+    "hex",
+    "origins",
+    "hearth",
+    "abyss",
+    "hollow",
+    "keep",
+    "cove"
+  ],
+  "license": "MIT",
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Amulet-Laboratories/hexrig.amulet.ink"
+  }
+}

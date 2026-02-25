@@ -2,6 +2,48 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.3.0] — Unreleased
+
+### Breaking Changes
+
+- **`SchemeId` type removed** — use `ModeId` from `@amulet-laboratories/hex` instead
+- **`HEX_SCHEME_ATTR` constant removed** — use `HEX_MODE_ATTR`
+- **`RigThemeProvider` prop `scheme` renamed to `mode`**
+- **`useTheme` return API renamed** — `scheme` → `mode`, `setScheme` → `setMode`, `toggleScheme` → `toggleMode`
+
+### Added
+
+- **Tailwind preset** — `@amulet-laboratories/hex/tailwind` exports `amuletPreset` for single-source token-to-Tailwind mapping
+- **Shared component internals** — extracted `ICON_DISMISS`, `ICON_PATHS`, tone class maps into `shared.ts` to DRY Alert/Toast/Dialog/Badge
+- **`ariaLabel` prop on `RigCard`** — interactive cards can now receive an accessible label
+- **Status-on-raised contrast validation** — `validateTheme` now checks status colors against `raised` surface (where alerts/toasts render)
+- **`useTheme` tests** — composable unit tests for defaults, setters, toggle, auto mode
+- **`useMotion` tests** — composable unit tests for fallbacks and reduced-motion
+- **`amuletPreset` tests** — validates token structure (surface, text, status, fonts, durations)
+
+### Changed
+
+- **Rig re-exports types from Hex** — `ThemeId` and `ModeId` sourced from `@amulet-laboratories/hex`, no duplication
+- **`useMotion` refactored** — extracted `trackedVar()` helper, removed 9 eslint-disable comments
+- **`useToast` HMR-safe** — client singleton uses `Symbol.for('hex-toast-client')` instead of module-level variable
+- **`RigDialog` scroll lock key** — uses `Symbol.for('rig-scroll-lock')` instead of string key on globalThis
+- **`RigAlert` role** — `role="alert"` for error/warning tones, `role="status"` for info/success (proper ARIA semantics)
+- **`RigToast` role** — `role="alert"` for error tone, `role="status"` for others
+- **`RigIcon` warnings** — dev-only (`import.meta.env.DEV`), stripped from production builds
+- **Tailwind configs** — rig and site now use `presets: [amuletPreset]` instead of duplicated theme.extend blocks
+- **`tsconfig.json` target** — `ESNext` → `ES2020` per org convention
+- **Engines** — `node >= 22`
+- **Prettier config** — `.prettierrc` → `prettier.config.js` (org convention)
+- **GitHub URLs** — corrected to `Amulet-Laboratories/hexrig.amulet.ink` across all package.json files and site links
+
+### Added (Repo)
+
+- `.nvmrc` (Node 22)
+- `CODEOWNERS`
+- `CONTRIBUTING.md`
+- `SECURITY.md`
+- `env.d.ts` for rig package (Vite client types)
+
 ## [0.2.0] — 2026-02-25
 
 ### Production Hardening

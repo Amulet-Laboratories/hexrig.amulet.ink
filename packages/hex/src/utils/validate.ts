@@ -1,7 +1,8 @@
 import type { HexTheme, ModeId } from '../tokens/types'
 import {
   SURFACE_KEYS, TEXT_KEYS, BORDER_KEYS, ACCENT_KEYS,
-  STATUS_KEYS, FOCUS_KEYS, SYNTAX_TOKEN_KEYS, TERMINAL_KEYS,
+  STATUS_KEYS, FOCUS_KEYS, ELEVATION_KEYS, SPACING_KEYS,
+  SHAPE_KEYS, SYNTAX_TOKEN_KEYS, TERMINAL_KEYS,
 } from '../tokens/types'
 
 // ---------------------------------------------------------------------------
@@ -142,6 +143,13 @@ function validateStructure(theme: HexTheme, mode: ModeId, errors: ValidationErro
       errors.push({ theme: theme.id, mode, category: 'missing', token: `terminal.${key}`, message: `Missing terminal color ${key} in ${mode} mode` })
     }
   }
+
+  // Shadows (elevation)
+  for (const key of ELEVATION_KEYS) {
+    if (!(key in tokens.shadows) || !tokens.shadows[key]) {
+      errors.push({ theme: theme.id, mode, category: 'missing', token: `shadows.${key}`, message: `Missing shadow token --shadow-${key} in ${mode} mode` })
+    }
+  }
 }
 
 /** Safely cast a typed token group to Record<string, string> for iteration */
@@ -202,7 +210,7 @@ const REQUIRED_CONTRASTS: ContrastPair[] = [
   { text: 'secondary', textGroup: 'text', surface: 'base', surfaceGroup: 'surfaces', label: 'secondary text on base', minRatio: 4.5 },
   { text: 'secondary', textGroup: 'text', surface: 'raised', surfaceGroup: 'surfaces', label: 'secondary text on raised', minRatio: 4.5 },
 
-  // Muted text — AA large / UI (3:1)
+  // Muted text — AA large / UI (3:1); bump to 4.5:1 when muted tokens are reworked
   { text: 'muted', textGroup: 'text', surface: 'base', surfaceGroup: 'surfaces', label: 'muted text on base', minRatio: 3 },
 
   // Text on accent — AA body (4.5:1)
@@ -217,6 +225,12 @@ const REQUIRED_CONTRASTS: ContrastPair[] = [
   { text: 'warning', textGroup: 'status', surface: 'base', surfaceGroup: 'surfaces', label: 'status-warning on base', minRatio: 3 },
   { text: 'error', textGroup: 'status', surface: 'base', surfaceGroup: 'surfaces', label: 'status-error on base', minRatio: 3 },
   { text: 'info', textGroup: 'status', surface: 'base', surfaceGroup: 'surfaces', label: 'status-info on base', minRatio: 3 },
+
+  // Status colors on raised surface (used by RigAlert/RigToast) — UI/large text (3:1)
+  { text: 'success', textGroup: 'status', surface: 'raised', surfaceGroup: 'surfaces', label: 'status-success on raised', minRatio: 3 },
+  { text: 'warning', textGroup: 'status', surface: 'raised', surfaceGroup: 'surfaces', label: 'status-warning on raised', minRatio: 3 },
+  { text: 'error', textGroup: 'status', surface: 'raised', surfaceGroup: 'surfaces', label: 'status-error on raised', minRatio: 3 },
+  { text: 'info', textGroup: 'status', surface: 'raised', surfaceGroup: 'surfaces', label: 'status-info on raised', minRatio: 3 },
 
   // Text on overlay surface — AA (4.5:1)
   { text: 'primary', textGroup: 'text', surface: 'overlay', surfaceGroup: 'surfaces', label: 'primary text on overlay', minRatio: 4.5 },
@@ -281,6 +295,20 @@ function validateMotionAndFonts(theme: HexTheme, errors: ValidationError[], warn
     }
     if (!font.weights || font.weights.length === 0) {
       warnings.push(`${theme.id}: fonts.${slot} has no weights defined`)
+    }
+  }
+
+  // Spacing tokens (theme-level)
+  for (const key of SPACING_KEYS) {
+    if (!(key in theme.spacing) || !theme.spacing[key]) {
+      errors.push({ theme: theme.id, mode: 'dark', category: 'missing', token: `spacing.${key}`, message: `Missing spacing token ${key}` })
+    }
+  }
+
+  // Shape tokens (theme-level)
+  for (const key of SHAPE_KEYS) {
+    if (!(key in theme.shape) || !theme.shape[key]) {
+      errors.push({ theme: theme.id, mode: 'dark', category: 'missing', token: `shape.${key}`, message: `Missing shape token ${key}` })
     }
   }
 }

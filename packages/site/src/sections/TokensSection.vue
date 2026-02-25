@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import type { ThemeId } from '@amulet-laboratories/hex'
+
 defineProps<{
-  activeTheme: string
+  activeTheme: ThemeId
 }>()
 
 const tokenGroups = [
@@ -86,7 +88,7 @@ const motionTokens = [
         <div
           v-for="group in tokenGroups"
           :key="group.label"
-          class="bg-surface-raised border border-border-subtle rounded-theme p-6"
+          class="bg-surface-raised border border-border-subtle rounded p-6"
         >
           <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted block mb-4">
             {{ group.label }}
@@ -109,7 +111,7 @@ const motionTokens = [
       </div>
 
       <!-- Motion tokens -->
-      <div class="bg-surface-raised border border-border-subtle rounded-theme p-8 sm:p-10 mb-6">
+      <div class="bg-surface-raised border border-border-subtle rounded p-8 sm:p-10 mb-6">
         <div class="flex items-center gap-2 mb-8">
           <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted">Motion</span>
         </div>
@@ -134,7 +136,7 @@ const motionTokens = [
       </div>
 
       <!-- Typography preview -->
-      <div class="bg-surface-raised border border-border-subtle rounded-theme p-8 sm:p-10">
+      <div class="bg-surface-raised border border-border-subtle rounded p-8 sm:p-10">
         <div class="flex items-center gap-2 mb-8">
           <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted">Typography</span>
         </div>
@@ -170,15 +172,3 @@ const motionTokens = [
     </div>
   </section>
 </template>
-
-<style scoped>
-.motion-bar {
-  animation: motion-sweep 2s ease-in-out infinite;
-  animation-duration: calc(var(--bar-duration, 200ms) * 8);
-}
-
-@keyframes motion-sweep {
-  0%, 100% { width: 0%; }
-  50% { width: 100%; }
-}
-</style>

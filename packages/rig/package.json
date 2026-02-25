@@ -1,6 +1,6 @@
 {
   "name": "@amulet-laboratories/rig",
-  "version": "0.2.0",
+  "version": "0.5.0",
   "description": "Minimal Vue 3 component library consuming Hex theme tokens via Tailwind CSS.",
   "type": "module",
   "main": "./dist/rig.cjs",
@@ -48,5 +48,9 @@
     "tailwind",
     "hex"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Amulet-Laboratories/hexrig.amulet.ink"
+  }
 }

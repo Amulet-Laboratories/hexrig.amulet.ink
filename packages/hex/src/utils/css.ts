@@ -53,6 +53,19 @@ function generateModeCSS(theme: HexTheme, mode: ModeId): string {
   }
   lines.push('')
 
+  // Spacing
+  for (const [key, value] of Object.entries(theme.spacing)) {
+    lines.push(`  --spacing-${key}: ${sanitizeCSSValue(value)};`)
+  }
+  lines.push('')
+
+  // Shape
+  const shapeKeyMap: Record<string, string> = { radius: 'radius', radiusFull: 'radius-full' }
+  for (const [key, value] of Object.entries(theme.shape)) {
+    lines.push(`  --${shapeKeyMap[key] ?? key}: ${sanitizeCSSValue(value)};`)
+  }
+  lines.push('')
+
   // Surfaces
   for (const [key, value] of Object.entries(tokens.surfaces)) {
     lines.push(`  --surface-${key}: ${sanitizeCSSValue(value)};`)
@@ -87,6 +100,12 @@ function generateModeCSS(theme: HexTheme, mode: ModeId): string {
   // Focus
   for (const [key, value] of Object.entries(tokens.focus)) {
     lines.push(`  --focus-${key}: ${sanitizeCSSValue(value)};`)
+  }
+  lines.push('')
+
+  // Shadows (elevation)
+  for (const [key, value] of Object.entries(tokens.shadows)) {
+    lines.push(`  --shadow-${key}: ${sanitizeCSSValue(value)};`)
   }
   lines.push('')
 

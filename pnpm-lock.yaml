@@ -89,6 +89,25 @@ importers:
       '@types/node':
         specifier: ^25.3.0
         version: 25.3.0
+      tailwindcss:
+        specifier: ^3.4.0
+        version: 3.4.19(tsx@4.21.0)
+      tsup:
+        specifier: ^8.3.0
+        version: 8.5.1(@microsoft/api-extractor@7.57.5(@types/node@25.3.0))(jiti@1.21.7)(postcss@8.5.6)(tsx@4.21.0)(typescript@5.9.3)
+      typescript:
+        specifier: ^5.7.0
+        version: 5.9.3
+
+  packages/hex-origins:
+    dependencies:
+      '@amulet-laboratories/hex':
+        specifier: workspace:*
+        version: link:../hex
+    devDependencies:
+      '@types/node':
+        specifier: ^25.3.0
+        version: 25.3.0
       tsup:
         specifier: ^8.3.0
         version: 8.5.1(@microsoft/api-extractor@7.57.5(@types/node@25.3.0))(jiti@1.21.7)(postcss@8.5.6)(tsx@4.21.0)(typescript@5.9.3)
@@ -141,6 +160,9 @@ importers:
       '@amulet-laboratories/hex':
         specifier: workspace:*
         version: link:../hex
+      '@amulet-laboratories/hex-origins':
+        specifier: workspace:*
+        version: link:../hex-origins
       '@amulet-laboratories/rig':
         specifier: workspace:*
         version: link:../rig

@@ -34,4 +34,14 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+
+  .motion-bar {
+    animation: motion-sweep 2s ease-in-out infinite;
+    animation-duration: calc(var(--bar-duration, 200ms) * 8);
+  }
+}
+
+@keyframes motion-sweep {
+  0%, 100% { width: 0%; }
+  50% { width: 100%; }
 }
