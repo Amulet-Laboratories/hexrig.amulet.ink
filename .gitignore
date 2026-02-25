@@ -29,3 +29,9 @@ Thumbs.db
 
 # Coverage
 coverage/
+
+# Netlify
+.netlify
+
+# Workspace symlinks
+.github/copilot-instructions.md
