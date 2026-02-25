@@ -70,10 +70,10 @@ describe('Runtime helpers', () => {
       expect(state.mode).toBeNull()
     })
 
-    it('returns null themeId for invalid theme value', () => {
+    it('returns any string as themeId (open type)', () => {
       el.setAttribute('data-theme', 'not-a-theme')
       const state = getThemeState(el)
-      expect(state.themeId).toBeNull()
+      expect(state.themeId).toBe('not-a-theme')
     })
   })
 })

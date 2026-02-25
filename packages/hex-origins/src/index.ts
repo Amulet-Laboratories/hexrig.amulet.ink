@@ -9,6 +9,7 @@
 
 // Collection
 export { origins, themes, themeIds } from './themes/index'
+export type { OriginsThemeId } from './themes/index'
 
 // Individual themes
 export { hearth } from './themes/hearth'

@@ -61,16 +61,8 @@ export { generateVSCodeTheme } from './utils/vscode'
 // Runtime helpers
 // ---------------------------------------------------------------------------
 
-import type { HexTheme, ModeId, ThemeId } from './tokens/types'
+import type { HexTheme, ModeId } from './tokens/types'
 import { HEX_THEME_ATTR, HEX_MODE_ATTR } from './tokens/types'
-
-/** All valid theme IDs */
-const VALID_THEME_IDS: ReadonlySet<string> = new Set<string>(['hearth', 'abyss', 'hollow', 'keep', 'cove'])
-
-/** Validate that a string is a valid ThemeId */
-function asThemeId(value: string | null): ThemeId | null {
-  return value && VALID_THEME_IDS.has(value) ? (value as ThemeId) : null
-}
 
 /**
  * Apply a Hex theme to a DOM element by setting data attributes.
@@ -110,10 +102,10 @@ export function toggleMode(element: HTMLElement): ModeId {
 /**
  * Read the current theme id and mode from an element.
  */
-export function getThemeState(element: HTMLElement): { themeId: ThemeId | null; mode: ModeId | null } {
+export function getThemeState(element: HTMLElement): { themeId: string | null; mode: ModeId | null } {
   if (typeof document === 'undefined') return { themeId: null, mode: null }
   return {
-    themeId: asThemeId(element.getAttribute(HEX_THEME_ATTR)),
+    themeId: element.getAttribute(HEX_THEME_ATTR),
     mode: asModeId(element.getAttribute(HEX_MODE_ATTR)),
   }
 }

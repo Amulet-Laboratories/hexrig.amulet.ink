@@ -12,6 +12,8 @@ import { hollow } from './hollow'
 import { keep } from './keep'
 import { cove } from './cove'
 
+export type OriginsThemeId = 'hearth' | 'abyss' | 'hollow' | 'keep' | 'cove'
+
 export { hearth } from './hearth'
 export { abyss } from './abyss'
 export { hollow } from './hollow'
@@ -26,7 +28,7 @@ export const themes: HexThemeRegistry = {
   cove,
 }
 
-export const themeIds = Object.keys(themes) as (keyof HexThemeRegistry)[]
+export const themeIds: OriginsThemeId[] = ['hearth', 'abyss', 'hollow', 'keep', 'cove']
 
 export const origins: HexCollection = {
   id: 'origins',

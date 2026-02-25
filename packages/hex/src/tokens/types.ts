@@ -9,7 +9,11 @@
 // Theme identifiers
 // ---------------------------------------------------------------------------
 
-export type ThemeId = 'hearth' | 'abyss' | 'hollow' | 'keep' | 'cove'
+/**
+ * Theme identifier — any string. Collections define their own literal unions
+ * (e.g. OriginsThemeId in hex-origins) for narrower typing.
+ */
+export type ThemeId = string
 export type ModeId = 'dark' | 'light'
 
 // ---------------------------------------------------------------------------
@@ -173,7 +177,7 @@ export interface HexModeTokens {
 // ---------------------------------------------------------------------------
 
 export interface HexTheme {
-  id: ThemeId
+  id: string
   name: string
   narrative: string
   motion: HexMotion
@@ -188,7 +192,11 @@ export interface HexTheme {
 // Theme registry
 // ---------------------------------------------------------------------------
 
-export type HexThemeRegistry = Record<ThemeId, HexTheme>
+/**
+ * A record of themes keyed by their ID.
+ * Collections can narrow the key type via their own union.
+ */
+export type HexThemeRegistry = Record<string, HexTheme>
 
 // ---------------------------------------------------------------------------
 // Collection — a named set of themes

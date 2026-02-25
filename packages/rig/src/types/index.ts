@@ -5,7 +5,7 @@ type RouteLocationRaw = string | Record<string, unknown>
 // Theme types (re-exported from Hex)
 // ---------------------------------------------------------------------------
 
-export type { ThemeId, ModeId } from '@amulet-laboratories/hex'
+export type { ModeId } from '@amulet-laboratories/hex'
 
 // ---------------------------------------------------------------------------
 // Component prop types
@@ -271,7 +271,7 @@ export interface RigDialogProps {
 
 // RigThemeProvider
 export interface RigThemeProviderProps {
-  theme?: ThemeId
+  theme?: string
   mode?: ModeId | 'auto'
 }
 
@@ -305,13 +305,13 @@ export interface ToastInstance extends Required<Omit<ToastOptions, 'action' | 'd
 // Composable return types
 // ---------------------------------------------------------------------------
 
-import type { ThemeId, ModeId } from '@amulet-laboratories/hex'
+import type { ModeId } from '@amulet-laboratories/hex'
 import type { Ref, ComputedRef } from 'vue'
 
 export interface UseThemeReturn {
-  theme: Ref<ThemeId>
+  theme: Ref<string>
   mode: Ref<ModeId>
-  setTheme: (id: ThemeId) => void
+  setTheme: (id: string) => void
   setMode: (mode: ModeId) => void
   toggleMode: () => void
 }

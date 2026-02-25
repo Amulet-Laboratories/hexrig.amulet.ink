@@ -12,9 +12,13 @@
     "build:deploy": "pnpm --filter hex build && pnpm --filter hex-origins build && pnpm --filter rig build && pnpm --filter site build && pnpm exec storybook build -o storybook-static && cp -r storybook-static packages/site/dist/storybook",
     "dev": "pnpm -r --parallel dev",
     "lint": "eslint packages/",
+    "lint:fix": "eslint packages/ --fix",
     "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "test": "vitest run",
-    "typecheck": "pnpm -r typecheck",
+    "test:watch": "vitest",
+    "type-check": "pnpm -r typecheck",
+    "clean": "rm -rf storybook-static packages/*/dist packages/*/.vite",
     "storybook": "storybook dev -p 6006",
     "build:storybook": "storybook build -o storybook-static"
   },
@@ -51,7 +55,7 @@
   },
   "engines": {
     "node": ">=22",
-    "pnpm": ">=9"
+    "pnpm": ">=10.30"
   },
-  "packageManager": "pnpm@9.15.0"
+  "packageManager": "pnpm@10.30.0"
 }

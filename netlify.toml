@@ -1,10 +1,9 @@
 [build]
-  command = "pnpm build:deploy"
+  command = "corepack enable && pnpm install && pnpm build:deploy"
   publish = "packages/site/dist"
 
 [build.environment]
-  NODE_VERSION = "20"
-  PNPM_VERSION = "9.15.0"
+  NODE_VERSION = "22"
 
 # SPA fallback for Vue Router (if added later)
 [[redirects]]

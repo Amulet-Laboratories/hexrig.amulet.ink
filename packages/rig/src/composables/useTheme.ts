@@ -1,5 +1,5 @@
 import { ref, inject, provide, onScopeDispose, type InjectionKey } from 'vue'
-import type { ThemeId, ModeId } from '@amulet-laboratories/hex'
+import type { ModeId } from '@amulet-laboratories/hex'
 import type { UseThemeReturn } from '../types'
 
 export const THEME_INJECTION_KEY: InjectionKey<UseThemeReturn> = Symbol('hex-theme')
@@ -10,13 +10,13 @@ export const THEME_INJECTION_KEY: InjectionKey<UseThemeReturn> = Symbol('hex-the
  * When called inside a RigThemeProvider, returns its injected state.
  * When called standalone (root setup), creates new state.
  */
-export function useTheme(defaults?: { theme?: ThemeId; mode?: ModeId | 'auto' }): UseThemeReturn {
+export function useTheme(defaults?: { theme?: string; mode?: ModeId | 'auto' }): UseThemeReturn {
   // Try to inject from parent ThemeProvider
   const injected = inject(THEME_INJECTION_KEY, null)
   if (injected) return injected
 
   // Standalone usage — create new state
-  const theme = ref<ThemeId>(defaults?.theme ?? 'hearth')
+  const theme = ref<string>(defaults?.theme ?? 'hearth')
 
   // Resolve 'auto' mode via prefers-color-scheme
   const resolveMode = (): ModeId => {
@@ -44,7 +44,7 @@ export function useTheme(defaults?: { theme?: ThemeId; mode?: ModeId | 'auto' })
     onScopeDispose(() => mq.removeEventListener('change', handler))
   }
 
-  const setTheme = (id: ThemeId) => { theme.value = id }
+  const setTheme = (id: string) => { theme.value = id }
   const setMode = (m: ModeId) => {
     userExplicitMode.value = true
     mode.value = m

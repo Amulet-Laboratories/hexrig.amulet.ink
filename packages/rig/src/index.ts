@@ -45,7 +45,6 @@ export { useToast, provideToast } from './composables/useToast'
 
 // Types
 export type {
-  ThemeId,
   ModeId,
   RigTextProps,
   RigButtonProps,
