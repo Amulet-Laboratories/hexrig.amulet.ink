@@ -1,0 +1,656 @@
+/* ═══════════════════════════════════════════════════
+   Hex Design System — CSS Custom Properties
+   v2.0.0
+   
+   Hearth · Abyss · Hollow · Keep · Cove
+   
+   Usage:
+     <html data-theme="hearth" data-mode="dark">
+     or
+     <html data-theme="abyss" data-mode="light">
+   ═══════════════════════════════════════════════════ */
+
+/* ─── Font Stacks ─── */
+
+/* Hearth fonts */
+/* display: Sorts Mill Goudy — Google Fonts / League of Moveable Type (SIL OFL 1.1) */
+/* body: Lora — Google Fonts (SIL OFL 1.1) */
+/* sans: Source Sans 3 — Google Fonts / Adobe (SIL OFL 1.1) */
+/* mono: Source Code Pro — Google Fonts / Adobe (SIL OFL 1.1) */
+
+/* Abyss fonts */
+/* display: League Gothic — Google Fonts / League of Moveable Type (SIL OFL 1.1) */
+/* body: Inter — Google Fonts (SIL OFL 1.1) */
+/* sans: Space Grotesk — Google Fonts (SIL OFL 1.1) */
+/* mono: Monaspace Neon — GitHub (github.com/githubnext/monaspace) (SIL OFL 1.1) */
+
+/* Hollow fonts */
+/* display: Fraunces — Google Fonts (SIL OFL 1.1) */
+/* body: Vollkorn — Google Fonts / Font Squirrel (SIL OFL 1.1) */
+/* sans: DM Sans — Google Fonts (SIL OFL 1.1) */
+/* mono: Commit Mono — GitHub (github.com/eigilnikolajsen/commit-mono) (SIL OFL 1.1) */
+
+/* Keep fonts */
+/* display: IBM Plex Serif — Google Fonts / IBM (SIL OFL 1.1) */
+/* body: IBM Plex Sans — Google Fonts / IBM (SIL OFL 1.1) */
+/* sans: IBM Plex Sans Condensed — Google Fonts / IBM (SIL OFL 1.1) */
+/* mono: IBM Plex Mono — Google Fonts / IBM (SIL OFL 1.1) */
+
+/* Cove fonts */
+/* display: Crimson Pro — Google Fonts (SIL OFL 1.1) */
+/* body: Nunito Sans — Google Fonts (SIL OFL 1.1) */
+/* sans: Nunito — Google Fonts (SIL OFL 1.1) */
+/* mono: Victor Mono — GitHub (github.com/rubjo/victor-mono) (SIL OFL 1.1) */
+
+
+/* ─── Hearth / Dark ─── */
+[data-theme="hearth"][data-mode="dark"] {
+  color-scheme: dark;
+
+  /* Typography */
+  --font-display: 'Sorts Mill Goudy', Georgia, serif;
+  --font-body: 'Lora', Georgia, serif;
+  --font-sans: 'Source Sans 3', system-ui, sans-serif;
+  --font-mono: 'Source Code Pro', 'Courier New', monospace;
+
+  /* Motion */
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+  --easing-default: cubic-bezier(0.4, 0.0, 0.2, 1);
+  --easing-entrance: cubic-bezier(0.0, 0.0, 0.2, 1);
+  --easing-exit: cubic-bezier(0.4, 0.0, 1, 1);
+
+  /* Surfaces */
+  --surface-base: #0f0d0a;
+  --surface-raised: #1a1714;
+  --surface-elevated: #221f1a;
+  --surface-sunken: #0a0907;
+  --surface-overlay: #1e1b17;
+
+  /* Text */
+  --text-primary: #f5f1ed;
+  --text-secondary: #bfb8b0;
+  --text-muted: #7a746d;
+  --text-inverse: #0f0d0a;
+  --text-link: #c9956d;
+  --text-on-accent: #1a1108;
+
+  /* Borders */
+  --border-default: #3d3935;
+  --border-subtle: #2a2620;
+  --border-strong: #5c554e;
+
+  /* Accents */
+  --accent-primary: #c9956d;
+  --accent-secondary: #a87b56;
+  --accent-hover: #d4a57a;
+  --accent-active: #b08050;
+  --accent-muted: #1f1a14;
+
+  /* Status */
+  --status-success: #5a9a66;
+  --status-warning: #d4a03c;
+  --status-error: #c75c5c;
+  --status-info: #6a90b0;
+
+  /* Focus */
+  --focus-ring: rgba(201, 149, 109, 0.5);
+  --focus-outline: #c9956d;
+
+}
+
+/* ─── Hearth / Light ─── */
+[data-theme="hearth"][data-mode="light"] {
+  color-scheme: light;
+
+  /* Typography */
+  --font-display: 'Sorts Mill Goudy', Georgia, serif;
+  --font-body: 'Lora', Georgia, serif;
+  --font-sans: 'Source Sans 3', system-ui, sans-serif;
+  --font-mono: 'Source Code Pro', 'Courier New', monospace;
+
+  /* Motion */
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+  --easing-default: cubic-bezier(0.4, 0.0, 0.2, 1);
+  --easing-entrance: cubic-bezier(0.0, 0.0, 0.2, 1);
+  --easing-exit: cubic-bezier(0.4, 0.0, 1, 1);
+
+  /* Surfaces */
+  --surface-base: #f5f1ed;
+  --surface-raised: #ffffff;
+  --surface-elevated: #ffffff;
+  --surface-sunken: #e8e3dc;
+  --surface-overlay: #ffffff;
+
+  /* Text */
+  --text-primary: #1a1714;
+  --text-secondary: #4a443e;
+  --text-muted: #8a8279;
+  --text-inverse: #f5f1ed;
+  --text-link: #7a5530;
+  --text-on-accent: #ffffff;
+
+  /* Borders */
+  --border-default: #d8d0c4;
+  --border-subtle: #e4ddd4;
+  --border-strong: #b0a89c;
+
+  /* Accents */
+  --accent-primary: #7a5530;
+  --accent-secondary: #654525;
+  --accent-hover: #6a4a28;
+  --accent-active: #5a3e20;
+  --accent-muted: #f0e8de;
+
+  /* Status */
+  --status-success: #2e6e38;
+  --status-warning: #9a7a28;
+  --status-error: #a04040;
+  --status-info: #3a6888;
+
+  /* Focus */
+  --focus-ring: rgba(154, 111, 66, 0.4);
+  --focus-outline: #9a6f42;
+
+}
+
+/* ─── Abyss / Dark ─── */
+[data-theme="abyss"][data-mode="dark"] {
+  color-scheme: dark;
+
+  /* Typography */
+  --font-display: 'League Gothic', Georgia, serif;
+  --font-body: 'Inter', Georgia, serif;
+  --font-sans: 'Space Grotesk', system-ui, sans-serif;
+  --font-mono: 'Monaspace Neon', 'Courier New', monospace;
+
+  /* Motion */
+  --duration-fast: 80ms;
+  --duration-normal: 150ms;
+  --duration-slow: 250ms;
+  --easing-default: cubic-bezier(0.0, 0.0, 0.2, 1);
+  --easing-entrance: cubic-bezier(0.0, 0.0, 0.1, 1);
+  --easing-exit: cubic-bezier(0.2, 0.0, 1, 1);
+
+  /* Surfaces */
+  --surface-base: #060d2b;
+  --surface-raised: #0d1b56;
+  --surface-elevated: #102068;
+  --surface-sunken: #040920;
+  --surface-overlay: #132881;
+
+  /* Text */
+  --text-primary: #cad3f7;
+  --text-secondary: #a0b2ff;
+  --text-muted: #5a6aaa;
+  --text-inverse: #060d2b;
+  --text-link: #AEF66D;
+  --text-on-accent: #060d2b;
+
+  /* Borders */
+  --border-default: #132881;
+  --border-subtle: #0d1b56;
+  --border-strong: #2d4fe0;
+
+  /* Accents */
+  --accent-primary: #AEF66D;
+  --accent-secondary: #8ad050;
+  --accent-hover: #c2ff8a;
+  --accent-active: #90d858;
+  --accent-muted: #0c1a2e;
+
+  /* Status */
+  --status-success: #5acc6a;
+  --status-warning: #e0c050;
+  --status-error: #f06060;
+  --status-info: #6a9ae0;
+
+  /* Focus */
+  --focus-ring: rgba(174, 246, 109, 0.5);
+  --focus-outline: #AEF66D;
+
+}
+
+/* ─── Abyss / Light ─── */
+[data-theme="abyss"][data-mode="light"] {
+  color-scheme: light;
+
+  /* Typography */
+  --font-display: 'League Gothic', Georgia, serif;
+  --font-body: 'Inter', Georgia, serif;
+  --font-sans: 'Space Grotesk', system-ui, sans-serif;
+  --font-mono: 'Monaspace Neon', 'Courier New', monospace;
+
+  /* Motion */
+  --duration-fast: 80ms;
+  --duration-normal: 150ms;
+  --duration-slow: 250ms;
+  --easing-default: cubic-bezier(0.0, 0.0, 0.2, 1);
+  --easing-entrance: cubic-bezier(0.0, 0.0, 0.1, 1);
+  --easing-exit: cubic-bezier(0.2, 0.0, 1, 1);
+
+  /* Surfaces */
+  --surface-base: #e0e4f8;
+  --surface-raised: #eef0ff;
+  --surface-elevated: #f4f6ff;
+  --surface-sunken: #d0d6ea;
+  --surface-overlay: #f4f6ff;
+
+  /* Text */
+  --text-primary: #060d2b;
+  --text-secondary: #0d1b56;
+  --text-muted: #4a5a9a;
+  --text-inverse: #e0e4f8;
+  --text-link: #1a5a10;
+  --text-on-accent: #ffffff;
+
+  /* Borders */
+  --border-default: #a8b0d8;
+  --border-subtle: #bcc4e4;
+  --border-strong: #7a84b8;
+
+  /* Accents */
+  --accent-primary: #1a5a10;
+  --accent-secondary: #164a0c;
+  --accent-hover: #144a0e;
+  --accent-active: #103c08;
+  --accent-muted: #dce6d8;
+
+  /* Status */
+  --status-success: #2a7030;
+  --status-warning: #8a7020;
+  --status-error: #b03030;
+  --status-info: #1a3a90;
+
+  /* Focus */
+  --focus-ring: rgba(26, 90, 16, 0.4);
+  --focus-outline: #1a5a10;
+
+}
+
+/* ─── Hollow / Dark ─── */
+[data-theme="hollow"][data-mode="dark"] {
+  color-scheme: dark;
+
+  /* Typography */
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Vollkorn', Georgia, serif;
+  --font-sans: 'DM Sans', system-ui, sans-serif;
+  --font-mono: 'Commit Mono', 'Courier New', monospace;
+
+  /* Motion */
+  --duration-fast: 120ms;
+  --duration-normal: 280ms;
+  --duration-slow: 480ms;
+  --easing-default: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --easing-entrance: cubic-bezier(0.0, 0.8, 0.2, 1);
+  --easing-exit: cubic-bezier(0.4, 0.0, 0.8, 0.2);
+
+  /* Surfaces */
+  --surface-base: #0a100e;
+  --surface-raised: #12201a;
+  --surface-elevated: #182820;
+  --surface-sunken: #060c08;
+  --surface-overlay: #1a2a22;
+
+  /* Text */
+  --text-primary: #d8ece4;
+  --text-secondary: #a0c0b0;
+  --text-muted: #5a7a6a;
+  --text-inverse: #0a100e;
+  --text-link: #40b8a0;
+  --text-on-accent: #0a100e;
+
+  /* Borders */
+  --border-default: #1e3828;
+  --border-subtle: #162a1e;
+  --border-strong: #3a5848;
+
+  /* Accents */
+  --accent-primary: #40b8a0;
+  --accent-secondary: #308a78;
+  --accent-hover: #50c8b0;
+  --accent-active: #2a7868;
+  --accent-muted: #0e1c18;
+
+  /* Status */
+  --status-success: #5acc6a;
+  --status-warning: #c8b060;
+  --status-error: #d05858;
+  --status-info: #5a90c0;
+
+  /* Focus */
+  --focus-ring: rgba(64, 184, 160, 0.5);
+  --focus-outline: #40b8a0;
+
+}
+
+/* ─── Hollow / Light ─── */
+[data-theme="hollow"][data-mode="light"] {
+  color-scheme: light;
+
+  /* Typography */
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Vollkorn', Georgia, serif;
+  --font-sans: 'DM Sans', system-ui, sans-serif;
+  --font-mono: 'Commit Mono', 'Courier New', monospace;
+
+  /* Motion */
+  --duration-fast: 120ms;
+  --duration-normal: 280ms;
+  --duration-slow: 480ms;
+  --easing-default: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --easing-entrance: cubic-bezier(0.0, 0.8, 0.2, 1);
+  --easing-exit: cubic-bezier(0.4, 0.0, 0.8, 0.2);
+
+  /* Surfaces */
+  --surface-base: #e4f0ec;
+  --surface-raised: #f0f8f6;
+  --surface-elevated: #f4faf8;
+  --surface-sunken: #d0e4dc;
+  --surface-overlay: #f4faf8;
+
+  /* Text */
+  --text-primary: #0a100e;
+  --text-secondary: #1a3028;
+  --text-muted: #5a7a6a;
+  --text-inverse: #e4f0ec;
+  --text-link: #14685a;
+  --text-on-accent: #ffffff;
+
+  /* Borders */
+  --border-default: #a8c8bc;
+  --border-subtle: #bcd8cc;
+  --border-strong: #78a090;
+
+  /* Accents */
+  --accent-primary: #14685a;
+  --accent-secondary: #105a4c;
+  --accent-hover: #125c50;
+  --accent-active: #0e5044;
+  --accent-muted: #d4e8e0;
+
+  /* Status */
+  --status-success: #2a7030;
+  --status-warning: #8a7018;
+  --status-error: #a03030;
+  --status-info: #2a6080;
+
+  /* Focus */
+  --focus-ring: rgba(26, 122, 104, 0.4);
+  --focus-outline: #1a7a68;
+
+}
+
+/* ─── Keep / Dark ─── */
+[data-theme="keep"][data-mode="dark"] {
+  color-scheme: dark;
+
+  /* Typography */
+  --font-display: 'IBM Plex Serif', Georgia, serif;
+  --font-body: 'IBM Plex Sans', Georgia, serif;
+  --font-sans: 'IBM Plex Sans Condensed', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+
+  /* Motion */
+  --duration-fast: 100ms;
+  --duration-normal: 200ms;
+  --duration-slow: 350ms;
+  --easing-default: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --easing-entrance: cubic-bezier(0.0, 0.0, 0.2, 1);
+  --easing-exit: cubic-bezier(0.4, 0.0, 1, 1);
+
+  /* Surfaces */
+  --surface-base: #121212;
+  --surface-raised: #1e1e1e;
+  --surface-elevated: #272727;
+  --surface-sunken: #0a0a0a;
+  --surface-overlay: #2e2e2e;
+
+  /* Text */
+  --text-primary: #d0d8d9;
+  --text-secondary: #8a9092;
+  --text-muted: #6e7476;
+  --text-inverse: #121212;
+  --text-link: #FF8F2E;
+  --text-on-accent: #1a0e04;
+
+  /* Borders */
+  --border-default: #2e2e2e;
+  --border-subtle: #222222;
+  --border-strong: #404040;
+
+  /* Accents */
+  --accent-primary: #FF8F2E;
+  --accent-secondary: #d87a20;
+  --accent-hover: #ffaa55;
+  --accent-active: #c06e18;
+  --accent-muted: #1e1810;
+
+  /* Status */
+  --status-success: #5acc6a;
+  --status-warning: #e0c050;
+  --status-error: #e85040;
+  --status-info: #6a9ae0;
+
+  /* Focus */
+  --focus-ring: rgba(255, 143, 46, 0.5);
+  --focus-outline: #FF8F2E;
+
+}
+
+/* ─── Keep / Light ─── */
+[data-theme="keep"][data-mode="light"] {
+  color-scheme: light;
+
+  /* Typography */
+  --font-display: 'IBM Plex Serif', Georgia, serif;
+  --font-body: 'IBM Plex Sans', Georgia, serif;
+  --font-sans: 'IBM Plex Sans Condensed', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+
+  /* Motion */
+  --duration-fast: 100ms;
+  --duration-normal: 200ms;
+  --duration-slow: 350ms;
+  --easing-default: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --easing-entrance: cubic-bezier(0.0, 0.0, 0.2, 1);
+  --easing-exit: cubic-bezier(0.4, 0.0, 1, 1);
+
+  /* Surfaces */
+  --surface-base: #f0eeea;
+  --surface-raised: #fafafa;
+  --surface-elevated: #ffffff;
+  --surface-sunken: #e4e2dc;
+  --surface-overlay: #ffffff;
+
+  /* Text */
+  --text-primary: #1a1a18;
+  --text-secondary: #44443e;
+  --text-muted: #7a7a72;
+  --text-inverse: #f0eeea;
+  --text-link: #9a5008;
+  --text-on-accent: #ffffff;
+
+  /* Borders */
+  --border-default: #ccccc4;
+  --border-subtle: #d8d8d2;
+  --border-strong: #a0a098;
+
+  /* Accents */
+  --accent-primary: #9a5008;
+  --accent-secondary: #844406;
+  --accent-hover: #884808;
+  --accent-active: #703c04;
+  --accent-muted: #ece4d8;
+
+  /* Status */
+  --status-success: #2a7030;
+  --status-warning: #9a7820;
+  --status-error: #a83838;
+  --status-info: #306898;
+
+  /* Focus */
+  --focus-ring: rgba(184, 96, 16, 0.4);
+  --focus-outline: #b86010;
+
+}
+
+/* ─── Cove / Dark ─── */
+[data-theme="cove"][data-mode="dark"] {
+  color-scheme: dark;
+
+  /* Typography */
+  --font-display: 'Crimson Pro', Georgia, serif;
+  --font-body: 'Nunito Sans', Georgia, serif;
+  --font-sans: 'Nunito', system-ui, sans-serif;
+  --font-mono: 'Victor Mono', 'Courier New', monospace;
+
+  /* Motion */
+  --duration-fast: 100ms;
+  --duration-normal: 250ms;
+  --duration-slow: 450ms;
+  --easing-default: cubic-bezier(0.22, 1.0, 0.36, 1);
+  --easing-entrance: cubic-bezier(0.0, 0.7, 0.3, 1);
+  --easing-exit: cubic-bezier(0.5, 0.0, 1, 0.5);
+
+  /* Surfaces */
+  --surface-base: #331F3C;
+  --surface-raised: #3e2848;
+  --surface-elevated: #463050;
+  --surface-sunken: #271832;
+  --surface-overlay: #4a3255;
+
+  /* Text */
+  --text-primary: #F7D7B9;
+  --text-secondary: #F9B0A2;
+  --text-muted: #9a7a8a;
+  --text-inverse: #331F3C;
+  --text-link: #f0506a;
+  --text-on-accent: #ffffff;
+
+  /* Borders */
+  --border-default: #5a3a60;
+  --border-subtle: #4a3055;
+  --border-strong: #7a5080;
+
+  /* Accents */
+  --accent-primary: #d43050;
+  --accent-secondary: #a82844;
+  --accent-hover: #e0485e;
+  --accent-active: #a02840;
+  --accent-muted: #3e2038;
+
+  /* Status */
+  --status-success: #5cc06a;
+  --status-warning: #e0b848;
+  --status-error: #e04848;
+  --status-info: #7a8ec8;
+
+  /* Focus */
+  --focus-ring: rgba(235, 73, 99, 0.5);
+  --focus-outline: #EB4963;
+
+}
+
+/* ─── Cove / Light ─── */
+[data-theme="cove"][data-mode="light"] {
+  color-scheme: light;
+
+  /* Typography */
+  --font-display: 'Crimson Pro', Georgia, serif;
+  --font-body: 'Nunito Sans', Georgia, serif;
+  --font-sans: 'Nunito', system-ui, sans-serif;
+  --font-mono: 'Victor Mono', 'Courier New', monospace;
+
+  /* Motion */
+  --duration-fast: 100ms;
+  --duration-normal: 250ms;
+  --duration-slow: 450ms;
+  --easing-default: cubic-bezier(0.22, 1.0, 0.36, 1);
+  --easing-entrance: cubic-bezier(0.0, 0.7, 0.3, 1);
+  --easing-exit: cubic-bezier(0.5, 0.0, 1, 0.5);
+
+  /* Surfaces */
+  --surface-base: #F7D7B9;
+  --surface-raised: #FFF5EC;
+  --surface-elevated: #fffaf5;
+  --surface-sunken: #F0CCAA;
+  --surface-overlay: #FFF5EC;
+
+  /* Text */
+  --text-primary: #331F3C;
+  --text-secondary: #5a3a60;
+  --text-muted: #8a6a7a;
+  --text-inverse: #F7D7B9;
+  --text-link: #922840;
+  --text-on-accent: #ffffff;
+
+  /* Borders */
+  --border-default: #d8b8a8;
+  --border-subtle: #e4ccc0;
+  --border-strong: #b09888;
+
+  /* Accents */
+  --accent-primary: #922840;
+  --accent-secondary: #7a2236;
+  --accent-hover: #80242e;
+  --accent-active: #6a1e30;
+  --accent-muted: #f0d8cc;
+
+  /* Status */
+  --status-success: #2e7a38;
+  --status-warning: #8a7040;
+  --status-error: #a03038;
+  --status-info: #4a5088;
+
+  /* Focus */
+  --focus-ring: rgba(172, 57, 84, 0.4);
+  --focus-outline: #AC3954;
+
+}
+
+/* ─── Convenience Utilities ─── */
+
+.hex-surface-base { background-color: var(--surface-base); color: var(--text-primary); }
+.hex-surface-raised { background-color: var(--surface-raised); color: var(--text-primary); }
+.hex-surface-elevated { background-color: var(--surface-elevated); color: var(--text-primary); }
+.hex-surface-sunken { background-color: var(--surface-sunken); color: var(--text-primary); }
+.hex-text-primary { color: var(--text-primary); }
+.hex-text-secondary { color: var(--text-secondary); }
+.hex-text-muted { color: var(--text-muted); }
+.hex-accent { color: var(--accent-primary); }
+.hex-link { color: var(--text-link); text-decoration: underline; text-underline-offset: 2px; }
+.hex-link:hover { color: var(--accent-hover); }
+.hex-border { border-color: var(--border-default); }
+.hex-focus:focus-visible { outline: 2px solid var(--focus-outline); outline-offset: 2px; box-shadow: 0 0 0 4px var(--focus-ring); }
+
+.hex-btn-primary {
+  background: var(--accent-primary);
+  color: var(--text-on-accent);
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background var(--duration-fast) var(--easing-default);
+}
+.hex-btn-primary:hover { background: var(--accent-hover); }
+.hex-btn-primary:active { background: var(--accent-active); }
+.hex-btn-primary:focus-visible { outline: 2px solid var(--focus-outline); outline-offset: 2px; }
+
+.hex-card {
+  background: var(--surface-raised);
+  border: 1px solid var(--border-default);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.hex-badge-success { background: var(--status-success); color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 12px; }
+.hex-badge-warning { background: var(--status-warning); color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 12px; }
+.hex-badge-error { background: var(--status-error); color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 12px; }
+.hex-badge-info { background: var(--status-info); color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 12px; }

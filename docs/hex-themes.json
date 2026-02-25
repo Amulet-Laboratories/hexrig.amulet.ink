@@ -1,0 +1,1080 @@
+{
+  "_schema": {
+    "version": "2.0.0",
+    "name": "Hex",
+    "description": "Five themes, five places. A journey from hearth to cove.",
+    "arc": "Hearth (creation) \u2192 Abyss (void) \u2192 Hollow (growth) \u2192 Keep (construction) \u2192 Cove (shelter)",
+    "tokenGuide": {
+      "surfaces.base": "Page/app background. The default canvas.",
+      "surfaces.raised": "Cards, modals, elevated containers.",
+      "surfaces.elevated": "Nested elevated elements \u2014 dropdowns inside cards, stacked modals.",
+      "surfaces.sunken": "Inset areas, code blocks, recessed panels.",
+      "surfaces.overlay": "Overlay/dialog backdrop surface.",
+      "text.primary": "Body text, headings, primary content.",
+      "text.secondary": "Supporting text, descriptions, subtitles.",
+      "text.muted": "Captions, metadata, disabled text. Min 3:1 on base (large text).",
+      "text.inverse": "Text on dark surfaces within light themes (or vice versa). Use for badges, tags on inverted backgrounds.",
+      "text.link": "Interactive text links. Always pair with underline for a11y.",
+      "text.onAccent": "Text placed directly on accent-colored backgrounds.",
+      "accents.primary": "Primary interactive color \u2014 buttons, active states, key UI elements.",
+      "accents.secondary": "Secondary variant \u2014 less prominent interactive elements.",
+      "accents.hover": "Hover state for accent elements. Always perceptibly different from primary.",
+      "accents.active": "Active/pressed state. Always darker than primary.",
+      "accents.muted": "Subtle accent background \u2014 tags, badges, tinted containers. Solid color, not rgba.",
+      "status.*": "Semantic status colors. Independent from accents \u2014 success always looks like success across themes.",
+      "focus.ring": "Outer glow for focus indicators. Use WITH focus.outline, not alone.",
+      "focus.outline": "Solid 2px focus ring color. The primary a11y focus indicator.",
+      "borders.*": "default for most borders, subtle for dividers, strong for emphasis.",
+      "syntax.*": "Code editor syntax highlighting tokens.",
+      "terminal.*": "ANSI terminal color mappings."
+    }
+  },
+  "hearth": {
+    "name": "Hearth",
+    "narrative": "Creation. Raw material shaped by heat and intention. The first act \u2014 pulling form from formlessness. Heavy, warm, deliberate.",
+    "motion": {
+      "duration": {
+        "fast": "150ms",
+        "normal": "300ms",
+        "slow": "500ms"
+      },
+      "easing": {
+        "default": "cubic-bezier(0.4, 0.0, 0.2, 1)",
+        "entrance": "cubic-bezier(0.0, 0.0, 0.2, 1)",
+        "exit": "cubic-bezier(0.4, 0.0, 1, 1)"
+      }
+    },
+    "dark": {
+      "surfaces": {
+        "base": "#0f0d0a",
+        "raised": "#1a1714",
+        "elevated": "#221f1a",
+        "sunken": "#0a0907",
+        "overlay": "#1e1b17"
+      },
+      "text": {
+        "primary": "#f5f1ed",
+        "secondary": "#bfb8b0",
+        "muted": "#7a746d",
+        "inverse": "#0f0d0a",
+        "link": "#c9956d",
+        "onAccent": "#1a1108"
+      },
+      "borders": {
+        "default": "#3d3935",
+        "subtle": "#2a2620",
+        "strong": "#5c554e"
+      },
+      "accents": {
+        "primary": "#c9956d",
+        "secondary": "#a87b56",
+        "hover": "#d4a57a",
+        "active": "#b08050",
+        "muted": "#1f1a14"
+      },
+      "status": {
+        "success": "#5a9a66",
+        "warning": "#d4a03c",
+        "error": "#c75c5c",
+        "info": "#6a90b0"
+      },
+      "focus": {
+        "ring": "rgba(201, 149, 109, 0.5)",
+        "outline": "#c9956d"
+      },
+      "syntax": {
+        "comment": "#7a746d",
+        "keyword": "#c07050",
+        "storage": "#c9a050",
+        "string": "#8a9a70",
+        "number": "#b07878",
+        "function": "#c9956d",
+        "operator": "#c9956d",
+        "punctuation": "#7a746d",
+        "type": "#d4a57a"
+      },
+      "terminal": {
+        "black": "#0f0d0a",
+        "red": "#c75c5c",
+        "green": "#5a9a66",
+        "yellow": "#d4a03c",
+        "blue": "#6a90b0",
+        "magenta": "#b068a0",
+        "cyan": "#48b0c8",
+        "white": "#f5f1ed",
+        "brightBlack": "#7a746d",
+        "brightRed": "#d06a6a",
+        "brightGreen": "#6aaa76",
+        "brightYellow": "#e0b050",
+        "brightBlue": "#7aa0c0",
+        "brightMagenta": "#c078b0",
+        "brightCyan": "#58c0d8",
+        "brightWhite": "#ffffff"
+      }
+    },
+    "light": {
+      "surfaces": {
+        "base": "#f5f1ed",
+        "raised": "#ffffff",
+        "elevated": "#ffffff",
+        "sunken": "#e8e3dc",
+        "overlay": "#ffffff"
+      },
+      "text": {
+        "primary": "#1a1714",
+        "secondary": "#4a443e",
+        "muted": "#8a8279",
+        "inverse": "#f5f1ed",
+        "link": "#7a5530",
+        "onAccent": "#ffffff"
+      },
+      "borders": {
+        "default": "#d8d0c4",
+        "subtle": "#e4ddd4",
+        "strong": "#b0a89c"
+      },
+      "accents": {
+        "primary": "#7a5530",
+        "secondary": "#654525",
+        "hover": "#6a4a28",
+        "active": "#5a3e20",
+        "muted": "#f0e8de"
+      },
+      "status": {
+        "success": "#2e6e38",
+        "warning": "#9a7a28",
+        "error": "#a04040",
+        "info": "#3a6888"
+      },
+      "focus": {
+        "ring": "rgba(154, 111, 66, 0.4)",
+        "outline": "#9a6f42"
+      },
+      "syntax": {
+        "comment": "#8a8279",
+        "keyword": "#9a4a30",
+        "storage": "#8a6a20",
+        "string": "#4a7040",
+        "number": "#905060",
+        "function": "#7a5530",
+        "operator": "#7a5530",
+        "punctuation": "#8a8279",
+        "type": "#7a5a30"
+      },
+      "terminal": {
+        "black": "#1a1714",
+        "red": "#a04040",
+        "green": "#2e6e38",
+        "yellow": "#9a7a28",
+        "blue": "#3a6888",
+        "magenta": "#885090",
+        "cyan": "#0a8098",
+        "white": "#f5f1ed",
+        "brightBlack": "#8a8279",
+        "brightRed": "#b05050",
+        "brightGreen": "#3e7e48",
+        "brightYellow": "#aa8a38",
+        "brightBlue": "#4a7898",
+        "brightMagenta": "#986098",
+        "brightCyan": "#1a90a8",
+        "brightWhite": "#ffffff"
+      }
+    },
+    "fonts": {
+      "display": {
+        "family": "Sorts Mill Goudy",
+        "source": "Google Fonts / League of Moveable Type",
+        "license": "SIL OFL 1.1",
+        "weights": [
+          400
+        ],
+        "italic": true,
+        "rationale": "A revival of Frederic Goudy's Kennerley Old Style by Barry Schwartz for the League of Moveable Type. Warm, hand-cut, and deeply human \u2014 the kind of type that looks like it was set in metal. Its slight irregularities give it life. The Forge made real in letterform."
+      },
+      "body": {
+        "family": "Lora",
+        "source": "Google Fonts",
+        "license": "SIL OFL 1.1",
+        "weights": [
+          400,
+          500,
+          600,
+          700
+        ],
+        "italic": true,
+        "rationale": "Brushed curves and warm, calligraphic serifs optimized for screens. Where Sorts Mill Goudy is the craftsman's headline, Lora is the well-worn journal \u2014 readable across long sessions, with just enough personality to feel intentional."
+      },
+      "sans": {
+        "family": "Source Sans 3",
+        "source": "Google Fonts / Adobe",
+        "license": "SIL OFL 1.1",
+        "weights": [
+          300,
+          400,
+          500,
+          600,
+          700
+        ],
+        "italic": true,
+        "rationale": "Adobe's first open-source typeface. Humanist warmth with excellent small-size legibility \u2014 the UI workhorse that doesn't call attention to itself but never feels cold."
+      },
+      "mono": {
+        "family": "Source Code Pro",
+        "source": "Google Fonts / Adobe",
+        "license": "SIL OFL 1.1",
+        "weights": [
+          300,
+          400,
+          500,
+          600,
+          700
+        ],
+        "italic": true,
+        "rationale": "Natural companion to Source Sans. Designed specifically for code with careful 0/O/l/1 differentiation. The Source family's shared DNA ties the entire triad together \u2014 one foundry, one philosophy."
+      }
+    }
+  },
+  "abyss": {
+    "name": "Abyss",
+    "narrative": "Nothingness. The space between stars \u2014 vast, electric, and alive with potential. Cold cosmos humming with latent energy. The second act \u2014 the emptiness from which everything emerges.",
+    "motion": {
+      "duration": {
+        "fast": "80ms",
+        "normal": "150ms",
+        "slow": "250ms"
+      },
+      "easing": {
+        "default": "cubic-bezier(0.0, 0.0, 0.2, 1)",
+        "entrance": "cubic-bezier(0.0, 0.0, 0.1, 1)",
+        "exit": "cubic-bezier(0.2, 0.0, 1, 1)"
+      }
+    },
+    "dark": {
+      "surfaces": {
+        "base": "#060d2b",
+        "raised": "#0d1b56",
+        "elevated": "#102068",
+        "sunken": "#040920",
+        "overlay": "#132881"
+      },
+      "text": {
+        "primary": "#cad3f7",
+        "secondary": "#a0b2ff",
+        "muted": "#5a6aaa",
+        "inverse": "#060d2b",
+        "link": "#AEF66D",
+        "onAccent": "#060d2b"
+      },
+      "borders": {
+        "default": "#132881",
+        "subtle": "#0d1b56",
+        "strong": "#2d4fe0"
+      },
+      "accents": {
+        "primary": "#AEF66D",
+        "secondary": "#8ad050",
+        "hover": "#c2ff8a",
+        "active": "#90d858",
+        "muted": "#0c1a2e"
+      },
+      "status": {
+        "success": "#5acc6a",
+        "warning": "#e0c050",
+        "error": "#f06060",
+        "info": "#6a9ae0"
+      },
+      "focus": {
+        "ring": "rgba(174, 246, 109, 0.5)",
+        "outline": "#AEF66D"
+      },
+      "syntax": {
+        "comment": "#5a6aaa",
+        "keyword": "#2d4fe0",
+        "storage": "#AEF66D",
+        "string": "#DFF081",
+        "number": "#f06060",
+        "function": "#a0b2ff",
+        "operator": "#AEF66D",
+        "punctuation": "#5a6aaa",
+        "type": "#cad3f7"
+      },
+      "terminal": {
+        "black": "#060d2b",
+        "red": "#f06060",
+        "green": "#5acc6a",
+        "yellow": "#e0c050",
+        "blue": "#2d4fe0",
+        "magenta": "#a0b2ff",
+        "cyan": "#40c8d8",
+        "white": "#cad3f7",
+        "brightBlack": "#4a5a9a",
+        "brightRed": "#ff7070",
+        "brightGreen": "#6adc7a",
+        "brightYellow": "#eacc60",
+        "brightBlue": "#5a70f0",
+        "brightMagenta": "#b8c4ff",
+        "brightCyan": "#50d8e8",
+        "brightWhite": "#e8ecfa"
+      }
+    },
+    "light": {
+      "surfaces": {
+        "base": "#e0e4f8",
+        "raised": "#eef0ff",
+        "elevated": "#f4f6ff",
+        "sunken": "#d0d6ea",
+        "overlay": "#f4f6ff"
+      },
+      "text": {
+        "primary": "#060d2b",
+        "secondary": "#0d1b56",
+        "muted": "#4a5a9a",
+        "inverse": "#e0e4f8",
+        "link": "#1a5a10",
+        "onAccent": "#ffffff"
+      },
+      "borders": {
+        "default": "#a8b0d8",
+        "subtle": "#bcc4e4",
+        "strong": "#7a84b8"
+      },
+      "accents": {
+        "primary": "#1a5a10",
+        "secondary": "#164a0c",
+        "hover": "#144a0e",
+        "active": "#103c08",
+        "muted": "#dce6d8"
+      },
+      "status": {
+        "success": "#2a7030",
+        "warning": "#8a7020",
+        "error": "#b03030",
+        "info": "#1a3a90"
+      },
+      "focus": {
+        "ring": "rgba(26, 90, 16, 0.4)",
+        "outline": "#1a5a10"
+      },
+      "syntax": {
+        "comment": "#5a6aaa",
+        "keyword": "#1a3a90",
+        "storage": "#1a5a10",
+        "string": "#6a7a10",
+        "number": "#b03030",
+        "function": "#0d1b56",
+        "operator": "#1a5a10",
+        "punctuation": "#5a6aaa",
+        "type": "#2040a0"
+      },
+      "terminal": {
+        "black": "#060d2b",
+        "red": "#b03030",
+        "green": "#2a7030",
+        "yellow": "#8a7020",
+        "blue": "#1a3a90",
+        "magenta": "#6a50b0",
+        "cyan": "#0a7868",
+        "white": "#e0e4f8",
+        "brightBlack": "#4a5a9a",
+        "brightRed": "#c04040",
+        "brightGreen": "#3a8040",
+        "brightYellow": "#9a8030",
+        "brightBlue": "#2a4aa0",
+        "brightMagenta": "#7a60c0",
+        "brightCyan": "#1a8878",
+        "brightWhite": "#f4f6ff"
+      }
+    },
+    "fonts": {
+      "display": {
+        "family": "League Gothic",
+        "source": "Google Fonts / League of Moveable Type",
+        "license": "SIL OFL 1.1",
+        "weights": [
+          400
+        ],
+        "italic": true,
+        "rationale": "A revival of Alternate Gothic No. 1 \u2014 tall, condensed, and imposing. It compresses language into tight vertical columns, like data streaming through a narrow channel. The Void speaks in headlines that feel like transmissions."
+      },
+      "body": {
+        "family": "Inter",
+        "source": "Google Fonts",
+        "license": "SIL OFL 1.1",
+        "weights": [
+          300,
+          400,
+          500,
+          600,
+          700,
+          800
+        ],
+        "italic": true,
+        "rationale": "Designed by Rasmus Andersson specifically for computer interfaces. Optical sizing, tabular figures, and a vast weight range make it the most technically refined sans-serif available. Cold, precise, functional \u2014 the Void demands clarity above all."
+      },
+      "sans": {
+        "family": "Space Grotesk",
+        "source": "Google Fonts",
+        "license": "SIL OFL 1.1",
+        "weights": [
+          300,
+          400,
+          500,
+          600,
+          700
+        ],
+        "italic": false,
+        "rationale": "Derived from Space Mono with proportional spacing. Angular, geometric, slightly alien. Where Inter is the instrument panel, Space Grotesk is the mission patch \u2014 technical but with a signature."
+      },
+      "mono": {
+        "family": "Monaspace Neon",
+        "source": "GitHub (github.com/githubnext/monaspace)",
+        "license": "SIL OFL 1.1",
+        "weights": [
+          300,
+          400,
+          500,
+          600,
+          700,
+          800
+        ],
+        "italic": true,
+        "rationale": "From GitHub's Monaspace superfamily \u2014 five metrically compatible monospace faces. Neon is the sans-serif variant with texture healing that optically adjusts spacing. The most technically advanced free monospace available. Sci-fi engineering in a font."
+      }
+    }
+  },
+  "hollow": {
+    "name": "Hollow",
+    "narrative": "Growth. Life pushing through stone, roots finding water in darkness. The third act \u2014 organic persistence, the quiet power of things that grow slowly and never stop.",
+    "motion": {
+      "duration": {
+        "fast": "120ms",
+        "normal": "280ms",
+        "slow": "480ms"
+      },
+      "easing": {
+        "default": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+        "entrance": "cubic-bezier(0.0, 0.8, 0.2, 1)",
+        "exit": "cubic-bezier(0.4, 0.0, 0.8, 0.2)"
+      }
+    },
+    "dark": {
+      "surfaces": {
+        "base": "#0a100e",
+        "raised": "#12201a",
+        "elevated": "#182820",
+        "sunken": "#060c08",
+        "overlay": "#1a2a22"
+      },
+      "text": {
+        "primary": "#d8ece4",
+        "secondary": "#a0c0b0",
+        "muted": "#5a7a6a",
+        "inverse": "#0a100e",
+        "link": "#40b8a0",
+        "onAccent": "#0a100e"
+      },
+      "borders": {
+        "default": "#1e3828",
+        "subtle": "#162a1e",
+        "strong": "#3a5848"
+      },
+      "accents": {
+        "primary": "#40b8a0",
+        "secondary": "#308a78",
+        "hover": "#50c8b0",
+        "active": "#2a7868",
+        "muted": "#0e1c18"
+      },
+      "status": {
+        "success": "#5acc6a",
+        "warning": "#c8b060",
+        "error": "#d05858",
+        "info": "#5a90c0"
+      },
+      "focus": {
+        "ring": "rgba(64, 184, 160, 0.5)",
+        "outline": "#40b8a0"
+      },
+      "syntax": {
+        "comment": "#5a7a6a",
+        "keyword": "#50c8b0",
+        "storage": "#c8b060",
+        "string": "#a0c0b0",
+        "number": "#d05858",
+        "function": "#40b8a0",
+        "operator": "#50c8b0",
+        "punctuation": "#5a7a6a",
+        "type": "#5a90c0"
+      },
+      "terminal": {
+        "black": "#0a100e",
+        "red": "#d05858",
+        "green": "#5acc6a",
+        "yellow": "#c8b060",
+        "blue": "#5a90c0",
+        "magenta": "#a080b0",
+        "cyan": "#30c0d8",
+        "white": "#d8ece4",
+        "brightBlack": "#5a7a6a",
+        "brightRed": "#e06868",
+        "brightGreen": "#6adc7a",
+        "brightYellow": "#d8c070",
+        "brightBlue": "#6aa0d0",
+        "brightMagenta": "#b090c0",
+        "brightCyan": "#40d0e8",
+        "brightWhite": "#e8f8f0"
+      }
+    },
+    "light": {
+      "surfaces": {
+        "base": "#e4f0ec",
+        "raised": "#f0f8f6",
+        "elevated": "#f4faf8",
+        "sunken": "#d0e4dc",
+        "overlay": "#f4faf8"
+      },
+      "text": {
+        "primary": "#0a100e",
+        "secondary": "#1a3028",
+        "muted": "#5a7a6a",
+        "inverse": "#e4f0ec",
+        "link": "#14685a",
+        "onAccent": "#ffffff"
+      },
+      "borders": {
+        "default": "#a8c8bc",
+        "subtle": "#bcd8cc",
+        "strong": "#78a090"
+      },
+      "accents": {
+        "primary": "#14685a",
+        "secondary": "#105a4c",
+        "hover": "#125c50",
+        "active": "#0e5044",
+        "muted": "#d4e8e0"
+      },
+      "status": {
+        "success": "#2a7030",
+        "warning": "#8a7018",
+        "error": "#a03030",
+        "info": "#2a6080"
+      },
+      "focus": {
+        "ring": "rgba(26, 122, 104, 0.4)",
+        "outline": "#1a7a68"
+      },
+      "syntax": {
+        "comment": "#5a7a6a",
+        "keyword": "#14685a",
+        "storage": "#8a7018",
+        "string": "#2a4a38",
+        "number": "#a03030",
+        "function": "#1a6a58",
+        "operator": "#14685a",
+        "punctuation": "#5a7a6a",
+        "type": "#2a6080"
+      },
+      "terminal": {
+        "black": "#0a100e",
+        "red": "#a03030",
+        "green": "#2a7030",
+        "yellow": "#8a7018",
+        "blue": "#2a6080",
+        "magenta": "#705080",
+        "cyan": "#008890",
+        "white": "#e4f0ec",
+        "brightBlack": "#5a7a6a",
+        "brightRed": "#b04040",
+        "brightGreen": "#3a8040",
+        "brightYellow": "#9a8028",
+        "brightBlue": "#3a7090",
+        "brightMagenta": "#806090",
+        "brightCyan": "#1098a0",
+        "brightWhite": "#f4faf8"
+      }
+    },
+    "fonts": {
+      "display": {
+        "family": "Fraunces",
+        "source": "Google Fonts",
+        "license": "SIL OFL 1.1",
+        "weights": [
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "italic": true,
+        "rationale": "A variable old-style serif with axes for weight, optical size, softness, and 'wonk.' That last axis is key \u2014 it introduces organic irregularity into the letterforms, as if the type itself is growing. Tendrils and serifs that curve like roots. The Grotto's font."
+      },
+      "body": {
+        "family": "Vollkorn",
+        "source": "Google Fonts / Font Squirrel",
+        "license": "SIL OFL 1.1",
+        "weights": [
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "italic": true,
+        "rationale": "Friedrich Althausen's 'quiet and modest' serif designed for everyday reading. Its name means 'whole grain' in German \u2014 earthy, nourishing, substantial. Deep character coverage and beautiful italics make it the soil in which Fraunces grows."
+      },
+      "sans": {
+        "family": "DM Sans",
+        "source": "Google Fonts",
+        "license": "SIL OFL 1.1",
+        "weights": [
+          300,
+          400,
+          500,
+          600,
+          700
+        ],
+        "italic": true,
+        "rationale": "Low-contrast geometric sans from Colophon Foundry. Soft, grounded, and designed for small sizes. It doesn't compete with Fraunces or Vollkorn \u2014 it's the clear water running through the grotto."
+      },
+      "mono": {
+        "family": "Commit Mono",
+        "source": "GitHub (github.com/eigilnikolajsen/commit-mono)",
+        "license": "SIL OFL 1.1",
+        "weights": [
+          400,
+          700
+        ],
+        "italic": true,
+        "rationale": "A neutral monospace that uses 'smart kerning' \u2014 a technique that optically adjusts spacing without breaking monospace alignment. Quiet, precise, and surprisingly organic in feel. It stays out of the way, like moss on stone."
+      }
+    }
+  },
+  "keep": {
+    "name": "Keep",
+    "narrative": "Construction. Steel and purpose \u2014 the raw made precise. The fourth act \u2014 industry and discipline, where creation becomes infrastructure. Neutral, powerful, utilitarian.",
+    "motion": {
+      "duration": {
+        "fast": "100ms",
+        "normal": "200ms",
+        "slow": "350ms"
+      },
+      "easing": {
+        "default": "cubic-bezier(0.25, 0.1, 0.25, 1)",
+        "entrance": "cubic-bezier(0.0, 0.0, 0.2, 1)",
+        "exit": "cubic-bezier(0.4, 0.0, 1, 1)"
+      }
+    },
+    "dark": {
+      "surfaces": {
+        "base": "#121212",
+        "raised": "#1e1e1e",
+        "elevated": "#272727",
+        "sunken": "#0a0a0a",
+        "overlay": "#2e2e2e"
+      },
+      "text": {
+        "primary": "#d0d8d9",
+        "secondary": "#8a9092",
+        "muted": "#6e7476",
+        "inverse": "#121212",
+        "link": "#FF8F2E",
+        "onAccent": "#1a0e04"
+      },
+      "borders": {
+        "default": "#2e2e2e",
+        "subtle": "#222222",
+        "strong": "#404040"
+      },
+      "accents": {
+        "primary": "#FF8F2E",
+        "secondary": "#d87a20",
+        "hover": "#ffaa55",
+        "active": "#c06e18",
+        "muted": "#1e1810"
+      },
+      "status": {
+        "success": "#5acc6a",
+        "warning": "#e0c050",
+        "error": "#e85040",
+        "info": "#6a9ae0"
+      },
+      "focus": {
+        "ring": "rgba(255, 143, 46, 0.5)",
+        "outline": "#FF8F2E"
+      },
+      "syntax": {
+        "comment": "#6e7476",
+        "keyword": "#ea603e",
+        "storage": "#e0c050",
+        "string": "#8A9E78",
+        "number": "#CF7F8F",
+        "function": "#FF8F2E",
+        "operator": "#FF8F2E",
+        "punctuation": "#6e7476",
+        "type": "#d87a20"
+      },
+      "terminal": {
+        "black": "#121212",
+        "red": "#e85040",
+        "green": "#5acc6a",
+        "yellow": "#e0c050",
+        "blue": "#6a9ae0",
+        "magenta": "#CF7F8F",
+        "cyan": "#40c0c8",
+        "white": "#d0d8d9",
+        "brightBlack": "#606668",
+        "brightRed": "#f86050",
+        "brightGreen": "#6adc7a",
+        "brightYellow": "#eacc60",
+        "brightBlue": "#7aaae8",
+        "brightMagenta": "#df8f9f",
+        "brightCyan": "#50d0d8",
+        "brightWhite": "#f0f0f0"
+      }
+    },
+    "light": {
+      "surfaces": {
+        "base": "#f0eeea",
+        "raised": "#fafafa",
+        "elevated": "#ffffff",
+        "sunken": "#e4e2dc",
+        "overlay": "#ffffff"
+      },
+      "text": {
+        "primary": "#1a1a18",
+        "secondary": "#44443e",
+        "muted": "#7a7a72",
+        "inverse": "#f0eeea",
+        "link": "#9a5008",
+        "onAccent": "#ffffff"
+      },
+      "borders": {
+        "default": "#ccccc4",
+        "subtle": "#d8d8d2",
+        "strong": "#a0a098"
+      },
+      "accents": {
+        "primary": "#9a5008",
+        "secondary": "#844406",
+        "hover": "#884808",
+        "active": "#703c04",
+        "muted": "#ece4d8"
+      },
+      "status": {
+        "success": "#2a7030",
+        "warning": "#9a7820",
+        "error": "#a83838",
+        "info": "#306898"
+      },
+      "focus": {
+        "ring": "rgba(184, 96, 16, 0.4)",
+        "outline": "#b86010"
+      },
+      "syntax": {
+        "comment": "#7a7a72",
+        "keyword": "#9a4020",
+        "storage": "#8a7020",
+        "string": "#3a6838",
+        "number": "#905060",
+        "function": "#9a5008",
+        "operator": "#9a5008",
+        "punctuation": "#7a7a72",
+        "type": "#a05010"
+      },
+      "terminal": {
+        "black": "#1a1a18",
+        "red": "#a83838",
+        "green": "#2a7030",
+        "yellow": "#9a7820",
+        "blue": "#306898",
+        "magenta": "#885090",
+        "cyan": "#089098",
+        "white": "#f0eeea",
+        "brightBlack": "#7a7a72",
+        "brightRed": "#c04040",
+        "brightGreen": "#3a8a40",
+        "brightYellow": "#b08828",
+        "brightBlue": "#4078a8",
+        "brightMagenta": "#9860a0",
+        "brightCyan": "#18a0a8",
+        "brightWhite": "#ffffff"
+      }
+    },
+    "fonts": {
+      "display": {
+        "family": "IBM Plex Serif",
+        "source": "Google Fonts / IBM",
+        "license": "SIL OFL 1.1",
+        "weights": [
+          300,
+          400,
+          500,
+          600,
+          700
+        ],
+        "italic": true,
+        "rationale": "Designed by Mike Abbink and Bold Monday for IBM's global rebrand. Structured, reliable, and industrial without being lifeless. The serif that says 'this was built to specification and it will outlast you.' Perfect for the Keep."
+      },
+      "body": {
+        "family": "IBM Plex Sans",
+        "source": "Google Fonts / IBM",
+        "license": "SIL OFL 1.1",
+        "weights": [
+          300,
+          400,
+          500,
+          600,
+          700
+        ],
+        "italic": true,
+        "rationale": "The sans-serif face of the Plex superfamily. Illustrates the relationship between human and machine \u2014 geometric underpinnings with humanist details. Enterprise-grade UI legibility with genuine character."
+      },
+      "sans": {
+        "family": "IBM Plex Sans Condensed",
+        "source": "Google Fonts / IBM",
+        "license": "SIL OFL 1.1",
+        "weights": [
+          300,
+          400,
+          500,
+          600,
+          700
+        ],
+        "italic": true,
+        "rationale": "The condensed cut for data-dense interfaces, tables, and secondary UI. Same personality, tighter footprint. The Keep doesn't waste space."
+      },
+      "mono": {
+        "family": "IBM Plex Mono",
+        "source": "Google Fonts / IBM",
+        "license": "SIL OFL 1.1",
+        "weights": [
+          300,
+          400,
+          500,
+          600,
+          700
+        ],
+        "italic": true,
+        "rationale": "Completes the Plex system. One superfamily, four cuts, total consistency. The most 'industrial' monospace available \u2014 used by 300,000+ IBM employees. Infrastructure-grade type for an infrastructure-grade theme."
+      }
+    }
+  },
+  "cove": {
+    "name": "Cove",
+    "narrative": "Shelter. The hidden chamber at the end of the journey \u2014 warm, intimate, otherworldly. The fifth act \u2014 where the profane becomes sacred and transformation is complete.",
+    "motion": {
+      "duration": {
+        "fast": "100ms",
+        "normal": "250ms",
+        "slow": "450ms"
+      },
+      "easing": {
+        "default": "cubic-bezier(0.22, 1.0, 0.36, 1)",
+        "entrance": "cubic-bezier(0.0, 0.7, 0.3, 1)",
+        "exit": "cubic-bezier(0.5, 0.0, 1, 0.5)"
+      }
+    },
+    "dark": {
+      "surfaces": {
+        "base": "#331F3C",
+        "raised": "#3e2848",
+        "elevated": "#463050",
+        "sunken": "#271832",
+        "overlay": "#4a3255"
+      },
+      "text": {
+        "primary": "#F7D7B9",
+        "secondary": "#F9B0A2",
+        "muted": "#9a7a8a",
+        "inverse": "#331F3C",
+        "link": "#f0506a",
+        "onAccent": "#ffffff"
+      },
+      "borders": {
+        "default": "#5a3a60",
+        "subtle": "#4a3055",
+        "strong": "#7a5080"
+      },
+      "accents": {
+        "primary": "#d43050",
+        "secondary": "#a82844",
+        "hover": "#e0485e",
+        "active": "#a02840",
+        "muted": "#3e2038"
+      },
+      "status": {
+        "success": "#5cc06a",
+        "warning": "#e0b848",
+        "error": "#e04848",
+        "info": "#7a8ec8"
+      },
+      "focus": {
+        "ring": "rgba(235, 73, 99, 0.5)",
+        "outline": "#EB4963"
+      },
+      "syntax": {
+        "comment": "#9a7a8a",
+        "keyword": "#e0485e",
+        "storage": "#5cc06a",
+        "string": "#D8E8C3",
+        "number": "#F58384",
+        "function": "#d43050",
+        "operator": "#F99C94",
+        "punctuation": "#9a7a8a",
+        "type": "#7a8ec8"
+      },
+      "terminal": {
+        "black": "#331F3C",
+        "red": "#d43050",
+        "green": "#5cc06a",
+        "yellow": "#e0b848",
+        "blue": "#7a8ec8",
+        "magenta": "#c850a0",
+        "cyan": "#40c0c0",
+        "white": "#F7D7B9",
+        "brightBlack": "#8a6a7a",
+        "brightRed": "#F58384",
+        "brightGreen": "#6cd07a",
+        "brightYellow": "#eac858",
+        "brightBlue": "#8a9ed8",
+        "brightMagenta": "#d860b0",
+        "brightCyan": "#50d0d0",
+        "brightWhite": "#FFF5EC"
+      }
+    },
+    "light": {
+      "surfaces": {
+        "base": "#F7D7B9",
+        "raised": "#FFF5EC",
+        "elevated": "#fffaf5",
+        "sunken": "#F0CCAA",
+        "overlay": "#FFF5EC"
+      },
+      "text": {
+        "primary": "#331F3C",
+        "secondary": "#5a3a60",
+        "muted": "#8a6a7a",
+        "inverse": "#F7D7B9",
+        "link": "#922840",
+        "onAccent": "#ffffff"
+      },
+      "borders": {
+        "default": "#d8b8a8",
+        "subtle": "#e4ccc0",
+        "strong": "#b09888"
+      },
+      "accents": {
+        "primary": "#922840",
+        "secondary": "#7a2236",
+        "hover": "#80242e",
+        "active": "#6a1e30",
+        "muted": "#f0d8cc"
+      },
+      "status": {
+        "success": "#2e7a38",
+        "warning": "#8a7040",
+        "error": "#a03038",
+        "info": "#4a5088"
+      },
+      "focus": {
+        "ring": "rgba(172, 57, 84, 0.4)",
+        "outline": "#AC3954"
+      },
+      "syntax": {
+        "comment": "#8a6a7a",
+        "keyword": "#922840",
+        "storage": "#2e7a38",
+        "string": "#3a6a3a",
+        "number": "#a03838",
+        "function": "#7a2236",
+        "operator": "#922840",
+        "punctuation": "#8a6a7a",
+        "type": "#4a5088"
+      },
+      "terminal": {
+        "black": "#331F3C",
+        "red": "#a03038",
+        "green": "#2e7a38",
+        "yellow": "#8a7040",
+        "blue": "#4a5088",
+        "magenta": "#983888",
+        "cyan": "#1a7888",
+        "white": "#F7D7B9",
+        "brightBlack": "#8a6a7a",
+        "brightRed": "#b04048",
+        "brightGreen": "#3e8a48",
+        "brightYellow": "#9a8050",
+        "brightBlue": "#5a6098",
+        "brightMagenta": "#a84898",
+        "brightCyan": "#2a8898",
+        "brightWhite": "#FFF5EC"
+      }
+    },
+    "fonts": {
+      "display": {
+        "family": "Crimson Pro",
+        "source": "Google Fonts",
+        "license": "SIL OFL 1.1",
+        "weights": [
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "italic": true,
+        "rationale": "Jacques Le Bailly's redesign of Crimson Text \u2014 warmer, slightly condensed, with beautiful old-style figures and elegant italics. It has a literary, intimate quality, like handwritten notes in a sacred book. The sheltered cove has a story to tell."
+      },
+      "body": {
+        "family": "Nunito Sans",
+        "source": "Google Fonts",
+        "license": "SIL OFL 1.1",
+        "weights": [
+          300,
+          400,
+          500,
+          600,
+          700,
+          800
+        ],
+        "italic": true,
+        "rationale": "Rounded terminals give it inherent warmth \u2014 the typographic equivalent of smooth, worn stone. Soft without being childish, approachable without being casual. Excellent readability in both UI and body text."
+      },
+      "sans": {
+        "family": "Nunito",
+        "source": "Google Fonts",
+        "license": "SIL OFL 1.1",
+        "weights": [
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "italic": true,
+        "rationale": "The rounder sibling of Nunito Sans \u2014 more personality, more warmth. Use for display headings and large text where Crimson Pro feels too formal. The playful counterpart."
+      },
+      "mono": {
+        "family": "Victor Mono",
+        "source": "GitHub (github.com/rubjo/victor-mono)",
+        "license": "SIL OFL 1.1",
+        "weights": [
+          300,
+          400,
+          500,
+          600,
+          700
+        ],
+        "italic": true,
+        "rationale": "A free monospace with beautiful cursive italics \u2014 code comments become calligraphy. It has more personality than any other monospace on this list, which makes it perfect for the most expressive theme. The Cove's code whispers in italic."
+      }
+    }
+  }
+}
