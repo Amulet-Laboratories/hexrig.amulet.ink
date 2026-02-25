@@ -116,7 +116,7 @@ export function generateThemeCSS(theme: HexTheme): string {
  * ${theme.narrative}
  *
  * Generated — do not edit manually.
- * @see https://github.com/amulet-laboratories/hexrig.amulet.ink
+ * @see https://github.com/apassanisi/hexrig.amulet.ink
  */
 
 `

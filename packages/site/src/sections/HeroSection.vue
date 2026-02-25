@@ -56,7 +56,7 @@ const themeWords: Record<ThemeId, string> = {
           storybook
         </a>
         <a
-          href="https://github.com/amulet-laboratories/hexrig.amulet.ink"
+          href="https://github.com/apassanisi/hexrig.amulet.ink"
           target="_blank"
           rel="noopener"
           class="px-3 py-1.5 text-xs font-mono text-text-muted border border-border-subtle rounded-theme hover:border-border-strong hover:text-text-secondary transition-colors duration-fast"

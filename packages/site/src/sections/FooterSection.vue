@@ -58,7 +58,7 @@ const year = new Date().getFullYear()
             </li>
             <li>
               <a
-                href="https://github.com/amulet-laboratories/hexrig.amulet.ink"
+                href="https://github.com/apassanisi/hexrig.amulet.ink"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="text-sm text-text-secondary hover:text-text-link transition-colors font-body"

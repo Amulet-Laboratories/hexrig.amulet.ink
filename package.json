@@ -5,7 +5,7 @@
   "description": "Hex design token system + Rig component library — a Gesamtkunstwerk for the web.",
   "scripts": {
     "build": "pnpm -r build",
-    "build:deploy": "pnpm --filter hex build && pnpm --filter rig build && pnpm --filter site build && pnpm build:storybook && cp -r storybook-static packages/site/dist/storybook",
+    "build:deploy": "pnpm --filter hex build && pnpm --filter rig build && pnpm --filter site build && pnpm exec storybook build -o storybook-static && cp -r storybook-static packages/site/dist/storybook",
     "dev": "pnpm -r --parallel dev",
     "lint": "eslint packages/",
     "format": "prettier --write .",

@@ -2,7 +2,7 @@
 
 > A Gesamtkunstwerk for the web — by Amulet Laboratories.
 
-**[hexrig.amulet.ink](https://hexrig.amulet.ink)** · **[Storybook](https://hexrig.amulet.ink/storybook/)** · **[npm: hex](https://www.npmjs.com/package/@amulet-laboratories/hex)** · **[npm: rig](https://www.npmjs.com/package/@amulet-laboratories/rig)**
+**[hexrig.amulet.ink](https://hexrig.amulet.ink)** · **[Storybook](https://hexrig.amulet.ink/storybook/)** · **[GitHub](https://github.com/apassanisi/hexrig.amulet.ink)**
 
 ---
 
