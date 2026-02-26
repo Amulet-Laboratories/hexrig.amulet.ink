@@ -13,7 +13,7 @@
         <p
           class="font-body text-lg sm:text-xl text-text-secondary leading-relaxed max-w-2xl mx-auto"
         >
-          Hex + Rig gives you ten complete worlds — each with its own palette, typography, motion,
+          Hex + Rig gives you nine complete worlds — each with its own palette, typography, motion,
           and personality. Switch themes and every token responds: surfaces shift, type resets,
           accents transform.
         </p>
@@ -39,7 +39,7 @@
             >
           </div>
           <p class="text-sm text-text-secondary font-body leading-relaxed">
-            Ten curated themes in two series — Environments and Materials. Each a complete visual
+            Nine curated themes — six spectral hues and three neutrals. Each a complete visual
             language with dark and light modes.
           </p>
         </div>

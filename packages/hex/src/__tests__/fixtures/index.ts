@@ -1,60 +1,62 @@
 import type { HexThemeRegistry } from '../tokens/types'
+
+// Spectrum (chromatic, ~60° apart)
+import { ember } from './ember'
 import { hearth } from './hearth'
+import { grove } from './grove'
+import { reef } from './reef'
 import { abyss } from './abyss'
 import { cove } from './cove'
-import { glyph } from './glyph'
-import { ember } from './ember'
+
+// Neutrals (warm → pure → cool)
+import { linen } from './linen'
 import { keep } from './keep'
 import { slate } from './slate'
-import { linen } from './linen'
-import { cairn } from './cairn'
-import { grove } from './grove'
 
 export type OriginsThemeId =
+  | 'ember'
   | 'hearth'
+  | 'grove'
+  | 'reef'
   | 'abyss'
   | 'cove'
-  | 'glyph'
-  | 'ember'
+  | 'linen'
   | 'keep'
   | 'slate'
-  | 'linen'
-  | 'cairn'
-  | 'grove'
 
+// Spectrum
+export { ember } from './ember'
 export { hearth } from './hearth'
+export { grove } from './grove'
+export { reef } from './reef'
 export { abyss } from './abyss'
 export { cove } from './cove'
-export { glyph } from './glyph'
-export { ember } from './ember'
+
+// Neutrals
+export { linen } from './linen'
 export { keep } from './keep'
 export { slate } from './slate'
-export { linen } from './linen'
-export { cairn } from './cairn'
-export { grove } from './grove'
 
 export const themes: HexThemeRegistry = {
+  ember,
   hearth,
+  grove,
+  reef,
   abyss,
   cove,
-  glyph,
-  ember,
+  linen,
   keep,
   slate,
-  linen,
-  cairn,
-  grove,
 }
 
 export const themeIds: OriginsThemeId[] = [
+  'ember',
   'hearth',
+  'grove',
+  'reef',
   'abyss',
   'cove',
-  'glyph',
-  'ember',
+  'linen',
   'keep',
   'slate',
-  'linen',
-  'cairn',
-  'grove',
 ]

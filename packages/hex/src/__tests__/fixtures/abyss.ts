@@ -26,15 +26,15 @@ export const abyss: HexTheme = {
   spacing: {
     xs: '4px',
     sm: '8px',
-    md: '14px',
-    lg: '22px',
-    xl: '36px',
-    '2xl': '56px',
-    '3xl': '80px',
+    md: '16px',
+    lg: '28px',
+    xl: '48px',
+    '2xl': '80px',
+    '3xl': '128px',
   },
 
   shape: {
-    radius: '4px',
+    radius: '3px',
     radiusFull: '9999px',
   },
 
@@ -49,13 +49,13 @@ export const abyss: HexTheme = {
         'A revival of Alternate Gothic No. 1 — tall, condensed, and imposing. The Void speaks in headlines that feel like transmissions.',
     },
     body: {
-      family: 'Inter',
-      source: 'Google Fonts',
+      family: 'Lexend',
+      source: 'Google Fonts / Bonnie Shaver-Troup',
       license: 'SIL OFL 1.1',
       weights: [300, 400, 500, 600, 700, 800],
-      italic: true,
+      italic: false,
       rationale:
-        'Designed by Rasmus Andersson specifically for computer interfaces. Cold, precise, functional — the Void demands clarity above all.',
+        'Designed to reduce visual stress and improve reading performance — expanded letterforms with generous spacing. The Void demands effortless comprehension.',
     },
     sans: {
       family: 'Space Grotesk',

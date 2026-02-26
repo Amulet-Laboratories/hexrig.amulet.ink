@@ -376,12 +376,12 @@
         "rationale": "A revival of Alternate Gothic No. 1 \u2014 tall, condensed, and imposing. It compresses language into tight vertical columns, like data streaming through a narrow channel. The Void speaks in headlines that feel like transmissions."
       },
       "body": {
-        "family": "Inter",
-        "source": "Google Fonts",
+        "family": "Lexend",
+        "source": "Google Fonts / Bonnie Shaver-Troup",
         "license": "SIL OFL 1.1",
         "weights": [300, 400, 500, 600, 700, 800],
-        "italic": true,
-        "rationale": "Designed by Rasmus Andersson specifically for computer interfaces. Optical sizing, tabular figures, and a vast weight range make it the most technically refined sans-serif available. Cold, precise, functional \u2014 the Void demands clarity above all."
+        "italic": false,
+        "rationale": "Designed to reduce visual stress and improve reading performance \u2014 expanded letterforms with generous spacing. The Void demands effortless comprehension."
       },
       "sans": {
         "family": "Space Grotesk",

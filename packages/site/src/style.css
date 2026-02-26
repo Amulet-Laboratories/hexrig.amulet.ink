@@ -26,6 +26,34 @@
     background-color: var(--accent-primary);
     color: var(--text-on-accent);
   }
+
+  /*
+   * Global theme-swap transitions.
+   * Smoothly animate color-related properties whenever CSS custom properties
+   * change (theme switch, mode toggle). Only targets cheap-to-composite
+   * properties — no layout-triggering props.
+   *
+   * Tailwind utility classes in @layer utilities override these for
+   * interaction-specific transitions (hover, focus, etc.).
+   */
+  *,
+  *::before,
+  *::after {
+    transition-property:
+      color, background-color, border-color, outline-color, text-decoration-color, fill, stroke,
+      box-shadow, opacity;
+    transition-duration: 250ms;
+    transition-timing-function: ease;
+  }
+
+  /* Respect reduced-motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0ms !important;
+    }
+  }
 }
 
 @layer utilities {
@@ -40,13 +68,18 @@
     animation-duration: calc(var(--bar-duration, 200ms) * 8);
   }
 
-  /* Scroll-reveal: elements start hidden, animate in when .is-visible is added */
+  /* Scroll-reveal: elements start hidden, animate in when .is-visible is added.
+     Also includes color transitions so theme swaps are smooth on revealed elements. */
   .reveal {
     opacity: 0;
     transform: translateY(24px);
     transition:
       opacity var(--duration-slow, 350ms) var(--easing-entrance, cubic-bezier(0, 0, 0.2, 1)),
-      transform var(--duration-slow, 350ms) var(--easing-entrance, cubic-bezier(0, 0, 0.2, 1));
+      transform var(--duration-slow, 350ms) var(--easing-entrance, cubic-bezier(0, 0, 0.2, 1)),
+      color 250ms ease,
+      background-color 250ms ease,
+      border-color 250ms ease,
+      box-shadow 250ms ease;
   }
 
   .reveal.is-visible {
@@ -82,5 +115,24 @@
   }
   50% {
     width: 100%;
+  }
+}
+
+/*
+ * View Transition overrides.
+ * When the View Transitions API is used (theme/mode switch), this controls
+ * the cross-fade timing. The brief 200ms fade masks font-family reflow
+ * while CSS property transitions handle color smoothing.
+ */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 200ms;
+  animation-timing-function: ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0ms;
   }
 }

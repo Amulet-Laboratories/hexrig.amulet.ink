@@ -174,10 +174,28 @@ toggleScheme()  // reactive — any bound UI re-renders</code></pre>
     setup() {
       const themes = [
         {
+          id: 'ember',
+          subtitle: 'Intensity',
+          accent: '#e04030',
+          description: 'Crimson against char — loud, unapologetic.',
+        },
+        {
           id: 'hearth',
           subtitle: 'Creation',
-          accent: '#c9956d',
-          description: 'Raw material shaped by heat and intention — warm, heavy, deliberate.',
+          accent: '#d4a840',
+          description: 'Raw material shaped by heat and intention — amber, warm, deliberate.',
+        },
+        {
+          id: 'grove',
+          subtitle: 'Approachability',
+          accent: '#7cba7e',
+          description: 'Green light through leaves — the friendly theme.',
+        },
+        {
+          id: 'reef',
+          subtitle: 'Clarity',
+          accent: '#40c0b8',
+          description: 'Shallow water over white sand — cool precision.',
         },
         {
           id: 'abyss',
@@ -188,50 +206,26 @@ toggleScheme()  // reactive — any bound UI re-renders</code></pre>
         {
           id: 'cove',
           subtitle: 'Shelter',
-          accent: '#d43050',
+          accent: '#c040a0',
           description: 'Safe harbour — sheltered, coastal, vivid.',
-        },
-        {
-          id: 'glyph',
-          subtitle: 'Inscription',
-          accent: '#c44030',
-          description: 'Parchment and ink — red marginalia in a manuscript.',
-        },
-        {
-          id: 'ember',
-          subtitle: 'Intensity',
-          accent: '#e84820',
-          description: 'Bold reds against cooling lava — loud, unapologetic.',
-        },
-        {
-          id: 'keep',
-          subtitle: 'Construction',
-          accent: '#ff8f2e',
-          description: 'Structure given purpose — solid, geometric, amber.',
-        },
-        {
-          id: 'slate',
-          subtitle: 'Nothing',
-          accent: '#6090d0',
-          description: 'Monochrome — disappears so the content can exist.',
         },
         {
           id: 'linen',
           subtitle: 'Precision',
-          accent: '#5088b8',
-          description: 'Off-white with warmth — the professional default.',
+          accent: '#b87040',
+          description: 'Off-white with warmth — the editorial default.',
         },
         {
-          id: 'cairn',
-          subtitle: 'Trust',
-          accent: '#8aaa68',
-          description: 'Warm stone — sun-heated granite with lichen.',
+          id: 'keep',
+          subtitle: 'Construction',
+          accent: '#90a088',
+          description: 'Structure given purpose — solid, geometric, industrial.',
         },
         {
-          id: 'grove',
-          subtitle: 'Approachability',
-          accent: '#7cba7e',
-          description: 'Soft neutral with sage green — the friendly theme.',
+          id: 'slate',
+          subtitle: 'Nothing',
+          accent: '#8090a0',
+          description: 'Cool monochrome — disappears so the content can exist.',
         },
       ]
       const namespaces = [

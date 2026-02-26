@@ -12,6 +12,28 @@ defineEmits<{
   'select-theme': [theme: ThemeId]
 }>()
 
+/** Spectrum themes shown as rainbow dots */
+const spectrumThemes: ThemeId[] = ['ember', 'hearth', 'grove', 'reef', 'abyss', 'cove']
+/** Neutral themes shown after a divider */
+const neutralThemes: ThemeId[] = ['linen', 'keep', 'slate']
+
+/**
+ * Display accents for the hero dot strip.
+ * Abyss uses electric blue here (its actual accent is lime-green, but the
+ * display should complete the R-G-Y-C-B-M rainbow).
+ */
+const displayAccent: Record<string, string> = {
+  ember: '#e04030',
+  hearth: '#d4a840',
+  grove: '#7cba7e',
+  reef: '#40c0b8',
+  abyss: '#4080f0',
+  cove: '#c040a0',
+  linen: '#b87040',
+  keep: '#90a088',
+  slate: '#8090a0',
+}
+
 const copied = ref(false)
 
 const copyInstall = async () => {
@@ -95,25 +117,15 @@ const copyInstall = async () => {
           Design tokens and Vue&nbsp;3 components for interfaces that feel
           <em class="text-accent not-italic font-medium">considered</em>.<br />
           <span class="text-text-muted"
-            >Ten themes. Two modes. Twenty-eight components. WCAG&nbsp;AAA.</span
+            >Nine themes. Two modes. Twenty-eight components. WCAG&nbsp;AAA.</span
           >
         </p>
 
         <!-- Theme strip — primary feature, above the fold -->
         <div class="flex items-center justify-center gap-2 sm:gap-3 mb-10 flex-wrap">
+          <!-- Spectrum (rainbow) -->
           <button
-            v-for="t in [
-              'hearth',
-              'abyss',
-              'cove',
-              'glyph',
-              'ember',
-              'keep',
-              'slate',
-              'linen',
-              'cairn',
-              'grove',
-            ] as ThemeId[]"
+            v-for="t in spectrumThemes"
             :key="t"
             class="group relative flex flex-col items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring rounded-lg px-2 py-1"
             @click="$emit('select-theme', t)"
@@ -125,9 +137,33 @@ const copyInstall = async () => {
                   ? 'border-accent scale-110 shadow-md'
                   : 'border-border-subtle hover:border-border-strong'
               "
-              :data-theme="t"
-              data-mode="dark"
-              style="background-color: var(--accent-primary)"
+              :style="{ backgroundColor: displayAccent[t] }"
+            />
+            <span
+              class="text-[10px] font-mono uppercase tracking-wider transition-all duration-fast"
+              :class="t === theme ? 'text-accent' : 'text-text-muted'"
+              >{{ t }}</span
+            >
+          </button>
+
+          <!-- Divider between Spectrum and Neutrals -->
+          <div class="w-px h-10 bg-border-subtle mx-1 sm:mx-2 self-start mt-1" />
+
+          <!-- Neutrals -->
+          <button
+            v-for="t in neutralThemes"
+            :key="t"
+            class="group relative flex flex-col items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring rounded-lg px-2 py-1"
+            @click="$emit('select-theme', t)"
+          >
+            <div
+              class="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 transition-all duration-normal"
+              :class="
+                t === theme
+                  ? 'border-accent scale-110 shadow-md'
+                  : 'border-border-subtle hover:border-border-strong'
+              "
+              :style="{ backgroundColor: displayAccent[t] }"
             />
             <span
               class="text-[10px] font-mono uppercase tracking-wider transition-all duration-fast"

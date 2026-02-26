@@ -20,7 +20,7 @@
 
 /* Abyss fonts */
 /* display: League Gothic — Google Fonts / League of Moveable Type (SIL OFL 1.1) */
-/* body: Inter — Google Fonts (SIL OFL 1.1) */
+/* body: Lexend — Google Fonts / Bonnie Shaver-Troup (SIL OFL 1.1) */
 /* sans: Space Grotesk — Google Fonts (SIL OFL 1.1) */
 /* mono: Monaspace Neon — GitHub (github.com/githubnext/monaspace) (SIL OFL 1.1) */
 
@@ -160,7 +160,7 @@
 
   /* Typography */
   --font-display: 'League Gothic', Georgia, serif;
-  --font-body: 'Inter', Georgia, serif;
+  --font-body: 'Lexend', Georgia, serif;
   --font-sans: 'Space Grotesk', system-ui, sans-serif;
   --font-mono: 'Monaspace Neon', 'Courier New', monospace;
 
@@ -216,7 +216,7 @@
 
   /* Typography */
   --font-display: 'League Gothic', Georgia, serif;
-  --font-body: 'Inter', Georgia, serif;
+  --font-body: 'Lexend', Georgia, serif;
   --font-sans: 'Space Grotesk', system-ui, sans-serif;
   --font-mono: 'Monaspace Neon', 'Courier New', monospace;
 

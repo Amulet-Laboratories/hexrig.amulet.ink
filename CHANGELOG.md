@@ -2,6 +2,68 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.6.1] — 2026-02-26
+
+### Changed — Rainbow Enhancement & Neutral Separation
+
+Refined the spectral display to read as a clear rainbow, and made neutral themes visually distinct.
+
+#### Display changes
+
+- **Abyss** display dot in the site hero/theme strip now shows electric blue (`#4080f0`) instead of the theme's lime-green accent — completes the R→G→Y→C→B→M rainbow sequence. The actual theme accent remains lime-green (`#aef66d`).
+- Hero theme strip now has a **vertical divider** separating the 6 Spectrum dots from the 3 Neutral dots.
+- Themes section split into two labeled groups: **Spectrum** (6 cards, up to 6-column grid) and **Neutrals** (3 cards, 3-column grid), each with a labeled divider.
+- Fixed "Ten themes" → "Nine themes" in hero and themes section copy.
+
+#### Neutral accent desaturation
+
+- **Keep** accent: `#ff8f2e` (vivid orange, S 100%) → `#b89070` (warm bronze, S 34%) — no longer competes with chromatic Spectrum themes on the color wheel.
+- **Slate** accent: `#6090d0` (medium blue, S 55%) → `#8090a0` (cool steel, S 14%) — no longer overlaps with Abyss's spectral position.
+- All related tokens updated (secondary, hover, active, focus, syntax function/operator/type) in both dark and light modes.
+
+## [0.6.0] — 2026-02-26
+
+### Changed — Spectral Theme Reorganization
+
+Complete reorganization of the Origins theme collection from 10 themes in two series (Environments + Materials) to **9 themes in spectral order** — six chromatic hues at ~60° intervals around the color wheel plus three neutrals.
+
+#### Spectrum (chromatic)
+
+| Theme      | Hue   | Role                                  |
+| ---------- | ----- | ------------------------------------- |
+| **Ember**  | ~10°  | True red — intensity and urgency      |
+| **Hearth** | ~45°  | Gold — craft and warmth               |
+| **Grove**  | ~120° | Green — organic persistence           |
+| **Reef**   | ~180° | Cyan — clarity and transparency (NEW) |
+| **Abyss**  | ~230° | Deep blue — cold cosmos (unchanged)   |
+| **Cove**   | ~280° | Purple — warm shelter (unchanged)     |
+
+#### Neutrals
+
+| Theme     | Bias | Role                                 |
+| --------- | ---- | ------------------------------------ |
+| **Linen** | Warm | Understated professional (unchanged) |
+| **Keep**  | Pure | Structural precision (unchanged)     |
+| **Slate** | Cool | Blue-grey monochrome (tinted)        |
+
+### Added
+
+- **Reef theme** — new ~180° Cyan/Teal spectral position. DM Sans + Libre Franklin + Fira Code. Clear, transparent, trustworthy.
+
+### Removed
+
+- **Glyph theme** — retired (Inscription / IM Fell English)
+- **Cairn theme** — retired (Accumulation / Libre Franklin)
+
+### Updated
+
+- **Ember** — accent shifted from orange-red `#e84820` to true red `#e04030`; surfaces deepened; narrative rewritten for spectral identity
+- **Hearth** — accent shifted from bronze `#c9956d` to gold `#d4a840`; surface hue moved from ~25° brown to ~45° amber
+- **Slate** — surfaces shifted from pure achromatic to cool blue-grey tinted (~220°)
+- **Grove** — narrative and JSDoc updated for spectral system; palette unchanged
+- **Linen** — narrative updated for warm neutral identity; palette unchanged
+- All infrastructure: themes index, barrel exports, tsup config, package.json, Storybook config, Rig stories, Site, test fixtures, documentation
+
 ## [0.5.3] — 2026-02-26
 
 ### Changed

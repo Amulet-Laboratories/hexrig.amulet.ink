@@ -1,7 +1,7 @@
 {
   "name": "@amulet-laboratories/hex-origins",
   "version": "0.6.0",
-  "description": "Origins collection — ten themes in two series for the Hex design token system.",
+  "description": "Origins collection — nine themes in spectral order for the Hex design token system.",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -46,19 +46,20 @@
     "themes",
     "hex",
     "origins",
+    "ember",
     "hearth",
+    "grove",
+    "reef",
     "abyss",
     "cove",
-    "glyph",
-    "ember",
-    "keep",
-    "slate",
     "linen",
-    "cairn",
-    "grove"
+    "keep",
+    "slate"
   ],
   "license": "MIT",
-  "sideEffects": ["**/*.css"],
+  "sideEffects": [
+    "**/*.css"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/Amulet-Laboratories/hexrig.amulet.ink"

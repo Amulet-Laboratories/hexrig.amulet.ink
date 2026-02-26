@@ -112,16 +112,15 @@ export const Introduction: Story = {
     `,
     setup() {
       const themes = [
-        { id: 'hearth', subtitle: 'Creation', accent: '#c9956d' },
-        { id: 'abyss', subtitle: 'Nothingness', accent: '#aef66d' },
-        { id: 'cove', subtitle: 'Shelter', accent: '#d43050' },
-        { id: 'glyph', subtitle: 'Inscription', accent: '#c44030' },
-        { id: 'ember', subtitle: 'Intensity', accent: '#e84820' },
-        { id: 'keep', subtitle: 'Construction', accent: '#ff8f2e' },
-        { id: 'slate', subtitle: 'Nothing', accent: '#6090d0' },
-        { id: 'linen', subtitle: 'Precision', accent: '#5088b8' },
-        { id: 'cairn', subtitle: 'Trust', accent: '#8aaa68' },
+        { id: 'ember', subtitle: 'Intensity', accent: '#e04030' },
+        { id: 'hearth', subtitle: 'Creation', accent: '#d4a840' },
         { id: 'grove', subtitle: 'Approachability', accent: '#7cba7e' },
+        { id: 'reef', subtitle: 'Clarity', accent: '#40c0b8' },
+        { id: 'abyss', subtitle: 'Nothingness', accent: '#aef66d' },
+        { id: 'cove', subtitle: 'Shelter', accent: '#c040a0' },
+        { id: 'linen', subtitle: 'Precision', accent: '#b87040' },
+        { id: 'keep', subtitle: 'Construction', accent: '#90a088' },
+        { id: 'slate', subtitle: 'Nothing', accent: '#8090a0' },
       ]
       const categories = [
         { label: 'General', items: ['Button', 'Icon', 'Text', 'Badge', 'Tag', 'Avatar'] },

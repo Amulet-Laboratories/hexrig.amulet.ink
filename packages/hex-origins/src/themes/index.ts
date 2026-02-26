@@ -1,77 +1,75 @@
 /**
  * Origins — Collection 1
  *
- * Ten themes in two series. Every theme has light + dark modes.
+ * Nine themes in spectral order. Six chromatic hues evenly spaced
+ * around the color wheel (~60° apart), plus three neutrals
+ * (warm, pure, cool). Every theme has light + dark modes.
  *
- * Environments: Hearth, Abyss, Cove, Glyph, Ember
- * Materials:    Keep, Slate, Linen, Cairn, Grove
+ * Spectrum: Ember (10° Red), Hearth (45° Gold), Grove (120° Green),
+ *           Reef (180° Cyan), Abyss (230° Blue), Cove (280° Purple)
+ * Neutrals: Linen (warm), Keep (pure), Slate (cool)
  */
 
 import type { HexThemeRegistry, HexCollection } from '@amulet-laboratories/hex'
+import { ember } from './ember'
 import { hearth } from './hearth'
+import { grove } from './grove'
+import { reef } from './reef'
 import { abyss } from './abyss'
 import { cove } from './cove'
-import { glyph } from './glyph'
-import { ember } from './ember'
+import { linen } from './linen'
 import { keep } from './keep'
 import { slate } from './slate'
-import { linen } from './linen'
-import { cairn } from './cairn'
-import { grove } from './grove'
 
 export type OriginsThemeId =
+  | 'ember'
   | 'hearth'
+  | 'grove'
+  | 'reef'
   | 'abyss'
   | 'cove'
-  | 'glyph'
-  | 'ember'
+  | 'linen'
   | 'keep'
   | 'slate'
-  | 'linen'
-  | 'cairn'
-  | 'grove'
 
+export { ember } from './ember'
 export { hearth } from './hearth'
+export { grove } from './grove'
+export { reef } from './reef'
 export { abyss } from './abyss'
 export { cove } from './cove'
-export { glyph } from './glyph'
-export { ember } from './ember'
+export { linen } from './linen'
 export { keep } from './keep'
 export { slate } from './slate'
-export { linen } from './linen'
-export { cairn } from './cairn'
-export { grove } from './grove'
 
 export const themes: HexThemeRegistry = {
+  ember,
   hearth,
+  grove,
+  reef,
   abyss,
   cove,
-  glyph,
-  ember,
+  linen,
   keep,
   slate,
-  linen,
-  cairn,
-  grove,
 }
 
 export const themeIds: OriginsThemeId[] = [
+  'ember',
   'hearth',
+  'grove',
+  'reef',
   'abyss',
   'cove',
-  'glyph',
-  'ember',
+  'linen',
   'keep',
   'slate',
-  'linen',
-  'cairn',
-  'grove',
 ]
 
 export const origins: HexCollection = {
   id: 'origins',
   name: 'Origins',
   narrative:
-    'Ten themes in two series. Environments are places you could stand in. Materials are things you could hold. Twenty palettes. No two themes want the same thing.',
-  themes: [hearth, abyss, cove, glyph, ember, keep, slate, linen, cairn, grove],
+    'Nine themes in spectral order. Six chromatic hues evenly spaced around the color wheel, plus three neutrals — warm, pure, and cool. Eighteen palettes. A rainbow that covers every client lane.',
+  themes: [ember, hearth, grove, reef, abyss, cove, linen, keep, slate],
 }

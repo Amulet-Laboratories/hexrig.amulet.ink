@@ -3,25 +3,24 @@
  *
  * @amulet-laboratories/hex-origins
  *
- * Ten themes in two series:
- *   Environments — Hearth, Abyss, Cove, Glyph, Ember
- *   Materials    — Keep, Slate, Linen, Cairn, Grove
+ * Nine themes in spectral order:
+ *   Spectrum — Ember, Hearth, Grove, Reef, Abyss, Cove
+ *   Neutrals — Linen, Keep, Slate
  */
 
 // Collection
 export { origins, themes, themeIds } from './themes/index'
 export type { OriginsThemeId } from './themes/index'
 
-// Individual themes — Environments
+// Individual themes — Spectrum (Red → Gold → Green → Cyan → Blue → Purple)
+export { ember } from './themes/ember'
 export { hearth } from './themes/hearth'
+export { grove } from './themes/grove'
+export { reef } from './themes/reef'
 export { abyss } from './themes/abyss'
 export { cove } from './themes/cove'
-export { glyph } from './themes/glyph'
-export { ember } from './themes/ember'
 
-// Individual themes — Materials
+// Individual themes — Neutrals (Warm → Pure → Cool)
+export { linen } from './themes/linen'
 export { keep } from './themes/keep'
 export { slate } from './themes/slate'
-export { linen } from './themes/linen'
-export { cairn } from './themes/cairn'
-export { grove } from './themes/grove'

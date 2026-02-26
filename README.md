@@ -8,7 +8,7 @@
 
 **Hex** (`@amulet-laboratories/hex`) — Design token engine. Type system, validation, CSS generation, and Tailwind preset.
 
-**Hex Origins** (`@amulet-laboratories/hex-origins`) — Ten themes in two series (hearth, abyss, cove, glyph, ember, keep, slate, linen, cairn, grove) with dark + light modes, CSS custom properties, and VS Code themes.
+**Hex Origins** (`@amulet-laboratories/hex-origins`) — Nine themes in spectral order (ember, hearth, grove, reef, abyss, cove, linen, keep, slate) with dark + light modes, CSS custom properties, and VS Code themes.
 
 **Rig** (`@amulet-laboratories/rig`) — Production-grade Vue 3 component library consuming Hex tokens via Tailwind CSS.
 
@@ -70,48 +70,46 @@ This maps all Hex token CSS variables to Tailwind utilities (`bg-surface-base`, 
 Import additional theme CSS files to enable runtime theme switching:
 
 ```ts
-// Environments series
+// Spectrum
+import '@amulet-laboratories/hex-origins/themes/ember.css'
 import '@amulet-laboratories/hex-origins/themes/hearth.css'
+import '@amulet-laboratories/hex-origins/themes/grove.css'
+import '@amulet-laboratories/hex-origins/themes/reef.css'
 import '@amulet-laboratories/hex-origins/themes/abyss.css'
 import '@amulet-laboratories/hex-origins/themes/cove.css'
-import '@amulet-laboratories/hex-origins/themes/glyph.css'
-import '@amulet-laboratories/hex-origins/themes/ember.css'
 
-// Materials series
+// Neutrals
+import '@amulet-laboratories/hex-origins/themes/linen.css'
 import '@amulet-laboratories/hex-origins/themes/keep.css'
 import '@amulet-laboratories/hex-origins/themes/slate.css'
-import '@amulet-laboratories/hex-origins/themes/linen.css'
-import '@amulet-laboratories/hex-origins/themes/cairn.css'
-import '@amulet-laboratories/hex-origins/themes/grove.css'
 
 // Switch at runtime via data-theme attribute or useTheme() composable
 ```
 
-## Ten Themes, Two Series
+## Nine Themes, Spectral Order
 
-Ten themes in two series. **Environments** are places you could stand in. **Materials** are things you could hold.
+Nine themes: six chromatic hues at ~60° intervals around the color wheel, plus three neutrals.
 
-### Environments
+### Spectrum
 
-| Theme      | World       | Accent    | Display Font     | Character                                 |
-| ---------- | ----------- | --------- | ---------------- | ----------------------------------------- |
-| **Hearth** | Creation    | `#c9956d` | Sorts Mill Goudy | Raw material shaped by heat and intention |
-| **Abyss**  | Nothingness | `#aef66d` | League Gothic    | Cold cosmos humming with latent energy    |
-| **Cove**   | Shelter     | `#d43050` | Crimson Pro      | Warm, intimate, otherworldly              |
-| **Glyph**  | Inscription | `#c44030` | IM Fell English  | Ink on parchment, the weight of recording |
-| **Ember**  | Combustion  | `#e84820` | Bungee           | Superheated metal, industrial urgency     |
+| Theme      | Hue   | World       | Accent    | Display Font      | Character                                |
+| ---------- | ----- | ----------- | --------- | ----------------- | ---------------------------------------- |
+| **Ember**  | ~10°  | Intensity   | `#e04030` | Bungee            | True red, industrial urgency             |
+| **Hearth** | ~45°  | Warmth      | `#d4a840` | Sorts Mill Goudy  | Gold and amber, the weight of craft      |
+| **Grove**  | ~120° | Growth      | `#7cba7e` | Libre Baskerville | Organic persistence, roots finding water |
+| **Reef**   | ~180° | Clarity     | `#40c0b8` | DM Sans           | Shallow water over white sand            |
+| **Abyss**  | ~230° | Nothingness | `#aef66d` | League Gothic     | Cold cosmos humming with latent energy   |
+| **Cove**   | ~280° | Shelter     | `#c040a0` | Crimson Pro       | Warm, intimate, otherworldly             |
 
-### Materials
+### Neutrals
 
-| Theme     | World        | Accent    | Display Font      | Character                                  |
-| --------- | ------------ | --------- | ----------------- | ------------------------------------------ |
-| **Keep**  | Construction | `#ff8f2e` | IBM Plex Serif    | Steel and purpose, industry and discipline |
-| **Slate** | Reduction    | `#6090d0` | Sora              | Monochrome discipline, one permitted blue  |
-| **Linen** | Softness     | `#5088b8` | Manrope           | Warm off-white, understated professional   |
-| **Cairn** | Accumulation | `#8aaa68` | Libre Franklin    | Warm stone and olive, deliberate stacking  |
-| **Grove** | Growth       | `#7cba7e` | Libre Baskerville | Organic persistence, roots finding water   |
+| Theme     | Bias | World     | Accent    | Display Font   | Character                                  |
+| --------- | ---- | --------- | --------- | -------------- | ------------------------------------------ |
+| **Linen** | Warm | Softness  | `#b87040` | Manrope        | Warm off-white, understated professional   |
+| **Keep**  | Pure | Structure | `#90a088` | IBM Plex Serif | Steel and purpose, industry and discipline |
+| **Slate** | Cool | Reduction | `#8090a0` | Sora           | Cool monochrome, blue-grey steel           |
 
-Each theme ships with **dark** and **light** modes (20 total combinations), applied via `data-theme` and `data-mode` HTML attributes.
+Each theme ships with **dark** and **light** modes (18 total combinations), applied via `data-theme` and `data-mode` HTML attributes.
 
 ## Setup
 
@@ -154,13 +152,13 @@ packages/
 │   │   ├── index.ts           # Barrel: types, utils, runtime helpers, Tailwind preset
 │   │   ├── tokens/types.ts    # Full token type system
 │   │   ├── utils/             # css.ts, validate.ts, vscode.ts
-│   │   └── __tests__/         # 6 test suites
+│   │   └── __tests__/         # 7 test suites
 │   └── tsup.config.ts         # ESM + CJS + DTS
 │
 ├── hex-origins/       # @amulet-laboratories/hex-origins — theme collection
 │   ├── src/
-│   │   ├── index.ts           # Barrel: all 10 theme objects
-│   │   ├── themes/            # hearth, abyss, cove, glyph, ember, keep, slate, linen, cairn, grove
+│   │   ├── index.ts           # Barrel: all 9 theme objects
+│   │   ├── themes/            # ember, hearth, grove, reef, abyss, cove, linen, keep, slate
 │   │   └── build/             # generate-css.ts, generate-vscode-themes.ts
 │   ├── themes/                # Generated VS Code theme JSON files
 │   └── tsup.config.ts         # ESM + CJS + DTS, per-theme entry points
@@ -168,17 +166,17 @@ packages/
 ├── rig/               # @amulet-laboratories/rig — Vue 3 components
 │   ├── src/
 │   │   ├── index.ts           # Barrel: all components + composables + types
-│   │   ├── components/        # 12 Rig* components + Storybook stories
+│   │   ├── components/        # 28 Rig* components + Storybook stories
 │   │   ├── composables/       # useTheme, useMotion, useToast
 │   │   ├── types/index.ts     # All prop + composable interfaces
 │   │   ├── stories/           # Meta-stories: KitchenSink, Palette, Typography, EditorPreview
-│   │   └── __tests__/         # 3 test suites
+│   │   └── __tests__/         # 5 test suites
 │   ├── tailwind.config.ts     # Token-to-CSS-variable mapping
 │   └── vite.config.ts         # Library build, vite-plugin-dts
 │
 ├── site/              # Marketing site — hexrig.amulet.ink
 │   ├── src/
-│   │   ├── main.ts            # Entry: imports all 10 Hex theme CSS files
+│   │   ├── main.ts            # Entry: imports all 9 Hex theme CSS files
 │   │   ├── App.vue            # Root: theme/mode state, keyboard shortcuts
 │   │   ├── style.css          # Tailwind directives, base styles
 │   │   └── sections/          # 5 sections (see below)
@@ -195,7 +193,7 @@ The site at [hexrig.amulet.ink](https://hexrig.amulet.ink) demonstrates the desi
 | Section        | Purpose                                                                     |
 | -------------- | --------------------------------------------------------------------------- |
 | **Hero**       | Full-screen intro, animated theme word, install command, theme dot selector |
-| **Themes**     | Grid of dark/light preview cards for all 10 themes                          |
+| **Themes**     | Grid of dark/light preview cards for all 9 themes                           |
 | **Components** | Live-styled buttons, cards, inputs, alerts, badges, typography              |
 | **Tokens**     | Color swatch grid, motion animation bars, typography preview                |
 | **Footer**     | Package links, Storybook link, tech badges                                  |
@@ -268,7 +266,7 @@ rounded-theme          → var(--radius-theme, 8px)
 ## Accessibility
 
 - **WCAG 2.1 Level AAA** — 7:1 contrast for primary text, 4.5:1 for secondary, 3:1 for UI
-- Validated across all 10 themes × 2 modes (20 combinations, 15 contrast pairs each)
+- Validated across all 9 themes × 2 modes (18 combinations, 15 contrast pairs each)
 - Full keyboard navigation + focus trapping (`RigDialog`)
 - `prefers-reduced-motion` respected via `useMotion()` composable
 - 44×44px minimum touch targets on all interactive controls
@@ -278,7 +276,7 @@ rounded-theme          → var(--radius-theme, 8px)
 
 ## Production Readiness
 
-- **185 tests** passing across 12 test suites (Vitest + jsdom)
+- **261 tests** passing across 12 test suites (Vitest + jsdom)
 - **Full type safety** — `vue-tsc --noEmit` and `tsc --noEmit` clean, rolled-up `.d.ts` declarations
 - **SSR-safe** — runtime helpers and composables guard against missing `document`/`window`
 - **Tree-shakable** — `sideEffects: false` (hex), `sideEffects: ["**/*.css"]` (hex-origins, rig)

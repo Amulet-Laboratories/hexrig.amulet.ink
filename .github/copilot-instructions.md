@@ -5,42 +5,63 @@
 The Amulet Design System — Hex (design tokens) + Rig (Vue 3 component library).
 A Gesamtkunstwerk for the web.
 
-**Category:** software | **Monorepo:** pnpm workspace (`packages/hex` + `packages/rig`)
+**Category:** software | **Monorepo:** pnpm workspace (`packages/hex` + `packages/hex-origins` + `packages/rig` + `packages/site`)
 
 ## Architecture
 
 ```
 packages/
-├── hex/               # @amulet-laboratories/hex — design tokens
+├── hex/               # @amulet-laboratories/hex — design token engine
 │   ├── src/
-│   │   ├── index.ts           # Barrel: types, themes, utils, runtime helpers
-│   │   ├── themes/            # hearth.ts, abyss.ts, cove.ts, glyph.ts, ember.ts, keep.ts, slate.ts, linen.ts, cairn.ts, grove.ts
-│   │   ├── tokens/types.ts    # Full token type system (208 lines)
+│   │   ├── index.ts           # Barrel: types, utils, runtime helpers, Tailwind preset
+│   │   ├── tokens/types.ts    # Full token type system
 │   │   ├── utils/             # css.ts, validate.ts, vscode.ts
-│   │   ├── build/             # generate-css.ts, generate-vscode-themes.ts
-│   │   └── __tests__/
-│   ├── themes/                # JSON source: {theme}-{dark|light}.json (10 files)
-│   └── tsup.config.ts         # ESM + CJS, per-theme entry points
+│   │   ├── tailwind/          # Tailwind preset (amuletPreset)
+│   │   └── __tests__/         # 7 test suites + fixtures/
+│   └── tsup.config.ts         # ESM + CJS + DTS
+│
+├── hex-origins/       # @amulet-laboratories/hex-origins — theme collection
+│   ├── src/
+│   │   ├── index.ts           # Barrel: all 9 theme objects + collection + registry
+│   │   ├── themes/            # ember, hearth, grove, reef, abyss, cove, linen, keep, slate
+│   │   └── build/             # generate-css.ts, generate-vscode-themes.ts
+│   ├── themes/                # Generated VS Code theme JSON (18 files)
+│   └── tsup.config.ts         # ESM + CJS + DTS, per-theme entry points
 │
 ├── rig/               # @amulet-laboratories/rig — Vue 3 components
 │   ├── src/
 │   │   ├── index.ts           # Barrel: all components + composables + types
-│   │   ├── components/        # 12 Rig* components + Storybook stories
+│   │   ├── components/        # 28 Rig* components + Storybook stories
 │   │   ├── composables/       # useTheme, useMotion, useToast
-│   │   ├── types/index.ts     # All prop + composable interfaces (172 lines)
+│   │   ├── types/index.ts     # All prop + composable interfaces
 │   │   ├── stories/           # Meta-stories: KitchenSink, Palette, Typography, EditorPreview
 │   │   ├── style.css          # @tailwind base/components/utilities
-│   │   └── __tests__/
+│   │   └── __tests__/         # 5 test suites
 │   ├── tailwind.config.ts     # Token-backed CSS variable mappings
 │   └── vite.config.ts         # Library build: entry src/index.ts, formats [es, cjs]
+│
+├── site/              # Marketing site — hexrig.amulet.ink
+│   ├── src/
+│   │   ├── main.ts            # Entry: imports all 9 Hex theme CSS files
+│   │   ├── App.vue            # Root: theme/mode state, keyboard shortcuts
+│   │   ├── style.css          # Tailwind directives, base styles
+│   │   └── sections/          # Hero, Themes, Components, Tokens, Footer
+│   └── vite.config.ts
 │
 └── .storybook/                # Root Storybook config (port 6006)
 ```
 
-### Hex — Design Tokens
+### Hex — Design Token Engine
 
-- 10 themes: `hearth`, `abyss`, `cove`, `glyph`, `ember`, `keep`, `slate`, `linen`, `cairn`, `grove`
-- Each theme has `dark` + `light` mode (20 JSON source files, 20 CSS blocks)
+- Collection-agnostic engine: type system, validation, CSS generation, runtime helpers, Tailwind preset
+- `ThemeId` is `string` — any collection can define its own narrower union
+- No themes live in hex itself; themes are in collection packages (e.g., hex-origins)
+
+### Hex Origins — Theme Collection
+
+- 9 themes: `ember`, `hearth`, `grove`, `reef`, `abyss`, `cove`, `linen`, `keep`, `slate`
+- Six chromatic hues at ~60° intervals (Spectrum) + three neutrals (warm/pure/cool)
+- Each theme has `dark` + `light` mode (18 CSS blocks)
 - Applied via `data-theme="hearth"` and `data-mode="dark"` attributes
 - Token generation: TypeScript → CSS custom properties via `tsup` + `tsx`
 - Also generates VS Code themes from the same token source
@@ -56,7 +77,8 @@ packages/
 | `focus`      | ring, outline                                     |
 
 **Type system** (`tokens/types.ts`):
-- `ThemeId`: `'hearth' | 'abyss' | 'cove' | 'glyph' | 'ember' | 'keep' | 'slate' | 'linen' | 'cairn' | 'grove'`
+- `ThemeId`: `string` (engine is collection-agnostic)
+- `OriginsThemeId`: `'ember' | 'hearth' | 'grove' | 'reef' | 'abyss' | 'cove' | 'linen' | 'keep' | 'slate'`
 - `ModeId`: `'dark' | 'light'`
 - `HexTheme`: id + name + narrative + motion + fonts + dark + light
 - `HexModeTokens`: surfaces + text + borders + accents + status + focus + syntax + terminal
@@ -69,13 +91,15 @@ packages/
 - `getThemeState(element)` — reads current theme + mode from DOM
 
 **Exports:**
-- `@amulet-laboratories/hex` — types, themes, utils, runtime
-- `@amulet-laboratories/hex/themes/*.css` — per-theme CSS files
-- `@amulet-laboratories/hex/themes/*` — per-theme JS/TS modules
+- `@amulet-laboratories/hex` — types, utils, runtime helpers
+- `@amulet-laboratories/hex/tailwind` — Tailwind preset (`amuletPreset`)
+- `@amulet-laboratories/hex-origins` — all themes, registry, collection
+- `@amulet-laboratories/hex-origins/themes/*.css` — per-theme CSS files
+- `@amulet-laboratories/hex-origins/themes/*` — per-theme JS/TS modules
 
 ### Rig — Component Library
 
-12 components, all WCAG AAA, `Rig` prefix:
+28 components, all WCAG AAA, `Rig` prefix:
 
 | Component         | Key Features                                      |
 | ----------------- | ------------------------------------------------- |
@@ -136,7 +160,7 @@ Usage: `bg-surface-base`, `text-text-primary`, `border-border-subtle`, `duration
 Root-level config at `.storybook/`:
 - Framework: `@storybook/vue3-vite` on port 6006
 - Stories from `packages/rig/src/**/*.stories.ts`
-- Theme/scheme toolbar selectors (10 themes × 2 modes)
+- Theme/scheme toolbar selectors (9 themes × 2 modes)
 - Default: `hearth` theme, `dark` mode
 - 4 meta-stories: EditorPreview, KitchenSink, Palette, Typography
 
@@ -173,7 +197,9 @@ pnpm validate         # Validate all themes
 
 ## Build
 
-- **Hex**: `tsup` with per-theme entry points → ESM + CJS + DTS
+- **Hex**: `tsup` → ESM + CJS + DTS (engine only, no themes)
+- **Hex Origins**: `tsup` with per-theme entry points → ESM + CJS + DTS + generated CSS + VS Code JSON
 - **Rig**: `vite build` in library mode → ESM + CJS, CSS bundled
+- **Site**: `vite build` → static SPA
 - External: `vue`, `@iconify/vue` (peer deps)
-- Package scope: `@amulet-laboratories/hex`, `@amulet-laboratories/rig`
+- Package scope: `@amulet-laboratories/hex`, `@amulet-laboratories/hex-origins`, `@amulet-laboratories/rig`

@@ -2,18 +2,17 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import './style.css'
 
-// Import all Origins theme CSS — Environments
+// Import all Origins theme CSS — Spectrum (Red → Gold → Green → Cyan → Blue → Purple)
+import '@amulet-laboratories/hex-origins/themes/ember.css'
 import '@amulet-laboratories/hex-origins/themes/hearth.css'
+import '@amulet-laboratories/hex-origins/themes/grove.css'
+import '@amulet-laboratories/hex-origins/themes/reef.css'
 import '@amulet-laboratories/hex-origins/themes/abyss.css'
 import '@amulet-laboratories/hex-origins/themes/cove.css'
-import '@amulet-laboratories/hex-origins/themes/glyph.css'
-import '@amulet-laboratories/hex-origins/themes/ember.css'
-// Materials
+// Neutrals (Warm → Pure → Cool)
+import '@amulet-laboratories/hex-origins/themes/linen.css'
 import '@amulet-laboratories/hex-origins/themes/keep.css'
 import '@amulet-laboratories/hex-origins/themes/slate.css'
-import '@amulet-laboratories/hex-origins/themes/linen.css'
-import '@amulet-laboratories/hex-origins/themes/cairn.css'
-import '@amulet-laboratories/hex-origins/themes/grove.css'
 
 const app = createApp(App)
 

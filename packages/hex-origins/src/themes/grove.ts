@@ -1,17 +1,17 @@
 import type { HexTheme } from '@amulet-laboratories/hex'
 
 /**
- * GROVE — Approachability
+ * GROVE — Approachability · ~120° Green
  *
- * Soft neutral with sage green. Dappled light through leaves.
- * The friendly theme — warmth from serif, professionalism from sans.
- * The only serif+sans split in Series 2.
+ * Spectral position: Green. The eye's most sensitive wavelength.
+ * Dappled light through leaves, sage and moss. The friendly theme —
+ * warmth from serif, professionalism from sans.
  */
 export const grove: HexTheme = {
   id: 'grove',
   name: 'Grove',
   narrative:
-    'Approachability. Soft neutral with sage green — dappled light through leaves. The friendly theme that says "I\'m a real person and I\'m good at what I do" without saying anything at all.',
+    'Approachability. Green light through leaves — the wavelength the eye trusts most. The theme that says "I\'m a real person" without saying anything at all.',
 
   motion: {
     duration: { fast: '130ms', normal: '280ms', slow: '480ms' },
@@ -27,14 +27,14 @@ export const grove: HexTheme = {
     xs: '4px',
     sm: '10px',
     md: '18px',
-    lg: '28px',
-    xl: '44px',
-    '2xl': '68px',
-    '3xl': '104px',
+    lg: '30px',
+    xl: '48px',
+    '2xl': '72px',
+    '3xl': '108px',
   },
 
   shape: {
-    radius: '12px',
+    radius: '14px',
     radiusFull: '9999px',
   },
 
