@@ -37,7 +37,7 @@ onUnmounted(() => window.removeEventListener('keydown', onKeydown))
   <div
     :data-theme="activeTheme"
     :data-mode="activeMode"
-    class="min-h-screen bg-surface-base text-text-primary font-body transition-colors duration-slow ease-standard"
+    class="min-h-screen bg-surface-base text-text-primary font-body"
   >
     <HeroSection
       :theme="activeTheme"
