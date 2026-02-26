@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.5.3] — 2026-02-26
+
+### Changed
+
+- **Site ComponentsSection** — replaced hand-coded HTML with 18 real Rig components (Button, Card, Input, Alert, Badge, Tag, Text, Divider, Switch, Checkbox, Tabs, Progress, Spinner, Avatar, Tooltip, Surface)
+- **Storybook sidebar** — consolidated 8 categories → 2 (Showcase + Components); Components auto-collapsed
+- **Hero install command** — updated to include `@amulet-laboratories/hex-origins`
+- **Footer package links** — updated to all 3 packages, pointing to GitHub Packages
+
+### Added
+
+- **Scroll-reveal** — `v-reveal` directive using IntersectionObserver; elements fade and slide up on scroll with staggered delay support
+- **Site Row 4** — new section showcasing controls (Switch, Checkbox, Tabs) and feedback (Progress, Spinner, Avatar, Tooltip)
+
+## [0.5.2] — 2026-02-26
+
+### Changed
+
+- **CSS export path fixed** — rig export map updated from `./dist/style.css` to `./dist/rig.css` to match Vite build output
+- **Peer dependency ranges** — `workspace:*` replaced with `>=0.5.0` in published peer deps
+- **hex-origins dependency type** — hex moved from dependencies to peerDependencies (types-only at runtime)
+- **README install guide** — added `.npmrc` registry setup, quick start, Tailwind preset, multi-theme examples
+- **GitHub Packages section** — updated for all 3 packages with publish order
+
 ## [0.5.1] — 2026-02-25
 
 ### Changed (hex 0.5.1)
