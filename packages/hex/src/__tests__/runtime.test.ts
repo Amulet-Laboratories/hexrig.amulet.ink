@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach } from 'vitest'
 import { applyTheme, toggleMode, getThemeState } from '../index'
-import { hearth } from '../themes/index'
+import { hearth } from './fixtures/index'
 
 describe('Runtime helpers', () => {
   let el: HTMLElement

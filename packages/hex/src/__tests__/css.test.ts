@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { generateThemeCSS } from '@hex/utils/css'
-import { themes, themeIds } from '@hex/themes/index'
+import { themes, themeIds } from './fixtures/index'
 import type { ThemeId } from '@hex/tokens/types'
 
 describe('generateThemeCSS', () => {

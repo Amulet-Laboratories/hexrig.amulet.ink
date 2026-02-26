@@ -1,6 +1,6 @@
 {
   "name": "@amulet-laboratories/rig",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Minimal Vue 3 component library consuming Hex theme tokens via Tailwind CSS.",
   "type": "module",
   "main": "./dist/rig.cjs",
@@ -15,7 +15,7 @@
       "import": "./dist/rig.js",
       "require": "./dist/rig.cjs"
     },
-    "./style.css": "./dist/style.css"
+    "./style.css": "./dist/rig.css"
   },
   "files": [
     "dist"
@@ -38,6 +38,7 @@
     "vue-tsc": "^2.2.0"
   },
   "peerDependencies": {
+    "@amulet-laboratories/hex": ">=0.5.0",
     "@iconify/vue": "^5.0.0",
     "vue": "^3.5.0"
   },
@@ -52,5 +53,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/Amulet-Laboratories/hexrig.amulet.ink"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   }
 }

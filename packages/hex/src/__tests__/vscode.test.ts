@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { generateVSCodeTheme } from '@hex/utils/vscode'
-import { themes } from '@hex/themes/index'
+import { themes } from './fixtures/index'
 
 describe('generateVSCodeTheme', () => {
   it('produces a valid VSCode theme object for dark scheme', () => {

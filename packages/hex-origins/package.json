@@ -1,6 +1,6 @@
 {
   "name": "@amulet-laboratories/hex-origins",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Origins collection — five foundational themes for the Hex design token system.",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -31,10 +31,11 @@
     "typecheck": "tsc --noEmit",
     "validate": "tsx src/build/validate-all.ts"
   },
-  "dependencies": {
-    "@amulet-laboratories/hex": "workspace:*"
+  "peerDependencies": {
+    "@amulet-laboratories/hex": ">=0.5.0"
   },
   "devDependencies": {
+    "@amulet-laboratories/hex": "workspace:*",
     "@types/node": "^25.3.0",
     "tsup": "^8.3.0",
     "tsx": "^4.19.0",
@@ -56,5 +57,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/Amulet-Laboratories/hexrig.amulet.ink"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   }
 }

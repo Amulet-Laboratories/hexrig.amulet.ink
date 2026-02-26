@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { validateTheme } from '@hex/utils/validate'
-import { themes, themeIds } from '@hex/themes/index'
+import { themes, themeIds } from './fixtures/index'
 import type { HexTheme, ThemeId } from '@hex/tokens/types'
 
 describe('validateTheme', () => {
