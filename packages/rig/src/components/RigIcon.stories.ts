@@ -16,7 +16,17 @@ const meta = {
     },
     color: {
       control: 'select',
-      options: ['current', 'primary', 'secondary', 'muted', 'accent', 'success', 'warning', 'error', 'info'],
+      options: [
+        'current',
+        'primary',
+        'secondary',
+        'muted',
+        'accent',
+        'success',
+        'warning',
+        'error',
+        'info',
+      ],
     },
   },
 } satisfies Meta<typeof RigIcon>

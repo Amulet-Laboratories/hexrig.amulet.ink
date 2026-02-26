@@ -26,7 +26,8 @@ const sizeClasses: Record<NonNullable<RigButtonProps['size']>, string> = {
 const variantToneClasses = computed(() => {
   const { variant, tone } = props
 
-  const base = 'inline-flex items-center justify-center rounded font-body font-medium transition-colors duration-normal ease-standard focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring'
+  const base =
+    'inline-flex items-center justify-center rounded font-body font-medium transition-colors duration-normal ease-standard focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring'
 
   const map: Record<string, string> = {
     'solid-accent': `${base} bg-accent text-text-on-accent hover:bg-accent-hover active:bg-accent-active`,
@@ -66,7 +67,7 @@ const handleClick = (event: MouseEvent) => {
     :is="as"
     :class="classes"
     :type="as === 'button' ? 'button' : undefined"
-    :disabled="as === 'button' ? (disabled || loading) || undefined : undefined"
+    :disabled="as === 'button' ? disabled || loading || undefined : undefined"
     :aria-disabled="as !== 'button' && (disabled || loading) ? 'true' : undefined"
     :href="as !== 'button' && (disabled || loading) ? undefined : href"
     :to="to"
@@ -83,7 +84,11 @@ const handleClick = (event: MouseEvent) => {
       aria-hidden="true"
     >
       <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
-      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+      <path
+        class="opacity-75"
+        fill="currentColor"
+        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+      />
     </svg>
     <span v-if="loading" class="sr-only">Loading</span>
     <slot />

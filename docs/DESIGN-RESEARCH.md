@@ -6,7 +6,7 @@
 
 ## 1. Typography: The 85% of Your Interface
 
-Typography accounts for roughly 85–90% of any given screen. It's not decoration — it *is* the interface. The Hex system needs to treat type as a first-class citizen with far more nuance than font-family alone.
+Typography accounts for roughly 85–90% of any given screen. It's not decoration — it _is_ the interface. The Hex system needs to treat type as a first-class citizen with far more nuance than font-family alone.
 
 ### 1a. Font Strategy Per Theme
 
@@ -14,15 +14,16 @@ Each theme should tell a different story through its typeface pairings. The curr
 
 **Recommended pairings (one direction — many possible):**
 
-| Theme | Heading | Body | Mono | Personality |
-|-------|---------|------|------|-------------|
-| **Rust** | Fraunces (variable, opsz) | Source Serif 4 or Literata | JetBrains Mono | Warm craft, old-world authority, hand-forged |
-| **Warp** | Space Grotesk or Outfit | Inter or DM Sans | IBM Plex Mono or Fira Code | Precision, clinical, machine-like |
-| **Thorn** | Lora or Newsreader | Source Sans 3 or Nunito | DM Mono | Organic, literary, naturalist |
-| **Maul** | Bebas Neue or Anton | Barlow or Work Sans | Roboto Mono | Industrial, utilitarian, raw force |
-| **Jinx** | Crimson Pro or Playfair Display | Alegreya Sans or Libre Franklin | Victor Mono or Fantasque Sans Mono | Mystical, arcane, high-contrast elegance |
+| Theme     | Heading                         | Body                            | Mono                               | Personality                                  |
+| --------- | ------------------------------- | ------------------------------- | ---------------------------------- | -------------------------------------------- |
+| **Rust**  | Fraunces (variable, opsz)       | Source Serif 4 or Literata      | JetBrains Mono                     | Warm craft, old-world authority, hand-forged |
+| **Warp**  | Space Grotesk or Outfit         | Inter or DM Sans                | IBM Plex Mono or Fira Code         | Precision, clinical, machine-like            |
+| **Thorn** | Lora or Newsreader              | Source Sans 3 or Nunito         | DM Mono                            | Organic, literary, naturalist                |
+| **Maul**  | Bebas Neue or Anton             | Barlow or Work Sans             | Roboto Mono                        | Industrial, utilitarian, raw force           |
+| **Jinx**  | Crimson Pro or Playfair Display | Alegreya Sans or Libre Franklin | Victor Mono or Fantasque Sans Mono | Mystical, arcane, high-contrast elegance     |
 
 **Key principles:**
+
 - **Reserve expressive/display fonts for headings.** Body text must prioritize legibility. Pair a distinctive heading face with a neutral-but-characterful body face.
 - **Use variable fonts wherever possible.** A single variable font file replaces multiple static weights, improving performance while unlocking intermediate weights (like 450 for body, 625 for subheadings — values between Regular and SemiBold that create subtler hierarchy).
 - **Leverage the optical size axis (opsz).** Fraunces, Inter, Roboto Flex, and others have an opsz axis that automatically adjusts letterform design at different sizes — thicker strokes and wider apertures at small sizes, more delicate contrast at display sizes. This is free readability improvement. Browsers handle it automatically with `font-optical-sizing: auto`.
@@ -49,6 +50,7 @@ Root the scale in math, not intuition. A ratio-based scale creates harmonic rela
 ```
 
 **Critical: Line height should be ratio-based and snapped to a 4px grid.**
+
 - Display/headings: `line-height: 1.1–1.2` (tighter at large sizes)
 - Body text: `line-height: 1.5` (standard readability)
 - Small/caption text: `line-height: 1.5–1.6` (more breathing room at small sizes)
@@ -67,8 +69,12 @@ The scale should breathe across breakpoints. Two strategies:
 In dark mode, light text on dark backgrounds benefits from slightly more open letter-spacing. Figma's own design system maintains separate text styles for positive (dark-on-light) and negative (light-on-dark) applications, with a subtle tracking adjustment for dark mode. Consider:
 
 ```css
-[data-scheme="dark"] { --tracking-body: 0.01em; }
-[data-scheme="light"] { --tracking-body: 0; }
+[data-scheme='dark'] {
+  --tracking-body: 0.01em;
+}
+[data-scheme='light'] {
+  --tracking-body: 0;
+}
 ```
 
 ### 1e. Typography Tokens (Semantic)
@@ -85,7 +91,7 @@ Beyond raw sizes, define semantic type roles:
 --type-code       → mono font, text-sm, weight-regular, leading-relaxed
 ```
 
-These composite tokens encode the *intent* of the typography, not just the mechanics.
+These composite tokens encode the _intent_ of the typography, not just the mechanics.
 
 ---
 
@@ -95,27 +101,29 @@ These composite tokens encode the *intent* of the typography, not just the mecha
 
 Color is processed before text — within 90 milliseconds, people form subconscious judgments based on color alone. Research shows up to 90% of initial product judgments are based on color. Each Hex theme should deliberately map to a psychological territory:
 
-| Theme | Hue Family | Psychological Territory | Evokes |
-|-------|-----------|------------------------|--------|
-| **Rust** | Warm bronze/amber | Trust, craft, heritage, warmth | A blacksmith's workshop, aged leather, firelight |
-| **Warp** | Cool electric blue | Precision, technology, trust, calm | Clean rooms, deep space, digital frontiers |
-| **Thorn** | Deep green | Growth, nature, safety, renewal | Dense forests, botanical gardens, living things |
-| **Maul** | Hot amber/orange | Energy, urgency, industry, confidence | Foundries, construction, molten metal |
-| **Jinx** | Deep violet/purple | Mystery, creativity, luxury, arcane | Alchemy labs, twilight, esoteric knowledge |
+| Theme     | Hue Family         | Psychological Territory               | Evokes                                           |
+| --------- | ------------------ | ------------------------------------- | ------------------------------------------------ |
+| **Rust**  | Warm bronze/amber  | Trust, craft, heritage, warmth        | A blacksmith's workshop, aged leather, firelight |
+| **Warp**  | Cool electric blue | Precision, technology, trust, calm    | Clean rooms, deep space, digital frontiers       |
+| **Thorn** | Deep green         | Growth, nature, safety, renewal       | Dense forests, botanical gardens, living things  |
+| **Maul**  | Hot amber/orange   | Energy, urgency, industry, confidence | Foundries, construction, molten metal            |
+| **Jinx**  | Deep violet/purple | Mystery, creativity, luxury, arcane   | Alchemy labs, twilight, esoteric knowledge       |
 
-**Critical insight from research**: Color psychology is context-dependent. The *appropriateness* of a color to its context matters more than universal associations. Each theme works because its palette is internally coherent — the color supports the narrative, not the other way around.
+**Critical insight from research**: Color psychology is context-dependent. The _appropriateness_ of a color to its context matters more than universal associations. Each theme works because its palette is internally coherent — the color supports the narrative, not the other way around.
 
 ### 2b. Color Architecture: Three-Tier Token System
 
 Structure tokens in layers for maximum flexibility with minimum chaos:
 
 **Tier 1: Primitives** (raw values, never used directly in components)
+
 ```
 --hex-bronze-50: #fef7f0    --hex-bronze-900: #3d1f0a
 --hex-blue-50: #f0f4ff      --hex-blue-900: #0a1a3d
 ```
 
 **Tier 2: Semantic** (purpose-driven, theme-aware)
+
 ```
 --hex-color-surface-base      → what the page sits on
 --hex-color-text-primary      → most important text
@@ -124,6 +132,7 @@ Structure tokens in layers for maximum flexibility with minimum chaos:
 ```
 
 **Tier 3: Component** (specific to a component's anatomy)
+
 ```
 --hex-button-bg               → references accent-primary
 --hex-button-text             → references text-on-accent
@@ -135,19 +144,21 @@ This three-tier system lets you change a theme (Tier 1 swap), change a design de
 ### 2c. The 60-30-10 Rule
 
 Every theme should follow this distribution:
-- **60%** — Surface colors (base, raised, sunken). This is the *ground*.
-- **30%** — Text and border colors. This is the *structure*.
-- **10%** — Accent and status colors. This is the *signal*.
 
-Accent is powerful *because* it's scarce. A theme that uses accent color everywhere dilutes its impact.
+- **60%** — Surface colors (base, raised, sunken). This is the _ground_.
+- **30%** — Text and border colors. This is the _structure_.
+- **10%** — Accent and status colors. This is the _signal_.
+
+Accent is powerful _because_ it's scarce. A theme that uses accent color everywhere dilutes its impact.
 
 ### 2d. Dark Mode Is Not Inversion
 
 Key findings from accessibility research:
+
 - **Avoid pure black (#000000).** Use dark grays (#0f0d0a, #121212). Pure black causes halation — a glowing/halo effect around text, especially for users with astigmatism.
 - **Avoid pure white text.** Use off-whites (#f5f1ed, #e8eaf0). The contrast is still high but less harsh.
 - **Desaturate colors in dark mode.** Highly saturated colors on dark backgrounds appear to "vibrate" or bleed. Drop saturation 10–20% for dark schemes.
-- **Elevate with lightness, not shadow.** In dark mode, higher surfaces should be *lighter*, not shadowed. Material Design uses tinted overlays; your `surface-raised` being lighter than `surface-base` is correct.
+- **Elevate with lightness, not shadow.** In dark mode, higher surfaces should be _lighter_, not shadowed. Material Design uses tinted overlays; your `surface-raised` being lighter than `surface-base` is correct.
 - **Shadow opacity should increase in dark mode** (you're already doing this). Dark mode shadows need more opacity to register against dark backgrounds.
 
 ---
@@ -156,14 +167,15 @@ Key findings from accessibility research:
 
 ### 3a. Contrast Requirements
 
-| Element | Minimum Ratio | Standard |
-|---------|--------------|----------|
-| Body text (< 18px / < 14px bold) | **4.5:1** | WCAG 1.4.3 AA |
-| Large text (≥ 18px / ≥ 14px bold) | **3:1** | WCAG 1.4.3 AA |
-| UI components & graphical objects | **3:1** | WCAG 1.4.11 AA |
-| Enhanced (AAA) body text | **7:1** | WCAG 1.4.6 AAA |
+| Element                           | Minimum Ratio | Standard       |
+| --------------------------------- | ------------- | -------------- |
+| Body text (< 18px / < 14px bold)  | **4.5:1**     | WCAG 1.4.3 AA  |
+| Large text (≥ 18px / ≥ 14px bold) | **3:1**       | WCAG 1.4.3 AA  |
+| UI components & graphical objects | **3:1**       | WCAG 1.4.11 AA |
+| Enhanced (AAA) body text          | **7:1**       | WCAG 1.4.6 AAA |
 
 **Action items for Hex:**
+
 - Audit every `text-*` token against every `surface-*` token in both schemes.
 - The `text-muted` tokens are the most likely to fail. Muted text still needs 4.5:1 against its background.
 - Status colors (success/warning/error/info) used as text need 4.5:1. Used as large UI elements, 3:1.
@@ -220,6 +232,7 @@ This is where themes get truly expressive. Each theme can have its own easing pe
 ```
 
 **Theme-specific tuning:**
+
 - **Rust**: Slightly heavier easing, like weighted metal. Longer settle.
 - **Warp**: Crisp, mechanical. Shorter durations, sharper curves. Linear for data.
 - **Thorn**: Organic ease. Longer durations, softer curves. Things grow and unfurl.
@@ -230,7 +243,9 @@ This is where themes get truly expressive. Each theme can have its own easing pe
 
 ```css
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
@@ -246,6 +261,7 @@ Always provide this. Non-negotiable.
 ### 5a. System Approach
 
 Icons in a design system should feel like they belong to the same family — unified by:
+
 - **Consistent grid**: 24×24px base grid with 20×20px live area and 2px padding
 - **Consistent stroke width**: 1.5px or 2px, matching the visual weight of your body text
 - **Consistent corner radius**: Should echo the theme's border-radius tokens
@@ -253,20 +269,21 @@ Icons in a design system should feel like they belong to the same family — uni
 
 ### 5b. Icon Variants Per Theme
 
-Icons should be a shared set, but their *rendering parameters* can vary per theme:
+Icons should be a shared set, but their _rendering parameters_ can vary per theme:
 
-| Parameter | Rust | Warp | Thorn | Maul | Jinx |
-|-----------|------|------|-------|------|------|
-| Stroke width | 1.5px | 1.5px | 1.5px | 2px | 1.5px |
-| Corner radius | 2px | 0px (sharp) | 3px (rounded) | 1px | 2px |
-| Line cap | round | butt | round | square | round |
-| Style | outlined | outlined | outlined | filled/outlined | outlined |
+| Parameter     | Rust     | Warp        | Thorn         | Maul            | Jinx     |
+| ------------- | -------- | ----------- | ------------- | --------------- | -------- |
+| Stroke width  | 1.5px    | 1.5px       | 1.5px         | 2px             | 1.5px    |
+| Corner radius | 2px      | 0px (sharp) | 3px (rounded) | 1px             | 2px      |
+| Line cap      | round    | butt        | round         | square          | round    |
+| Style         | outlined | outlined    | outlined      | filled/outlined | outlined |
 
 This gives each theme a distinct icon feel without redrawing hundreds of icons. A "settings gear" icon rendered with round caps and 3px corners (Thorn) feels botanical; the same icon with square caps and 0px corners (Warp) feels technical.
 
 ### 5c. Icon Sizing Scale
 
 Align to the spacing scale:
+
 - **Small**: 16×16px — inline with caption text
 - **Medium**: 20×20px — inline with body text (default)
 - **Large**: 24×24px — buttons, navigation
@@ -315,6 +332,7 @@ The 4px grid is well-established as the optimal base. It's small enough for prec
 ### 6b. Semantic Spacing Tokens
 
 Like color, spacing benefits from semantic naming:
+
 ```
 --space-inset-sm:     var(--space-2)         (tight component padding)
 --space-inset-md:     var(--space-4)         (standard component padding)
@@ -329,6 +347,7 @@ Like color, spacing benefits from semantic naming:
 ### 6c. Per-Theme Spacing "Feel"
 
 Themes can optionally adjust the density scale:
+
 - **Warp**: Slightly tighter — data-dense, efficient
 - **Thorn**: Slightly more generous — organic, breathable
 - **Maul**: Tight — industrial, utilitarian density
@@ -344,6 +363,7 @@ This could be implemented with a simple multiplier: `--space-density: 1.0` (Rust
 ### 7a. Elevation System
 
 Define elevation as a concept, not just shadow values:
+
 ```
 Level 0: Sunken      (inset shadow — e.g., input fields, wells)
 Level 1: Base        (no shadow — the ground plane)
@@ -356,6 +376,7 @@ Level 5: Toast       (xl shadow — notifications, floating elements)
 ### 7b. Theme-Specific Shadow Character
 
 Shadows can carry personality:
+
 - **Rust**: Warm-tinted shadows (add a hint of amber to the rgba)
 - **Warp**: Cool, blue-tinted shadows — or no color tint, pure black for clinical feel
 - **Thorn**: Slightly diffused, soft — like light through leaves
@@ -386,6 +407,7 @@ Examples:
 ```
 
 **Principles:**
+
 - Names should be self-explanatory — a developer shouldn't need docs to guess what `--hex-color-accent-muted` does.
 - Avoid abbreviations that aren't universally understood.
 - Be consistent in ordering (always category → property → variant).
@@ -402,6 +424,7 @@ The TS theme objects are already well-structured. Enhance with:
 ### 8c. Documentation Standards
 
 Every token should be documented with:
+
 - **What it's for** (semantic purpose)
 - **Where to use it** (components, contexts)
 - **What NOT to use instead** (common mistakes)
@@ -410,6 +433,7 @@ Every token should be documented with:
 ### 8d. Validation & Safety
 
 The existing `validateTheme()` function is excellent. Extend it to:
+
 - **Contrast checking**: Validate that text tokens meet WCAG AA against their intended surface tokens.
 - **Completeness checking**: Ensure all required tokens are present.
 - **Type safety**: Catch invalid CSS values at build time.
@@ -423,12 +447,12 @@ Beyond flat colors, themes can include atmospheric tokens for backgrounds and de
 ### 9a. Background Patterns (Optional)
 
 ```css
-[data-theme="rust"] {
-  --hex-bg-pattern: url("data:image/svg+xml,..."); /* subtle noise/grain */
+[data-theme='rust'] {
+  --hex-bg-pattern: url('data:image/svg+xml,...'); /* subtle noise/grain */
   --hex-bg-pattern-opacity: 0.03;
 }
-[data-theme="thorn"] {
-  --hex-bg-pattern: url("data:image/svg+xml,..."); /* organic dots or leaves */
+[data-theme='thorn'] {
+  --hex-bg-pattern: url('data:image/svg+xml,...'); /* organic dots or leaves */
   --hex-bg-pattern-opacity: 0.02;
 }
 ```
@@ -498,7 +522,7 @@ These should guide every decision:
 
 1. **Narrative coherence** — Every token in a theme should feel like it belongs to the same world. A color, a font, a shadow, and an easing curve should all tell the same story.
 
-2. **Constraint breeds creativity** — The system provides rails. Expressiveness comes from *combining* tokens in unexpected ways, not from breaking the system.
+2. **Constraint breeds creativity** — The system provides rails. Expressiveness comes from _combining_ tokens in unexpected ways, not from breaking the system.
 
 3. **Accessibility is non-negotiable** — Beautiful and inaccessible is just inaccessible. Every combination must pass WCAG AA. This is the floor, not the ceiling.
 

@@ -49,10 +49,7 @@ const alignClasses: Record<NonNullable<RigTextProps['align']>, string> = {
 }
 
 const classes = computed(() => {
-  const result = [
-    variantClasses[props.variant],
-    colorClasses[props.color],
-  ]
+  const result = [variantClasses[props.variant], colorClasses[props.color]]
 
   if (props.weight) result.push(weightClasses[props.weight])
   if (props.align) result.push(alignClasses[props.align])

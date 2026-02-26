@@ -19,7 +19,9 @@ const year = new Date().getFullYear()
 
         <!-- Packages -->
         <div>
-          <span class="text-[10px] font-mono uppercase tracking-[0.25em] text-text-muted block mb-4">Packages</span>
+          <span class="text-[10px] font-mono uppercase tracking-[0.25em] text-text-muted block mb-4"
+            >Packages</span
+          >
           <ul class="space-y-2">
             <li>
               <a
@@ -46,7 +48,9 @@ const year = new Date().getFullYear()
 
         <!-- Links -->
         <div>
-          <span class="text-[10px] font-mono uppercase tracking-[0.25em] text-text-muted block mb-4">Links</span>
+          <span class="text-[10px] font-mono uppercase tracking-[0.25em] text-text-muted block mb-4"
+            >Links</span
+          >
           <ul class="space-y-2">
             <li>
               <a
@@ -81,10 +85,10 @@ const year = new Date().getFullYear()
       </div>
 
       <!-- Bottom -->
-      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-border-subtle">
-        <p class="text-xs text-text-muted font-body">
-          &copy; {{ year }} Amulet Laboratories
-        </p>
+      <div
+        class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-border-subtle"
+      >
+        <p class="text-xs text-text-muted font-body">&copy; {{ year }} Amulet Laboratories</p>
         <div class="flex items-center gap-4">
           <span class="text-xs text-text-muted font-mono">WCAG AAA</span>
           <span class="text-border-subtle">·</span>

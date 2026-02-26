@@ -57,11 +57,7 @@ const classes = computed(() => {
 
 <template>
   <span :class="classes">
-    <span
-      v-if="dot"
-      class="h-1.5 w-1.5 rounded-full bg-current"
-      aria-hidden="true"
-    />
+    <span v-if="dot" class="h-1.5 w-1.5 rounded-full bg-current" aria-hidden="true" />
     <slot />
     <button
       v-if="removable"
@@ -70,7 +66,14 @@ const classes = computed(() => {
       aria-label="Remove"
       @click="emit('remove')"
     >
-      <svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <svg
+        class="h-3 w-3"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        aria-hidden="true"
+      >
         <path :d="ICON_DISMISS" />
       </svg>
     </button>

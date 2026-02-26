@@ -1,8 +1,16 @@
 import type { HexTheme, ModeId } from '../tokens/types'
 import {
-  SURFACE_KEYS, TEXT_KEYS, BORDER_KEYS, ACCENT_KEYS,
-  STATUS_KEYS, FOCUS_KEYS, ELEVATION_KEYS, SPACING_KEYS,
-  SHAPE_KEYS, SYNTAX_TOKEN_KEYS, TERMINAL_KEYS,
+  SURFACE_KEYS,
+  TEXT_KEYS,
+  BORDER_KEYS,
+  ACCENT_KEYS,
+  STATUS_KEYS,
+  FOCUS_KEYS,
+  ELEVATION_KEYS,
+  SPACING_KEYS,
+  SHAPE_KEYS,
+  SYNTAX_TOKEN_KEYS,
+  TERMINAL_KEYS,
 } from '../tokens/types'
 
 // ---------------------------------------------------------------------------
@@ -73,7 +81,9 @@ function isValidColor(value: string): boolean {
   // #RGB, #RRGGBB, #RRGGBBAA
   if (/^#[0-9a-fA-F]{3}([0-9a-fA-F]{3}([0-9a-fA-F]{2})?)?$/.test(value)) return true
   // rgb(r, g, b) or rgba(r, g, b, a) — validate 0-255 range
-  const rgbaMatch = value.match(/^rgba?\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*(,\s*(0|1|0?\.\d+)\s*)?\)$/)
+  const rgbaMatch = value.match(
+    /^rgba?\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*(,\s*(0|1|0?\.\d+)\s*)?\)$/,
+  )
   if (rgbaMatch) {
     const [, r, g, b] = rgbaMatch
     return [r, g, b].every((c) => Number(c) >= 0 && Number(c) <= 255)
@@ -91,63 +101,117 @@ function validateStructure(theme: HexTheme, mode: ModeId, errors: ValidationErro
   // Surfaces
   for (const key of SURFACE_KEYS) {
     if (!(key in tokens.surfaces) || !tokens.surfaces[key]) {
-      errors.push({ theme: theme.id, mode, category: 'missing', token: `surfaces.${key}`, message: `Missing token --surface-${key} in ${mode} mode` })
+      errors.push({
+        theme: theme.id,
+        mode,
+        category: 'missing',
+        token: `surfaces.${key}`,
+        message: `Missing token --surface-${key} in ${mode} mode`,
+      })
     }
   }
 
   // Text
   for (const key of TEXT_KEYS) {
     if (!(key in tokens.text) || !tokens.text[key]) {
-      errors.push({ theme: theme.id, mode, category: 'missing', token: `text.${key}`, message: `Missing token --text-${key} in ${mode} mode` })
+      errors.push({
+        theme: theme.id,
+        mode,
+        category: 'missing',
+        token: `text.${key}`,
+        message: `Missing token --text-${key} in ${mode} mode`,
+      })
     }
   }
 
   // Borders
   for (const key of BORDER_KEYS) {
     if (!(key in tokens.borders) || !tokens.borders[key]) {
-      errors.push({ theme: theme.id, mode, category: 'missing', token: `borders.${key}`, message: `Missing token --border-${key} in ${mode} mode` })
+      errors.push({
+        theme: theme.id,
+        mode,
+        category: 'missing',
+        token: `borders.${key}`,
+        message: `Missing token --border-${key} in ${mode} mode`,
+      })
     }
   }
 
   // Accents
   for (const key of ACCENT_KEYS) {
     if (!(key in tokens.accents) || !tokens.accents[key]) {
-      errors.push({ theme: theme.id, mode, category: 'missing', token: `accents.${key}`, message: `Missing token --accent-${key} in ${mode} mode` })
+      errors.push({
+        theme: theme.id,
+        mode,
+        category: 'missing',
+        token: `accents.${key}`,
+        message: `Missing token --accent-${key} in ${mode} mode`,
+      })
     }
   }
 
   // Status
   for (const key of STATUS_KEYS) {
     if (!(key in tokens.status) || !tokens.status[key]) {
-      errors.push({ theme: theme.id, mode, category: 'missing', token: `status.${key}`, message: `Missing token --status-${key} in ${mode} mode` })
+      errors.push({
+        theme: theme.id,
+        mode,
+        category: 'missing',
+        token: `status.${key}`,
+        message: `Missing token --status-${key} in ${mode} mode`,
+      })
     }
   }
 
   // Focus
   for (const key of FOCUS_KEYS) {
     if (!(key in tokens.focus) || !tokens.focus[key]) {
-      errors.push({ theme: theme.id, mode, category: 'missing', token: `focus.${key}`, message: `Missing token --focus-${key} in ${mode} mode` })
+      errors.push({
+        theme: theme.id,
+        mode,
+        category: 'missing',
+        token: `focus.${key}`,
+        message: `Missing token --focus-${key} in ${mode} mode`,
+      })
     }
   }
 
   // Syntax
   for (const key of SYNTAX_TOKEN_KEYS) {
     if (!(key in tokens.syntax) || !tokens.syntax[key]) {
-      errors.push({ theme: theme.id, mode, category: 'missing', token: `syntax.${key}`, message: `Missing syntax token ${key} in ${mode} mode` })
+      errors.push({
+        theme: theme.id,
+        mode,
+        category: 'missing',
+        token: `syntax.${key}`,
+        message: `Missing syntax token ${key} in ${mode} mode`,
+      })
     }
   }
 
   // Terminal
   for (const key of TERMINAL_KEYS) {
     if (!(key in tokens.terminal) || !tokens.terminal[key]) {
-      errors.push({ theme: theme.id, mode, category: 'missing', token: `terminal.${key}`, message: `Missing terminal color ${key} in ${mode} mode` })
+      errors.push({
+        theme: theme.id,
+        mode,
+        category: 'missing',
+        token: `terminal.${key}`,
+        message: `Missing terminal color ${key} in ${mode} mode`,
+      })
     }
   }
 
   // Shadows (elevation)
   for (const key of ELEVATION_KEYS) {
     if (!(key in tokens.shadows) || !tokens.shadows[key]) {
-      errors.push({ theme: theme.id, mode, category: 'missing', token: `shadows.${key}`, message: `Missing shadow token --shadow-${key} in ${mode} mode` })
+      errors.push({
+        theme: theme.id,
+        mode,
+        category: 'missing',
+        token: `shadows.${key}`,
+        message: `Missing shadow token --shadow-${key} in ${mode} mode`,
+      })
     }
   }
 }
@@ -181,7 +245,13 @@ function validateFormats(theme: HexTheme, mode: ModeId, errors: ValidationError[
     const cssPrefix = cssGroupPrefix[group] ?? group
     for (const [key, value] of Object.entries(values)) {
       if (!isValidColor(value)) {
-        errors.push({ theme: theme.id, mode, category: 'format', token: `${group}.${key}`, message: `Invalid color format "${value}" for --${cssPrefix}-${key}` })
+        errors.push({
+          theme: theme.id,
+          mode,
+          category: 'format',
+          token: `${group}.${key}`,
+          message: `Invalid color format "${value}" for --${cssPrefix}-${key}`,
+        })
       }
     }
   }
@@ -202,41 +272,172 @@ interface ContrastPair {
 
 const REQUIRED_CONTRASTS: ContrastPair[] = [
   // Primary text — AAA body (7:1) on main surfaces
-  { text: 'primary', textGroup: 'text', surface: 'base', surfaceGroup: 'surfaces', label: 'primary text on base', minRatio: 7 },
-  { text: 'primary', textGroup: 'text', surface: 'raised', surfaceGroup: 'surfaces', label: 'primary text on raised', minRatio: 7 },
-  { text: 'primary', textGroup: 'text', surface: 'elevated', surfaceGroup: 'surfaces', label: 'primary text on elevated', minRatio: 7 },
+  {
+    text: 'primary',
+    textGroup: 'text',
+    surface: 'base',
+    surfaceGroup: 'surfaces',
+    label: 'primary text on base',
+    minRatio: 7,
+  },
+  {
+    text: 'primary',
+    textGroup: 'text',
+    surface: 'raised',
+    surfaceGroup: 'surfaces',
+    label: 'primary text on raised',
+    minRatio: 7,
+  },
+  {
+    text: 'primary',
+    textGroup: 'text',
+    surface: 'elevated',
+    surfaceGroup: 'surfaces',
+    label: 'primary text on elevated',
+    minRatio: 7,
+  },
 
   // Secondary text — AA body (4.5:1)
-  { text: 'secondary', textGroup: 'text', surface: 'base', surfaceGroup: 'surfaces', label: 'secondary text on base', minRatio: 4.5 },
-  { text: 'secondary', textGroup: 'text', surface: 'raised', surfaceGroup: 'surfaces', label: 'secondary text on raised', minRatio: 4.5 },
+  {
+    text: 'secondary',
+    textGroup: 'text',
+    surface: 'base',
+    surfaceGroup: 'surfaces',
+    label: 'secondary text on base',
+    minRatio: 4.5,
+  },
+  {
+    text: 'secondary',
+    textGroup: 'text',
+    surface: 'raised',
+    surfaceGroup: 'surfaces',
+    label: 'secondary text on raised',
+    minRatio: 4.5,
+  },
 
   // Muted text — AA large / UI (3:1); bump to 4.5:1 when muted tokens are reworked
-  { text: 'muted', textGroup: 'text', surface: 'base', surfaceGroup: 'surfaces', label: 'muted text on base', minRatio: 3 },
+  {
+    text: 'muted',
+    textGroup: 'text',
+    surface: 'base',
+    surfaceGroup: 'surfaces',
+    label: 'muted text on base',
+    minRatio: 3,
+  },
 
   // Text on accent — AA body (4.5:1)
-  { text: 'onAccent', textGroup: 'text', surface: 'primary', surfaceGroup: 'accents', label: 'text on accent', minRatio: 4.5 },
+  {
+    text: 'onAccent',
+    textGroup: 'text',
+    surface: 'primary',
+    surfaceGroup: 'accents',
+    label: 'text on accent',
+    minRatio: 4.5,
+  },
 
   // Link text on surfaces — AA body (4.5:1)
-  { text: 'link', textGroup: 'text', surface: 'base', surfaceGroup: 'surfaces', label: 'link text on base', minRatio: 4.5 },
-  { text: 'link', textGroup: 'text', surface: 'raised', surfaceGroup: 'surfaces', label: 'link text on raised', minRatio: 4.5 },
+  {
+    text: 'link',
+    textGroup: 'text',
+    surface: 'base',
+    surfaceGroup: 'surfaces',
+    label: 'link text on base',
+    minRatio: 4.5,
+  },
+  {
+    text: 'link',
+    textGroup: 'text',
+    surface: 'raised',
+    surfaceGroup: 'surfaces',
+    label: 'link text on raised',
+    minRatio: 4.5,
+  },
 
   // Status colors on their typical surfaces — UI/large text (3:1)
-  { text: 'success', textGroup: 'status', surface: 'base', surfaceGroup: 'surfaces', label: 'status-success on base', minRatio: 3 },
-  { text: 'warning', textGroup: 'status', surface: 'base', surfaceGroup: 'surfaces', label: 'status-warning on base', minRatio: 3 },
-  { text: 'error', textGroup: 'status', surface: 'base', surfaceGroup: 'surfaces', label: 'status-error on base', minRatio: 3 },
-  { text: 'info', textGroup: 'status', surface: 'base', surfaceGroup: 'surfaces', label: 'status-info on base', minRatio: 3 },
+  {
+    text: 'success',
+    textGroup: 'status',
+    surface: 'base',
+    surfaceGroup: 'surfaces',
+    label: 'status-success on base',
+    minRatio: 3,
+  },
+  {
+    text: 'warning',
+    textGroup: 'status',
+    surface: 'base',
+    surfaceGroup: 'surfaces',
+    label: 'status-warning on base',
+    minRatio: 3,
+  },
+  {
+    text: 'error',
+    textGroup: 'status',
+    surface: 'base',
+    surfaceGroup: 'surfaces',
+    label: 'status-error on base',
+    minRatio: 3,
+  },
+  {
+    text: 'info',
+    textGroup: 'status',
+    surface: 'base',
+    surfaceGroup: 'surfaces',
+    label: 'status-info on base',
+    minRatio: 3,
+  },
 
   // Status colors on raised surface (used by RigAlert/RigToast) — UI/large text (3:1)
-  { text: 'success', textGroup: 'status', surface: 'raised', surfaceGroup: 'surfaces', label: 'status-success on raised', minRatio: 3 },
-  { text: 'warning', textGroup: 'status', surface: 'raised', surfaceGroup: 'surfaces', label: 'status-warning on raised', minRatio: 3 },
-  { text: 'error', textGroup: 'status', surface: 'raised', surfaceGroup: 'surfaces', label: 'status-error on raised', minRatio: 3 },
-  { text: 'info', textGroup: 'status', surface: 'raised', surfaceGroup: 'surfaces', label: 'status-info on raised', minRatio: 3 },
+  {
+    text: 'success',
+    textGroup: 'status',
+    surface: 'raised',
+    surfaceGroup: 'surfaces',
+    label: 'status-success on raised',
+    minRatio: 3,
+  },
+  {
+    text: 'warning',
+    textGroup: 'status',
+    surface: 'raised',
+    surfaceGroup: 'surfaces',
+    label: 'status-warning on raised',
+    minRatio: 3,
+  },
+  {
+    text: 'error',
+    textGroup: 'status',
+    surface: 'raised',
+    surfaceGroup: 'surfaces',
+    label: 'status-error on raised',
+    minRatio: 3,
+  },
+  {
+    text: 'info',
+    textGroup: 'status',
+    surface: 'raised',
+    surfaceGroup: 'surfaces',
+    label: 'status-info on raised',
+    minRatio: 3,
+  },
 
   // Text on overlay surface — AA (4.5:1)
-  { text: 'primary', textGroup: 'text', surface: 'overlay', surfaceGroup: 'surfaces', label: 'primary text on overlay', minRatio: 4.5 },
+  {
+    text: 'primary',
+    textGroup: 'text',
+    surface: 'overlay',
+    surfaceGroup: 'surfaces',
+    label: 'primary text on overlay',
+    minRatio: 4.5,
+  },
 ]
 
-function validateContrast(theme: HexTheme, mode: ModeId, errors: ValidationError[], warnings: string[]): void {
+function validateContrast(
+  theme: HexTheme,
+  mode: ModeId,
+  errors: ValidationError[],
+  warnings: string[],
+): void {
   const tokens = theme[mode]
 
   for (const pair of REQUIRED_CONTRASTS) {
@@ -249,7 +450,9 @@ function validateContrast(theme: HexTheme, mode: ModeId, errors: ValidationError
     const ratio = contrastRatio(textColor, surfaceColor)
     if (ratio === null) {
       if (textColor.startsWith('rgba') || surfaceColor.startsWith('rgba')) {
-        warnings.push(`${theme.id}/${mode}: Cannot compute exact contrast for ${pair.label} (rgba value — contrast depends on compositing)`)
+        warnings.push(
+          `${theme.id}/${mode}: Cannot compute exact contrast for ${pair.label} (rgba value — contrast depends on compositing)`,
+        )
       }
       continue
     }
@@ -271,27 +474,42 @@ function validateContrast(theme: HexTheme, mode: ModeId, errors: ValidationError
 // ---------------------------------------------------------------------------
 
 const DURATION_RE = /^\d+(\.\d+)?(ms|s)$/
-const EASING_RE = /^(ease|linear|ease-in|ease-out|ease-in-out|cubic-bezier\(\s*-?\d+(\.\d+)?\s*,\s*-?\d+(\.\d+)?\s*,\s*-?\d+(\.\d+)?\s*,\s*-?\d+(\.\d+)?\s*\))$/
+const EASING_RE =
+  /^(ease|linear|ease-in|ease-out|ease-in-out|cubic-bezier\(\s*-?\d+(\.\d+)?\s*,\s*-?\d+(\.\d+)?\s*,\s*-?\d+(\.\d+)?\s*,\s*-?\d+(\.\d+)?\s*\))$/
 
-function validateMotionAndFonts(theme: HexTheme, errors: ValidationError[], warnings: string[]): void {
+function validateMotionAndFonts(
+  theme: HexTheme,
+  errors: ValidationError[],
+  warnings: string[],
+): void {
   // Duration values
   for (const [key, value] of Object.entries(theme.motion.duration)) {
     if (!DURATION_RE.test(value)) {
-      warnings.push(`${theme.id}: motion.duration.${key} "${value}" is not a valid CSS duration (e.g. "150ms")`)
+      warnings.push(
+        `${theme.id}: motion.duration.${key} "${value}" is not a valid CSS duration (e.g. "150ms")`,
+      )
     }
   }
 
   // Easing values
   for (const [key, value] of Object.entries(theme.motion.easing)) {
     if (!EASING_RE.test(value)) {
-      warnings.push(`${theme.id}: motion.easing.${key} "${value}" is not a recognized CSS timing function`)
+      warnings.push(
+        `${theme.id}: motion.easing.${key} "${value}" is not a recognized CSS timing function`,
+      )
     }
   }
 
   // Font definitions
   for (const [slot, font] of Object.entries(theme.fonts)) {
     if (!font.family || font.family.trim() === '') {
-      errors.push({ theme: theme.id, mode: 'dark', category: 'missing', token: `fonts.${slot}.family`, message: `Font slot "${slot}" has no family name` })
+      errors.push({
+        theme: theme.id,
+        mode: 'dark',
+        category: 'missing',
+        token: `fonts.${slot}.family`,
+        message: `Font slot "${slot}" has no family name`,
+      })
     }
     if (!font.weights || font.weights.length === 0) {
       warnings.push(`${theme.id}: fonts.${slot} has no weights defined`)
@@ -301,14 +519,26 @@ function validateMotionAndFonts(theme: HexTheme, errors: ValidationError[], warn
   // Spacing tokens (theme-level)
   for (const key of SPACING_KEYS) {
     if (!(key in theme.spacing) || !theme.spacing[key]) {
-      errors.push({ theme: theme.id, mode: 'dark', category: 'missing', token: `spacing.${key}`, message: `Missing spacing token ${key}` })
+      errors.push({
+        theme: theme.id,
+        mode: 'dark',
+        category: 'missing',
+        token: `spacing.${key}`,
+        message: `Missing spacing token ${key}`,
+      })
     }
   }
 
   // Shape tokens (theme-level)
   for (const key of SHAPE_KEYS) {
     if (!(key in theme.shape) || !theme.shape[key]) {
-      errors.push({ theme: theme.id, mode: 'dark', category: 'missing', token: `shape.${key}`, message: `Missing shape token ${key}` })
+      errors.push({
+        theme: theme.id,
+        mode: 'dark',
+        category: 'missing',
+        token: `shape.${key}`,
+        message: `Missing shape token ${key}`,
+      })
     }
   }
 }

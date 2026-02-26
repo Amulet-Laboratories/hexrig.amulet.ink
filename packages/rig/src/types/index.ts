@@ -15,8 +15,17 @@ export type { ModeId } from '@amulet-laboratories/hex'
 export interface RigTextProps {
   as?: 'p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'label' | 'code' | 'pre'
   variant?: 'display' | 'heading' | 'subheading' | 'body' | 'caption' | 'overline' | 'mono'
-  color?: 'primary' | 'secondary' | 'muted' | 'accent' | 'inverse' | 'on-accent'
-    | 'success' | 'warning' | 'error' | 'info'
+  color?:
+    | 'primary'
+    | 'secondary'
+    | 'muted'
+    | 'accent'
+    | 'inverse'
+    | 'on-accent'
+    | 'success'
+    | 'warning'
+    | 'error'
+    | 'info'
   weight?: 'light' | 'normal' | 'medium' | 'semibold' | 'bold'
   align?: 'left' | 'center' | 'right'
   truncate?: boolean
@@ -51,8 +60,16 @@ export interface RigInputProps {
 export interface RigIconProps {
   name: string
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
-  color?: 'current' | 'primary' | 'secondary' | 'muted' | 'accent'
-    | 'success' | 'warning' | 'error' | 'info'
+  color?:
+    | 'current'
+    | 'primary'
+    | 'secondary'
+    | 'muted'
+    | 'accent'
+    | 'success'
+    | 'warning'
+    | 'error'
+    | 'info'
   label?: string
   decorative?: boolean
 }

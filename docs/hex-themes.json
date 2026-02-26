@@ -185,9 +185,7 @@
         "family": "Sorts Mill Goudy",
         "source": "Google Fonts / League of Moveable Type",
         "license": "SIL OFL 1.1",
-        "weights": [
-          400
-        ],
+        "weights": [400],
         "italic": true,
         "rationale": "A revival of Frederic Goudy's Kennerley Old Style by Barry Schwartz for the League of Moveable Type. Warm, hand-cut, and deeply human \u2014 the kind of type that looks like it was set in metal. Its slight irregularities give it life. The Forge made real in letterform."
       },
@@ -195,12 +193,7 @@
         "family": "Lora",
         "source": "Google Fonts",
         "license": "SIL OFL 1.1",
-        "weights": [
-          400,
-          500,
-          600,
-          700
-        ],
+        "weights": [400, 500, 600, 700],
         "italic": true,
         "rationale": "Brushed curves and warm, calligraphic serifs optimized for screens. Where Sorts Mill Goudy is the craftsman's headline, Lora is the well-worn journal \u2014 readable across long sessions, with just enough personality to feel intentional."
       },
@@ -208,13 +201,7 @@
         "family": "Source Sans 3",
         "source": "Google Fonts / Adobe",
         "license": "SIL OFL 1.1",
-        "weights": [
-          300,
-          400,
-          500,
-          600,
-          700
-        ],
+        "weights": [300, 400, 500, 600, 700],
         "italic": true,
         "rationale": "Adobe's first open-source typeface. Humanist warmth with excellent small-size legibility \u2014 the UI workhorse that doesn't call attention to itself but never feels cold."
       },
@@ -222,13 +209,7 @@
         "family": "Source Code Pro",
         "source": "Google Fonts / Adobe",
         "license": "SIL OFL 1.1",
-        "weights": [
-          300,
-          400,
-          500,
-          600,
-          700
-        ],
+        "weights": [300, 400, 500, 600, 700],
         "italic": true,
         "rationale": "Natural companion to Source Sans. Designed specifically for code with careful 0/O/l/1 differentiation. The Source family's shared DNA ties the entire triad together \u2014 one foundry, one philosophy."
       }
@@ -390,9 +371,7 @@
         "family": "League Gothic",
         "source": "Google Fonts / League of Moveable Type",
         "license": "SIL OFL 1.1",
-        "weights": [
-          400
-        ],
+        "weights": [400],
         "italic": true,
         "rationale": "A revival of Alternate Gothic No. 1 \u2014 tall, condensed, and imposing. It compresses language into tight vertical columns, like data streaming through a narrow channel. The Void speaks in headlines that feel like transmissions."
       },
@@ -400,14 +379,7 @@
         "family": "Inter",
         "source": "Google Fonts",
         "license": "SIL OFL 1.1",
-        "weights": [
-          300,
-          400,
-          500,
-          600,
-          700,
-          800
-        ],
+        "weights": [300, 400, 500, 600, 700, 800],
         "italic": true,
         "rationale": "Designed by Rasmus Andersson specifically for computer interfaces. Optical sizing, tabular figures, and a vast weight range make it the most technically refined sans-serif available. Cold, precise, functional \u2014 the Void demands clarity above all."
       },
@@ -415,13 +387,7 @@
         "family": "Space Grotesk",
         "source": "Google Fonts",
         "license": "SIL OFL 1.1",
-        "weights": [
-          300,
-          400,
-          500,
-          600,
-          700
-        ],
+        "weights": [300, 400, 500, 600, 700],
         "italic": false,
         "rationale": "Derived from Space Mono with proportional spacing. Angular, geometric, slightly alien. Where Inter is the instrument panel, Space Grotesk is the mission patch \u2014 technical but with a signature."
       },
@@ -429,14 +395,7 @@
         "family": "Monaspace Neon",
         "source": "GitHub (github.com/githubnext/monaspace)",
         "license": "SIL OFL 1.1",
-        "weights": [
-          300,
-          400,
-          500,
-          600,
-          700,
-          800
-        ],
+        "weights": [300, 400, 500, 600, 700, 800],
         "italic": true,
         "rationale": "From GitHub's Monaspace superfamily \u2014 five metrically compatible monospace faces. Neon is the sans-serif variant with texture healing that optically adjusts spacing. The most technically advanced free monospace available. Sci-fi engineering in a font."
       }
@@ -598,15 +557,7 @@
         "family": "Fraunces",
         "source": "Google Fonts",
         "license": "SIL OFL 1.1",
-        "weights": [
-          300,
-          400,
-          500,
-          600,
-          700,
-          800,
-          900
-        ],
+        "weights": [300, 400, 500, 600, 700, 800, 900],
         "italic": true,
         "rationale": "A variable old-style serif with axes for weight, optical size, softness, and 'wonk.' That last axis is key \u2014 it introduces organic irregularity into the letterforms, as if the type itself is growing. Tendrils and serifs that curve like roots. The Grotto's font."
       },
@@ -614,14 +565,7 @@
         "family": "Vollkorn",
         "source": "Google Fonts / Font Squirrel",
         "license": "SIL OFL 1.1",
-        "weights": [
-          400,
-          500,
-          600,
-          700,
-          800,
-          900
-        ],
+        "weights": [400, 500, 600, 700, 800, 900],
         "italic": true,
         "rationale": "Friedrich Althausen's 'quiet and modest' serif designed for everyday reading. Its name means 'whole grain' in German \u2014 earthy, nourishing, substantial. Deep character coverage and beautiful italics make it the soil in which Fraunces grows."
       },
@@ -629,13 +573,7 @@
         "family": "DM Sans",
         "source": "Google Fonts",
         "license": "SIL OFL 1.1",
-        "weights": [
-          300,
-          400,
-          500,
-          600,
-          700
-        ],
+        "weights": [300, 400, 500, 600, 700],
         "italic": true,
         "rationale": "Low-contrast geometric sans from Colophon Foundry. Soft, grounded, and designed for small sizes. It doesn't compete with Fraunces or Vollkorn \u2014 it's the clear water running through the grotto."
       },
@@ -643,10 +581,7 @@
         "family": "Commit Mono",
         "source": "GitHub (github.com/eigilnikolajsen/commit-mono)",
         "license": "SIL OFL 1.1",
-        "weights": [
-          400,
-          700
-        ],
+        "weights": [400, 700],
         "italic": true,
         "rationale": "A neutral monospace that uses 'smart kerning' \u2014 a technique that optically adjusts spacing without breaking monospace alignment. Quiet, precise, and surprisingly organic in feel. It stays out of the way, like moss on stone."
       }
@@ -808,13 +743,7 @@
         "family": "IBM Plex Serif",
         "source": "Google Fonts / IBM",
         "license": "SIL OFL 1.1",
-        "weights": [
-          300,
-          400,
-          500,
-          600,
-          700
-        ],
+        "weights": [300, 400, 500, 600, 700],
         "italic": true,
         "rationale": "Designed by Mike Abbink and Bold Monday for IBM's global rebrand. Structured, reliable, and industrial without being lifeless. The serif that says 'this was built to specification and it will outlast you.' Perfect for the Keep."
       },
@@ -822,13 +751,7 @@
         "family": "IBM Plex Sans",
         "source": "Google Fonts / IBM",
         "license": "SIL OFL 1.1",
-        "weights": [
-          300,
-          400,
-          500,
-          600,
-          700
-        ],
+        "weights": [300, 400, 500, 600, 700],
         "italic": true,
         "rationale": "The sans-serif face of the Plex superfamily. Illustrates the relationship between human and machine \u2014 geometric underpinnings with humanist details. Enterprise-grade UI legibility with genuine character."
       },
@@ -836,13 +759,7 @@
         "family": "IBM Plex Sans Condensed",
         "source": "Google Fonts / IBM",
         "license": "SIL OFL 1.1",
-        "weights": [
-          300,
-          400,
-          500,
-          600,
-          700
-        ],
+        "weights": [300, 400, 500, 600, 700],
         "italic": true,
         "rationale": "The condensed cut for data-dense interfaces, tables, and secondary UI. Same personality, tighter footprint. The Keep doesn't waste space."
       },
@@ -850,13 +767,7 @@
         "family": "IBM Plex Mono",
         "source": "Google Fonts / IBM",
         "license": "SIL OFL 1.1",
-        "weights": [
-          300,
-          400,
-          500,
-          600,
-          700
-        ],
+        "weights": [300, 400, 500, 600, 700],
         "italic": true,
         "rationale": "Completes the Plex system. One superfamily, four cuts, total consistency. The most 'industrial' monospace available \u2014 used by 300,000+ IBM employees. Infrastructure-grade type for an infrastructure-grade theme."
       }
@@ -1018,15 +929,7 @@
         "family": "Crimson Pro",
         "source": "Google Fonts",
         "license": "SIL OFL 1.1",
-        "weights": [
-          300,
-          400,
-          500,
-          600,
-          700,
-          800,
-          900
-        ],
+        "weights": [300, 400, 500, 600, 700, 800, 900],
         "italic": true,
         "rationale": "Jacques Le Bailly's redesign of Crimson Text \u2014 warmer, slightly condensed, with beautiful old-style figures and elegant italics. It has a literary, intimate quality, like handwritten notes in a sacred book. The sheltered cove has a story to tell."
       },
@@ -1034,14 +937,7 @@
         "family": "Nunito Sans",
         "source": "Google Fonts",
         "license": "SIL OFL 1.1",
-        "weights": [
-          300,
-          400,
-          500,
-          600,
-          700,
-          800
-        ],
+        "weights": [300, 400, 500, 600, 700, 800],
         "italic": true,
         "rationale": "Rounded terminals give it inherent warmth \u2014 the typographic equivalent of smooth, worn stone. Soft without being childish, approachable without being casual. Excellent readability in both UI and body text."
       },
@@ -1049,15 +945,7 @@
         "family": "Nunito",
         "source": "Google Fonts",
         "license": "SIL OFL 1.1",
-        "weights": [
-          300,
-          400,
-          500,
-          600,
-          700,
-          800,
-          900
-        ],
+        "weights": [300, 400, 500, 600, 700, 800, 900],
         "italic": true,
         "rationale": "The rounder sibling of Nunito Sans \u2014 more personality, more warmth. Use for display headings and large text where Crimson Pro feels too formal. The playful counterpart."
       },
@@ -1065,13 +953,7 @@
         "family": "Victor Mono",
         "source": "GitHub (github.com/rubjo/victor-mono)",
         "license": "SIL OFL 1.1",
-        "weights": [
-          300,
-          400,
-          500,
-          600,
-          700
-        ],
+        "weights": [300, 400, 500, 600, 700],
         "italic": true,
         "rationale": "A free monospace with beautiful cursive italics \u2014 code comments become calligraphy. It has more personality than any other monospace on this list, which makes it perfect for the most expressive theme. The Cove's code whispers in italic."
       }

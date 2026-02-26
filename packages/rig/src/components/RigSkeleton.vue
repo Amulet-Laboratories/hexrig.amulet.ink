@@ -17,10 +17,7 @@ const variantClasses: Record<NonNullable<RigSkeletonProps['variant']>, string> =
 }
 
 const baseClasses = computed(() => {
-  const parts = [
-    'bg-surface-raised',
-    variantClasses[props.variant],
-  ]
+  const parts = ['bg-surface-raised', variantClasses[props.variant]]
   if (props.animated) parts.push('animate-pulse')
   return parts.join(' ')
 })
@@ -43,11 +40,5 @@ const lineWidths = ['w-full', 'w-11/12', 'w-4/5', 'w-10/12', 'w-3/4'] as const
     />
   </div>
 
-  <div
-    v-else
-    :class="baseClasses"
-    role="status"
-    aria-label="Loading content"
-    aria-hidden="true"
-  />
+  <div v-else :class="baseClasses" role="status" aria-label="Loading content" aria-hidden="true" />
 </template>

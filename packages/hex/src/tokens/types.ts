@@ -221,48 +221,82 @@ export const HEX_MODE_ATTR = 'data-mode' as const
 // ---------------------------------------------------------------------------
 
 export const SURFACE_KEYS: readonly (keyof HexSurfaces)[] = [
-  'base', 'raised', 'elevated', 'sunken', 'overlay',
+  'base',
+  'raised',
+  'elevated',
+  'sunken',
+  'overlay',
 ] as const
 
 export const TEXT_KEYS: readonly (keyof HexText)[] = [
-  'primary', 'secondary', 'muted', 'inverse', 'link', 'onAccent',
+  'primary',
+  'secondary',
+  'muted',
+  'inverse',
+  'link',
+  'onAccent',
 ] as const
 
-export const BORDER_KEYS: readonly (keyof HexBorders)[] = [
-  'default', 'subtle', 'strong',
-] as const
+export const BORDER_KEYS: readonly (keyof HexBorders)[] = ['default', 'subtle', 'strong'] as const
 
 export const ACCENT_KEYS: readonly (keyof HexAccents)[] = [
-  'primary', 'secondary', 'hover', 'active', 'muted',
+  'primary',
+  'secondary',
+  'hover',
+  'active',
+  'muted',
 ] as const
 
 export const STATUS_KEYS: readonly (keyof HexStatus)[] = [
-  'success', 'warning', 'error', 'info',
+  'success',
+  'warning',
+  'error',
+  'info',
 ] as const
 
-export const FOCUS_KEYS: readonly (keyof HexFocus)[] = [
-  'ring', 'outline',
-] as const
+export const FOCUS_KEYS: readonly (keyof HexFocus)[] = ['ring', 'outline'] as const
 
-export const ELEVATION_KEYS: readonly (keyof HexElevation)[] = [
-  'sm', 'md', 'lg',
-] as const
+export const ELEVATION_KEYS: readonly (keyof HexElevation)[] = ['sm', 'md', 'lg'] as const
 
 export const SPACING_KEYS: readonly (keyof HexSpacing)[] = [
-  'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl',
+  'xs',
+  'sm',
+  'md',
+  'lg',
+  'xl',
+  '2xl',
+  '3xl',
 ] as const
 
-export const SHAPE_KEYS: readonly (keyof HexShape)[] = [
-  'radius', 'radiusFull',
-] as const
+export const SHAPE_KEYS: readonly (keyof HexShape)[] = ['radius', 'radiusFull'] as const
 
 export const SYNTAX_TOKEN_KEYS: readonly (keyof HexSyntaxTokens)[] = [
-  'comment', 'keyword', 'storage', 'string', 'number',
-  'function', 'operator', 'punctuation', 'type',
+  'comment',
+  'keyword',
+  'storage',
+  'string',
+  'number',
+  'function',
+  'operator',
+  'punctuation',
+  'type',
 ] as const
 
 export const TERMINAL_KEYS: readonly (keyof HexTerminalColors)[] = [
-  'black', 'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white',
-  'brightBlack', 'brightRed', 'brightGreen', 'brightYellow',
-  'brightBlue', 'brightMagenta', 'brightCyan', 'brightWhite',
+  'black',
+  'red',
+  'green',
+  'yellow',
+  'blue',
+  'magenta',
+  'cyan',
+  'white',
+  'brightBlack',
+  'brightRed',
+  'brightGreen',
+  'brightYellow',
+  'brightBlue',
+  'brightMagenta',
+  'brightCyan',
+  'brightWhite',
 ] as const

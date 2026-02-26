@@ -22,8 +22,16 @@ type Story = StoryObj
 export const KitchenSink: Story = {
   render: () => ({
     components: {
-      RigText, RigButton, RigInput, RigSurface, RigDivider,
-      RigBadge, RigAlert, RigCard, RigDialog, RigToast,
+      RigText,
+      RigButton,
+      RigInput,
+      RigSurface,
+      RigDivider,
+      RigBadge,
+      RigAlert,
+      RigCard,
+      RigDialog,
+      RigToast,
     },
     setup() {
       const dialogOpen = ref(false)
@@ -31,12 +39,13 @@ export const KitchenSink: Story = {
       const searchValue = ref('')
       const toast = useToast()
 
-      const showToast = () => toast.show({
-        title: 'Action completed',
-        description: 'Your changes have been saved.',
-        tone: 'success',
-        dismissible: true,
-      })
+      const showToast = () =>
+        toast.show({
+          title: 'Action completed',
+          description: 'Your changes have been saved.',
+          tone: 'success',
+          dismissible: true,
+        })
 
       return { dialogOpen, inputValue, searchValue, showToast }
     },

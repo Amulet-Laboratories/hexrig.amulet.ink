@@ -12,11 +12,7 @@ const lastIndex = computed(() => props.items.length - 1)
 <template>
   <nav aria-label="Breadcrumb">
     <ol class="flex items-center gap-1.5 font-body text-sm">
-      <li
-        v-for="(item, index) in items"
-        :key="item.label"
-        class="inline-flex items-center gap-1.5"
-      >
+      <li v-for="(item, index) in items" :key="item.label" class="inline-flex items-center gap-1.5">
         <a
           v-if="item.href && index !== lastIndex"
           :href="item.href"
@@ -31,11 +27,7 @@ const lastIndex = computed(() => props.items.length - 1)
         >
           {{ item.label }}
         </span>
-        <span
-          v-if="index !== lastIndex"
-          class="text-text-muted/50 select-none"
-          aria-hidden="true"
-        >
+        <span v-if="index !== lastIndex" class="text-text-muted/50 select-none" aria-hidden="true">
           {{ separator }}
         </span>
       </li>

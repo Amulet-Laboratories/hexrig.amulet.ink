@@ -48,7 +48,7 @@ function mapColorsToVSCode(theme: HexTheme, mode: ModeId): Record<string, string
     'sideBarSectionHeader.background': t.surfaces.raised,
     'editorInlayHint.background': t.surfaces.raised + '44',
     'editorGhostText.background': t.surfaces.raised + '44',
-    'editorFoldBackground': t.surfaces.raised + '66',
+    editorFoldBackground: t.surfaces.raised + '66',
 
     'editor.lineHighlightBackground': t.surfaces.overlay,
     'terminal.background': t.surfaces.base,
@@ -57,7 +57,7 @@ function mapColorsToVSCode(theme: HexTheme, mode: ModeId): Record<string, string
     'sideBar.foreground': t.text.primary,
 
     'editor.foreground': t.text.secondary,
-    'foreground': t.text.secondary,
+    foreground: t.text.secondary,
     'tab.activeForeground': t.text.secondary,
     'editorWidget.foreground': t.text.secondary,
     'panel.foreground': t.text.secondary,
@@ -76,7 +76,7 @@ function mapColorsToVSCode(theme: HexTheme, mode: ModeId): Record<string, string
     'debugTokenExpression.value': t.text.secondary,
 
     'editorLineNumber.foreground': t.text.muted,
-    'disabledForeground': t.text.muted,
+    disabledForeground: t.text.muted,
     'input.placeholderForeground': t.text.muted,
     'tab.inactiveForeground': t.text.muted,
     'activityBar.inactiveForeground': t.text.muted,
@@ -142,7 +142,7 @@ function mapColorsToVSCode(theme: HexTheme, mode: ModeId): Record<string, string
     'button.secondaryHoverBackground': t.borders.strong,
 
     // ─── Focus ───
-    'focusBorder': t.focus.outline,
+    focusBorder: t.focus.outline,
     'input.focusBorder': t.focus.outline,
     'editorLineNumber.activeForeground': t.focus.outline,
     'editorInlayHint.foreground': t.focus.outline,
@@ -247,7 +247,12 @@ function mapSyntaxToTokenColors(theme: HexTheme, mode: ModeId) {
     },
     {
       name: 'Type',
-      scope: ['entity.name.type', 'support.type', 'entity.other.inherited-class', 'storage.type.class'],
+      scope: [
+        'entity.name.type',
+        'support.type',
+        'entity.other.inherited-class',
+        'storage.type.class',
+      ],
       settings: { foreground: s.type },
     },
     {
@@ -311,10 +316,7 @@ function mapSyntaxToTokenColors(theme: HexTheme, mode: ModeId) {
 /**
  * Generate a complete VSCode theme JSON object.
  */
-export function generateVSCodeTheme(
-  theme: HexTheme,
-  mode: ModeId
-): Record<string, unknown> {
+export function generateVSCodeTheme(theme: HexTheme, mode: ModeId): Record<string, unknown> {
   const label = `Hex: ${theme.name} ${mode.charAt(0).toUpperCase() + mode.slice(1)}`
 
   return {

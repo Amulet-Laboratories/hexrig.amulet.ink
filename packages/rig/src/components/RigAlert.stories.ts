@@ -26,7 +26,8 @@ export const Default: Story = {
   render: (args) => ({
     components: { RigAlert },
     setup: () => ({ args }),
-    template: '<RigAlert v-bind="args">This is an informational message about the current state.</RigAlert>',
+    template:
+      '<RigAlert v-bind="args">This is an informational message about the current state.</RigAlert>',
   }),
   args: {
     tone: 'info',

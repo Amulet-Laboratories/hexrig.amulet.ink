@@ -14,9 +14,24 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 const items = [
-  { value: 'what', label: 'What is Hex?', content: 'Hex is a design token engine that generates CSS custom properties, Tailwind presets, and VS Code themes from a single source of truth.' },
-  { value: 'themes', label: 'How do themes work?', content: 'Each theme defines color palettes for dark and light modes, along with typography, motion, spacing, and shape tokens. Themes are grouped into collections.' },
-  { value: 'install', label: 'How do I install it?', content: 'Install via pnpm: pnpm add @amulet-laboratories/hex @amulet-laboratories/hex-origins @amulet-laboratories/rig' },
+  {
+    value: 'what',
+    label: 'What is Hex?',
+    content:
+      'Hex is a design token engine that generates CSS custom properties, Tailwind presets, and VS Code themes from a single source of truth.',
+  },
+  {
+    value: 'themes',
+    label: 'How do themes work?',
+    content:
+      'Each theme defines color palettes for dark and light modes, along with typography, motion, spacing, and shape tokens. Themes are grouped into collections.',
+  },
+  {
+    value: 'install',
+    label: 'How do I install it?',
+    content:
+      'Install via pnpm: pnpm add @amulet-laboratories/hex @amulet-laboratories/hex-origins @amulet-laboratories/rig',
+  },
 ]
 
 export const Default: Story = {
@@ -53,7 +68,12 @@ export const WithDisabled: Story = {
   args: {
     items: [
       ...items,
-      { value: 'advanced', label: 'Advanced configuration', content: 'Coming soon.', disabled: true },
+      {
+        value: 'advanced',
+        label: 'Advanced configuration',
+        content: 'Coming soon.',
+        disabled: true,
+      },
     ],
   },
 }

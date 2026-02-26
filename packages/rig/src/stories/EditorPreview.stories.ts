@@ -20,8 +20,15 @@ export const EditorPreview: Story = {
   name: 'Editor Layout',
   render: () => ({
     components: {
-      RigText, RigButton, RigInput, RigSurface, RigCard,
-      RigBadge, RigAlert, RigDivider, RigThemeProvider,
+      RigText,
+      RigButton,
+      RigInput,
+      RigSurface,
+      RigCard,
+      RigBadge,
+      RigAlert,
+      RigDivider,
+      RigThemeProvider,
     },
     template: `
       <div class="space-y-6">

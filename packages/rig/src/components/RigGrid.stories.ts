@@ -24,7 +24,8 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-const cell = 'bg-surface-raised border border-border-subtle rounded p-4 text-text-secondary font-mono text-sm text-center'
+const cell =
+  'bg-surface-raised border border-border-subtle rounded p-4 text-text-secondary font-mono text-sm text-center'
 
 export const Default: Story = {
   render: (args) => ({

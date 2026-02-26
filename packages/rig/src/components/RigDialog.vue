@@ -22,7 +22,10 @@ const previousActiveElement = ref<Element | null>(null)
 const scrollLockCount = (() => {
   if (typeof globalThis !== 'undefined') {
     const key = Symbol.for('rig-scroll-lock')
-    const g = globalThis as unknown as Record<symbol, { value: number; savedOverflow: string } | undefined>
+    const g = globalThis as unknown as Record<
+      symbol,
+      { value: number; savedOverflow: string } | undefined
+    >
     if (!g[key]) {
       g[key] = { value: 0, savedOverflow: '' }
     }
@@ -62,8 +65,8 @@ function getFocusableElements(): HTMLElement[] {
   if (!dialogRef.value) return []
   return Array.from(
     dialogRef.value.querySelectorAll<HTMLElement>(
-      'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
-    )
+      'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])',
+    ),
   )
 }
 
@@ -99,30 +102,33 @@ const onKeydown = (event: KeyboardEvent) => {
 }
 
 // Lock body scroll when open
-watch(() => props.modelValue, (open) => {
-  if (typeof document === 'undefined') return
-  if (open) {
-    previousActiveElement.value = document.activeElement
-    if (scrollLockCount.value === 0) {
-      scrollLockCount.savedOverflow = document.body.style.overflow
-      document.body.style.overflow = 'hidden'
+watch(
+  () => props.modelValue,
+  (open) => {
+    if (typeof document === 'undefined') return
+    if (open) {
+      previousActiveElement.value = document.activeElement
+      if (scrollLockCount.value === 0) {
+        scrollLockCount.savedOverflow = document.body.style.overflow
+        document.body.style.overflow = 'hidden'
+      }
+      scrollLockCount.value++
+      nextTick(() => {
+        // Focus dialog
+        dialogRef.value?.focus()
+      })
+    } else {
+      scrollLockCount.value = Math.max(0, scrollLockCount.value - 1)
+      if (scrollLockCount.value === 0) {
+        document.body.style.overflow = scrollLockCount.savedOverflow
+      }
+      // Restore focus
+      if (previousActiveElement.value instanceof HTMLElement) {
+        previousActiveElement.value.focus()
+      }
     }
-    scrollLockCount.value++
-    nextTick(() => {
-      // Focus dialog
-      dialogRef.value?.focus()
-    })
-  } else {
-    scrollLockCount.value = Math.max(0, scrollLockCount.value - 1)
-    if (scrollLockCount.value === 0) {
-      document.body.style.overflow = scrollLockCount.savedOverflow
-    }
-    // Restore focus
-    if (previousActiveElement.value instanceof HTMLElement) {
-      previousActiveElement.value.focus()
-    }
-  }
-})
+  },
+)
 
 onUnmounted(() => {
   if (typeof document !== 'undefined' && props.modelValue) {
@@ -164,7 +170,9 @@ onUnmounted(() => {
         >
           <!-- Header -->
           <div v-if="title" class="mb-4">
-            <h2 :id="titleId" class="font-display text-lg font-semibold text-text-primary">{{ title }}</h2>
+            <h2 :id="titleId" class="font-display text-lg font-semibold text-text-primary">
+              {{ title }}
+            </h2>
             <p v-if="description" :id="descriptionId" class="mt-1 text-sm text-text-muted">
               {{ description }}
             </p>
@@ -178,7 +186,14 @@ onUnmounted(() => {
             aria-label="Close dialog"
             @click="close"
           >
-            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <svg
+              class="h-4 w-4"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+            >
               <path :d="ICON_DISMISS" />
             </svg>
           </button>

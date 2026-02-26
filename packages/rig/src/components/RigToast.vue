@@ -52,7 +52,9 @@ const { toasts, dismiss } = useToast()
             <!-- Content -->
             <div class="flex-1 min-w-0">
               <p class="text-sm font-medium text-text-primary">{{ toast.title }}</p>
-              <p v-if="toast.description" class="mt-1 text-xs text-text-muted">{{ toast.description }}</p>
+              <p v-if="toast.description" class="mt-1 text-xs text-text-muted">
+                {{ toast.description }}
+              </p>
               <button
                 v-if="toast.action"
                 type="button"
@@ -71,7 +73,14 @@ const { toasts, dismiss } = useToast()
               aria-label="Dismiss notification"
               @click="dismiss(toast.id)"
             >
-              <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <svg
+                class="h-3.5 w-3.5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
                 <path :d="ICON_DISMISS" />
               </svg>
             </button>

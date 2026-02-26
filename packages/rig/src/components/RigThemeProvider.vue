@@ -15,21 +15,27 @@ const themeApi = useTheme({
 
 // Sync props to state when they change
 
-watch(() => props.theme, (val) => {
-  themeApi.setTheme(val)
-})
+watch(
+  () => props.theme,
+  (val) => {
+    themeApi.setTheme(val)
+  },
+)
 
-watch(() => props.mode, (val) => {
-  if (val === 'auto') {
-    // Re-resolve from system preference
-    if (typeof window !== 'undefined') {
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-      themeApi.setMode(prefersDark ? 'dark' : 'light')
+watch(
+  () => props.mode,
+  (val) => {
+    if (val === 'auto') {
+      // Re-resolve from system preference
+      if (typeof window !== 'undefined') {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+        themeApi.setMode(prefersDark ? 'dark' : 'light')
+      }
+      return
     }
-    return
-  }
-  themeApi.setMode(val)
-})
+    themeApi.setMode(val)
+  },
+)
 
 provideTheme(themeApi)
 </script>

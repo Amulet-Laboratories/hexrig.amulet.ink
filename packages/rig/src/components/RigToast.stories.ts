@@ -18,10 +18,30 @@ export const Default: Story = {
     setup() {
       const toast = useToast()
 
-      const showInfo = () => toast.show({ title: 'Information', description: 'Something noteworthy happened.', tone: 'info' })
-      const showSuccess = () => toast.show({ title: 'Saved', description: 'Your changes have been saved.', tone: 'success' })
-      const showWarning = () => toast.show({ title: 'Warning', description: 'You are approaching the rate limit.', tone: 'warning' })
-      const showError = () => toast.show({ title: 'Error', description: 'Failed to save changes. Please try again.', tone: 'error' })
+      const showInfo = () =>
+        toast.show({
+          title: 'Information',
+          description: 'Something noteworthy happened.',
+          tone: 'info',
+        })
+      const showSuccess = () =>
+        toast.show({
+          title: 'Saved',
+          description: 'Your changes have been saved.',
+          tone: 'success',
+        })
+      const showWarning = () =>
+        toast.show({
+          title: 'Warning',
+          description: 'You are approaching the rate limit.',
+          tone: 'warning',
+        })
+      const showError = () =>
+        toast.show({
+          title: 'Error',
+          description: 'Failed to save changes. Please try again.',
+          tone: 'error',
+        })
 
       return { showInfo, showSuccess, showWarning, showError }
     },
@@ -46,15 +66,16 @@ export const WithAction: Story = {
     setup() {
       const toast = useToast()
 
-      const showWithAction = () => toast.show({
-        title: 'File deleted',
-        description: 'document.pdf has been removed.',
-        tone: 'neutral',
-        action: {
-          label: 'Undo',
-          onClick: () => toast.show({ title: 'Restored', tone: 'success' }),
-        },
-      })
+      const showWithAction = () =>
+        toast.show({
+          title: 'File deleted',
+          description: 'document.pdf has been removed.',
+          tone: 'neutral',
+          action: {
+            label: 'Undo',
+            onClick: () => toast.show({ title: 'Restored', tone: 'success' }),
+          },
+        })
 
       return { showWithAction }
     },
@@ -112,7 +133,13 @@ export const CustomDuration: Story = {
       const toast = useToast()
 
       const showShort = () => toast.show({ title: 'Quick flash', tone: 'info', duration: 1500 })
-      const showLong = () => toast.show({ title: 'Persistent notice', description: 'This stays visible for 10 seconds.', tone: 'warning', duration: 10000 })
+      const showLong = () =>
+        toast.show({
+          title: 'Persistent notice',
+          description: 'This stays visible for 10 seconds.',
+          tone: 'warning',
+          duration: 10000,
+        })
 
       return { showShort, showLong }
     },

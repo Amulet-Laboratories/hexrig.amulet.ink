@@ -16,7 +16,7 @@ export default defineConfig({
       entry: resolve(__dirname, 'src/index.ts'),
       name: 'Rig',
       formats: ['es', 'cjs'],
-      fileName: (format) => format === 'es' ? 'rig.js' : 'rig.cjs',
+      fileName: (format) => (format === 'es' ? 'rig.js' : 'rig.cjs'),
     },
     rollupOptions: {
       external: ['vue', '@iconify/vue'],

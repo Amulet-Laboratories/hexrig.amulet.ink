@@ -61,9 +61,6 @@ const ariaLabel = computed(() => {
     :aria-valuemax="indeterminate ? undefined : max"
     :aria-label="ariaLabel"
   >
-    <div
-      :class="barClasses"
-      :style="barStyle"
-    />
+    <div :class="barClasses" :style="barStyle" />
   </div>
 </template>

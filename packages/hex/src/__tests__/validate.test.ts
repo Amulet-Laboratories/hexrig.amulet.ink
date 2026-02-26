@@ -31,7 +31,9 @@ describe('validateTheme — negative cases', () => {
     delete broken.dark.surfaces.base
     const result = validateTheme(broken)
     expect(result.valid).toBe(false)
-    expect(result.errors.some((e) => e.category === 'missing' && e.token.includes('surfaces.base'))).toBe(true)
+    expect(
+      result.errors.some((e) => e.category === 'missing' && e.token.includes('surfaces.base')),
+    ).toBe(true)
   })
 
   it('detects missing text token', () => {
@@ -40,7 +42,9 @@ describe('validateTheme — negative cases', () => {
     delete broken.light.text.primary
     const result = validateTheme(broken)
     expect(result.valid).toBe(false)
-    expect(result.errors.some((e) => e.category === 'missing' && e.token.includes('text.primary'))).toBe(true)
+    expect(
+      result.errors.some((e) => e.category === 'missing' && e.token.includes('text.primary')),
+    ).toBe(true)
   })
 
   it('detects invalid color format', () => {

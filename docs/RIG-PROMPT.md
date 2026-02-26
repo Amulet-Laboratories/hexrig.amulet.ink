@@ -21,6 +21,7 @@ Rig is a **minimal, production-grade Vue 3 component library** that consumes Hex
 ### 1. No Style Blocks
 
 Every Rig component uses **only Tailwind classes in templates**. No `<style>` blocks. No `:style` bindings for theming. This ensures:
+
 - Every visual decision flows through Tailwind config → Hex CSS custom properties
 - Styles are scannable in templates
 - No specificity wars
@@ -113,6 +114,7 @@ All props use interfaces. All emits are typed. No `any`. All composables return 
 ### 5. Accessibility First
 
 Every component must satisfy:
+
 - Semantic HTML element (button for buttons, not div)
 - `aria-label` or visible label for all interactive elements
 - Focus visible via Hex `focus-ring` token
@@ -136,8 +138,17 @@ Typographic primitive. Renders semantic HTML with theme-aware styling.
 interface RigTextProps {
   as?: 'p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'label' | 'code' | 'pre'
   variant?: 'display' | 'heading' | 'subheading' | 'body' | 'caption' | 'overline' | 'mono'
-  color?: 'primary' | 'secondary' | 'muted' | 'accent' | 'inverse' | 'on-accent'
-            | 'success' | 'warning' | 'error' | 'info'
+  color?:
+    | 'primary'
+    | 'secondary'
+    | 'muted'
+    | 'accent'
+    | 'inverse'
+    | 'on-accent'
+    | 'success'
+    | 'warning'
+    | 'error'
+    | 'info'
   weight?: 'light' | 'normal' | 'medium' | 'semibold' | 'bold'
   align?: 'left' | 'center' | 'right'
   truncate?: boolean
@@ -145,6 +156,7 @@ interface RigTextProps {
 ```
 
 **Variant → Tailwind class mapping:**
+
 - `display`: `font-heading text-5xl font-bold tracking-tight`
 - `heading`: `font-heading text-2xl font-semibold`
 - `subheading`: `font-heading text-lg font-medium`
@@ -205,11 +217,19 @@ SVG icon wrapper with consistent sizing and color inheritance.
 ```ts
 interface RigIconProps {
   name: string
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'   // 14, 16, 20, 24, 32
-  color?: 'current' | 'primary' | 'secondary' | 'muted' | 'accent'
-          | 'success' | 'warning' | 'error' | 'info'
-  label?: string         // aria-label for standalone icons
-  decorative?: boolean   // aria-hidden when true (default: true)
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' // 14, 16, 20, 24, 32
+  color?:
+    | 'current'
+    | 'primary'
+    | 'secondary'
+    | 'muted'
+    | 'accent'
+    | 'success'
+    | 'warning'
+    | 'error'
+    | 'info'
+  label?: string // aria-label for standalone icons
+  decorative?: boolean // aria-hidden when true (default: true)
 }
 ```
 
@@ -230,6 +250,7 @@ interface RigSurfaceProps {
 ```
 
 **Elevation → class mapping:**
+
 - `sunken`: `bg-surface-sunken shadow-inner`
 - `base`: `bg-surface-base`
 - `raised`: `bg-surface-raised shadow-md`
@@ -360,6 +381,7 @@ Portal-based, stacks, auto-dismisses. Best showcase of motion tokens.
 ## Composables
 
 #### `useTheme()`
+
 ```ts
 interface UseThemeReturn {
   theme: Ref<ThemeId>
@@ -371,16 +393,18 @@ interface UseThemeReturn {
 ```
 
 #### `useMotion()`
+
 ```ts
 interface UseMotionReturn {
   duration: ComputedRef<number>
   durationSlow: ComputedRef<number>
   easing: ComputedRef<string>
-  prefersReducedMotion: Ref<boolean>   // via VueUse usePreferredReducedMotion
+  prefersReducedMotion: Ref<boolean> // via VueUse usePreferredReducedMotion
 }
 ```
 
 #### `useToast()`
+
 ```ts
 interface UseToastReturn {
   show: (options: ToastOptions) => string
@@ -499,6 +523,7 @@ export const globalTypes = {
 ### Story Convention
 
 Every component story includes:
+
 1. **Default** — component with default props
 2. **Variants** — all visual variants in a grid
 3. **States** — hover, focus, disabled, loading, error
@@ -521,18 +546,18 @@ Every component story includes:
 
 Every token category must be exercised by multiple components:
 
-| Token Category | Components |
-|----------------|-----------|
-| Surface colors | Surface, Card, Dialog, Input, Alert |
-| Text colors | Text, Button, Badge, Alert, Input, Card |
-| Accent colors | Button, Badge, Input (focus), Toast |
-| Status colors | Badge, Alert, Toast, Input (error) |
-| Border colors | Surface, Card, Input, Divider, Alert |
-| Font families | Text (all 3), Button, Input, Badge |
-| Shadows | Card, Dialog, Button (hover), Toast |
-| Border radius | Button, Input, Card, Badge, Dialog, Alert |
-| Focus ring | Button, Input, Dialog |
-| Motion/easing | Button (hover), Card (hover), Dialog (enter/exit), Toast (enter/exit) |
+| Token Category | Components                                                            |
+| -------------- | --------------------------------------------------------------------- |
+| Surface colors | Surface, Card, Dialog, Input, Alert                                   |
+| Text colors    | Text, Button, Badge, Alert, Input, Card                               |
+| Accent colors  | Button, Badge, Input (focus), Toast                                   |
+| Status colors  | Badge, Alert, Toast, Input (error)                                    |
+| Border colors  | Surface, Card, Input, Divider, Alert                                  |
+| Font families  | Text (all 3), Button, Input, Badge                                    |
+| Shadows        | Card, Dialog, Button (hover), Toast                                   |
+| Border radius  | Button, Input, Card, Badge, Dialog, Alert                             |
+| Focus ring     | Button, Input, Dialog                                                 |
+| Motion/easing  | Button (hover), Card (hover), Dialog (enter/exit), Toast (enter/exit) |
 
 ---
 

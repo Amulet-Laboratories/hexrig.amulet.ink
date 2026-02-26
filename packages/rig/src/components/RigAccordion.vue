@@ -29,9 +29,7 @@ const panelId = (value: string) => `${accordionId}-panel-${value}`
 
 const handleKeydown = (event: KeyboardEvent, index: number) => {
   const enabledItems = props.items.filter((i) => !i.disabled)
-  const currentIndex = enabledItems.findIndex(
-    (i) => i.value === props.items[index].value,
-  )
+  const currentIndex = enabledItems.findIndex((i) => i.value === props.items[index].value)
   let targetIndex = -1
 
   if (event.key === 'ArrowDown') {
@@ -58,10 +56,7 @@ const handleKeydown = (event: KeyboardEvent, index: number) => {
 
 <template>
   <div class="divide-y divide-border-subtle border-y border-border-subtle">
-    <div
-      v-for="(item, index) in items"
-      :key="item.value"
-    >
+    <div v-for="(item, index) in items" :key="item.value">
       <h3>
         <button
           :id="triggerId(item.value)"

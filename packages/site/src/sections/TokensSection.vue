@@ -55,9 +55,7 @@ const tokenGroups = [
   },
   {
     label: 'Focus',
-    tokens: [
-      { name: '--focus-ring', class: 'bg-focus-ring' },
-    ],
+    tokens: [{ name: '--focus-ring', class: 'bg-focus-ring' }],
   },
 ]
 
@@ -76,7 +74,9 @@ const motionTokens = [
         <div class="h-px w-8 bg-accent" />
         <span class="text-xs font-mono uppercase tracking-[0.25em] text-accent">Tokens</span>
       </div>
-      <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl text-text-primary leading-tight mb-4">
+      <h2
+        class="font-display text-4xl sm:text-5xl lg:text-6xl text-text-primary leading-tight mb-4"
+      >
         Every color,<br />named.
       </h2>
       <p class="text-text-muted font-body text-lg mb-20 max-w-xl">
@@ -100,9 +100,14 @@ const motionTokens = [
               class="flex items-center gap-3 group"
             >
               <div
-                :class="[token.class, 'w-8 h-8 rounded-md border border-border-subtle shrink-0 transition-colors duration-normal']"
+                :class="[
+                  token.class,
+                  'w-8 h-8 rounded-md border border-border-subtle shrink-0 transition-colors duration-normal',
+                ]"
               />
-              <span class="font-mono text-xs text-text-muted group-hover:text-text-secondary transition-colors truncate">
+              <span
+                class="font-mono text-xs text-text-muted group-hover:text-text-secondary transition-colors truncate"
+              >
                 {{ token.name }}
               </span>
             </div>
@@ -113,14 +118,12 @@ const motionTokens = [
       <!-- Motion tokens -->
       <div class="bg-surface-raised border border-border-subtle rounded p-8 sm:p-10 mb-6">
         <div class="flex items-center gap-2 mb-8">
-          <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted">Motion</span>
+          <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted"
+            >Motion</span
+          >
         </div>
         <div class="space-y-4">
-          <div
-            v-for="m in motionTokens"
-            :key="m.var"
-            class="flex items-center gap-4"
-          >
+          <div v-for="m in motionTokens" :key="m.var" class="flex items-center gap-4">
             <span class="w-16 text-sm font-body text-text-secondary">{{ m.label }}</span>
             <div class="flex-1 h-2 bg-surface-sunken rounded-full overflow-hidden">
               <div
@@ -138,26 +141,42 @@ const motionTokens = [
       <!-- Typography preview -->
       <div class="bg-surface-raised border border-border-subtle rounded p-8 sm:p-10">
         <div class="flex items-center gap-2 mb-8">
-          <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted">Typography</span>
+          <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted"
+            >Typography</span
+          >
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
           <div class="space-y-4">
             <div>
-              <span class="block text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted mb-1">--font-display</span>
+              <span
+                class="block text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted mb-1"
+                >--font-display</span
+              >
               <span class="font-display text-3xl text-text-primary">Gesamtkunstwerk</span>
             </div>
             <div>
-              <span class="block text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted mb-1">--font-body</span>
-              <span class="font-body text-lg text-text-primary">The total work of art — where every element serves the whole.</span>
+              <span
+                class="block text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted mb-1"
+                >--font-body</span
+              >
+              <span class="font-body text-lg text-text-primary"
+                >The total work of art — where every element serves the whole.</span
+              >
             </div>
           </div>
           <div class="space-y-4">
             <div>
-              <span class="block text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted mb-1">--font-mono</span>
+              <span
+                class="block text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted mb-1"
+                >--font-mono</span
+              >
               <span class="font-mono text-base text-accent">pnpm add @amulet-laboratories/hex</span>
             </div>
             <div class="pt-2">
-              <span class="block text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted mb-3">Scale</span>
+              <span
+                class="block text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted mb-3"
+                >Scale</span
+              >
               <div class="space-y-1.5">
                 <p class="font-display text-4xl text-text-primary leading-none">Aa</p>
                 <p class="font-body text-2xl text-text-primary leading-none">Aa</p>

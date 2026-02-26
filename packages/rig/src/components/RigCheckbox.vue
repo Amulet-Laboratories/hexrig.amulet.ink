@@ -29,7 +29,8 @@ const onToggle = () => {
 }
 
 const checkboxClasses = computed(() => {
-  const base = 'h-5 w-5 shrink-0 rounded-sm border-2 transition-colors duration-fast ease-standard focus:outline-none focus:ring-2 focus:ring-focus-ring focus:ring-offset-2 focus:ring-offset-surface-base cursor-pointer'
+  const base =
+    'h-5 w-5 shrink-0 rounded-sm border-2 transition-colors duration-fast ease-standard focus:outline-none focus:ring-2 focus:ring-focus-ring focus:ring-offset-2 focus:ring-offset-surface-base cursor-pointer'
 
   if (props.disabled) return `${base} opacity-50 cursor-not-allowed`
   if (props.error) return `${base} border-status-error`
@@ -61,20 +62,11 @@ const checkboxClasses = computed(() => {
       </span>
     </label>
 
-    <p
-      v-if="description && !error"
-      :id="descriptionId"
-      class="ml-8 text-sm text-text-muted"
-    >
+    <p v-if="description && !error" :id="descriptionId" class="ml-8 text-sm text-text-muted">
       {{ description }}
     </p>
 
-    <p
-      v-if="error"
-      :id="errorId"
-      class="ml-8 text-sm text-status-error"
-      role="alert"
-    >
+    <p v-if="error" :id="errorId" class="ml-8 text-sm text-status-error" role="alert">
       {{ error }}
     </p>
   </div>

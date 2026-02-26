@@ -36,17 +36,8 @@ const classes = computed(() => {
 </script>
 
 <template>
-  <span
-    :class="classes"
-    role="img"
-    :aria-label="name ?? 'Avatar'"
-  >
-    <img
-      v-if="src"
-      :src="src"
-      :alt="name ?? 'Avatar'"
-      class="h-full w-full object-cover"
-    />
+  <span :class="classes" role="img" :aria-label="name ?? 'Avatar'">
+    <img v-if="src" :src="src" :alt="name ?? 'Avatar'" class="h-full w-full object-cover" />
     <span v-else aria-hidden="true">{{ initials }}</span>
   </span>
 </template>

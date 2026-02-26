@@ -13,18 +13,18 @@ watchEffect(() => {
   if (import.meta.env.DEV && !props.decorative && !props.label) {
     console.warn(
       `[RigIcon] Non-decorative icon "${props.name}" is missing a "label" prop. ` +
-      'This creates an inaccessible unlabeled image (WCAG 1.1.1). ' +
-      'Either provide a label or set decorative=true.'
+        'This creates an inaccessible unlabeled image (WCAG 1.1.1). ' +
+        'Either provide a label or set decorative=true.',
     )
   }
 })
 
 const sizeMap: Record<NonNullable<RigIconProps['size']>, string> = {
-  xs: 'w-3.5 h-3.5',   // 14px
-  sm: 'w-4 h-4',       // 16px
-  md: 'w-5 h-5',       // 20px
-  lg: 'w-6 h-6',       // 24px
-  xl: 'w-8 h-8',       // 32px
+  xs: 'w-3.5 h-3.5', // 14px
+  sm: 'w-4 h-4', // 16px
+  md: 'w-5 h-5', // 20px
+  lg: 'w-6 h-6', // 24px
+  xl: 'w-8 h-8', // 32px
 }
 
 const colorMap: Record<NonNullable<RigIconProps['color']>, string> = {

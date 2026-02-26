@@ -44,12 +44,9 @@ onUnmounted(() => window.removeEventListener('keydown', onKeydown))
       :mode="activeMode"
       @cycle-theme="cycleTheme"
       @toggle-mode="toggleMode"
-      @select-theme="(t: ThemeId) => activeTheme = t"
+      @select-theme="(t: ThemeId) => (activeTheme = t)"
     />
-    <ThemesSection
-      :active-theme="activeTheme"
-      @select-theme="(t: ThemeId) => activeTheme = t"
-    />
+    <ThemesSection :active-theme="activeTheme" @select-theme="(t: ThemeId) => (activeTheme = t)" />
     <ComponentsSection :active-theme="activeTheme" />
     <TokensSection :active-theme="activeTheme" />
     <FooterSection />

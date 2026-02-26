@@ -8,11 +8,11 @@
 
 ### The Total Work of Art
 
-In 1849, Richard Wagner coined the term *Gesamtkunstwerk* — "total work of art" — to describe an experience where music, drama, visual design, and staging dissolve into a single unified whole. No element dominates. Every part serves a common vision.
+In 1849, Richard Wagner coined the term _Gesamtkunstwerk_ — "total work of art" — to describe an experience where music, drama, visual design, and staging dissolve into a single unified whole. No element dominates. Every part serves a common vision.
 
 Hex is a Gesamtkunstwerk for the web.
 
-A theme in Hex is not a color palette. It's a *world*. Color, typography, motion, spacing, texture, iconography, shadow, and interaction — all tuned to the same frequency, all telling the same story. When you switch from Rust to Jinx, you shouldn't just see different colors. You should *feel* a different place.
+A theme in Hex is not a color palette. It's a _world_. Color, typography, motion, spacing, texture, iconography, shadow, and interaction — all tuned to the same frequency, all telling the same story. When you switch from Rust to Jinx, you shouldn't just see different colors. You should _feel_ a different place.
 
 This is the difference between a design system that organizes tokens and one that creates meaning.
 
@@ -22,7 +22,7 @@ Kandinsky believed colors had sounds. Scriabin composed music for colored light.
 
 Hex borrows this idea: **every token in a theme should feel like it appeals to the same sense**. If Rust's colors feel like burnished bronze, then Rust's motion should feel like the swing of a heavy pendulum — not a digital bounce. If Thorn's greens feel like forest light, then Thorn's easing should feel like a vine unfurling — not a mechanical snap.
 
-This is the hidden logic that makes a theme feel *real* instead of *themed*.
+This is the hidden logic that makes a theme feel _real_ instead of _themed_.
 
 ### Five Worlds, One System
 
@@ -49,6 +49,7 @@ Each theme should be usable as a complete, standalone visual identity. But toget
 > Every token in a theme must feel like it belongs to the same world.
 
 This means:
+
 - **Typography matches materiality.** Rust uses a serif heading face (craft, history). Warp uses a geometric sans (precision, machine). They never cross.
 - **Motion matches weight.** Heavy themes (Maul) have decisive, short-duration motion with strong deceleration. Light themes (Thorn, Jinx) have longer, gentler curves.
 - **Texture matches surface.** Rust might carry a subtle grain like aged paper. Warp is clean, no noise. Thorn has organic variation. Maul has coarse industrial texture. Jinx has diffused, smoky atmosphere.
@@ -58,7 +59,7 @@ This means:
 
 ### Rule 2 — Optical Truth Over Mathematical Truth
 
-> Design for how things *look*, not how they *measure*.
+> Design for how things _look_, not how they _measure_.
 
 This is the most underrated rule in all of web design. The human eye lies constantly and beautifully:
 
@@ -73,11 +74,12 @@ Build optical compensation into the system itself — as tokens, utilities, or c
 
 ### Rule 3 — Constraint as Creative Fuel
 
-> The system provides rails. Expressiveness comes from *combining* tokens, not breaking the system.
+> The system provides rails. Expressiveness comes from _combining_ tokens, not breaking the system.
 
 A musician doesn't need infinite notes — twelve suffice. A poet doesn't need infinite words — the constraint of form creates beauty. Hex provides a finite palette of deliberate choices. The creativity comes from how you combine them.
 
 This means:
+
 - **The spacing scale is fixed.** You get 4, 8, 12, 16, 20, 24, 32, 40, 48, 64, 80, 96. No 37px. No 11px. If you need 11px, something else is wrong.
 - **The type scale is fixed.** Twelve sizes. If you need a thirteenth, you don't — you need to use weight or color to create the distinction you're reaching for with size.
 - **The color palette is closed.** 24 semantic tokens per scheme. If you need a 25th, map it through an existing token or extend the theme formally.
@@ -104,6 +106,7 @@ But accessibility goes far beyond contrast ratios:
 > Token names, file structure, TypeScript types, and documentation are UX design for developers.
 
 DX principles:
+
 - **Names should be guessable.** `--hex-color-surface-base` is immediately clear. `--hex-clr-srf-b` is not.
 - **Imports should be minimal.** One CSS import for a complete theme. One TS import for runtime access.
 - **Errors should be helpful.** `validateTheme()` should say "Missing token --hex-color-accent-primary in dark scheme" — not "validation failed".
@@ -114,7 +117,7 @@ DX principles:
 
 > Flat is safe. Material is memorable.
 
-Pure flat design is the "AI slop" of system design — clean, inoffensive, forgettable. The most memorable digital experiences have *materiality*: a sense that surfaces have weight, texture, and physical presence.
+Pure flat design is the "AI slop" of system design — clean, inoffensive, forgettable. The most memorable digital experiences have _materiality_: a sense that surfaces have weight, texture, and physical presence.
 
 Hex achieves this through layers:
 
@@ -132,7 +135,7 @@ All line-heights snap to multiples of 4px. All spacing tokens are multiples of 4
 
 This creates an invisible backbone of order. Text columns align. Cards stack cleanly. The eye doesn't know why the page feels "right" — but it does.
 
-**The exception:** Optical adjustments (Rule 2) may deviate by 1–2px. This is acceptable because it corrects for the eye's lies to restore *perceived* rhythm.
+**The exception:** Optical adjustments (Rule 2) may deviate by 1–2px. This is acceptable because it corrects for the eye's lies to restore _perceived_ rhythm.
 
 ---
 
@@ -145,13 +148,15 @@ This creates an invisible backbone of order. Text columns align. Cards stack cle
 **Color:** Bronze, amber, warm grays. Dark mode: charcoal with copper fire. Light mode: warm parchment with deep brown ink.
 
 **Typography:**
+
 - Heading: **Fraunces** (variable, with optical size + WONK + SOFT axes). Use `WONK 1` for personality in display sizes, `WONK 0` for readability in body.
 - Body: **Source Serif 4** or **Literata** — warm, readable serifs that feel like books.
 - Mono: **JetBrains Mono** — workhorse, clear, slightly warm.
 
 **Motion:** Weighty. Things have mass. Ease curves favor long deceleration — objects swing into position and settle like a heavy door closing. Duration: moderate.
+
 ```css
---motion-ease-standard: cubic-bezier(0.45, 0.05, 0.15, 1.0);
+--motion-ease-standard: cubic-bezier(0.45, 0.05, 0.15, 1);
 ```
 
 **Texture:** Fine grain, like handmade paper. 3% opacity SVG noise.
@@ -171,16 +176,18 @@ This creates an invisible backbone of order. Text columns align. Cards stack cle
 **Color:** Electric blue on near-black. Cool grays with blue undertone. Dark mode: deep space. Light mode: institutional white-blue, like a laboratory.
 
 **Typography:**
+
 - Heading: **Space Grotesk** — geometric, sharp, futuristic.
 - Body: **Inter** (variable) — optimized for screens, neutral, precise. Use weight 420 for body text (the slightly-heavier-than-Regular trick for dark mode).
 - Mono: **IBM Plex Mono** or **Fira Code** — technical, ligatures enabled.
 
 **Motion:** Snappy. Short durations, minimal overshoot. Things appear and disappear with mechanical precision. Linear transitions for data changes.
+
 ```css
---motion-ease-standard: cubic-bezier(0.25, 0.1, 0.25, 1.0);
+--motion-ease-standard: cubic-bezier(0.25, 0.1, 0.25, 1);
 ```
 
-**Texture:** None. Clean. The absence of texture *is* the texture.
+**Texture:** None. Clean. The absence of texture _is_ the texture.
 
 **Shadows:** Cool, desaturated. Pure black with no color tint. `rgba(0, 0, 0, opacity)`.
 
@@ -197,13 +204,15 @@ This creates an invisible backbone of order. Text columns align. Cards stack cle
 **Color:** Deep greens, sage, earth. Dark mode: forest floor at twilight. Light mode: sun through a canopy — warm white-green.
 
 **Typography:**
+
 - Heading: **Lora** or **Newsreader** (variable) — organic serifs with calligraphic DNA. Slightly swashy.
 - Body: **Source Sans 3** — humanist sans, warm and readable.
 - Mono: **DM Mono** — soft, rounded terminals.
 
 **Motion:** Organic. Long durations, gentle ease-in-out. Things grow and unfurl. Staggered reveals that cascade like leaves falling.
+
 ```css
---motion-ease-standard: cubic-bezier(0.22, 0.61, 0.36, 1.0);
+--motion-ease-standard: cubic-bezier(0.22, 0.61, 0.36, 1);
 ```
 
 **Texture:** Organic variation. SVG noise with a slightly green tint, like light through foliage.
@@ -223,13 +232,15 @@ This creates an invisible backbone of order. Text columns align. Cards stack cle
 **Color:** Hot amber/orange on dark brown-black. Ochre, burnt sienna. Dark mode: charred. Light mode: concrete and construction paper.
 
 **Typography:**
+
 - Heading: **Bebas Neue** or **Barlow Condensed** (variable, condensed weight) — industrial, tall, compressed. All-caps encouraged for display.
 - Body: **Barlow** or **Work Sans** — utilitarian, slightly condensed, no-nonsense.
 - Mono: **Roboto Mono** — square, mechanical.
 
 **Motion:** Decisive. Short duration, strong deceleration. Things slam into place. No bounce, no float. Hard cuts.
+
 ```css
---motion-ease-standard: cubic-bezier(0.7, 0.0, 0.15, 1.0);
+--motion-ease-standard: cubic-bezier(0.7, 0, 0.15, 1);
 ```
 
 **Texture:** Coarse grain. Higher opacity (4–5%). Like concrete dust or steel filings.
@@ -249,13 +260,15 @@ This creates an invisible backbone of order. Text columns align. Cards stack cle
 **Color:** Deep violet, plum, amethyst. Dark mode: midnight purple. Light mode: lavender fog — pale, ethereal.
 
 **Typography:**
+
 - Heading: **Crimson Pro** (variable) or **Playfair Display** — high-contrast serifs. Elegant, slightly dangerous. Like inscriptions on a grimoire.
 - Body: **Alegreya Sans** or **Libre Franklin** — humanist, with just enough personality to feel curated.
 - Mono: **Victor Mono** (variable, italic cursive) or **Fantasque Sans Mono** — quirky, characterful. The code itself feels enchanted.
 
 **Motion:** Ethereal. Medium-long durations with subtle overshoot. Things fade and drift. Slight parallax. Dissolution effects.
+
 ```css
---motion-ease-standard: cubic-bezier(0.34, 1.2, 0.64, 1.0);
+--motion-ease-standard: cubic-bezier(0.34, 1.2, 0.64, 1);
 ```
 
 **Texture:** Smoky. Low-frequency noise with a violet tint. Like candlelight through haze.
@@ -274,7 +287,7 @@ These are the details that separate good from extraordinary. Most design system 
 
 ### 1. Optical Icon Sizing
 
-A square icon and a circular icon at the same pixel dimensions don't *look* the same size. The blur test: shrink all your icons to 4px and squint. If the blobs look uneven, adjust. Let elongated icons (arrows, pencils) bleed past the grid boundary. Give square icons more internal padding.
+A square icon and a circular icon at the same pixel dimensions don't _look_ the same size. The blur test: shrink all your icons to 4px and squint. If the blobs look uneven, adjust. Let elongated icons (arrows, pencils) bleed past the grid boundary. Give square icons more internal padding.
 
 ### 2. The Button Padding Trick
 
@@ -306,7 +319,7 @@ A focus ring directly on an element's border competes with the border visually. 
 
 ### 9. Responsive Type Ratio Shifting
 
-At mobile sizes, use a *smaller* type scale ratio (1.125 = Major Second) so headings don't dominate the viewport. At desktop, use a *larger* ratio (1.25 = Major Third or 1.333 = Perfect Fourth) for more dramatic hierarchy.
+At mobile sizes, use a _smaller_ type scale ratio (1.125 = Major Second) so headings don't dominate the viewport. At desktop, use a _larger_ ratio (1.25 = Major Third or 1.333 = Perfect Fourth) for more dramatic hierarchy.
 
 ### 10. The Muted Text Trap
 
@@ -333,6 +346,7 @@ Component tokens  →  "Where it lives" →  hex-button-bg: var(--hex-color-acce
 ### Complete Semantic Token List
 
 **Surface (4)**
+
 ```
 surface-base     — the page ground
 surface-raised   — cards, sections (dark: lighter than base; light: white)
@@ -341,6 +355,7 @@ surface-overlay  — modals, popovers (with backdrop blur)
 ```
 
 **Text (6)**
+
 ```
 text-primary     — main content, headings
 text-secondary   — supporting content, subheadings
@@ -351,6 +366,7 @@ text-on-accent   — text on accent-colored backgrounds
 ```
 
 **Border (3)**
+
 ```
 border-default   — standard borders
 border-subtle    — dividers, table lines
@@ -358,6 +374,7 @@ border-strong    — active inputs, emphasis
 ```
 
 **Accent (5)**
+
 ```
 accent-primary   — primary actions, CTAs, links
 accent-secondary — hover states, supporting accents
@@ -367,6 +384,7 @@ accent-muted     — tinted backgrounds, tags, subtle fills
 ```
 
 **Status (4)**
+
 ```
 status-success   — positive outcomes, completion
 status-warning   — caution, attention needed
@@ -375,11 +393,13 @@ status-info      — neutral information, tips
 ```
 
 **Focus (1)**
+
 ```
 focus-ring       — keyboard focus indicator
 ```
 
 **Shadow (6)**
+
 ```
 shadow-sm        — subtle elevation (buttons, inputs)
 shadow-md        — cards, dropdowns
@@ -390,6 +410,7 @@ shadow-ring      — focus ring shadow
 ```
 
 **Typography (3 families + scale + roles)**
+
 ```
 font-heading     — display and heading typeface
 font-body        — body and UI typeface
@@ -397,6 +418,7 @@ font-mono        — code and tabular typeface
 ```
 
 **Motion (6 durations + 4 easings)**
+
 ```
 duration-instant   — 0ms
 duration-fast      — 100ms
@@ -412,6 +434,7 @@ ease-expressive    — dramatic moments
 ```
 
 **Atmosphere (optional, theme-specific)**
+
 ```
 texture-noise      — SVG data URI for grain overlay
 texture-opacity    — grain overlay opacity
@@ -433,13 +456,15 @@ The primary consumption path is CSS custom properties. A single import gives you
 ```
 
 Scheme switching is attribute-driven:
+
 ```html
-<html data-hex-theme="rust" data-hex-scheme="dark">
+<html data-hex-theme="rust" data-hex-scheme="dark"></html>
 ```
 
 ### TypeScript Runtime
 
 For dynamic switching, SSR, and tooling:
+
 ```ts
 import { applyTheme } from '@hex/runtime'
 import { rust } from '@hex/themes'
@@ -450,6 +475,7 @@ applyTheme(document.documentElement, rust, 'dark')
 ### Validation Pipeline
 
 Every theme, before it ships:
+
 1. **Structural validation** — all required tokens present
 2. **Type validation** — all values are valid CSS
 3. **Contrast validation** — all text/surface combos ≥ 4.5:1

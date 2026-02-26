@@ -12,7 +12,18 @@ const meta = {
     },
     color: {
       control: 'select',
-      options: ['primary', 'secondary', 'muted', 'accent', 'inverse', 'on-accent', 'success', 'warning', 'error', 'info'],
+      options: [
+        'primary',
+        'secondary',
+        'muted',
+        'accent',
+        'inverse',
+        'on-accent',
+        'success',
+        'warning',
+        'error',
+        'info',
+      ],
     },
     weight: {
       control: 'select',

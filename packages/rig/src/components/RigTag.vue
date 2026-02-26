@@ -14,7 +14,8 @@ const emit = defineEmits<{
 }>()
 
 const tagClasses = computed(() => {
-  const base = 'inline-flex items-center gap-1.5 font-body transition-colors duration-fast ease-standard'
+  const base =
+    'inline-flex items-center gap-1.5 font-body transition-colors duration-fast ease-standard'
 
   const sizes: Record<string, string> = {
     sm: 'px-2 py-0.5 text-xs rounded-sm',

@@ -29,21 +29,11 @@ const classes = computed(() => {
 </script>
 
 <template>
-  <div
-    v-if="label"
-    :class="classes"
-    role="separator"
-    :aria-orientation="orientation"
-  >
+  <div v-if="label" :class="classes" role="separator" :aria-orientation="orientation">
     <div class="flex-1 border-t" :class="borderColor[variant]" />
     <span class="text-sm text-text-muted font-body">{{ label }}</span>
     <div class="flex-1 border-t" :class="borderColor[variant]" />
   </div>
 
-  <hr
-    v-else
-    :class="classes"
-    role="separator"
-    :aria-orientation="orientation"
-  />
+  <hr v-else :class="classes" role="separator" :aria-orientation="orientation" />
 </template>

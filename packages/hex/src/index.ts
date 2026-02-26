@@ -68,11 +68,7 @@ import { HEX_THEME_ATTR, HEX_MODE_ATTR } from './tokens/types'
  * Apply a Hex theme to a DOM element by setting data attributes.
  * Typically called on `document.documentElement`.
  */
-export function applyTheme(
-  element: HTMLElement,
-  theme: HexTheme,
-  mode: ModeId
-): void {
+export function applyTheme(element: HTMLElement, theme: HexTheme, mode: ModeId): void {
   if (typeof document === 'undefined') return
   if (!element) {
     throw new Error('applyTheme: element must be a valid HTMLElement')
@@ -102,7 +98,10 @@ export function toggleMode(element: HTMLElement): ModeId {
 /**
  * Read the current theme id and mode from an element.
  */
-export function getThemeState(element: HTMLElement): { themeId: string | null; mode: ModeId | null } {
+export function getThemeState(element: HTMLElement): {
+  themeId: string | null
+  mode: ModeId | null
+} {
   if (typeof document === 'undefined') return { themeId: null, mode: null }
   return {
     themeId: element.getAttribute(HEX_THEME_ATTR),

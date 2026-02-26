@@ -19,16 +19,13 @@ const elevationClasses: Record<NonNullable<RigCardProps['elevation']>, string> =
 }
 
 const classes = computed(() => {
-  const parts = [
-    'rounded overflow-hidden font-body',
-    elevationClasses[props.elevation],
-  ]
+  const parts = ['rounded overflow-hidden font-body', elevationClasses[props.elevation]]
 
   if (props.interactive) {
     parts.push(
       'cursor-pointer transition-shadow duration-normal ease-standard',
       'hover:shadow-lg active:shadow-sm',
-      'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring'
+      'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring',
     )
   }
 

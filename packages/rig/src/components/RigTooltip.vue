@@ -72,12 +72,7 @@ onUnmounted(() => {
     @focusout="hide"
   >
     <slot />
-    <div
-      v-if="content && !disabled"
-      :class="tooltipClasses"
-      role="tooltip"
-      aria-hidden="true"
-    >
+    <div v-if="content && !disabled" :class="tooltipClasses" role="tooltip" aria-hidden="true">
       {{ content }}
     </div>
   </div>

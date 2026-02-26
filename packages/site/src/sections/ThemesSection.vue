@@ -10,11 +10,41 @@ defineEmits<{
 }>()
 
 const themes: { id: ThemeId; name: string; word: string; narrative: string; accent: string }[] = [
-  { id: 'hearth', name: 'Hearth', word: 'Creation', narrative: 'Raw material shaped by heat and intention.', accent: '#c9956d' },
-  { id: 'abyss', name: 'Abyss', word: 'Nothingness', narrative: 'The space between stars — vast, electric, alive.', accent: '#aef66d' },
-  { id: 'hollow', name: 'Hollow', word: 'Growth', narrative: 'Life pushing through stone, roots finding water.', accent: '#40b8a0' },
-  { id: 'keep', name: 'Keep', word: 'Construction', narrative: 'Steel and purpose — the raw made precise.', accent: '#ff8f2e' },
-  { id: 'cove', name: 'Cove', word: 'Shelter', narrative: 'The hidden chamber — warm, intimate, otherworldly.', accent: '#d43050' },
+  {
+    id: 'hearth',
+    name: 'Hearth',
+    word: 'Creation',
+    narrative: 'Raw material shaped by heat and intention.',
+    accent: '#c9956d',
+  },
+  {
+    id: 'abyss',
+    name: 'Abyss',
+    word: 'Nothingness',
+    narrative: 'The space between stars — vast, electric, alive.',
+    accent: '#aef66d',
+  },
+  {
+    id: 'hollow',
+    name: 'Hollow',
+    word: 'Growth',
+    narrative: 'Life pushing through stone, roots finding water.',
+    accent: '#40b8a0',
+  },
+  {
+    id: 'keep',
+    name: 'Keep',
+    word: 'Construction',
+    narrative: 'Steel and purpose — the raw made precise.',
+    accent: '#ff8f2e',
+  },
+  {
+    id: 'cove',
+    name: 'Cove',
+    word: 'Shelter',
+    narrative: 'The hidden chamber — warm, intimate, otherworldly.',
+    accent: '#d43050',
+  },
 ]
 </script>
 
@@ -46,24 +76,26 @@ const themes: { id: ThemeId; name: string; word: string; narrative: string; acce
           :data-theme="t.id"
           data-mode="dark"
         >
-          <div class="h-full w-full rounded-t-theme bg-surface-base border border-border-subtle p-4 flex flex-col justify-end">
+          <div
+            class="h-full w-full rounded-t-theme bg-surface-base border border-border-subtle p-4 flex flex-col justify-end"
+          >
             <div
               class="w-6 h-1 rounded-full mb-3 transition-all duration-normal"
               :style="{ backgroundColor: t.accent }"
               :class="t.id === activeTheme ? 'w-10' : ''"
             />
             <div class="font-display text-lg" :style="{ color: t.accent }">{{ t.name }}</div>
-            <div class="text-xs text-text-muted mt-0.5 font-mono uppercase tracking-wider">{{ t.word }}</div>
+            <div class="text-xs text-text-muted mt-0.5 font-mono uppercase tracking-wider">
+              {{ t.word }}
+            </div>
           </div>
         </div>
 
         <!-- Light mode preview underneath -->
-        <div
-          class="h-16 sm:h-20 rounded-b-theme"
-          :data-theme="t.id"
-          data-mode="light"
-        >
-          <div class="h-full w-full rounded-b-theme bg-surface-base border border-t-0 border-border-subtle p-4 flex items-center">
+        <div class="h-16 sm:h-20 rounded-b-theme" :data-theme="t.id" data-mode="light">
+          <div
+            class="h-full w-full rounded-b-theme bg-surface-base border border-t-0 border-border-subtle p-4 flex items-center"
+          >
             <div class="text-xs text-text-muted font-body leading-snug line-clamp-2">
               {{ t.narrative }}
             </div>

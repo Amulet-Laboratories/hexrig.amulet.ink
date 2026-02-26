@@ -90,11 +90,7 @@ const tabId = (value: string) => `${tablistId}-tab-${value}`
 
 <template>
   <div>
-    <div
-      :class="listClasses"
-      role="tablist"
-      :aria-label="label"
-    >
+    <div :class="listClasses" role="tablist" :aria-label="label">
       <button
         v-for="(tab, index) in tabs"
         :key="tab.value"

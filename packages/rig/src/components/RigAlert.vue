@@ -30,7 +30,11 @@ const classes = computed(() => {
 </script>
 
 <template>
-  <div v-if="isVisible" :class="classes" :role="tone === 'error' || tone === 'warning' ? 'alert' : 'status'">
+  <div
+    v-if="isVisible"
+    :class="classes"
+    :role="tone === 'error' || tone === 'warning' ? 'alert' : 'status'"
+  >
     <!-- Icon -->
     <svg
       v-if="showIcon"
@@ -63,7 +67,14 @@ const classes = computed(() => {
       aria-label="Dismiss"
       @click="handleDismiss"
     >
-      <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <svg
+        class="h-4 w-4"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        aria-hidden="true"
+      >
         <path :d="ICON_DISMISS" />
       </svg>
     </button>

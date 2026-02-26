@@ -29,7 +29,8 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-const swatch = 'bg-surface-raised border border-border-subtle rounded p-4 text-text-secondary font-mono text-sm'
+const swatch =
+  'bg-surface-raised border border-border-subtle rounded p-4 text-text-secondary font-mono text-sm'
 
 export const Default: Story = {
   render: (args) => ({

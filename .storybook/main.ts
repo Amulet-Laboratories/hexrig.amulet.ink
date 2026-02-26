@@ -2,14 +2,8 @@ import type { StorybookConfig } from '@storybook/vue3-vite'
 import { resolve } from 'path'
 
 const config: StorybookConfig = {
-  stories: [
-    '../packages/rig/src/**/*.stories.@(ts|tsx)',
-  ],
-  addons: [
-    '@storybook/addon-essentials',
-    '@storybook/addon-links',
-    '@storybook/addon-a11y',
-  ],
+  stories: ['../packages/rig/src/**/*.stories.@(ts|tsx)'],
+  addons: ['@storybook/addon-essentials', '@storybook/addon-links', '@storybook/addon-a11y'],
   framework: {
     name: '@storybook/vue3-vite',
     options: {},
@@ -22,7 +16,10 @@ const config: StorybookConfig = {
 
     // Add Vue plugin if not already present
     const hasVuePlugin = config.plugins?.some(
-      (p: any) => p && (p.name === 'vite:vue' || (Array.isArray(p) && p.some((pp: any) => pp?.name === 'vite:vue')))
+      (p: any) =>
+        p &&
+        (p.name === 'vite:vue' ||
+          (Array.isArray(p) && p.some((pp: any) => pp?.name === 'vite:vue'))),
     )
     if (!hasVuePlugin) {
       config.plugins = config.plugins ?? []
@@ -52,7 +49,7 @@ const config: StorybookConfig = {
     const vuePath = req.resolve('vue/dist/vue.esm-bundler.js')
     config.resolve = config.resolve ?? {}
     config.resolve.alias = {
-      ...config.resolve.alias as Record<string, string>,
+      ...(config.resolve.alias as Record<string, string>),
       vue: vuePath,
     }
 

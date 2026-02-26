@@ -44,7 +44,9 @@ export function useTheme(defaults?: { theme?: string; mode?: ModeId | 'auto' }):
     onScopeDispose(() => mq.removeEventListener('change', handler))
   }
 
-  const setTheme = (id: string) => { theme.value = id }
+  const setTheme = (id: string) => {
+    theme.value = id
+  }
   const setMode = (m: ModeId) => {
     userExplicitMode.value = true
     mode.value = m

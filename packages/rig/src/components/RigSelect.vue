@@ -24,7 +24,8 @@ const describedBy = computed(() => {
 })
 
 const selectClasses = computed(() => {
-  const base = 'block w-full appearance-none rounded border bg-surface-sunken px-3 py-2 pr-10 font-body text-base text-text-primary transition-colors duration-fast ease-standard focus:outline-none focus:border-focus-ring focus:ring-2 focus:ring-focus-ring'
+  const base =
+    'block w-full appearance-none rounded border bg-surface-sunken px-3 py-2 pr-10 font-body text-base text-text-primary transition-colors duration-fast ease-standard focus:outline-none focus:border-focus-ring focus:ring-2 focus:ring-focus-ring'
 
   if (props.error) return `${base} border-status-error`
   if (props.disabled) return `${base} border-border opacity-50 cursor-not-allowed`
@@ -39,11 +40,7 @@ const onChange = (event: Event) => {
 
 <template>
   <div class="flex flex-col gap-1.5">
-    <label
-      v-if="label"
-      :for="selectId"
-      class="font-body text-sm font-medium text-text-primary"
-    >
+    <label v-if="label" :for="selectId" class="font-body text-sm font-medium text-text-primary">
       {{ label }}
       <span v-if="required" class="text-status-error ml-0.5" aria-hidden="true">*</span>
     </label>
@@ -54,7 +51,7 @@ const onChange = (event: Event) => {
         :value="modelValue"
         :disabled="disabled"
         :required="required"
-        :aria-label="!label ? placeholder ?? 'Select' : undefined"
+        :aria-label="!label ? (placeholder ?? 'Select') : undefined"
         :aria-describedby="describedBy"
         :aria-invalid="error ? true : undefined"
         :class="selectClasses"
@@ -87,20 +84,11 @@ const onChange = (event: Event) => {
       </svg>
     </div>
 
-    <p
-      v-if="description && !error"
-      :id="descriptionId"
-      class="text-sm text-text-muted"
-    >
+    <p v-if="description && !error" :id="descriptionId" class="text-sm text-text-muted">
       {{ description }}
     </p>
 
-    <p
-      v-if="error"
-      :id="errorId"
-      class="text-sm text-status-error"
-      role="alert"
-    >
+    <p v-if="error" :id="errorId" class="text-sm text-status-error" role="alert">
       {{ error }}
     </p>
   </div>

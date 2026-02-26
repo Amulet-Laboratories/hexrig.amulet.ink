@@ -33,7 +33,8 @@ const onKeydown = (event: KeyboardEvent) => {
 }
 
 const trackClasses = computed(() => {
-  const base = 'relative inline-flex h-6 w-11 shrink-0 rounded-full border-2 border-transparent transition-colors duration-fast ease-standard focus:outline-none focus:ring-2 focus:ring-focus-ring focus:ring-offset-2 focus:ring-offset-surface-base'
+  const base =
+    'relative inline-flex h-6 w-11 shrink-0 rounded-full border-2 border-transparent transition-colors duration-fast ease-standard focus:outline-none focus:ring-2 focus:ring-focus-ring focus:ring-offset-2 focus:ring-offset-surface-base'
 
   if (props.disabled) return `${base} opacity-50 cursor-not-allowed`
   if (props.modelValue) return `${base} bg-accent cursor-pointer`
@@ -41,7 +42,8 @@ const trackClasses = computed(() => {
 })
 
 const thumbClasses = computed(() => {
-  const base = 'pointer-events-none inline-block h-5 w-5 rounded-full bg-surface-base shadow-sm ring-0 transition-transform duration-fast ease-standard'
+  const base =
+    'pointer-events-none inline-block h-5 w-5 rounded-full bg-surface-base shadow-sm ring-0 transition-transform duration-fast ease-standard'
 
   return props.modelValue ? `${base} translate-x-5` : `${base} translate-x-0`
 })
@@ -68,20 +70,12 @@ const thumbClasses = computed(() => {
         <span :class="thumbClasses" aria-hidden="true" />
       </button>
 
-      <span
-        v-if="label"
-        class="font-body text-sm text-text-primary select-none"
-        @click="onToggle"
-      >
+      <span v-if="label" class="font-body text-sm text-text-primary select-none" @click="onToggle">
         {{ label }}
       </span>
     </div>
 
-    <p
-      v-if="description"
-      :id="descriptionId"
-      class="ml-14 text-sm text-text-muted"
-    >
+    <p v-if="description" :id="descriptionId" class="ml-14 text-sm text-text-muted">
       {{ description }}
     </p>
   </div>

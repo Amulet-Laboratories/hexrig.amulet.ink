@@ -3,8 +3,5 @@ import { amuletPreset } from '@amulet-laboratories/hex/tailwind'
 
 export default {
   presets: [amuletPreset],
-  content: [
-    './src/**/*.vue',
-    './src/**/!(*.stories).ts',
-  ],
+  content: ['./src/**/*.vue', './src/**/!(*.stories).ts'],
 } satisfies Config
