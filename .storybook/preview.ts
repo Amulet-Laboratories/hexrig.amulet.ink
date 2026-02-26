@@ -1,6 +1,6 @@
 import type { Preview, VueRenderer } from '@storybook/vue3'
 import type { DecoratorFunction } from 'storybook/internal/types'
-import { h } from 'vue'
+import { h, ref } from 'vue'
 
 // Import all Hex theme CSS
 import '../packages/hex-origins/dist/themes/hearth.css'
@@ -13,34 +13,42 @@ import '../packages/hex-origins/dist/themes/cove.css'
 import '../packages/rig/src/style.css'
 
 /**
- * Decorator that applies Hex theme + scheme to both the document body
- * (ensures CSS vars resolve globally, including for teleported elements)
- * and a wrapper div (scopes the story visually).
+ * Module-scope reactive refs for theme globals.
  *
- * Reads context.globals lazily inside the render function so Vue re-renders
- * pick up toolbar changes even without a full decorator re-invocation.
+ * Why this pattern?  Storybook 8's Vue 3 renderer (`renderToCanvas`) keeps the
+ * Vue app mounted across globals changes — it re-invokes the decorator chain
+ * (via `storyFn()`) but *discards* the returned VNode and only patches reactive
+ * args.  By writing to these refs as a side-effect of the decorator call, the
+ * already-mounted render function picks up the change through Vue reactivity.
  */
+const activeTheme = ref('hearth')
+const activeScheme = ref('dark')
+
 const withTheme: DecoratorFunction<VueRenderer> = (storyFn, context) => {
   const story = storyFn()
 
-  return () => {
-    const theme = context.globals.theme || 'hearth'
-    const scheme = context.globals.scheme || 'dark'
+  // ---- side-effect: runs on every decorator invocation (including globals changes) ----
+  const theme = context.globals.theme || 'hearth'
+  const scheme = context.globals.scheme || 'dark'
 
-    // Apply to document body so CSS vars resolve everywhere in the iframe,
-    // including teleported/portal'd components (Dialog, Toast, etc.)
-    document.body.setAttribute('data-theme', theme)
-    document.body.setAttribute('data-mode', scheme)
-    document.body.style.backgroundColor = 'var(--surface-base)'
-    document.body.style.color = 'var(--text-secondary)'
-    document.body.style.fontFamily = 'var(--font-body)'
-    document.body.style.margin = '0'
+  activeTheme.value = theme
+  activeScheme.value = scheme
 
-    return h(
+  // Apply to <body> so CSS vars resolve for teleported elements (Dialog, Toast, …)
+  document.body.setAttribute('data-theme', theme)
+  document.body.setAttribute('data-mode', scheme)
+  document.body.style.backgroundColor = 'var(--surface-base)'
+  document.body.style.color = 'var(--text-secondary)'
+  document.body.style.fontFamily = 'var(--font-body)'
+  document.body.style.margin = '0'
+
+  // ---- render function: uses reactive refs so Vue re-renders on changes ----
+  return () =>
+    h(
       'div',
       {
-        'data-theme': theme,
-        'data-mode': scheme,
+        'data-theme': activeTheme.value,
+        'data-mode': activeScheme.value,
         style: {
           minHeight: '100vh',
           padding: '24px',
@@ -51,7 +59,6 @@ const withTheme: DecoratorFunction<VueRenderer> = (storyFn, context) => {
       },
       [h(story)],
     )
-  }
 }
 
 const preview: Preview = {
