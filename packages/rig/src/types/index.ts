@@ -105,6 +105,7 @@ export interface RigAlertProps {
   title?: string
   dismissible?: boolean
   icon?: string | boolean
+  visible?: boolean
 }
 
 // RigCard
@@ -263,6 +264,7 @@ export interface RigSwitchProps {
   modelValue?: boolean
   label?: string
   description?: string
+  error?: string
   disabled?: boolean
   id?: string
 }

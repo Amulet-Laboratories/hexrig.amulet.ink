@@ -1,6 +1,6 @@
 {
   "name": "@amulet-laboratories/hex",
-  "version": "0.6.0",
+  "version": "1.0.0",
   "description": "Hex design token engine — type system, CSS generation, validation, and Tailwind preset for themed design systems.",
   "type": "module",
   "main": "./dist/index.cjs",

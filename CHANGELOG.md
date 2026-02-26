@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0] — 2025-07-17
+
+### Changed — Stable Release
+
+First stable release of the HexRig design system. All three published packages
+(`@amulet-laboratories/hex`, `@amulet-laboratories/hex-origins`,
+`@amulet-laboratories/rig`) are now at 1.0.0.
+
+#### API fixes
+
+- **RigAlert**: Moved `visible` prop from inline intersection type into the
+  exported `RigAlertProps` interface so consumers see it in the public API.
+- **RigSwitch**: Added `error` prop with full validation support — error styling,
+  `aria-invalid`, error message with `role="alert"` — matching RigCheckbox parity.
+
+#### Peer dependencies
+
+- `@amulet-laboratories/hex` peer requirement updated from `>=0.5.0` to `>=1.0.0`
+  in both `hex-origins` and `rig`.
+
 ## [0.6.1] — 2026-02-26
 
 ### Changed — Rainbow Enhancement & Neutral Separation

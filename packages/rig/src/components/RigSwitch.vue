@@ -13,10 +13,13 @@ const emit = defineEmits<{
 const fallbackId = useId()
 const switchId = computed(() => props.id ?? fallbackId)
 const descriptionId = computed(() => `${switchId.value}-desc`)
+const errorId = computed(() => `${switchId.value}-error`)
 
 const describedBy = computed(() => {
-  if (props.description) return descriptionId.value
-  return undefined
+  const parts: string[] = []
+  if (props.description && !props.error) parts.push(descriptionId.value)
+  if (props.error) parts.push(errorId.value)
+  return parts.length > 0 ? parts.join(' ') : undefined
 })
 
 const onToggle = () => {
@@ -37,6 +40,10 @@ const trackClasses = computed(() => {
     'relative inline-flex h-6 w-11 shrink-0 rounded-full border-2 border-transparent transition-colors duration-fast ease-standard focus:outline-none focus:ring-2 focus:ring-focus-ring focus:ring-offset-2 focus:ring-offset-surface-base'
 
   if (props.disabled) return `${base} opacity-50 cursor-not-allowed`
+  if (props.error)
+    return props.modelValue
+      ? `${base} bg-status-error cursor-pointer`
+      : `${base} border-status-error bg-surface-sunken cursor-pointer`
   if (props.modelValue) return `${base} bg-accent cursor-pointer`
   return `${base} bg-border cursor-pointer`
 })
@@ -62,6 +69,7 @@ const thumbClasses = computed(() => {
         :aria-checked="modelValue"
         :aria-label="label"
         :aria-describedby="describedBy"
+        :aria-invalid="error ? true : undefined"
         :disabled="disabled"
         :class="trackClasses"
         @click="onToggle"
@@ -75,8 +83,12 @@ const thumbClasses = computed(() => {
       </span>
     </div>
 
-    <p v-if="description" :id="descriptionId" class="ml-14 text-sm text-text-muted">
+    <p v-if="description && !error" :id="descriptionId" class="ml-14 text-sm text-text-muted">
       {{ description }}
+    </p>
+
+    <p v-if="error" :id="errorId" class="ml-14 text-sm text-status-error" role="alert">
+      {{ error }}
     </p>
   </div>
 </template>

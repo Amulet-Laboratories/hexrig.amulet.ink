@@ -1,6 +1,6 @@
 {
   "name": "@amulet-laboratories/rig",
-  "version": "0.6.0",
+  "version": "1.0.0",
   "description": "Minimal Vue 3 component library consuming Hex theme tokens via Tailwind CSS.",
   "type": "module",
   "main": "./dist/rig.cjs",
@@ -38,7 +38,7 @@
     "vue-tsc": "^2.2.0"
   },
   "peerDependencies": {
-    "@amulet-laboratories/hex": ">=0.5.0",
+    "@amulet-laboratories/hex": ">=1.0.0",
     "@iconify/vue": "^5.0.0",
     "vue": "^3.5.0"
   },

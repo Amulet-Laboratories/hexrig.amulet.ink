@@ -3,7 +3,7 @@ import { computed } from 'vue'
 import type { RigAlertProps } from '../types'
 import { ICON_PATHS, ICON_COLOR_CLASSES, ICON_DISMISS, ALERT_TONE_CLASSES } from './shared'
 
-const props = withDefaults(defineProps<RigAlertProps & { visible?: boolean }>(), {
+const props = withDefaults(defineProps<RigAlertProps>(), {
   tone: 'info',
   dismissible: false,
   icon: true,
