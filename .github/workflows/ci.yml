@@ -6,9 +6,13 @@ on:
   pull_request:
     branches: [main]
 
+permissions:
+  contents: read
+  packages: read
+
 jobs:
   ci:
     uses: Amulet-Laboratories/.github/.github/workflows/ci.yml@main
     with:
       type: monorepo
-
+    secrets: inherit
