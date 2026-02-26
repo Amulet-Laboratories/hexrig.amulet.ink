@@ -1,6 +1,6 @@
 {
   "name": "@amulet-laboratories/hex-origins",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "Origins collection — five foundational themes for the Hex design token system.",
   "type": "module",
   "main": "./dist/index.cjs",

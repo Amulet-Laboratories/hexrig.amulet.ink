@@ -6,21 +6,38 @@
 
 ---
 
-**Hex** (`@amulet-laboratories/hex`) — Five-theme design token system. VS Code themes + CSS custom properties + TypeScript types.
+**Hex** (`@amulet-laboratories/hex`) — Design token engine. Type system, validation, CSS generation, and Tailwind preset.
+
+**Hex Origins** (`@amulet-laboratories/hex-origins`) — Five foundational themes (hearth, abyss, hollow, keep, cove) with dark + light modes, CSS custom properties, and VS Code themes.
 
 **Rig** (`@amulet-laboratories/rig`) — Production-grade Vue 3 component library consuming Hex tokens via Tailwind CSS.
 
 ## Install
 
+Packages are published to [GitHub Packages](https://github.com/orgs/Amulet-Laboratories/packages). Configure the scope in your consuming project:
+
+```ini
+# .npmrc
+@amulet-laboratories:registry=https://npm.pkg.github.com
+```
+
+Then install:
+
 ```bash
-pnpm add @amulet-laboratories/hex @amulet-laboratories/rig
+pnpm add @amulet-laboratories/hex @amulet-laboratories/hex-origins @amulet-laboratories/rig
+```
+
+### Quick Start
+
+```ts
+// main.ts
+import '@amulet-laboratories/hex-origins/themes/hearth.css' // theme tokens
+import '@amulet-laboratories/rig/style.css'                  // component styles
 ```
 
 ```vue
 <script setup>
 import { RigThemeProvider, RigButton, RigCard } from '@amulet-laboratories/rig'
-import '@amulet-laboratories/rig/style.css'
-import '@amulet-laboratories/hex/themes/hearth.css'
 </script>
 
 <template>
@@ -30,6 +47,36 @@ import '@amulet-laboratories/hex/themes/hearth.css'
     </RigCard>
   </RigThemeProvider>
 </template>
+```
+
+### Tailwind Setup
+
+If your project uses Tailwind CSS, add the Hex preset to your config:
+
+```ts
+// tailwind.config.ts
+import hexPreset from '@amulet-laboratories/hex/tailwind'
+
+export default {
+  presets: [hexPreset],
+  content: [
+    './src/**/*.{vue,ts}',
+    './node_modules/@amulet-laboratories/rig/dist/**/*.js',
+  ],
+}
+```
+
+This maps all Hex token CSS variables to Tailwind utilities (`bg-surface-base`, `text-text-primary`, `duration-fast`, etc.).
+
+### Loading Multiple Themes
+
+Import additional theme CSS files to enable runtime theme switching:
+
+```ts
+import '@amulet-laboratories/hex-origins/themes/hearth.css'
+import '@amulet-laboratories/hex-origins/themes/abyss.css'
+import '@amulet-laboratories/hex-origins/themes/hollow.css'
+// Switch at runtime via data-theme attribute or useTheme() composable
 ```
 
 ## The Five Worlds
@@ -80,15 +127,21 @@ pnpm validate          # Validate all themes against WCAG AAA
 
 ```
 packages/
-├── hex/               # @amulet-laboratories/hex — design tokens
+├── hex/               # @amulet-laboratories/hex — design token engine
 │   ├── src/
-│   │   ├── index.ts           # Barrel: types, themes, utils, runtime helpers
-│   │   ├── themes/            # hearth, abyss, hollow, keep, cove
+│   │   ├── index.ts           # Barrel: types, utils, runtime helpers, Tailwind preset
 │   │   ├── tokens/types.ts    # Full token type system
 │   │   ├── utils/             # css.ts, validate.ts, vscode.ts
-│   │   ├── build/             # generate-css.ts, generate-vscode-themes.ts
 │   │   └── __tests__/         # 6 test suites
-│   └── tsup.config.ts         # ESM + CJS, per-theme entry points
+│   └── tsup.config.ts         # ESM + CJS + DTS
+│
+├── hex-origins/       # @amulet-laboratories/hex-origins — theme collection
+│   ├── src/
+│   │   ├── index.ts           # Barrel: all 5 theme objects
+│   │   ├── themes/            # hearth, abyss, hollow, keep, cove
+│   │   └── build/             # generate-css.ts, generate-vscode-themes.ts
+│   ├── themes/                # Generated VS Code theme JSON files
+│   └── tsup.config.ts         # ESM + CJS + DTS, per-theme entry points
 │
 ├── rig/               # @amulet-laboratories/rig — Vue 3 components
 │   ├── src/
@@ -203,7 +256,7 @@ rounded-theme          → var(--radius-theme, 8px)
 
 ## Production Readiness
 
-- **147 tests** passing across 9 test suites (Vitest + jsdom)
+- **185 tests** passing across 12 test suites (Vitest + jsdom)
 - **Full type safety** — `vue-tsc --noEmit` and `tsc --noEmit` clean, rolled-up `.d.ts` declarations
 - **SSR-safe** — runtime helpers and composables guard against missing `document`/`window`
 - **Tree-shakable** — `sideEffects: false` (hex), `sideEffects: ["**/*.css"]` (rig)
@@ -241,7 +294,19 @@ Continuous integration runs via the [org-wide reusable workflow](https://github.
 
 ### GitHub Packages
 
-This repo publishes `@amulet-laboratories/hex` to [GitHub Packages](https://github.com/orgs/Amulet-Laboratories/packages). The package is public. Publishing is done manually via `pnpm publish` from `packages/hex/`.
+This repo publishes three packages to [GitHub Packages](https://github.com/orgs/Amulet-Laboratories/packages):
+
+- `@amulet-laboratories/hex` — token engine
+- `@amulet-laboratories/hex-origins` — theme collection
+- `@amulet-laboratories/rig` — component library
+
+Publish in dependency order:
+
+```bash
+cd packages/hex && pnpm publish --no-git-checks
+cd packages/hex-origins && pnpm publish --no-git-checks
+cd packages/rig && pnpm publish --no-git-checks
+```
 
 See the [GitHub Packages reference](https://github.com/Amulet-Laboratories/library.amulet.ink/blob/main/AmuletLabsVault/01-Operations/github-packages.md) for the full auth architecture.
 
