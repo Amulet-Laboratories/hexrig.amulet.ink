@@ -38,7 +38,7 @@ export const Introduction: Story = {
             </div>
             <div class="rounded-lg border border-border-subtle bg-surface-raised p-4 space-y-1">
               <p class="font-mono text-sm text-accent">@amulet-laboratories/hex-origins</p>
-              <p class="text-sm text-text-muted">Five curated themes (Hearth, Abyss, Hollow, Keep, Cove) — dark &amp; light modes.</p>
+               <p class="text-sm text-text-muted">Ten curated themes in two series (Environments &amp; Materials) — dark &amp; light modes.</p>
             </div>
             <div class="rounded-lg border border-border-subtle bg-surface-raised p-4 space-y-1">
               <p class="font-mono text-sm text-accent">@amulet-laboratories/rig</p>
@@ -73,7 +73,7 @@ export const Introduction: Story = {
         <!-- Themes -->
         <section class="space-y-4">
           <h2 class="font-display text-2xl text-text-primary">Themes</h2>
-          <p>Five themes, each with dark and light modes. Use the toolbar above to switch.</p>
+           <p>Ten themes in two series, each with dark and light modes. Use the toolbar above to switch.</p>
           <div class="grid gap-3 sm:grid-cols-5">
             <div v-for="t in themes" :key="t.id" class="rounded-lg border border-border-subtle bg-surface-raised p-3 text-center space-y-1">
               <div
@@ -114,16 +114,27 @@ export const Introduction: Story = {
       const themes = [
         { id: 'hearth', subtitle: 'Creation', accent: '#c9956d' },
         { id: 'abyss', subtitle: 'Nothingness', accent: '#aef66d' },
-        { id: 'hollow', subtitle: 'Growth', accent: '#40b8a0' },
-        { id: 'keep', subtitle: 'Construction', accent: '#ff8f2e' },
         { id: 'cove', subtitle: 'Shelter', accent: '#d43050' },
+        { id: 'glyph', subtitle: 'Inscription', accent: '#c44030' },
+        { id: 'ember', subtitle: 'Intensity', accent: '#e84820' },
+        { id: 'keep', subtitle: 'Construction', accent: '#ff8f2e' },
+        { id: 'slate', subtitle: 'Nothing', accent: '#6090d0' },
+        { id: 'linen', subtitle: 'Precision', accent: '#5088b8' },
+        { id: 'cairn', subtitle: 'Trust', accent: '#8aaa68' },
+        { id: 'grove', subtitle: 'Approachability', accent: '#7cba7e' },
       ]
       const categories = [
         { label: 'General', items: ['Button', 'Icon', 'Text', 'Badge', 'Tag', 'Avatar'] },
-        { label: 'Layout', items: ['Surface', 'Card', 'Container', 'Grid', 'Stack', 'Spacer', 'Divider'] },
+        {
+          label: 'Layout',
+          items: ['Surface', 'Card', 'Container', 'Grid', 'Stack', 'Spacer', 'Divider'],
+        },
         { label: 'Form', items: ['Input', 'Select', 'Checkbox', 'Switch'] },
         { label: 'Navigation', items: ['Tabs', 'Breadcrumb', 'Accordion'] },
-        { label: 'Feedback', items: ['Alert', 'Dialog', 'Toast', 'Progress', 'Spinner', 'Skeleton', 'Tooltip'] },
+        {
+          label: 'Feedback',
+          items: ['Alert', 'Dialog', 'Toast', 'Progress', 'Spinner', 'Skeleton', 'Tooltip'],
+        },
         { label: 'Theming', items: ['ThemeProvider'] },
       ]
       return { themes, categories }

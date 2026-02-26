@@ -55,12 +55,24 @@
   }
 
   /* Staggered children: each child delays slightly */
-  .reveal-stagger > .reveal:nth-child(1) { transition-delay: 0ms; }
-  .reveal-stagger > .reveal:nth-child(2) { transition-delay: 60ms; }
-  .reveal-stagger > .reveal:nth-child(3) { transition-delay: 120ms; }
-  .reveal-stagger > .reveal:nth-child(4) { transition-delay: 180ms; }
-  .reveal-stagger > .reveal:nth-child(5) { transition-delay: 240ms; }
-  .reveal-stagger > .reveal:nth-child(6) { transition-delay: 300ms; }
+  .reveal-stagger > .reveal:nth-child(1) {
+    transition-delay: 0ms;
+  }
+  .reveal-stagger > .reveal:nth-child(2) {
+    transition-delay: 60ms;
+  }
+  .reveal-stagger > .reveal:nth-child(3) {
+    transition-delay: 120ms;
+  }
+  .reveal-stagger > .reveal:nth-child(4) {
+    transition-delay: 180ms;
+  }
+  .reveal-stagger > .reveal:nth-child(5) {
+    transition-delay: 240ms;
+  }
+  .reveal-stagger > .reveal:nth-child(6) {
+    transition-delay: 300ms;
+  }
 }
 
 @keyframes motion-sweep {

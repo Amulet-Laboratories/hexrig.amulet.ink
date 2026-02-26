@@ -1,5 +1,4 @@
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <section class="relative py-32 sm:py-40 px-6">
@@ -14,7 +13,7 @@
         <p
           class="font-body text-lg sm:text-xl text-text-secondary leading-relaxed max-w-2xl mx-auto"
         >
-          Hex + Rig gives you five complete worlds — each with its own palette, typography, motion,
+          Hex + Rig gives you ten complete worlds — each with its own palette, typography, motion,
           and personality. Switch themes and every token responds: surfaces shift, type resets,
           accents transform.
         </p>
@@ -40,8 +39,8 @@
             >
           </div>
           <p class="text-sm text-text-secondary font-body leading-relaxed">
-            Five curated themes — Hearth, Abyss, Hollow, Keep, Cove. Each a complete visual language
-            with dark and light modes.
+            Ten curated themes in two series — Environments and Materials. Each a complete visual
+            language with dark and light modes.
           </p>
         </div>
         <div>

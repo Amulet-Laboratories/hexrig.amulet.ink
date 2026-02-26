@@ -84,7 +84,8 @@ const motionTokens = [
         Switch themes above. Watch every token respond.
       </p>
       <p v-reveal class="text-text-muted font-body text-sm mb-20 max-w-lg">
-        Six namespaces. Surfaces, text, borders, accents, status, and focus — each mapped to CSS custom properties that shift with every theme.
+        Six namespaces. Surfaces, text, borders, accents, status, and focus — each mapped to CSS
+        custom properties that shift with every theme.
       </p>
 
       <!-- Color swatches grid -->

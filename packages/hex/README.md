@@ -12,10 +12,10 @@ pnpm add @amulet-laboratories/hex
 
 ## Exports
 
-| Path | Description |
-|------|-------------|
-| `@amulet-laboratories/hex` | Types, validation, CSS/VSCode generation, runtime helpers |
-| `@amulet-laboratories/hex/tailwind` | Tailwind CSS preset (`amuletPreset`) |
+| Path                                | Description                                               |
+| ----------------------------------- | --------------------------------------------------------- |
+| `@amulet-laboratories/hex`          | Types, validation, CSS/VSCode generation, runtime helpers |
+| `@amulet-laboratories/hex/tailwind` | Tailwind CSS preset (`amuletPreset`)                      |
 
 ## Type System
 
@@ -23,24 +23,24 @@ Hex provides a complete type system for themed design tokens:
 
 ```typescript
 import type {
-  HexTheme,        // Complete theme definition
-  HexModeTokens,   // All tokens for one mode (dark/light)
-  ThemeId,          // Theme identifier (string)
-  ModeId,           // 'dark' | 'light'
-  HexSurfaces,      // base, raised, elevated, sunken, overlay
-  HexText,          // primary, secondary, muted, inverse, link, onAccent
-  HexBorders,       // default, subtle, strong
-  HexAccents,       // primary, secondary, hover, active, muted
-  HexStatus,        // success, warning, error, info
-  HexFocus,         // ring, outline
-  HexMotion,        // duration + easing tokens
-  HexSpacing,       // xs through 3xl
-  HexShape,         // radius, radiusFull
-  HexElevation,     // sm, md, lg shadows
-  HexFonts,         // display, body, sans, mono
-  HexSyntaxTokens,  // 9 syntax highlighting tokens
+  HexTheme, // Complete theme definition
+  HexModeTokens, // All tokens for one mode (dark/light)
+  ThemeId, // Theme identifier (string)
+  ModeId, // 'dark' | 'light'
+  HexSurfaces, // base, raised, elevated, sunken, overlay
+  HexText, // primary, secondary, muted, inverse, link, onAccent
+  HexBorders, // default, subtle, strong
+  HexAccents, // primary, secondary, hover, active, muted
+  HexStatus, // success, warning, error, info
+  HexFocus, // ring, outline
+  HexMotion, // duration + easing tokens
+  HexSpacing, // xs through 3xl
+  HexShape, // radius, radiusFull
+  HexElevation, // sm, md, lg shadows
+  HexFonts, // display, body, sans, mono
+  HexSyntaxTokens, // 9 syntax highlighting tokens
   HexTerminalColors, // 16 ANSI terminal colors
-  HexCollection,    // Named set of themes
+  HexCollection, // Named set of themes
   HexThemeRegistry, // Record<string, HexTheme>
 } from '@amulet-laboratories/hex'
 ```

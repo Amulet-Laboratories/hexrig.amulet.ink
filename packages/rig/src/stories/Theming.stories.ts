@@ -98,7 +98,7 @@ export const Theming: Story = {
             <p class="text-sm font-sans font-semibold text-text-primary">Hex runtime helpers</p>
             <pre class="bg-surface-raised border border-border-subtle rounded-lg p-4 text-sm font-mono overflow-x-auto text-text-primary"><code>import { applyTheme, toggleMode } from '@amulet-laboratories/hex'
 
-applyTheme(document.documentElement, 'hollow', 'dark')
+applyTheme(document.documentElement, 'grove', 'dark')
 toggleMode(document.documentElement)  // dark ↔ light</code></pre>
           </div>
 
@@ -173,17 +173,84 @@ toggleScheme()  // reactive — any bound UI re-renders</code></pre>
     `,
     setup() {
       const themes = [
-        { id: 'hearth', subtitle: 'Creation', accent: '#c9956d', description: 'Raw material shaped by heat and intention — warm, heavy, deliberate.' },
-        { id: 'abyss', subtitle: 'Nothingness', accent: '#aef66d', description: 'The void before form — cool, expansive, electric.' },
-        { id: 'hollow', subtitle: 'Growth', accent: '#40b8a0', description: 'Life reclaiming space — verdant, organic, emergent.' },
-        { id: 'keep', subtitle: 'Construction', accent: '#ff8f2e', description: 'Structure given purpose — solid, geometric, amber.' },
-        { id: 'cove', subtitle: 'Shelter', accent: '#d43050', description: 'Safe harbour — sheltered, coastal, vivid.' },
+        {
+          id: 'hearth',
+          subtitle: 'Creation',
+          accent: '#c9956d',
+          description: 'Raw material shaped by heat and intention — warm, heavy, deliberate.',
+        },
+        {
+          id: 'abyss',
+          subtitle: 'Nothingness',
+          accent: '#aef66d',
+          description: 'The void before form — cool, expansive, electric.',
+        },
+        {
+          id: 'cove',
+          subtitle: 'Shelter',
+          accent: '#d43050',
+          description: 'Safe harbour — sheltered, coastal, vivid.',
+        },
+        {
+          id: 'glyph',
+          subtitle: 'Inscription',
+          accent: '#c44030',
+          description: 'Parchment and ink — red marginalia in a manuscript.',
+        },
+        {
+          id: 'ember',
+          subtitle: 'Intensity',
+          accent: '#e84820',
+          description: 'Bold reds against cooling lava — loud, unapologetic.',
+        },
+        {
+          id: 'keep',
+          subtitle: 'Construction',
+          accent: '#ff8f2e',
+          description: 'Structure given purpose — solid, geometric, amber.',
+        },
+        {
+          id: 'slate',
+          subtitle: 'Nothing',
+          accent: '#6090d0',
+          description: 'Monochrome — disappears so the content can exist.',
+        },
+        {
+          id: 'linen',
+          subtitle: 'Precision',
+          accent: '#5088b8',
+          description: 'Off-white with warmth — the professional default.',
+        },
+        {
+          id: 'cairn',
+          subtitle: 'Trust',
+          accent: '#8aaa68',
+          description: 'Warm stone — sun-heated granite with lichen.',
+        },
+        {
+          id: 'grove',
+          subtitle: 'Approachability',
+          accent: '#7cba7e',
+          description: 'Soft neutral with sage green — the friendly theme.',
+        },
       ]
       const namespaces = [
-        { name: 'surface', tokens: 'base, raised, elevated, sunken, overlay', prefix: 'bg-surface-*' },
-        { name: 'text', tokens: 'primary, secondary, muted, inverse, link, on-accent', prefix: 'text-text-*' },
+        {
+          name: 'surface',
+          tokens: 'base, raised, elevated, sunken, overlay',
+          prefix: 'bg-surface-*',
+        },
+        {
+          name: 'text',
+          tokens: 'primary, secondary, muted, inverse, link, on-accent',
+          prefix: 'text-text-*',
+        },
         { name: 'border', tokens: 'default, subtle, strong', prefix: 'border-border-*' },
-        { name: 'accent', tokens: 'primary, secondary, hover, active, muted', prefix: 'bg-accent-*' },
+        {
+          name: 'accent',
+          tokens: 'primary, secondary, hover, active, muted',
+          prefix: 'bg-accent-*',
+        },
         { name: 'status', tokens: 'success, warning, error, info', prefix: 'bg-status-*' },
         { name: 'focus', tokens: 'ring, outline', prefix: 'ring-focus-*' },
         { name: 'syntax', tokens: 'comment, keyword, string, number, function, …', prefix: '—' },
@@ -198,10 +265,34 @@ toggleScheme()  // reactive — any bound UI re-renders</code></pre>
         { token: 'Exit easing', css: '--easing-exit', tw: 'ease-exit' },
       ]
       const fontTokens = [
-        { token: 'Display', css: '--font-display', tw: 'font-display', sample: 'Sorts Mill Goudy', family: 'var(--font-display)' },
-        { token: 'Body', css: '--font-body', tw: 'font-body', sample: 'Lora', family: 'var(--font-body)' },
-        { token: 'Sans', css: '--font-sans', tw: 'font-sans', sample: 'Source Sans 3', family: 'var(--font-sans)' },
-        { token: 'Mono', css: '--font-mono', tw: 'font-mono', sample: 'Source Code Pro', family: 'var(--font-mono)' },
+        {
+          token: 'Display',
+          css: '--font-display',
+          tw: 'font-display',
+          sample: 'Sorts Mill Goudy',
+          family: 'var(--font-display)',
+        },
+        {
+          token: 'Body',
+          css: '--font-body',
+          tw: 'font-body',
+          sample: 'Lora',
+          family: 'var(--font-body)',
+        },
+        {
+          token: 'Sans',
+          css: '--font-sans',
+          tw: 'font-sans',
+          sample: 'Source Sans 3',
+          family: 'var(--font-sans)',
+        },
+        {
+          token: 'Mono',
+          css: '--font-mono',
+          tw: 'font-mono',
+          sample: 'Source Code Pro',
+          family: 'var(--font-mono)',
+        },
       ]
       return { themes, namespaces, motionTokens, fontTokens }
     },

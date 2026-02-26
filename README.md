@@ -8,7 +8,7 @@
 
 **Hex** (`@amulet-laboratories/hex`) — Design token engine. Type system, validation, CSS generation, and Tailwind preset.
 
-**Hex Origins** (`@amulet-laboratories/hex-origins`) — Five foundational themes (hearth, abyss, hollow, keep, cove) with dark + light modes, CSS custom properties, and VS Code themes.
+**Hex Origins** (`@amulet-laboratories/hex-origins`) — Ten themes in two series (hearth, abyss, cove, glyph, ember, keep, slate, linen, cairn, grove) with dark + light modes, CSS custom properties, and VS Code themes.
 
 **Rig** (`@amulet-laboratories/rig`) — Production-grade Vue 3 component library consuming Hex tokens via Tailwind CSS.
 
@@ -32,7 +32,7 @@ pnpm add @amulet-laboratories/hex @amulet-laboratories/hex-origins @amulet-labor
 ```ts
 // main.ts
 import '@amulet-laboratories/hex-origins/themes/hearth.css' // theme tokens
-import '@amulet-laboratories/rig/style.css'                  // component styles
+import '@amulet-laboratories/rig/style.css' // component styles
 ```
 
 ```vue
@@ -59,10 +59,7 @@ import hexPreset from '@amulet-laboratories/hex/tailwind'
 
 export default {
   presets: [hexPreset],
-  content: [
-    './src/**/*.{vue,ts}',
-    './node_modules/@amulet-laboratories/rig/dist/**/*.js',
-  ],
+  content: ['./src/**/*.{vue,ts}', './node_modules/@amulet-laboratories/rig/dist/**/*.js'],
 }
 ```
 
@@ -73,23 +70,48 @@ This maps all Hex token CSS variables to Tailwind utilities (`bg-surface-base`, 
 Import additional theme CSS files to enable runtime theme switching:
 
 ```ts
+// Environments series
 import '@amulet-laboratories/hex-origins/themes/hearth.css'
 import '@amulet-laboratories/hex-origins/themes/abyss.css'
-import '@amulet-laboratories/hex-origins/themes/hollow.css'
+import '@amulet-laboratories/hex-origins/themes/cove.css'
+import '@amulet-laboratories/hex-origins/themes/glyph.css'
+import '@amulet-laboratories/hex-origins/themes/ember.css'
+
+// Materials series
+import '@amulet-laboratories/hex-origins/themes/keep.css'
+import '@amulet-laboratories/hex-origins/themes/slate.css'
+import '@amulet-laboratories/hex-origins/themes/linen.css'
+import '@amulet-laboratories/hex-origins/themes/cairn.css'
+import '@amulet-laboratories/hex-origins/themes/grove.css'
+
 // Switch at runtime via data-theme attribute or useTheme() composable
 ```
 
-## The Five Worlds
+## Ten Themes, Two Series
 
-| Theme      | World        | Accent    | Display Font     | Character                                  |
-| ---------- | ------------ | --------- | ---------------- | ------------------------------------------ |
-| **Hearth** | Creation     | `#c9956d` | Sorts Mill Goudy | Raw material shaped by heat and intention  |
-| **Abyss**  | Nothingness  | `#aef66d` | League Gothic    | Cold cosmos humming with latent energy     |
-| **Hollow** | Growth       | `#40b8a0` | Fraunces         | Organic persistence, roots finding water   |
-| **Keep**   | Construction | `#ff8f2e` | IBM Plex Serif   | Steel and purpose, industry and discipline |
-| **Cove**   | Shelter      | `#d43050` | Crimson Pro      | Warm, intimate, otherworldly               |
+Ten themes in two series. **Environments** are places you could stand in. **Materials** are things you could hold.
 
-Each theme ships with **dark** and **light** modes (10 total combinations), applied via `data-theme` and `data-mode` HTML attributes.
+### Environments
+
+| Theme      | World       | Accent    | Display Font     | Character                                 |
+| ---------- | ----------- | --------- | ---------------- | ----------------------------------------- |
+| **Hearth** | Creation    | `#c9956d` | Sorts Mill Goudy | Raw material shaped by heat and intention |
+| **Abyss**  | Nothingness | `#aef66d` | League Gothic    | Cold cosmos humming with latent energy    |
+| **Cove**   | Shelter     | `#d43050` | Crimson Pro      | Warm, intimate, otherworldly              |
+| **Glyph**  | Inscription | `#c44030` | IM Fell English  | Ink on parchment, the weight of recording |
+| **Ember**  | Combustion  | `#e84820` | Bungee           | Superheated metal, industrial urgency     |
+
+### Materials
+
+| Theme     | World        | Accent    | Display Font      | Character                                  |
+| --------- | ------------ | --------- | ----------------- | ------------------------------------------ |
+| **Keep**  | Construction | `#ff8f2e` | IBM Plex Serif    | Steel and purpose, industry and discipline |
+| **Slate** | Reduction    | `#6090d0` | Sora              | Monochrome discipline, one permitted blue  |
+| **Linen** | Softness     | `#5088b8` | Manrope           | Warm off-white, understated professional   |
+| **Cairn** | Accumulation | `#8aaa68` | Libre Franklin    | Warm stone and olive, deliberate stacking  |
+| **Grove** | Growth       | `#7cba7e` | Libre Baskerville | Organic persistence, roots finding water   |
+
+Each theme ships with **dark** and **light** modes (20 total combinations), applied via `data-theme` and `data-mode` HTML attributes.
 
 ## Setup
 
@@ -137,8 +159,8 @@ packages/
 │
 ├── hex-origins/       # @amulet-laboratories/hex-origins — theme collection
 │   ├── src/
-│   │   ├── index.ts           # Barrel: all 5 theme objects
-│   │   ├── themes/            # hearth, abyss, hollow, keep, cove
+│   │   ├── index.ts           # Barrel: all 10 theme objects
+│   │   ├── themes/            # hearth, abyss, cove, glyph, ember, keep, slate, linen, cairn, grove
 │   │   └── build/             # generate-css.ts, generate-vscode-themes.ts
 │   ├── themes/                # Generated VS Code theme JSON files
 │   └── tsup.config.ts         # ESM + CJS + DTS, per-theme entry points
@@ -156,7 +178,7 @@ packages/
 │
 ├── site/              # Marketing site — hexrig.amulet.ink
 │   ├── src/
-│   │   ├── main.ts            # Entry: imports all 5 Hex theme CSS files
+│   │   ├── main.ts            # Entry: imports all 10 Hex theme CSS files
 │   │   ├── App.vue            # Root: theme/mode state, keyboard shortcuts
 │   │   ├── style.css          # Tailwind directives, base styles
 │   │   └── sections/          # 5 sections (see below)
@@ -173,7 +195,7 @@ The site at [hexrig.amulet.ink](https://hexrig.amulet.ink) demonstrates the desi
 | Section        | Purpose                                                                     |
 | -------------- | --------------------------------------------------------------------------- |
 | **Hero**       | Full-screen intro, animated theme word, install command, theme dot selector |
-| **Themes**     | 5-column grid of dark/light preview cards for each theme                    |
+| **Themes**     | Grid of dark/light preview cards for all 10 themes                          |
 | **Components** | Live-styled buttons, cards, inputs, alerts, badges, typography              |
 | **Tokens**     | Color swatch grid, motion animation bars, typography preview                |
 | **Footer**     | Package links, Storybook link, tech badges                                  |
@@ -246,7 +268,7 @@ rounded-theme          → var(--radius-theme, 8px)
 ## Accessibility
 
 - **WCAG 2.1 Level AAA** — 7:1 contrast for primary text, 4.5:1 for secondary, 3:1 for UI
-- Validated across all 5 themes × 2 modes (10 combinations, 15 contrast pairs each)
+- Validated across all 10 themes × 2 modes (20 combinations, 15 contrast pairs each)
 - Full keyboard navigation + focus trapping (`RigDialog`)
 - `prefers-reduced-motion` respected via `useMotion()` composable
 - 44×44px minimum touch targets on all interactive controls

@@ -2,12 +2,18 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import './style.css'
 
-// Import all Origins theme CSS
+// Import all Origins theme CSS — Environments
 import '@amulet-laboratories/hex-origins/themes/hearth.css'
 import '@amulet-laboratories/hex-origins/themes/abyss.css'
-import '@amulet-laboratories/hex-origins/themes/hollow.css'
-import '@amulet-laboratories/hex-origins/themes/keep.css'
 import '@amulet-laboratories/hex-origins/themes/cove.css'
+import '@amulet-laboratories/hex-origins/themes/glyph.css'
+import '@amulet-laboratories/hex-origins/themes/ember.css'
+// Materials
+import '@amulet-laboratories/hex-origins/themes/keep.css'
+import '@amulet-laboratories/hex-origins/themes/slate.css'
+import '@amulet-laboratories/hex-origins/themes/linen.css'
+import '@amulet-laboratories/hex-origins/themes/cairn.css'
+import '@amulet-laboratories/hex-origins/themes/grove.css'
 
 const app = createApp(App)
 

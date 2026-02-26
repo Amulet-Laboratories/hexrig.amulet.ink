@@ -1,7 +1,7 @@
 {
   "name": "@amulet-laboratories/hex-origins",
-  "version": "0.5.3",
-  "description": "Origins collection — five foundational themes for the Hex design token system.",
+  "version": "0.6.0",
+  "description": "Origins collection — ten themes in two series for the Hex design token system.",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -48,9 +48,14 @@
     "origins",
     "hearth",
     "abyss",
-    "hollow",
+    "cove",
+    "glyph",
+    "ember",
     "keep",
-    "cove"
+    "slate",
+    "linen",
+    "cairn",
+    "grove"
   ],
   "license": "MIT",
   "sideEffects": false,

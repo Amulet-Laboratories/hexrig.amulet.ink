@@ -25,7 +25,7 @@ createApp(App).mount('#app')
 Set the active theme on your root element:
 
 ```html
-<body data-theme="hearth" data-mode="dark">
+<body data-theme="hearth" data-mode="dark"></body>
 ```
 
 Or use the `RigThemeProvider` component:
@@ -40,36 +40,36 @@ Or use the `RigThemeProvider` component:
 
 ## Components (28)
 
-| Component | Description |
-|-----------|-------------|
-| `RigAccordion` | Expandable content sections, single or multiple mode |
-| `RigAlert` | Status messages with 4 tones, dismissible, icon slot |
-| `RigAvatar` | User avatar with image, initials fallback, circle/square |
-| `RigBadge` | Solid/soft/outline × 6 tones, dot indicator, removable |
-| `RigBreadcrumb` | Navigation breadcrumb trail with custom separator |
-| `RigButton` | Solid/outline/ghost/link × accent/neutral/danger, 3 sizes, loading state |
-| `RigCard` | Flat/raised/prominent elevation, interactive mode, polymorphic |
-| `RigCheckbox` | Checkbox with label, description, error state |
-| `RigContainer` | Centered max-width container with size variants |
-| `RigDialog` | Modal dialog with focus trapping, Esc close, 3 sizes |
-| `RigDivider` | Horizontal/vertical divider with optional label |
-| `RigGrid` | CSS grid layout with 1–6 columns and gap tokens |
-| `RigIcon` | Iconify integration, xs–xl sizes, decorative mode |
-| `RigInput` | Text input with 7 types, label/description/error, full ARIA |
-| `RigProgress` | Determinate/indeterminate progress bar with tone |
-| `RigSelect` | Select dropdown with label, description, error state |
-| `RigSkeleton` | Loading placeholder in text/heading/circle/rect/card variants |
-| `RigSpacer` | Spacing primitive using Hex spacing tokens |
-| `RigSpinner` | Loading spinner with size and tone options |
-| `RigStack` | Flex layout with direction, gap, alignment, wrap |
-| `RigSurface` | Semantic surface container with elevation and border |
-| `RigSwitch` | Toggle switch with label and description |
-| `RigTabs` | Tabbed navigation with underline/pill variants |
-| `RigTag` | Inline tag with solid/soft/outline, removable |
-| `RigText` | Typography with 7 variants, semantic `as` prop, color/weight control |
-| `RigThemeProvider` | Applies theme via data attributes, auto mode support |
-| `RigToast` | Notification toast with auto-dismiss, action slot, tones |
-| `RigTooltip` | Hover tooltip with placement and delay options |
+| Component          | Description                                                              |
+| ------------------ | ------------------------------------------------------------------------ |
+| `RigAccordion`     | Expandable content sections, single or multiple mode                     |
+| `RigAlert`         | Status messages with 4 tones, dismissible, icon slot                     |
+| `RigAvatar`        | User avatar with image, initials fallback, circle/square                 |
+| `RigBadge`         | Solid/soft/outline × 6 tones, dot indicator, removable                   |
+| `RigBreadcrumb`    | Navigation breadcrumb trail with custom separator                        |
+| `RigButton`        | Solid/outline/ghost/link × accent/neutral/danger, 3 sizes, loading state |
+| `RigCard`          | Flat/raised/prominent elevation, interactive mode, polymorphic           |
+| `RigCheckbox`      | Checkbox with label, description, error state                            |
+| `RigContainer`     | Centered max-width container with size variants                          |
+| `RigDialog`        | Modal dialog with focus trapping, Esc close, 3 sizes                     |
+| `RigDivider`       | Horizontal/vertical divider with optional label                          |
+| `RigGrid`          | CSS grid layout with 1–6 columns and gap tokens                          |
+| `RigIcon`          | Iconify integration, xs–xl sizes, decorative mode                        |
+| `RigInput`         | Text input with 7 types, label/description/error, full ARIA              |
+| `RigProgress`      | Determinate/indeterminate progress bar with tone                         |
+| `RigSelect`        | Select dropdown with label, description, error state                     |
+| `RigSkeleton`      | Loading placeholder in text/heading/circle/rect/card variants            |
+| `RigSpacer`        | Spacing primitive using Hex spacing tokens                               |
+| `RigSpinner`       | Loading spinner with size and tone options                               |
+| `RigStack`         | Flex layout with direction, gap, alignment, wrap                         |
+| `RigSurface`       | Semantic surface container with elevation and border                     |
+| `RigSwitch`        | Toggle switch with label and description                                 |
+| `RigTabs`          | Tabbed navigation with underline/pill variants                           |
+| `RigTag`           | Inline tag with solid/soft/outline, removable                            |
+| `RigText`          | Typography with 7 variants, semantic `as` prop, color/weight control     |
+| `RigThemeProvider` | Applies theme via data attributes, auto mode support                     |
+| `RigToast`         | Notification toast with auto-dismiss, action slot, tones                 |
+| `RigTooltip`       | Hover tooltip with placement and delay options                           |
 
 ## Composables
 

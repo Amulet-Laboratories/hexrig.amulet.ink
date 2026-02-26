@@ -19,7 +19,18 @@ const meta = {
   argTypes: {
     theme: {
       control: 'select',
-      options: ['hearth', 'abyss', 'hollow', 'keep', 'cove'],
+      options: [
+        'hearth',
+        'abyss',
+        'cove',
+        'glyph',
+        'ember',
+        'keep',
+        'slate',
+        'linen',
+        'cairn',
+        'grove',
+      ],
     },
     mode: {
       control: 'select',
@@ -61,7 +72,7 @@ export const SideBySide: Story = {
     components: { RigThemeProvider, RigText, RigButton, RigSurface },
     template: `
       <div class="grid grid-cols-2 gap-4">
-        <RigThemeProvider v-for="theme in ['hearth', 'abyss', 'hollow', 'keep', 'cove']" :key="theme" :theme="theme" mode="dark">
+         <RigThemeProvider v-for="theme in ['hearth', 'abyss', 'cove', 'glyph', 'ember', 'keep', 'slate', 'linen', 'cairn', 'grove']" :key="theme" :theme="theme" mode="dark">
           <RigSurface elevation="raised" padding="md" border>
             <RigText variant="overline" color="muted" class="mb-1">{{ theme }}</RigText>
             <RigText variant="heading" class="mb-3">Heading</RigText>

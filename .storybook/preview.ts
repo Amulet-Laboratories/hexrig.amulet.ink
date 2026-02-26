@@ -3,12 +3,18 @@ import type { DecoratorFunction } from 'storybook/internal/types'
 import { h, ref } from 'vue'
 import { amuletTheme } from './amulet-theme'
 
-// Import all Hex theme CSS
+// Import all Hex theme CSS — Environments
 import '../packages/hex-origins/dist/themes/hearth.css'
 import '../packages/hex-origins/dist/themes/abyss.css'
-import '../packages/hex-origins/dist/themes/hollow.css'
-import '../packages/hex-origins/dist/themes/keep.css'
 import '../packages/hex-origins/dist/themes/cove.css'
+import '../packages/hex-origins/dist/themes/glyph.css'
+import '../packages/hex-origins/dist/themes/ember.css'
+// Materials
+import '../packages/hex-origins/dist/themes/keep.css'
+import '../packages/hex-origins/dist/themes/slate.css'
+import '../packages/hex-origins/dist/themes/linen.css'
+import '../packages/hex-origins/dist/themes/cairn.css'
+import '../packages/hex-origins/dist/themes/grove.css'
 
 // Import Rig base styles (Tailwind)
 import '../packages/rig/src/style.css'
@@ -72,9 +78,14 @@ const preview: Preview = {
         items: [
           { value: 'hearth', title: 'Hearth — Creation' },
           { value: 'abyss', title: 'Abyss — Nothingness' },
-          { value: 'hollow', title: 'Hollow — Growth' },
-          { value: 'keep', title: 'Keep — Construction' },
           { value: 'cove', title: 'Cove — Shelter' },
+          { value: 'glyph', title: 'Glyph — Inscription' },
+          { value: 'ember', title: 'Ember — Intensity' },
+          { value: 'keep', title: 'Keep — Construction' },
+          { value: 'slate', title: 'Slate — Nothing' },
+          { value: 'linen', title: 'Linen — Precision' },
+          { value: 'cairn', title: 'Cairn — Trust' },
+          { value: 'grove', title: 'Grove — Approachability' },
         ],
         dynamicTitle: true,
       },

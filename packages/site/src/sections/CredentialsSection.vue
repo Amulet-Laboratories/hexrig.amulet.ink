@@ -1,8 +1,8 @@
 <script setup lang="ts">
 const stats = [
   { value: '28', label: 'Components' },
-  { value: '5', label: 'Themes' },
-  { value: '10', label: 'Color Modes' },
+  { value: '10', label: 'Themes' },
+  { value: '20', label: 'Color Modes' },
   { value: 'AAA', label: 'WCAG Level' },
 ]
 
@@ -90,7 +90,9 @@ const links = [
           class="group bg-surface-raised border border-border-subtle rounded-lg p-6 hover:border-accent transition-colors duration-fast"
         >
           <div class="flex items-center gap-2 mb-2">
-            <span class="font-body font-semibold text-text-primary group-hover:text-accent transition-colors">
+            <span
+              class="font-body font-semibold text-text-primary group-hover:text-accent transition-colors"
+            >
               {{ link.label }}
             </span>
             <span class="text-text-muted text-sm">{{ link.external ? '↗' : '→' }}</span>

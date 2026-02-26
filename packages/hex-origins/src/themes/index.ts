@@ -1,38 +1,77 @@
 /**
  * Origins — Collection 1
  *
- * The foundational spaces. Where you are.
- * Hearth (creation) → Abyss (void) → Hollow (growth) → Keep (construction) → Cove (shelter)
+ * Ten themes in two series. Every theme has light + dark modes.
+ *
+ * Environments: Hearth, Abyss, Cove, Glyph, Ember
+ * Materials:    Keep, Slate, Linen, Cairn, Grove
  */
 
 import type { HexThemeRegistry, HexCollection } from '@amulet-laboratories/hex'
 import { hearth } from './hearth'
 import { abyss } from './abyss'
-import { hollow } from './hollow'
-import { keep } from './keep'
 import { cove } from './cove'
+import { glyph } from './glyph'
+import { ember } from './ember'
+import { keep } from './keep'
+import { slate } from './slate'
+import { linen } from './linen'
+import { cairn } from './cairn'
+import { grove } from './grove'
 
-export type OriginsThemeId = 'hearth' | 'abyss' | 'hollow' | 'keep' | 'cove'
+export type OriginsThemeId =
+  | 'hearth'
+  | 'abyss'
+  | 'cove'
+  | 'glyph'
+  | 'ember'
+  | 'keep'
+  | 'slate'
+  | 'linen'
+  | 'cairn'
+  | 'grove'
 
 export { hearth } from './hearth'
 export { abyss } from './abyss'
-export { hollow } from './hollow'
-export { keep } from './keep'
 export { cove } from './cove'
+export { glyph } from './glyph'
+export { ember } from './ember'
+export { keep } from './keep'
+export { slate } from './slate'
+export { linen } from './linen'
+export { cairn } from './cairn'
+export { grove } from './grove'
 
 export const themes: HexThemeRegistry = {
   hearth,
   abyss,
-  hollow,
-  keep,
   cove,
+  glyph,
+  ember,
+  keep,
+  slate,
+  linen,
+  cairn,
+  grove,
 }
 
-export const themeIds: OriginsThemeId[] = ['hearth', 'abyss', 'hollow', 'keep', 'cove']
+export const themeIds: OriginsThemeId[] = [
+  'hearth',
+  'abyss',
+  'cove',
+  'glyph',
+  'ember',
+  'keep',
+  'slate',
+  'linen',
+  'cairn',
+  'grove',
+]
 
 export const origins: HexCollection = {
   id: 'origins',
   name: 'Origins',
-  narrative: 'The foundational spaces. Where you are. Fire, void, forest, forge, inlet.',
-  themes: [hearth, abyss, hollow, keep, cove],
+  narrative:
+    'Ten themes in two series. Environments are places you could stand in. Materials are things you could hold. Twenty palettes. No two themes want the same thing.',
+  themes: [hearth, abyss, cove, glyph, ember, keep, slate, linen, cairn, grove],
 }

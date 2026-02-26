@@ -95,14 +95,25 @@ const copyInstall = async () => {
           Design tokens and Vue&nbsp;3 components for interfaces that feel
           <em class="text-accent not-italic font-medium">considered</em>.<br />
           <span class="text-text-muted"
-            >Five themes. Two modes. Twenty-eight components. WCAG&nbsp;AAA.</span
+            >Ten themes. Two modes. Twenty-eight components. WCAG&nbsp;AAA.</span
           >
         </p>
 
         <!-- Theme strip — primary feature, above the fold -->
-        <div class="flex items-center justify-center gap-4 sm:gap-5 mb-10">
+        <div class="flex items-center justify-center gap-2 sm:gap-3 mb-10 flex-wrap">
           <button
-            v-for="t in (['hearth', 'abyss', 'hollow', 'keep', 'cove'] as ThemeId[])"
+            v-for="t in [
+              'hearth',
+              'abyss',
+              'cove',
+              'glyph',
+              'ember',
+              'keep',
+              'slate',
+              'linen',
+              'cairn',
+              'grove',
+            ] as ThemeId[]"
             :key="t"
             class="group relative flex flex-col items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring rounded-lg px-2 py-1"
             @click="$emit('select-theme', t)"
@@ -136,10 +147,9 @@ const copyInstall = async () => {
             >pnpm add @amulet-laboratories/hex @amulet-laboratories/hex-origins
             @amulet-laboratories/rig</span
           >
-          <span
-            class="text-text-muted group-hover:text-accent transition-colors text-xs ml-1"
-            >{{ copied ? '✓' : '⎘' }}</span
-          >
+          <span class="text-text-muted group-hover:text-accent transition-colors text-xs ml-1">{{
+            copied ? '✓' : '⎘'
+          }}</span>
         </button>
 
         <!-- CTA buttons -->
@@ -162,9 +172,7 @@ const copyInstall = async () => {
 
     <!-- Bottom bar: scroll hint + keyboard hint -->
     <div class="relative z-10 flex items-center justify-between px-6 sm:px-8 py-5">
-      <div
-        class="flex flex-col items-center gap-2 text-text-muted"
-      >
+      <div class="flex flex-col items-center gap-2 text-text-muted">
         <span class="text-[10px] font-mono uppercase tracking-widest">Scroll</span>
         <div class="w-px h-6 bg-gradient-to-b from-border to-transparent" />
       </div>

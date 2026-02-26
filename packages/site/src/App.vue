@@ -13,7 +13,18 @@ import type { ThemeId } from '@amulet-laboratories/hex'
 const activeTheme = ref<ThemeId>('hearth')
 const activeMode = ref<'dark' | 'light'>('dark')
 
-const themes: ThemeId[] = ['hearth', 'abyss', 'hollow', 'keep', 'cove']
+const themes: ThemeId[] = [
+  'hearth',
+  'abyss',
+  'cove',
+  'glyph',
+  'ember',
+  'keep',
+  'slate',
+  'linen',
+  'cairn',
+  'grove',
+]
 
 const cycleTheme = () => {
   const idx = themes.indexOf(activeTheme.value)

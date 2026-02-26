@@ -26,9 +26,14 @@ type Story = StoryObj<typeof meta>
 const sampleOptions = [
   { value: 'hearth', label: 'Hearth' },
   { value: 'abyss', label: 'Abyss' },
-  { value: 'hollow', label: 'Hollow' },
-  { value: 'keep', label: 'Keep' },
   { value: 'cove', label: 'Cove' },
+  { value: 'glyph', label: 'Glyph' },
+  { value: 'ember', label: 'Ember' },
+  { value: 'keep', label: 'Keep' },
+  { value: 'slate', label: 'Slate' },
+  { value: 'linen', label: 'Linen' },
+  { value: 'cairn', label: 'Cairn' },
+  { value: 'grove', label: 'Grove' },
 ]
 
 export const Default: Story = {

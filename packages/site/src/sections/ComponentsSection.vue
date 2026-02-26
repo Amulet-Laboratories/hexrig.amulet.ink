@@ -45,8 +45,7 @@ const activeTab = ref('overview')
     <div class="max-w-6xl mx-auto space-y-6">
       <!-- Row 1: Buttons -->
       <RigSurface v-reveal elevation="raised" border="subtle" rounded padding="lg">
-        <span
-          class="text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted block mb-8"
+        <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted block mb-8"
           >RigButton</span
         >
         <div class="flex flex-wrap items-center gap-4">
@@ -65,8 +64,7 @@ const activeTab = ref('overview')
       <div v-reveal class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <!-- Cards -->
         <RigSurface elevation="raised" border="subtle" rounded padding="lg">
-          <span
-            class="text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted block mb-8"
+          <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted block mb-8"
             >RigCard</span
           >
           <div class="space-y-4">
@@ -93,9 +91,7 @@ const activeTab = ref('overview')
             <RigCard elevation="prominent" interactive aria-label="Interactive card">
               <div class="p-4">
                 <RigText variant="body" weight="semibold">Interactive</RigText>
-                <RigText variant="caption" color="muted" class="mt-1"
-                  >Hover me. Press me.</RigText
-                >
+                <RigText variant="caption" color="muted" class="mt-1">Hover me. Press me.</RigText>
               </div>
             </RigCard>
           </div>
@@ -103,8 +99,7 @@ const activeTab = ref('overview')
 
         <!-- Input -->
         <RigSurface elevation="raised" border="subtle" rounded padding="lg">
-          <span
-            class="text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted block mb-8"
+          <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted block mb-8"
             >RigInput</span
           >
           <div class="space-y-5">
@@ -114,11 +109,7 @@ const activeTab = ref('overview')
               description="Your public display name."
             />
             <RigInput label="Email" type="email" placeholder="you@example.com" required />
-            <RigInput
-              model-value="invalid"
-              label="Error state"
-              error="This field is required."
-            />
+            <RigInput model-value="invalid" label="Error state" error="This field is required." />
           </div>
         </RigSurface>
       </div>
@@ -127,8 +118,7 @@ const activeTab = ref('overview')
       <div v-reveal class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <!-- Alerts -->
         <RigSurface elevation="raised" border="subtle" rounded padding="lg">
-          <span
-            class="text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted block mb-8"
+          <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted block mb-8"
             >RigAlert</span
           >
           <div class="space-y-3">
@@ -141,8 +131,7 @@ const activeTab = ref('overview')
 
         <!-- Tabs + Badges + Tooltip -->
         <RigSurface elevation="raised" border="subtle" rounded padding="lg">
-          <span
-            class="text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted block mb-8"
+          <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted block mb-8"
             >RigTabs · RigBadge · RigTooltip</span
           >
           <div class="space-y-6">

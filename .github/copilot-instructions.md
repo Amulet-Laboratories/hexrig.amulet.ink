@@ -14,7 +14,7 @@ packages/
 ├── hex/               # @amulet-laboratories/hex — design tokens
 │   ├── src/
 │   │   ├── index.ts           # Barrel: types, themes, utils, runtime helpers
-│   │   ├── themes/            # hearth.ts, abyss.ts, hollow.ts, keep.ts, cove.ts
+│   │   ├── themes/            # hearth.ts, abyss.ts, cove.ts, glyph.ts, ember.ts, keep.ts, slate.ts, linen.ts, cairn.ts, grove.ts
 │   │   ├── tokens/types.ts    # Full token type system (208 lines)
 │   │   ├── utils/             # css.ts, validate.ts, vscode.ts
 │   │   ├── build/             # generate-css.ts, generate-vscode-themes.ts
@@ -39,8 +39,8 @@ packages/
 
 ### Hex — Design Tokens
 
-- 5 themes: `hearth`, `abyss`, `hollow`, `keep`, `cove`
-- Each theme has `dark` + `light` mode (10 JSON source files, 10 CSS blocks)
+- 10 themes: `hearth`, `abyss`, `cove`, `glyph`, `ember`, `keep`, `slate`, `linen`, `cairn`, `grove`
+- Each theme has `dark` + `light` mode (20 JSON source files, 20 CSS blocks)
 - Applied via `data-theme="hearth"` and `data-mode="dark"` attributes
 - Token generation: TypeScript → CSS custom properties via `tsup` + `tsx`
 - Also generates VS Code themes from the same token source
@@ -56,7 +56,7 @@ packages/
 | `focus`      | ring, outline                                     |
 
 **Type system** (`tokens/types.ts`):
-- `ThemeId`: `'hearth' | 'abyss' | 'hollow' | 'keep' | 'cove'`
+- `ThemeId`: `'hearth' | 'abyss' | 'cove' | 'glyph' | 'ember' | 'keep' | 'slate' | 'linen' | 'cairn' | 'grove'`
 - `ModeId`: `'dark' | 'light'`
 - `HexTheme`: id + name + narrative + motion + fonts + dark + light
 - `HexModeTokens`: surfaces + text + borders + accents + status + focus + syntax + terminal
@@ -136,7 +136,7 @@ Usage: `bg-surface-base`, `text-text-primary`, `border-border-subtle`, `duration
 Root-level config at `.storybook/`:
 - Framework: `@storybook/vue3-vite` on port 6006
 - Stories from `packages/rig/src/**/*.stories.ts`
-- Theme/scheme toolbar selectors (5 themes × 2 modes)
+- Theme/scheme toolbar selectors (10 themes × 2 modes)
 - Default: `hearth` theme, `dark` mode
 - 4 meta-stories: EditorPreview, KitchenSink, Palette, Typography
 
