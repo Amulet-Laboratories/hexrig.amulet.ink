@@ -22,6 +22,16 @@ export const amuletPreset: Config = {
   theme: {
     extend: {
       colors: {
+        /* ── Brand palette ─────────────────────────────────────── */
+        'amulet-dark': '#0f0d0a',
+        'amulet-darker': '#07050a',
+        'amulet-bronze': '#c9956d',
+        'amulet-bronze-light': '#d9a677',
+        'amulet-cream': '#f5f1ed',
+        'amulet-grey': '#2a2620',
+        'amulet-grey-light': '#3d3935',
+
+        /* ── Semantic tokens (CSS custom properties) ───────────── */
         surface: {
           base: 'var(--surface-base)',
           raised: 'var(--surface-raised)',
