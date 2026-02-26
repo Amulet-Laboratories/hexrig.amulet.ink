@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { ThemeId } from '@amulet-laboratories/hex'
+import { ref } from 'vue'
 
 defineProps<{
   theme: ThemeId
@@ -7,32 +8,23 @@ defineProps<{
 }>()
 
 defineEmits<{
-  'cycle-theme': []
   'toggle-mode': []
   'select-theme': [theme: ThemeId]
 }>()
 
-const themeNames: Record<ThemeId, string> = {
-  hearth: 'Hearth',
-  abyss: 'Abyss',
-  hollow: 'Hollow',
-  keep: 'Keep',
-  cove: 'Cove',
-}
+const copied = ref(false)
 
-const themeWords: Record<ThemeId, string> = {
-  hearth: 'Creation',
-  abyss: 'Nothingness',
-  hollow: 'Growth',
-  keep: 'Construction',
-  cove: 'Shelter',
+const copyInstall = async () => {
+  await navigator.clipboard.writeText(
+    'pnpm add @amulet-laboratories/hex @amulet-laboratories/hex-origins @amulet-laboratories/rig',
+  )
+  copied.value = true
+  setTimeout(() => (copied.value = false), 2000)
 }
 </script>
 
 <template>
-  <section
-    class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6"
-  >
+  <section class="relative min-h-screen flex flex-col overflow-hidden">
     <!-- Grain overlay -->
     <div
       class="pointer-events-none absolute inset-0 opacity-[0.03]"
@@ -49,11 +41,11 @@ const themeWords: Record<ThemeId, string> = {
     />
 
     <!-- Nav -->
-    <nav class="absolute top-0 left-0 right-0 flex items-center justify-between px-8 py-6">
+    <nav class="relative z-10 flex items-center justify-between px-6 sm:px-8 py-5">
       <div class="font-display text-lg tracking-wide text-text-primary">
         <span class="opacity-60">Amulet</span>
       </div>
-      <div class="flex items-center gap-4">
+      <div class="flex items-center gap-3">
         <button
           class="px-3 py-1.5 text-xs font-mono text-text-muted border border-border-subtle rounded hover:border-border-strong hover:text-text-secondary transition-colors duration-fast"
           @click="$emit('toggle-mode')"
@@ -78,93 +70,110 @@ const themeWords: Record<ThemeId, string> = {
     </nav>
 
     <!-- Center content -->
-    <div class="relative text-center max-w-4xl">
-      <!-- Mark -->
-      <div class="mb-10 flex items-center justify-center gap-3">
-        <div class="h-px w-12 bg-border" />
-        <span class="text-xs font-mono uppercase tracking-[0.3em] text-text-muted">Hex + Rig</span>
-        <div class="h-px w-12 bg-border" />
-      </div>
+    <div class="relative flex-1 flex flex-col items-center justify-center px-6 text-center">
+      <div class="max-w-4xl w-full">
+        <!-- Eyebrow -->
+        <div class="mb-8 flex items-center justify-center gap-3">
+          <div class="h-px w-10 bg-border" />
+          <span class="text-[11px] font-mono uppercase tracking-[0.3em] text-text-muted"
+            >Design System</span
+          >
+          <div class="h-px w-10 bg-border" />
+        </div>
 
-      <!-- Title -->
-      <h1
-        class="font-display text-7xl sm:text-8xl lg:text-9xl leading-[0.9] tracking-tight text-text-primary mb-8"
-      >
-        A design<br />system that<br />
-        <button
-          class="text-accent cursor-pointer hover:opacity-80 transition-opacity duration-fast focus:outline-none"
-          :title="`Current theme: ${themeNames[theme]}. Press to cycle.`"
-          @click="$emit('cycle-theme')"
+        <!-- Title -->
+        <h1
+          class="font-display text-6xl sm:text-7xl lg:text-8xl xl:text-9xl leading-[0.9] tracking-tight text-text-primary mb-6"
         >
-          {{
-            themeWords[theme] === 'Nothingness'
-              ? 'feels'
-              : themeWords[theme] === 'Growth'
-                ? 'grows'
-                : themeWords[theme] === 'Construction'
-                  ? 'builds'
-                  : themeWords[theme] === 'Shelter'
-                    ? 'shelters'
-                    : 'creates'
-          }}
-        </button>
-      </h1>
+          Hex + Rig
+        </h1>
 
-      <!-- Subtitle — minimal -->
-      <p class="text-text-muted text-lg sm:text-xl max-w-xl mx-auto font-body leading-relaxed">
-        Five themes. Two modes. One system.<br />
-        <span class="text-text-secondary">Vue 3 components, design tokens, WCAG AAA.</span>
-      </p>
+        <!-- Subhead -->
+        <p
+          class="text-text-secondary text-lg sm:text-xl max-w-2xl mx-auto font-body leading-relaxed mb-10"
+        >
+          Design tokens and Vue&nbsp;3 components for interfaces that feel
+          <em class="text-accent not-italic font-medium">considered</em>.<br />
+          <span class="text-text-muted"
+            >Five themes. Two modes. Twenty-eight components. WCAG&nbsp;AAA.</span
+          >
+        </p>
 
-      <!-- CTA area — install command -->
-      <div class="mt-14 flex items-center justify-center gap-4">
-        <div
-          class="inline-flex items-center gap-3 px-5 py-3 bg-surface-raised border border-border-subtle rounded font-mono text-sm text-text-secondary select-all"
+        <!-- Theme strip — primary feature, above the fold -->
+        <div class="flex items-center justify-center gap-4 sm:gap-5 mb-10">
+          <button
+            v-for="t in (['hearth', 'abyss', 'hollow', 'keep', 'cove'] as ThemeId[])"
+            :key="t"
+            class="group relative flex flex-col items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring rounded-lg px-2 py-1"
+            @click="$emit('select-theme', t)"
+          >
+            <div
+              class="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 transition-all duration-normal"
+              :class="
+                t === theme
+                  ? 'border-accent scale-110 shadow-md'
+                  : 'border-border-subtle hover:border-border-strong'
+              "
+              :data-theme="t"
+              data-mode="dark"
+              style="background-color: var(--accent-primary)"
+            />
+            <span
+              class="text-[10px] font-mono uppercase tracking-wider transition-all duration-fast"
+              :class="t === theme ? 'text-accent' : 'text-text-muted'"
+              >{{ t }}</span
+            >
+          </button>
+        </div>
+
+        <!-- Install command -->
+        <button
+          class="group inline-flex items-center gap-3 px-5 py-3 bg-surface-raised border border-border-subtle rounded-lg font-mono text-xs sm:text-sm text-text-secondary hover:border-border-strong transition-colors duration-fast cursor-pointer"
+          @click="copyInstall"
         >
           <span class="text-text-muted">$</span>
-          <span>pnpm add @amulet-laboratories/hex @amulet-laboratories/hex-origins @amulet-laboratories/rig</span>
-        </div>
-      </div>
-
-      <!-- Active theme indicator -->
-      <div class="mt-16 flex items-center justify-center gap-6">
-        <button
-          v-for="t in ['hearth', 'abyss', 'hollow', 'keep', 'cove'] as ThemeId[]"
-          :key="t"
-          class="group relative flex flex-col items-center gap-2 focus:outline-none"
-          @click="$emit('select-theme', t)"
-        >
-          <div
-            class="w-2 h-2 rounded-full transition-all duration-normal"
-            :class="t === theme ? 'bg-accent scale-125' : 'bg-border-strong hover:bg-text-muted'"
-          />
+          <span class="select-all"
+            >pnpm add @amulet-laboratories/hex @amulet-laboratories/hex-origins
+            @amulet-laboratories/rig</span
+          >
           <span
-            class="text-[10px] font-mono uppercase tracking-wider transition-colors duration-fast"
-            :class="
-              t === theme ? 'text-accent' : 'text-text-muted opacity-0 group-hover:opacity-100'
-            "
-            >{{ t }}</span
+            class="text-text-muted group-hover:text-accent transition-colors text-xs ml-1"
+            >{{ copied ? '✓' : '⎘' }}</span
           >
         </button>
+
+        <!-- CTA buttons -->
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+          <a
+            href="/storybook/"
+            class="px-5 py-2.5 bg-accent text-text-on-accent text-sm font-sans font-semibold rounded-lg hover:bg-accent-hover transition-colors duration-fast"
+          >
+            Browse Components
+          </a>
+          <a
+            href="/storybook/?path=/docs/overview-introduction--docs"
+            class="px-5 py-2.5 border border-border-subtle text-text-secondary text-sm font-sans font-semibold rounded-lg hover:border-border-strong hover:text-text-primary transition-colors duration-fast"
+          >
+            Read the Docs
+          </a>
+        </div>
       </div>
     </div>
 
-    <!-- Scroll hint -->
-    <div
-      class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-text-muted"
-    >
-      <span class="text-[10px] font-mono uppercase tracking-widest">Scroll</span>
-      <div class="w-px h-8 bg-gradient-to-b from-border to-transparent" />
-    </div>
-
-    <!-- Keyboard hint -->
-    <div
-      class="absolute bottom-8 right-8 hidden lg:flex items-center gap-2 text-text-muted text-[10px] font-mono"
-    >
-      <kbd class="px-1.5 py-0.5 border border-border-subtle rounded text-text-muted">T</kbd>
-      <span>theme</span>
-      <kbd class="px-1.5 py-0.5 border border-border-subtle rounded text-text-muted ml-2">M</kbd>
-      <span>mode</span>
+    <!-- Bottom bar: scroll hint + keyboard hint -->
+    <div class="relative z-10 flex items-center justify-between px-6 sm:px-8 py-5">
+      <div
+        class="flex flex-col items-center gap-2 text-text-muted"
+      >
+        <span class="text-[10px] font-mono uppercase tracking-widest">Scroll</span>
+        <div class="w-px h-6 bg-gradient-to-b from-border to-transparent" />
+      </div>
+      <div class="hidden lg:flex items-center gap-2 text-text-muted text-[10px] font-mono">
+        <kbd class="px-1.5 py-0.5 border border-border-subtle rounded">T</kbd>
+        <span>theme</span>
+        <kbd class="px-1.5 py-0.5 border border-border-subtle rounded ml-2">M</kbd>
+        <span>mode</span>
+      </div>
     </div>
   </section>
 </template>

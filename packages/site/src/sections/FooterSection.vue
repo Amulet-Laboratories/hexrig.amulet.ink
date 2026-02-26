@@ -13,7 +13,8 @@ const year = new Date().getFullYear()
             <span class="font-display text-lg text-text-primary">Amulet</span>
           </div>
           <p class="text-sm text-text-muted font-body leading-relaxed max-w-xs">
-            Hex + Rig. Design tokens and Vue 3 components for interfaces that feel considered.
+            The design system with a point of view. Design tokens and Vue 3 components for
+            interfaces that feel considered.
           </p>
         </div>
 

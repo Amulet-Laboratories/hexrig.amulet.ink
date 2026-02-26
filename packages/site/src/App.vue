@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 import HeroSection from './sections/HeroSection.vue'
+import ThesisSection from './sections/ThesisSection.vue'
 import ThemesSection from './sections/ThemesSection.vue'
 import ComponentsSection from './sections/ComponentsSection.vue'
 import TokensSection from './sections/TokensSection.vue'
+import CredentialsSection from './sections/CredentialsSection.vue'
 import FooterSection from './sections/FooterSection.vue'
 
 import type { ThemeId } from '@amulet-laboratories/hex'
@@ -42,13 +44,14 @@ onUnmounted(() => window.removeEventListener('keydown', onKeydown))
     <HeroSection
       :theme="activeTheme"
       :mode="activeMode"
-      @cycle-theme="cycleTheme"
       @toggle-mode="toggleMode"
       @select-theme="(t: ThemeId) => (activeTheme = t)"
     />
+    <ThesisSection />
     <ThemesSection :active-theme="activeTheme" @select-theme="(t: ThemeId) => (activeTheme = t)" />
     <ComponentsSection :active-theme="activeTheme" />
     <TokensSection :active-theme="activeTheme" />
+    <CredentialsSection />
     <FooterSection />
   </div>
 </template>
