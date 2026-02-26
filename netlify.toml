@@ -22,6 +22,8 @@
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=(), autoplay=(), fullscreen=(self)"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
 
 # Storybook uses iframes to render stories — allow same-origin framing
 [[headers]]

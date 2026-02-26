@@ -58,7 +58,7 @@
     "grove"
   ],
   "license": "MIT",
-  "sideEffects": false,
+  "sideEffects": ["**/*.css"],
   "repository": {
     "type": "git",
     "url": "https://github.com/Amulet-Laboratories/hexrig.amulet.ink"

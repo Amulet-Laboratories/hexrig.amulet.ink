@@ -120,7 +120,7 @@ pnpm install
 pnpm build
 ```
 
-Requires Node ≥ 20 and pnpm ≥ 9.
+Requires Node ≥ 22 and pnpm ≥ 10.
 
 ## Development
 
@@ -281,7 +281,7 @@ rounded-theme          → var(--radius-theme, 8px)
 - **185 tests** passing across 12 test suites (Vitest + jsdom)
 - **Full type safety** — `vue-tsc --noEmit` and `tsc --noEmit` clean, rolled-up `.d.ts` declarations
 - **SSR-safe** — runtime helpers and composables guard against missing `document`/`window`
-- **Tree-shakable** — `sideEffects: false` (hex), `sideEffects: ["**/*.css"]` (rig)
+- **Tree-shakable** — `sideEffects: false` (hex), `sideEffects: ["**/*.css"]` (hex-origins, rig)
 - **Build validation** — build scripts fail fast with `process.exit(1)` on errors
 - **CSS injection prevention** — all generated CSS values sanitized (`url()`, `expression()`, newlines stripped)
 - **CI/CD** — GitHub Actions workflow: lint → typecheck → test → build (Node 20 + 22)
