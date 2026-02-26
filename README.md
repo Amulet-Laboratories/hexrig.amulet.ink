@@ -235,6 +235,16 @@ Publish directory: `packages/site/dist`
 
 See [docs/](docs/) for the living design prompts, manifesto, and reference library.
 
+## CI/CD
+
+Continuous integration runs via the [org-wide reusable workflow](https://github.com/Amulet-Laboratories/.github/blob/main/.github/workflows/ci.yml) on every push and pull request. Checks: type-check (`--if-present` for monorepo packages), lint, format, test, build (`pnpm -r build`), audit (`--audit-level=critical`). Deploys the documentation site automatically to Netlify on push to `main`.
+
+### GitHub Packages
+
+This repo publishes `@amulet-laboratories/hex` to [GitHub Packages](https://github.com/orgs/Amulet-Laboratories/packages). The package is public. Publishing is done manually via `pnpm publish` from `packages/hex/`.
+
+See the [GitHub Packages reference](https://github.com/Amulet-Laboratories/library.amulet.ink/blob/main/AmuletLabsVault/01-Operations/github-packages.md) for the full auth architecture.
+
 ## License
 
 [MIT](LICENSE) — Amulet Laboratories
