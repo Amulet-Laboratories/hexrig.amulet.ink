@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import RigStack from './RigStack.vue'
 
 const meta = {
-  title: 'Layout/Stack',
+  title: 'Components/Stack',
   component: RigStack,
   tags: ['autodocs'],
   argTypes: {

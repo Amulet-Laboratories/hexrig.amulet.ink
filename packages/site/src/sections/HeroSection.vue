@@ -122,7 +122,7 @@ const themeWords: Record<ThemeId, string> = {
           class="inline-flex items-center gap-3 px-5 py-3 bg-surface-raised border border-border-subtle rounded font-mono text-sm text-text-secondary select-all"
         >
           <span class="text-text-muted">$</span>
-          <span>pnpm add @amulet-laboratories/hex @amulet-laboratories/rig</span>
+          <span>pnpm add @amulet-laboratories/hex @amulet-laboratories/hex-origins @amulet-laboratories/rig</span>
         </div>
       </div>
 

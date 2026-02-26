@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import RigAvatar from './RigAvatar.vue'
 
 const meta = {
-  title: 'Navigation/Avatar',
+  title: 'Components/Avatar',
   component: RigAvatar,
   tags: ['autodocs'],
   argTypes: {

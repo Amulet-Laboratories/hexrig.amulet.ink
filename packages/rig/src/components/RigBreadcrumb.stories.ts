@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import RigBreadcrumb from './RigBreadcrumb.vue'
 
 const meta = {
-  title: 'Navigation/Breadcrumb',
+  title: 'Components/Breadcrumb',
   component: RigBreadcrumb,
   tags: ['autodocs'],
   argTypes: {

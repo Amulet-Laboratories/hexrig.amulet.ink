@@ -25,7 +25,7 @@ const year = new Date().getFullYear()
           <ul class="space-y-2">
             <li>
               <a
-                href="https://www.npmjs.com/package/@amulet-laboratories/hex"
+                href="https://github.com/orgs/Amulet-Laboratories/packages?repo_name=hexrig.amulet.ink"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="text-sm text-text-secondary hover:text-text-link transition-colors font-mono"
@@ -35,7 +35,17 @@ const year = new Date().getFullYear()
             </li>
             <li>
               <a
-                href="https://www.npmjs.com/package/@amulet-laboratories/rig"
+                href="https://github.com/orgs/Amulet-Laboratories/packages?repo_name=hexrig.amulet.ink"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-sm text-text-secondary hover:text-text-link transition-colors font-mono"
+              >
+                @amulet-laboratories/hex-origins
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://github.com/orgs/Amulet-Laboratories/packages?repo_name=hexrig.amulet.ink"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="text-sm text-text-secondary hover:text-text-link transition-colors font-mono"

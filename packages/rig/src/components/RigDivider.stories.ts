@@ -3,7 +3,7 @@ import RigDivider from './RigDivider.vue'
 import RigText from './RigText.vue'
 
 const meta = {
-  title: 'Primitives/Divider',
+  title: 'Components/Divider',
   component: RigDivider,
   tags: ['autodocs'],
   argTypes: {

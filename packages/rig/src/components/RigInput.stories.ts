@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import RigInput from './RigInput.vue'
 
 const meta = {
-  title: 'Primitives/Input',
+  title: 'Components/Input',
   component: RigInput,
   tags: ['autodocs'],
   argTypes: {

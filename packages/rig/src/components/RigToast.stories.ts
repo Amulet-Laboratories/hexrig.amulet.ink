@@ -4,7 +4,7 @@ import RigButton from './RigButton.vue'
 import { useToast } from '../composables/useToast'
 
 const meta = {
-  title: 'Patterns/Toast',
+  title: 'Components/Toast',
   component: RigToast,
   tags: ['autodocs'],
 } satisfies Meta<typeof RigToast>

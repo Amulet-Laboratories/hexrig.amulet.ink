@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import RigAlert from './RigAlert.vue'
 
 const meta = {
-  title: 'Composites/Alert',
+  title: 'Components/Alert',
   component: RigAlert,
   tags: ['autodocs'],
   argTypes: {

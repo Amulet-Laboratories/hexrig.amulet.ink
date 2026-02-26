@@ -3,7 +3,7 @@ import RigSurface from './RigSurface.vue'
 import RigText from './RigText.vue'
 
 const meta = {
-  title: 'Primitives/Surface',
+  title: 'Components/Surface',
   component: RigSurface,
   tags: ['autodocs'],
   argTypes: {

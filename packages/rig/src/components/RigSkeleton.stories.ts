@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import RigSkeleton from './RigSkeleton.vue'
 
 const meta = {
-  title: 'Feedback/Skeleton',
+  title: 'Components/Skeleton',
   component: RigSkeleton,
   tags: ['autodocs'],
   argTypes: {

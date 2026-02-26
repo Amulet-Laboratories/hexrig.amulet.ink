@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import RigBadge from './RigBadge.vue'
 
 const meta = {
-  title: 'Composites/Badge',
+  title: 'Components/Badge',
   component: RigBadge,
   tags: ['autodocs'],
   argTypes: {

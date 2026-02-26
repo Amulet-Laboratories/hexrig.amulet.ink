@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import RigProgress from './RigProgress.vue'
 
 const meta = {
-  title: 'Feedback/Progress',
+  title: 'Components/Progress',
   component: RigProgress,
   tags: ['autodocs'],
   argTypes: {

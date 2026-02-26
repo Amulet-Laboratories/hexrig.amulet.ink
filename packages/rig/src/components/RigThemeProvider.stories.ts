@@ -5,7 +5,7 @@ import RigButton from './RigButton.vue'
 import RigSurface from './RigSurface.vue'
 
 const meta = {
-  title: 'Primitives/ThemeProvider',
+  title: 'Components/ThemeProvider',
   component: RigThemeProvider,
   tags: ['autodocs'],
   argTypes: {

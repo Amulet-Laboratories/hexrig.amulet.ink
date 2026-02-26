@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import RigTabs from './RigTabs.vue'
 
 const meta = {
-  title: 'Navigation/Tabs',
+  title: 'Components/Tabs',
   component: RigTabs,
   tags: ['autodocs'],
   argTypes: {

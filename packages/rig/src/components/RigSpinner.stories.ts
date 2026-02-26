@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import RigSpinner from './RigSpinner.vue'
 
 const meta = {
-  title: 'Feedback/Spinner',
+  title: 'Components/Spinner',
   component: RigSpinner,
   tags: ['autodocs'],
   argTypes: {

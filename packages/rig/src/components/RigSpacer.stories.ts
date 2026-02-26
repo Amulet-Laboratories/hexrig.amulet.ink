@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import RigSpacer from './RigSpacer.vue'
 
 const meta = {
-  title: 'Layout/Spacer',
+  title: 'Components/Spacer',
   component: RigSpacer,
   tags: ['autodocs'],
   argTypes: {

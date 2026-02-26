@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import RigSelect from './RigSelect.vue'
 
 const meta = {
-  title: 'Form/Select',
+  title: 'Components/Select',
   component: RigSelect,
   tags: ['autodocs'],
   argTypes: {

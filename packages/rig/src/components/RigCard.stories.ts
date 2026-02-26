@@ -5,7 +5,7 @@ import RigButton from './RigButton.vue'
 import RigBadge from './RigBadge.vue'
 
 const meta = {
-  title: 'Composites/Card',
+  title: 'Components/Card',
   component: RigCard,
   tags: ['autodocs'],
   argTypes: {

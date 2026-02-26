@@ -70,16 +70,17 @@ const motionTokens = [
   <section class="relative py-32 px-6">
     <div class="max-w-6xl mx-auto">
       <!-- Section header -->
-      <div class="flex items-center gap-3 mb-6">
+      <div v-reveal class="flex items-center gap-3 mb-6">
         <div class="h-px w-8 bg-accent" />
         <span class="text-xs font-mono uppercase tracking-[0.25em] text-accent">Tokens</span>
       </div>
       <h2
+        v-reveal
         class="font-display text-4xl sm:text-5xl lg:text-6xl text-text-primary leading-tight mb-4"
       >
         Every color,<br />named.
       </h2>
-      <p class="text-text-muted font-body text-lg mb-20 max-w-xl">
+      <p v-reveal class="text-text-muted font-body text-lg mb-20 max-w-xl">
         Switch themes above. Watch every token respond.
       </p>
 

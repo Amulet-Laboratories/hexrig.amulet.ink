@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import RigTag from './RigTag.vue'
 
 const meta = {
-  title: 'Form/Tag',
+  title: 'Components/Tag',
   component: RigTag,
   tags: ['autodocs'],
   argTypes: {

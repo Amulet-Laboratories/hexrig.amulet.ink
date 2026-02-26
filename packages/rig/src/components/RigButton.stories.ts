@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import RigButton from './RigButton.vue'
 
 const meta = {
-  title: 'Primitives/Button',
+  title: 'Components/Button',
   component: RigButton,
   tags: ['autodocs'],
   argTypes: {

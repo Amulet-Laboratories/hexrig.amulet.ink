@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import RigTooltip from './RigTooltip.vue'
 
 const meta = {
-  title: 'Feedback/Tooltip',
+  title: 'Components/Tooltip',
   component: RigTooltip,
   tags: ['autodocs'],
   argTypes: {

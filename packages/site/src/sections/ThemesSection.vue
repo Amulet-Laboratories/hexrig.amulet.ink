@@ -52,17 +52,17 @@ const themes: { id: ThemeId; name: string; word: string; narrative: string; acce
   <section class="relative py-32 px-6">
     <!-- Section header -->
     <div class="max-w-6xl mx-auto mb-20">
-      <div class="flex items-center gap-3 mb-6">
+      <div v-reveal class="flex items-center gap-3 mb-6">
         <div class="h-px w-8 bg-accent" />
         <span class="text-xs font-mono uppercase tracking-[0.25em] text-accent">Five Themes</span>
       </div>
-      <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl text-text-primary leading-tight">
+      <h2 v-reveal class="font-display text-4xl sm:text-5xl lg:text-6xl text-text-primary leading-tight">
         One journey.<br />Five places.
       </h2>
     </div>
 
     <!-- Theme cards -->
-    <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-5 gap-3">
+    <div v-reveal class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-5 gap-3">
       <button
         v-for="t in themes"
         :key="t.id"

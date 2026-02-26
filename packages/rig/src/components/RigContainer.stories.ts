@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import RigContainer from './RigContainer.vue'
 
 const meta = {
-  title: 'Layout/Container',
+  title: 'Components/Container',
   component: RigContainer,
   tags: ['autodocs'],
   argTypes: {

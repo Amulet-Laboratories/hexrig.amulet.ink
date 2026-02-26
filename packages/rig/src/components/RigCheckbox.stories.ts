@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import RigCheckbox from './RigCheckbox.vue'
 
 const meta = {
-  title: 'Form/Checkbox',
+  title: 'Components/Checkbox',
   component: RigCheckbox,
   tags: ['autodocs'],
   argTypes: {

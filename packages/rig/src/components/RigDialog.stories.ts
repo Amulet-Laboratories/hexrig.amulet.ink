@@ -6,7 +6,7 @@ import RigText from './RigText.vue'
 import RigInput from './RigInput.vue'
 
 const meta = {
-  title: 'Composites/Dialog',
+  title: 'Components/Dialog',
   component: RigDialog,
   tags: ['autodocs'],
   argTypes: {

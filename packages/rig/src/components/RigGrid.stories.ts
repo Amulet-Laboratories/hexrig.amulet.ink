@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import RigGrid from './RigGrid.vue'
 
 const meta = {
-  title: 'Layout/Grid',
+  title: 'Components/Grid',
   component: RigGrid,
   tags: ['autodocs'],
   argTypes: {

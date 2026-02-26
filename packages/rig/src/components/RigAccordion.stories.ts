@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import RigAccordion from './RigAccordion.vue'
 
 const meta = {
-  title: 'Navigation/Accordion',
+  title: 'Components/Accordion',
   component: RigAccordion,
   tags: ['autodocs'],
   argTypes: {
