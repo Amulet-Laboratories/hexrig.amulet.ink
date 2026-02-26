@@ -5,6 +5,14 @@ const meta = {
   title: 'Components/Container',
   component: RigContainer,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Responsive max-width content wrapper. Four size presets (sm, md, lg, full), auto-centering, semantic element via `as` prop, and consistent horizontal padding.',
+      },
+    },
+  },
   argTypes: {
     size: {
       control: 'select',

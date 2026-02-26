@@ -5,6 +5,14 @@ const meta = {
   title: 'Components/Text',
   component: RigText,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Typographic primitive for all text rendering. Seven variants (display through mono), ten semantic colors, five weights, alignment control, truncation, and polymorphic semantic element.',
+      },
+    },
+  },
   argTypes: {
     variant: {
       control: 'select',

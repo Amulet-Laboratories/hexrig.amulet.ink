@@ -6,6 +6,14 @@ const meta = {
   title: 'Components/Surface',
   component: RigSurface,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Semantic background primitive. Four elevation levels (sunken, base, raised, overlay), configurable border and padding, rounded corners, and polymorphic HTML element via `as`.',
+      },
+    },
+  },
   argTypes: {
     elevation: {
       control: 'select',

@@ -5,6 +5,14 @@ const meta = {
   title: 'Components/Badge',
   component: RigBadge,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Small status descriptor. Three visual variants (solid, soft, outline), six semantic tones, optional dot indicator, and removable mode.',
+      },
+    },
+  },
   argTypes: {
     variant: {
       control: 'select',

@@ -5,6 +5,14 @@ const meta = {
   title: 'Components/Accordion',
   component: RigAccordion,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'A vertically stacked set of collapsible sections. Supports single or multiple open panels, keyboard navigation, and ARIA-compliant disclosure pattern.',
+      },
+    },
+  },
   argTypes: {
     multiple: { control: 'boolean' },
   },

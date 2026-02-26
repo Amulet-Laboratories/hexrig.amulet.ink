@@ -5,6 +5,14 @@ const meta = {
   title: 'Components/Icon',
   component: RigIcon,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Renders any [Iconify](https://iconify.design/) icon by name. Five sizes (xs–xl), semantic color options, and decorative mode (`aria-hidden`) for non-informational icons.',
+      },
+    },
+  },
   argTypes: {
     name: {
       control: 'text',

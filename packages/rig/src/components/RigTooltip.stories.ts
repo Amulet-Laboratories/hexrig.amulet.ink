@@ -5,6 +5,14 @@ const meta = {
   title: 'Components/Tooltip',
   component: RigTooltip,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Contextual information popup on hover or focus. Four placements (top, bottom, left, right), configurable delay, ARIA tooltip role, and disabled state.',
+      },
+    },
+  },
   argTypes: {
     content: { control: 'text' },
     placement: {

@@ -5,6 +5,14 @@ const meta = {
   title: 'Components/Stack',
   component: RigStack,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Flexbox layout primitive for vertical or horizontal stacking. Token-based gap spacing, five alignment options, six justification modes, and optional wrapping.',
+      },
+    },
+  },
   argTypes: {
     direction: {
       control: 'select',

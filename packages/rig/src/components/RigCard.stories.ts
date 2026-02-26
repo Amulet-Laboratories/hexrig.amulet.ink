@@ -8,6 +8,14 @@ const meta = {
   title: 'Components/Card',
   component: RigCard,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Contained content surface with header, body, and footer slots. Three elevation levels (flat, raised, prominent), interactive hover mode, and polymorphic root element.',
+      },
+    },
+  },
   argTypes: {
     elevation: {
       control: 'select',

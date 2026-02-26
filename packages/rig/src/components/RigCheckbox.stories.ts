@@ -6,6 +6,14 @@ const meta = {
   title: 'Components/Checkbox',
   component: RigCheckbox,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Binary input with label and optional description. Full keyboard support, ARIA checked state, and token-driven focus ring.',
+      },
+    },
+  },
   argTypes: {
     disabled: { control: 'boolean' },
   },

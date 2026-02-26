@@ -6,6 +6,14 @@ const meta = {
   title: 'Components/Select',
   component: RigSelect,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Dropdown selection input with label, description, and error support. Typed options array, placeholder, disabled and required states, and full ARIA labeling.',
+      },
+    },
+  },
   argTypes: {
     disabled: { control: 'boolean' },
     required: { control: 'boolean' },

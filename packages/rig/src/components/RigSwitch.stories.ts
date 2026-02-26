@@ -6,6 +6,14 @@ const meta = {
   title: 'Components/Switch',
   component: RigSwitch,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Toggle between on and off states. Integrated label and optional description, keyboard activation, ARIA switch role, and smooth transition animation.',
+      },
+    },
+  },
   argTypes: {
     disabled: { control: 'boolean' },
   },

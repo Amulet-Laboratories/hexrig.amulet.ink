@@ -5,6 +5,14 @@ const meta = {
   title: 'Components/Tabs',
   component: RigTabs,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Tabbed content switching with underline or pill variants. Three sizes, ARIA tablist/tab/tabpanel roles, keyboard arrow-key navigation, and dynamic slot-based panels.',
+      },
+    },
+  },
   argTypes: {
     variant: {
       control: 'select',

@@ -5,6 +5,14 @@ const meta = {
   title: 'Components/Spinner',
   component: RigSpinner,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Indeterminate loading indicator. Five sizes (xs–xl), three tone options, accessible label, and animation that respects `prefers-reduced-motion`.',
+      },
+    },
+  },
   argTypes: {
     size: {
       control: 'select',

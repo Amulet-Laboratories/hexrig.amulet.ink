@@ -5,6 +5,14 @@ const meta = {
   title: 'Components/Spacer',
   component: RigSpacer,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Empty spacing primitive using token-based sizing. Seven scale steps (xs–3xl), vertical or horizontal axis, and `aria-hidden` for screen readers.',
+      },
+    },
+  },
   argTypes: {
     size: {
       control: 'select',

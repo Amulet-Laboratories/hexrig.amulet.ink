@@ -5,6 +5,14 @@ const meta = {
   title: 'Components/Alert',
   component: RigAlert,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Contextual feedback messages for user actions. Four semantic tones (success, warning, error, info), optional title, dismiss button, and icon slot.',
+      },
+    },
+  },
   argTypes: {
     tone: {
       control: 'select',

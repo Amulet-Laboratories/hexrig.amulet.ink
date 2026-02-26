@@ -5,6 +5,14 @@ const meta = {
   title: 'Components/Grid',
   component: RigGrid,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'CSS Grid layout primitive. Configurable column count (1–6), token-based gap spacing, and alignment control. Responsive via Tailwind breakpoint classes.',
+      },
+    },
+  },
   argTypes: {
     cols: {
       control: 'select',

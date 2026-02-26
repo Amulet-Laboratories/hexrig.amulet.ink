@@ -5,6 +5,14 @@ const meta = {
   title: 'Components/Breadcrumb',
   component: RigBreadcrumb,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Navigation trail showing the current page location within a hierarchy. Custom separator, link styling via tokens, and ARIA breadcrumb landmark.',
+      },
+    },
+  },
   argTypes: {
     separator: { control: 'text' },
   },

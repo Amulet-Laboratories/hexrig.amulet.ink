@@ -6,6 +6,14 @@ const meta = {
   title: 'Components/Divider',
   component: RigDivider,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Visual separator for content sections. Horizontal or vertical orientation, three border strengths (subtle, default, strong), and optional inline label slot.',
+      },
+    },
+  },
   argTypes: {
     orientation: {
       control: 'select',

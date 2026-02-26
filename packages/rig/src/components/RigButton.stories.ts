@@ -5,6 +5,14 @@ const meta = {
   title: 'Components/Button',
   component: RigButton,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Primary interactive element. Four variants (solid, outline, ghost, link), three tones (accent, neutral, danger), three sizes, loading state, and polymorphic `as` prop.',
+      },
+    },
+  },
   argTypes: {
     variant: {
       control: 'select',

@@ -5,6 +5,14 @@ const meta = {
   title: 'Components/Tag',
   component: RigTag,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Compact label for categorisation or selection. Three variants (solid, soft, outline), three sizes, removable mode with dismiss button, and disabled state.',
+      },
+    },
+  },
   argTypes: {
     variant: {
       control: 'select',

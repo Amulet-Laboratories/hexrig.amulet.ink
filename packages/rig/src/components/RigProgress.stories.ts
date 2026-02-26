@@ -5,6 +5,14 @@ const meta = {
   title: 'Components/Progress',
   component: RigProgress,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Determinate or indeterminate progress indicator. Three sizes, five tones, ARIA progressbar role, and optional label/value display.',
+      },
+    },
+  },
   argTypes: {
     value: { control: { type: 'range', min: 0, max: 100 } },
     max: { control: 'number' },

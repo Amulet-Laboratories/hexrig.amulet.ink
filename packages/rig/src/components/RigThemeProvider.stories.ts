@@ -8,6 +8,14 @@ const meta = {
   title: 'Components/ThemeProvider',
   component: RigThemeProvider,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Scoped theme wrapper that sets `data-theme` and `data-mode` attributes on a container element. Enables mixing themes within a single page — nest providers for split-theme layouts.',
+      },
+    },
+  },
   argTypes: {
     theme: {
       control: 'select',

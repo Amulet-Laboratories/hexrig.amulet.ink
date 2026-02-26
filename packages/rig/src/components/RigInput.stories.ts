@@ -6,6 +6,14 @@ const meta = {
   title: 'Components/Input',
   component: RigInput,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Text input with integrated label, description, and error messaging. Seven input types, full ARIA labeling, and token-driven focus/border styling.',
+      },
+    },
+  },
   argTypes: {
     type: {
       control: 'select',

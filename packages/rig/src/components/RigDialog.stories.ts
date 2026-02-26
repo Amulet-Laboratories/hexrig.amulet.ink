@@ -9,6 +9,14 @@ const meta = {
   title: 'Components/Dialog',
   component: RigDialog,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Modal overlay with managed focus trapping, Esc-to-close, and backdrop click handling. Three sizes, optional persistent mode, and title/description/footer slots.',
+      },
+    },
+  },
   argTypes: {
     size: {
       control: 'select',

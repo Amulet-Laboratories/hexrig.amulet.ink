@@ -5,6 +5,14 @@ const meta = {
   title: 'Components/Skeleton',
   component: RigSkeleton,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Content placeholder shown while data loads. Five shape variants (text, heading, circle, rect, card), configurable line count, and pulsing animation that respects reduced-motion.',
+      },
+    },
+  },
   argTypes: {
     variant: {
       control: 'select',

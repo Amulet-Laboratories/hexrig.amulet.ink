@@ -7,6 +7,14 @@ const meta = {
   title: 'Components/Toast',
   component: RigToast,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Non-blocking notification with timed auto-dismiss. Managed via `useToast()` composable — supports title, description, four tones, action slot, and stacking.',
+      },
+    },
+  },
 } satisfies Meta<typeof RigToast>
 
 export default meta

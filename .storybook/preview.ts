@@ -1,6 +1,7 @@
 import type { Preview, VueRenderer } from '@storybook/vue3'
 import type { DecoratorFunction } from 'storybook/internal/types'
 import { h, ref } from 'vue'
+import { amuletTheme } from './amulet-theme'
 
 // Import all Hex theme CSS
 import '../packages/hex-origins/dist/themes/hearth.css'
@@ -97,6 +98,9 @@ const preview: Preview = {
   },
   decorators: [withTheme],
   parameters: {
+    docs: {
+      theme: amuletTheme,
+    },
     controls: {
       matchers: {
         color: /(background|color)$/i,

@@ -5,6 +5,14 @@ const meta = {
   title: 'Components/Avatar',
   component: RigAvatar,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'User or entity representation with image, initials, or icon fallback. Five sizes (xs–xl), circle or square shape, and accessible alt text.',
+      },
+    },
+  },
   argTypes: {
     size: {
       control: 'select',
