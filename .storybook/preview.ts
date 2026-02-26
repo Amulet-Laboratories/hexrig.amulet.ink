@@ -3,11 +3,11 @@ import type { DecoratorFunction } from 'storybook/internal/types'
 import { h } from 'vue'
 
 // Import all Hex theme CSS
-import '../packages/hex/dist/themes/hearth.css'
-import '../packages/hex/dist/themes/abyss.css'
-import '../packages/hex/dist/themes/hollow.css'
-import '../packages/hex/dist/themes/keep.css'
-import '../packages/hex/dist/themes/cove.css'
+import '../packages/hex-origins/dist/themes/hearth.css'
+import '../packages/hex-origins/dist/themes/abyss.css'
+import '../packages/hex-origins/dist/themes/hollow.css'
+import '../packages/hex-origins/dist/themes/keep.css'
+import '../packages/hex-origins/dist/themes/cove.css'
 
 // Import Rig base styles (Tailwind)
 import '../packages/rig/src/style.css'
