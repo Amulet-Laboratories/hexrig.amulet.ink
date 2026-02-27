@@ -1,11 +1,19 @@
 <script setup lang="ts">
 import RigMakerStamp from './RigMakerStamp.vue'
-import type { RigSiteFooterProps } from '../types'
 
-withDefaults(defineProps<RigSiteFooterProps>(), {
-  homeUrl: 'https://amulet.ink',
-  year: new Date().getFullYear(),
-})
+withDefaults(
+  defineProps<{
+    email: string
+    imprintName: string
+    homeUrl?: string
+    corpusFragment?: string
+    year?: number
+  }>(),
+  {
+    homeUrl: 'https://amulet.ink',
+    year: new Date().getFullYear(),
+  },
+)
 </script>
 
 <template>

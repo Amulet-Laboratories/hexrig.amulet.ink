@@ -1,30 +1,43 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import type { RigNotifyFormProps } from '../types'
-import RigInput from './RigInput.vue'
-import RigButton from './RigButton.vue'
+import { RigInput, RigButton } from '@amulet-laboratories/rig'
 
-const props = withDefaults(defineProps<RigNotifyFormProps>(), {
-  submitLabel: 'Notify me',
-  thankYouMessage: 'Noted. We will be in touch.',
-})
+const props = withDefaults(
+  defineProps<{
+    formName: string
+    contactEmail: string
+    submitLabel?: string
+    thankYouMessage?: string
+  }>(),
+  {
+    submitLabel: 'Notify me',
+    thankYouMessage: 'Noted. We will be in touch.',
+  },
+)
 
 const email = ref('')
 const submitted = ref(false)
 const submitting = ref(false)
+const submitError = ref(false)
 
 async function handleSubmit(e: Event) {
   const form = e.target as HTMLFormElement
   submitting.value = true
+  submitError.value = false
   try {
     await fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams(new FormData(form) as unknown as Record<string, string>).toString(),
+      body: new URLSearchParams(
+        Array.from(new FormData(form).entries()).map(([k, v]) => [k, String(v)]) as [
+          string,
+          string,
+        ][],
+      ).toString(),
     })
     submitted.value = true
   } catch {
-    submitted.value = true
+    submitError.value = true
   } finally {
     submitting.value = false
   }
@@ -48,6 +61,7 @@ async function handleSubmit(e: Event) {
       <div class="flex-1">
         <RigInput
           v-model="email"
+          name="email"
           type="email"
           placeholder="your@email.com"
           required
@@ -58,6 +72,9 @@ async function handleSubmit(e: Event) {
         {{ props.submitLabel }}
       </RigButton>
     </form>
+    <p v-if="submitError" class="mt-2 text-sm text-status-error font-body" role="alert">
+      Something went wrong. Please try again.
+    </p>
     <p v-if="props.contactEmail" class="mt-3 text-sm text-text-muted font-body">
       <a
         :href="`mailto:${props.contactEmail}`"

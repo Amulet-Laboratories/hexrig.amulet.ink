@@ -89,9 +89,9 @@ export const ember: HexTheme = {
     text: {
       primary: '#f2dad4',
       secondary: '#c8a09a',
-      muted: '#7a524c',
+      muted: '#7e5650',
       inverse: '#100606',
-      link: '#e04030',
+      link: '#e44836',
       onAccent: '#100606',
     },
     borders: { default: '#3c1e1e', subtle: '#2c1212', strong: '#5c2e2e' },

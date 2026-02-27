@@ -52,7 +52,14 @@ export function useTheme(defaults?: { theme?: string; mode?: ModeId | 'auto' }):
     mode.value = m
   }
   const toggleMode = () => {
+    userExplicitMode.value = true
     mode.value = mode.value === 'dark' ? 'light' : 'dark'
+  }
+  const resetToAuto = () => {
+    userExplicitMode.value = false
+    if (typeof window !== 'undefined') {
+      mode.value = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+    }
   }
 
   const api: UseThemeReturn = {
@@ -61,6 +68,7 @@ export function useTheme(defaults?: { theme?: string; mode?: ModeId | 'auto' }):
     setTheme,
     setMode,
     toggleMode,
+    resetToAuto,
   }
 
   return api

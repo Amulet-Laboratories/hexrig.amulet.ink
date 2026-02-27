@@ -29,6 +29,7 @@ const componentNames = [
   'RigCheckbox',
   'RigSwitch',
   'RigTag',
+  'RigNoiseGrain',
 ] as const
 
 describe('rig component exports', () => {

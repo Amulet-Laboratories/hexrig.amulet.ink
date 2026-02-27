@@ -12,7 +12,8 @@ permissions:
 
 jobs:
   ci:
-    uses: Amulet-Laboratories/.github/.github/workflows/ci.yml@main
+    uses: Amulet-Laboratories/.github/.github/workflows/ci.yml@77c5bbe581db1d17410e537217654614ef4cb66a # main
     with:
-      type: monorepo
-    secrets: inherit
+      node-version: '22'
+    secrets:
+      PKG_READ_TOKEN: ${{ secrets.PKG_READ_TOKEN }}

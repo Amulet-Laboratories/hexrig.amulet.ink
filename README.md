@@ -41,7 +41,7 @@ import { RigThemeProvider, RigButton, RigCard } from '@amulet-laboratories/rig'
 </script>
 
 <template>
-  <RigThemeProvider theme="hearth" scheme="dark">
+  <RigThemeProvider theme="hearth" mode="dark">
     <RigCard elevation="raised" interactive @activate="handleClick">
       <RigButton variant="solid" tone="accent">Click me</RigButton>
     </RigCard>
@@ -166,7 +166,7 @@ packages/
 ├── rig/               # @amulet-laboratories/rig — Vue 3 components
 │   ├── src/
 │   │   ├── index.ts           # Barrel: all components + composables + types
-│   │   ├── components/        # 28 Rig* components + Storybook stories
+│   │   ├── components/        # 29 Rig* components + Storybook stories
 │   │   ├── composables/       # useTheme, useMotion, useToast
 │   │   ├── types/index.ts     # All prop + composable interfaces
 │   │   ├── stories/           # Meta-stories: KitchenSink, Palette, Typography, EditorPreview
@@ -204,30 +204,79 @@ Storybook is served at `/storybook/` and cross-linked from the nav and footer.
 
 ## Components
 
-12 components, all WCAG AAA, `Rig` prefix:
+29 components, all WCAG AAA, `Rig` prefix:
 
-| Component          | Key Features                                                                    |
-| ------------------ | ------------------------------------------------------------------------------- |
-| `RigThemeProvider` | Wraps content with theme via `data-theme`/`data-mode`, auto scheme              |
-| `RigText`          | display/heading/subheading/body/caption/overline/mono, semantic `as`            |
-| `RigButton`        | solid/outline/ghost/link × accent/neutral/danger, 3 sizes, loading, polymorphic |
-| `RigInput`         | 7 input types, label/description/error, full ARIA                               |
-| `RigIcon`          | Iconify integration, xs–xl sizes, decorative mode, a11y warnings                |
-| `RigSurface`       | Semantic element `as`, 4 elevations, border/padding/rounded                     |
-| `RigDivider`       | Horizontal/vertical, label slot                                                 |
-| `RigBadge`         | solid/soft/outline × tone, dot indicator, removable                             |
-| `RigAlert`         | 4 tones, dismissible, icon slot, v-model:visible                                |
-| `RigCard`          | flat/raised/prominent elevation, interactive mode with keyboard                 |
-| `RigDialog`        | Focus trapping, Esc close, ref-counted scroll lock, 3 sizes                     |
-| `RigToast`         | Timed auto-dismiss, action slot, tone support, theme-aware teleport             |
+**General**
+
+| Component   | Key Features                                                                    |
+| ----------- | ------------------------------------------------------------------------------- |
+| `RigButton` | solid/outline/ghost/link × accent/neutral/danger, 3 sizes, loading, polymorphic |
+| `RigIcon`   | Iconify integration, xs–xl sizes, decorative mode, a11y warnings                |
+| `RigText`   | display/heading/subheading/body/caption/overline/mono, semantic `as`            |
+| `RigBadge`  | solid/soft/outline × 6 tones, dot indicator, removable — presentational label   |
+| `RigTag`    | solid/soft/outline, removable, disabled state — interactive user-managed chip   |
+| `RigAvatar` | Image with fallback initials, 5 sizes, rounded                                  |
+
+**Layout**
+
+| Component      | Key Features                                                    |
+| -------------- | --------------------------------------------------------------- |
+| `RigSurface`   | Semantic element `as`, 4 elevations, border/padding/rounded     |
+| `RigCard`      | flat/raised/prominent elevation, interactive mode with keyboard |
+| `RigContainer` | Max-width wrapper with responsive padding                       |
+| `RigGrid`      | CSS Grid wrapper, configurable columns and gap                  |
+| `RigStack`     | Flex column/row with configurable gap                           |
+| `RigSpacer`    | Flexible spacer for flex/grid layouts                           |
+| `RigDivider`   | Horizontal/vertical, optional label slot                        |
+
+**Form**
+
+| Component     | Key Features                                                               |
+| ------------- | -------------------------------------------------------------------------- |
+| `RigInput`    | 7 input types, label/description/error, full ARIA                          |
+| `RigSelect`   | Native select with custom styling, option groups, error/description states |
+| `RigCheckbox` | Controlled checkbox with label, description, error, indeterminate          |
+| `RigSwitch`   | Toggle switch with keyboard activation (Space/Enter), label, ARIA          |
+
+**Navigation**
+
+| Component       | Key Features                                                    |
+| --------------- | --------------------------------------------------------------- |
+| `RigTabs`       | ARIA tab list, keyboard nav (Arrow/Home/End), disabled tabs     |
+| `RigAccordion`  | Multiple/single mode, defaultOpen, disabled items, keyboard nav |
+| `RigBreadcrumb` | Semantic `<nav>`, aria-current on last item, polymorphic links  |
+
+**Feedback**
+
+| Component     | Key Features                                                                  |
+| ------------- | ----------------------------------------------------------------------------- |
+| `RigAlert`    | 4 tones, dismissible, icon, v-model:visible                                   |
+| `RigDialog`   | Focus trapping, Esc close, ref-counted scroll lock, persistent mode, Teleport |
+| `RigToast`    | Auto-dismiss, action slot, 5 tones, theme-aware Teleport                      |
+| `RigProgress` | Value/indeterminate mode, accessible progressbar role                         |
+| `RigSpinner`  | Animated loading indicator, 5 sizes, 6 tones                                  |
+| `RigSkeleton` | Animated loading placeholder, configurable dimensions                         |
+| `RigTooltip`  | CSS-positioned, 4 placements, delay, Esc close, focus/hover triggers          |
+
+**Texture**
+
+| Component       | Key Features                                                        |
+| --------------- | ------------------------------------------------------------------- |
+| `RigNoiseGrain` | SVG feTurbulence overlay, configurable opacity/frequency/blend mode |
+
+**Theming**
+
+| Component          | Key Features                                                       |
+| ------------------ | ------------------------------------------------------------------ |
+| `RigThemeProvider` | `data-theme`/`data-mode` attributes, auto OS preference, `as` prop |
 
 ## Composables
 
-| Composable    | Purpose                                                                                       |
-| ------------- | --------------------------------------------------------------------------------------------- |
-| `useTheme()`  | Read/write active theme + scheme, `auto` resolves system pref, explicit override tracking     |
-| `useMotion()` | Theme-aware motion values, respects `prefers-reduced-motion`, observes closest `[data-theme]` |
-| `useToast()`  | Notification queue with auto-dismiss, SSR-safe, timer cleanup on scope dispose                |
+| Composable    | Purpose                                                                                        |
+| ------------- | ---------------------------------------------------------------------------------------------- |
+| `useTheme()`  | Read/write active theme + mode, `auto` resolves system pref, explicit override + `resetToAuto` |
+| `useMotion()` | Theme-aware motion values, respects `prefers-reduced-motion`, observes closest `[data-theme]`  |
+| `useToast()`  | Notification queue with auto-dismiss, SSR-safe, timer cleanup on scope dispose                 |
 
 Provider pattern: `provideTheme()` and `provideToast()` at app root; composables inject or create local state.
 
@@ -276,7 +325,7 @@ rounded-theme          → var(--radius-theme, 8px)
 
 ## Production Readiness
 
-- **261 tests** passing across 12 test suites (Vitest + jsdom)
+- **400+ tests** passing across 17 test suites (Vitest + jsdom)
 - **Full type safety** — `vue-tsc --noEmit` and `tsc --noEmit` clean, rolled-up `.d.ts` declarations
 - **SSR-safe** — runtime helpers and composables guard against missing `document`/`window`
 - **Tree-shakable** — `sideEffects: false` (hex), `sideEffects: ["**/*.css"]` (hex-origins, rig)
@@ -297,7 +346,7 @@ pnpm build:deploy   # hex → rig → site → storybook → copies storybook in
 The deploy output is `packages/site/dist/` — a static directory containing:
 
 - `/` — The marketing landing page (Vue 3 SPA)
-- `/storybook/` — Full Storybook with all 12 components + meta-stories
+- `/storybook/` — Full Storybook with all 29 components + meta-stories
 
 ### Netlify Configuration
 

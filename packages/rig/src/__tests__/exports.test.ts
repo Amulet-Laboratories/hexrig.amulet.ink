@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 
 describe('rig barrel exports', () => {
-  it('exports all 28 components', async () => {
+  it('exports all 29 components', async () => {
     const mod = await import('@rig/index')
     const componentNames = [
       'RigThemeProvider',
@@ -32,6 +32,7 @@ describe('rig barrel exports', () => {
       'RigCheckbox',
       'RigSwitch',
       'RigTag',
+      'RigNoiseGrain',
     ]
     for (const name of componentNames) {
       expect(mod).toHaveProperty(name)

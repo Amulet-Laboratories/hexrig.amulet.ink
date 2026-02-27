@@ -299,69 +299,11 @@ export interface RigNoiseGrainProps {
   blend?: 'overlay' | 'soft-light' | 'multiply'
 }
 
-// RigMakerStamp
-export interface RigMakerStampProps {
-  /** Mark size in pixels. Default 20. */
-  size?: number
-  /** When provided, wraps the mark in an anchor tag. */
-  href?: string
-}
-
-// RigOrnament
-export interface RigOrnamentProps {
-  /** Motif family. Default 'minimal'. */
-  motif?:
-    | 'geological'
-    | 'technical'
-    | 'typographic'
-    | 'toolmarks'
-    | 'waveform'
-    | 'organic'
-    | 'minimal'
-  /** Stroke color. Default 'currentColor'. */
-  color?: string
-  /** Enable scroll-triggered draw animation. Default true. */
-  animated?: boolean
-  /** SVG stroke width. Default 1.5. */
-  strokeWidth?: number
-  /** SVG viewBox width. Default 800. */
-  width?: number
-  /** SVG viewBox height. Default 60. */
-  height?: number
-  /** PRNG seed for reproducible paths. */
-  seed?: number
-}
-
-// RigNotifyForm
-export interface RigNotifyFormProps {
-  /** Netlify form name identifier. */
-  formName: string
-  /** Contact email displayed below form. */
-  contactEmail: string
-  /** Submit button label. Default 'Notify me'. */
-  submitLabel?: string
-  /** Message shown after successful submission. */
-  thankYouMessage?: string
-}
-
-// RigSiteFooter
-export interface RigSiteFooterProps {
-  /** Contact email address. */
-  email: string
-  /** Imprint name for copyright. */
-  imprintName: string
-  /** URL for the maker's stamp link. Default 'https://amulet.ink'. */
-  homeUrl?: string
-  /** Ambient text fragment displayed below copyright. */
-  corpusFragment?: string
-  /** Copyright year. Default current year. */
-  year?: number
-}
-
 // RigThemeProvider
 export interface RigThemeProviderProps {
   theme?: string
   mode?: ModeId | 'auto'
+  as?: string
 }
 
 // RigToast
@@ -403,6 +345,7 @@ export interface UseThemeReturn {
   setTheme: (id: string) => void
   setMode: (mode: ModeId) => void
   toggleMode: () => void
+  resetToAuto: () => void
 }
 
 export interface UseMotionReturn {

@@ -74,4 +74,36 @@ describe('useMotion', () => {
       expect(motion.durationSlow.value).toBe('0ms')
     })
   })
+
+  it('recomputes duration when MutationObserver fires after a theme attribute change', () => {
+    let mutationCallback: MutationObserverCallback | null = null
+
+    vi.stubGlobal(
+      'MutationObserver',
+      class {
+        constructor(cb: MutationObserverCallback) {
+          mutationCallback = cb
+        }
+        observe() {}
+        disconnect() {}
+      },
+    )
+
+    document.documentElement.style.setProperty('--duration-normal', '350ms')
+
+    scope.run(() => {
+      const motion = useMotion()
+      expect(motion.duration.value).toBe('350ms')
+
+      // Simulate a theme attribute change causing MutationObserver to fire
+      document.documentElement.style.setProperty('--duration-normal', '450ms')
+      mutationCallback!([], {} as MutationObserver)
+
+      // Computed should now read the updated CSS var
+      expect(motion.duration.value).toBe('450ms')
+    })
+
+    vi.unstubAllGlobals()
+    document.documentElement.style.removeProperty('--duration-normal')
+  })
 })

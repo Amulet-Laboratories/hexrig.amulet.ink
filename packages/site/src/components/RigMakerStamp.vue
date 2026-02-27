@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import type { RigMakerStampProps } from '../types'
-
-withDefaults(defineProps<RigMakerStampProps>(), {
-  size: 20,
-})
+withDefaults(
+  defineProps<{
+    size?: number
+    href?: string
+  }>(),
+  { size: 20 },
+)
 </script>
 
 <template>

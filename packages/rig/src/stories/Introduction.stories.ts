@@ -38,7 +38,7 @@ export const Introduction: Story = {
             </div>
             <div class="rounded-lg border border-border-subtle bg-surface-raised p-4 space-y-1">
               <p class="font-mono text-sm text-accent">@amulet-laboratories/hex-origins</p>
-               <p class="text-sm text-text-muted">Ten curated themes in two series (Environments &amp; Materials) — dark &amp; light modes.</p>
+               <p class="text-sm text-text-muted">Nine curated themes in spectral order — dark &amp; light modes.</p>
             </div>
             <div class="rounded-lg border border-border-subtle bg-surface-raised p-4 space-y-1">
               <p class="font-mono text-sm text-accent">@amulet-laboratories/rig</p>
@@ -73,7 +73,7 @@ export const Introduction: Story = {
         <!-- Themes -->
         <section class="space-y-4">
           <h2 class="font-display text-2xl text-text-primary">Themes</h2>
-           <p>Ten themes in two series, each with dark and light modes. Use the toolbar above to switch.</p>
+           <p>Nine themes in spectral order, each with dark and light modes. Use the toolbar above to switch.</p>
           <div class="grid gap-3 sm:grid-cols-5">
             <div v-for="t in themes" :key="t.id" class="rounded-lg border border-border-subtle bg-surface-raised p-3 text-center space-y-1">
               <div

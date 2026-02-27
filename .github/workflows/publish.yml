@@ -1,0 +1,101 @@
+name: Publish
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run — build and test only, skip publish'
+        type: boolean
+        default: false
+
+# GITHUB_TOKEN needs packages:write to publish to GitHub Packages.
+# contents:read is sufficient for checkout.
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  publish:
+    name: Test → Build → Publish
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'pnpm'
+          # Writes an .npmrc that maps NODE_AUTH_TOKEN → GitHub Packages auth
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@amulet-laboratories'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+        env:
+          # PKG_READ_TOKEN has read:packages scope for any GitHub Packages deps
+          NODE_AUTH_TOKEN: ${{ secrets.PKG_READ_TOKEN }}
+
+      - name: Run tests
+        run: pnpm test
+
+      - name: Build hex
+        run: pnpm --filter @amulet-laboratories/hex build
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.PKG_READ_TOKEN }}
+
+      - name: Build hex-origins
+        run: pnpm --filter @amulet-laboratories/hex-origins build
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.PKG_READ_TOKEN }}
+
+      - name: Build rig
+        run: pnpm --filter @amulet-laboratories/rig build
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.PKG_READ_TOKEN }}
+
+      - name: Verify versions match
+        run: |
+          HEX=$(node -p "require('./packages/hex/package.json').version")
+          ORIGINS=$(node -p "require('./packages/hex-origins/package.json').version")
+          RIG=$(node -p "require('./packages/rig/package.json').version")
+          echo "hex@$HEX  hex-origins@$ORIGINS  rig@$RIG"
+          if [ "$HEX" != "$ORIGINS" ] || [ "$HEX" != "$RIG" ]; then
+            echo "ERROR: package versions are out of sync" && exit 1
+          fi
+          echo "All packages at $HEX ✓"
+
+      - name: Publish @amulet-laboratories/hex
+        if: ${{ !inputs.dry_run }}
+        run: pnpm --filter @amulet-laboratories/hex publish --no-git-checks
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish @amulet-laboratories/hex-origins
+        if: ${{ !inputs.dry_run }}
+        run: pnpm --filter @amulet-laboratories/hex-origins publish --no-git-checks
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish @amulet-laboratories/rig
+        if: ${{ !inputs.dry_run }}
+        run: pnpm --filter @amulet-laboratories/rig publish --no-git-checks
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Summary
+        run: |
+          VERSION=$(node -p "require('./packages/hex/package.json').version")
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            echo "### Dry run complete — v${VERSION} built and tested, not published" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "### Published v${VERSION}" >> $GITHUB_STEP_SUMMARY
+            echo "- \`@amulet-laboratories/hex@${VERSION}\`" >> $GITHUB_STEP_SUMMARY
+            echo "- \`@amulet-laboratories/hex-origins@${VERSION}\`" >> $GITHUB_STEP_SUMMARY
+            echo "- \`@amulet-laboratories/rig@${VERSION}\`" >> $GITHUB_STEP_SUMMARY
+          fi

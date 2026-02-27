@@ -111,10 +111,10 @@ toggleMode(document.documentElement)  // dark ↔ light</code></pre>
 
           <div class="space-y-2">
             <p class="text-sm font-sans font-semibold text-text-primary">useTheme composable</p>
-            <pre class="bg-surface-raised border border-border-subtle rounded-lg p-4 text-sm font-mono overflow-x-auto text-text-primary"><code>const { theme, scheme, setTheme, setScheme, toggleScheme } = useTheme()
+            <pre class="bg-surface-raised border border-border-subtle rounded-lg p-4 text-sm font-mono overflow-x-auto text-text-primary"><code>const { theme, mode, setTheme, setMode, toggleMode } = useTheme()
 
 setTheme('cove')
-toggleScheme()  // reactive — any bound UI re-renders</code></pre>
+toggleMode()  // reactive — any bound UI re-renders</code></pre>
           </div>
         </section>
 

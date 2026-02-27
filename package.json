@@ -20,13 +20,17 @@
     "type-check": "pnpm -r typecheck",
     "clean": "rm -rf storybook-static node_modules packages/*/dist packages/*/.vite packages/*/node_modules",
     "storybook": "storybook dev -p 6006",
-    "build:storybook": "storybook build -o storybook-static"
+    "build:storybook": "storybook build -o storybook-static",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "release": "pnpm build && changeset publish"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.29.8",
     "@iconify/json": "^2.2.443",
+    "@storybook/addon-a11y": "^8",
     "@storybook/addon-essentials": "^8",
     "@storybook/addon-links": "^8",
-    "@storybook/addon-a11y": "^8",
     "@storybook/blocks": "^8",
     "@storybook/vue3": "^8",
     "@storybook/vue3-vite": "^8",

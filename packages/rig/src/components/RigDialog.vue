@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, watch, ref, onUnmounted, nextTick, useId, inject } from 'vue'
+import { computed, watch, watchEffect, ref, onUnmounted, nextTick, useId, inject } from 'vue'
 import type { RigDialogProps } from '../types'
 import { THEME_INJECTION_KEY } from '../composables/useTheme'
 import { ICON_DISMISS } from './shared'
@@ -130,6 +130,18 @@ watch(
   },
 )
 
+if (import.meta.env.DEV) {
+  watchEffect(() => {
+    if (props.modelValue && !props.title) {
+      console.warn(
+        '[RigDialog] No title prop provided. ' +
+          'The dialog falls back to aria-label="Dialog" which is not descriptive (WCAG 2.4.6). ' +
+          "Provide a title prop with a meaningful description of the dialog's purpose.",
+      )
+    }
+  })
+}
+
 onUnmounted(() => {
   if (typeof document !== 'undefined' && props.modelValue) {
     scrollLockCount.value = Math.max(0, scrollLockCount.value - 1)
@@ -156,7 +168,6 @@ onUnmounted(() => {
         :data-mode="themeState?.mode.value"
         class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
         @click="onBackdropClick"
-        @keydown="onKeydown"
       >
         <div
           ref="dialogRef"
@@ -167,6 +178,7 @@ onUnmounted(() => {
           :aria-describedby="description ? descriptionId : undefined"
           :class="classes"
           tabindex="-1"
+          @keydown="onKeydown"
         >
           <!-- Header -->
           <div v-if="title" class="mb-4">

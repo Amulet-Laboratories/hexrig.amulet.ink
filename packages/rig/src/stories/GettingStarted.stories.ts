@@ -41,6 +41,8 @@ export const GettingStarted: Story = {
           <div class="space-y-2">
             <p class="text-sm font-sans font-semibold text-text-primary">1 &mdash; Install packages</p>
             <pre class="bg-surface-raised border border-border-subtle rounded-lg p-4 text-sm font-mono overflow-x-auto text-text-primary"><code>pnpm add @amulet-laboratories/hex @amulet-laboratories/hex-origins @amulet-laboratories/rig</code></pre>
+            <p class="text-xs text-text-muted"><strong class="text-text-primary">Optional:</strong> Install <code class="font-mono text-accent text-xs">@iconify/vue</code> if you use <code class="font-mono text-accent text-xs">RigIcon</code>. Without it, <code class="font-mono text-accent text-xs">RigIcon</code> will fail to render. All other Rig components have no dependency on Iconify.</p>
+            <pre class="bg-surface-raised border border-border-subtle rounded-lg p-4 text-sm font-mono overflow-x-auto text-text-primary"><code>pnpm add @iconify/vue</code></pre>
           </div>
 
           <div class="space-y-2">
@@ -78,11 +80,11 @@ import { RigButton, RigCard, RigText } from '@amulet-laboratories/rig'
           <h2 class="font-display text-2xl text-text-primary">Tailwind Integration</h2>
           <p class="text-sm">Rig distributes its own Tailwind config. Extend it so utility classes resolve the same design-token CSS variables the components use.</p>
           <pre class="bg-surface-raised border border-border-subtle rounded-lg p-4 text-sm font-mono overflow-x-auto text-text-primary"><code>// tailwind.config.ts
-import rigConfig from '@amulet-laboratories/rig/tailwind.config'
+import { amuletPreset } from '@amulet-laboratories/hex/tailwind'
 import type { Config } from 'tailwindcss'
 
 export default {
-  presets: [rigConfig],
+  presets: [amuletPreset],
   content: ['./src/**/*.{vue,ts}'],
 } satisfies Config</code></pre>
           <p class="text-sm">This gives you classes like <code class="text-accent font-mono text-xs">bg-surface-raised</code>, <code class="text-accent font-mono text-xs">text-text-primary</code>, <code class="text-accent font-mono text-xs">border-border-subtle</code>, <code class="text-accent font-mono text-xs">duration-fast</code>, and <code class="text-accent font-mono text-xs">ease-standard</code>.</p>
@@ -111,7 +113,7 @@ const { theme, mode } = getThemeState(document.documentElement)</code></pre>
           <pre class="bg-surface-raised border border-border-subtle rounded-lg p-4 text-sm font-mono overflow-x-auto text-text-primary"><code>import { useTheme, useMotion, useToast } from '@amulet-laboratories/rig'
 
 // In a component setup()
-const { theme, scheme, setTheme, toggleScheme } = useTheme()
+const { theme, mode, setTheme, toggleMode } = useTheme()
 const { duration, prefersReducedMotion } = useMotion()
 const { show, dismiss, toasts } = useToast()</code></pre>
         </section>

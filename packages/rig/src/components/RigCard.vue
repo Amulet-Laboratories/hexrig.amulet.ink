@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, watchEffect } from 'vue'
 import type { RigCardProps } from '../types'
 
 const props = withDefaults(defineProps<RigCardProps>(), {
@@ -7,6 +7,18 @@ const props = withDefaults(defineProps<RigCardProps>(), {
   interactive: false,
   as: 'div',
 })
+
+if (import.meta.env.DEV) {
+  watchEffect(() => {
+    if (props.interactive && !props.ariaLabel && props.as !== 'a' && props.as !== 'router-link') {
+      console.warn(
+        '[RigCard] interactive=true without an ariaLabel. ' +
+          'Screen readers cannot announce the purpose of this card (WCAG 1.3.1). ' +
+          'Provide an ariaLabel prop, or use as="a" with an href.',
+      )
+    }
+  })
+}
 
 const emit = defineEmits<{
   activate: [event: KeyboardEvent | MouseEvent]

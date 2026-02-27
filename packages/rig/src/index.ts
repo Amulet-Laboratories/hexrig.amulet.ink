@@ -38,10 +38,6 @@ export { default as RigCheckbox } from './components/RigCheckbox.vue'
 export { default as RigSwitch } from './components/RigSwitch.vue'
 export { default as RigTag } from './components/RigTag.vue'
 export { default as RigNoiseGrain } from './components/RigNoiseGrain.vue'
-export { default as RigMakerStamp } from './components/RigMakerStamp.vue'
-export { default as RigOrnament } from './components/RigOrnament.vue'
-export { default as RigNotifyForm } from './components/RigNotifyForm.vue'
-export { default as RigSiteFooter } from './components/RigSiteFooter.vue'
 
 // Composables
 export { useTheme, provideTheme } from './composables/useTheme'
@@ -84,10 +80,6 @@ export type {
   RigSwitchProps,
   RigTagProps,
   RigNoiseGrainProps,
-  RigMakerStampProps,
-  RigOrnamentProps,
-  RigNotifyFormProps,
-  RigSiteFooterProps,
   ToastOptions,
   ToastInstance,
   UseThemeReturn,

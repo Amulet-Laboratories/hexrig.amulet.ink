@@ -71,7 +71,7 @@
     "editorCodeLens.foreground": "#706a64",
     "minimap.foreground": "#706a64",
     "editorGhostText.foreground": "#706a64",
-    "button.foreground": "#ffffff",
+    "button.foreground": "#1a1816",
     "activityBarBadge.foreground": "#1a1816",
     "statusBar.debuggingForeground": "#1a1816",
     "statusBarItem.prominentForeground": "#1a1816",

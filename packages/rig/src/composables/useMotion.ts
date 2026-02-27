@@ -1,6 +1,5 @@
-import { computed, ref, onScopeDispose, inject, type Ref } from 'vue'
+import { computed, ref, onScopeDispose, type Ref } from 'vue'
 import type { UseMotionReturn } from '../types'
-import { THEME_INJECTION_KEY } from './useTheme'
 
 /**
  * useMotion composable — returns theme-appropriate motion values.
@@ -16,9 +15,6 @@ export function useMotion(elementRef?: Ref<HTMLElement | null | undefined>): Use
   // Trigger reactivity when data-theme or data-mode attributes change
   const themeRevision = ref(0)
 
-  // Also subscribe to injected theme state so we re-evaluate when the provider changes
-  const injectedTheme = inject(THEME_INJECTION_KEY, null)
-
   /** Find the closest ancestor (or self) that has data-theme set */
   function findThemedElement(): HTMLElement {
     if (elementRef?.value) return elementRef.value
@@ -28,12 +24,11 @@ export function useMotion(elementRef?: Ref<HTMLElement | null | undefined>): Use
 
   /** Read a CSS var with reactive tracking on theme/mode changes */
   function trackedVar(name: string, fallback: string): string {
-    // Subscribe to DOM attribute mutations and injected theme state
+    // Subscribe only to the MutationObserver counter — it fires after the DOM flush,
+    // so CSS custom properties reflect the new theme when read. Subscribing to the
+    // injected theme refs directly would fire before the DOM updates, producing a stale
+    // read followed by a second (correct) read: two renders per theme switch.
     void themeRevision.value
-    if (injectedTheme) {
-      void injectedTheme.theme.value
-      void injectedTheme.mode.value
-    }
     if (typeof document === 'undefined') return fallback
     return getComputedStyle(findThemedElement()).getPropertyValue(name).trim() || fallback
   }
@@ -46,13 +41,20 @@ export function useMotion(elementRef?: Ref<HTMLElement | null | undefined>): Use
     }
     mq.addEventListener('change', handler)
 
+    // When an elementRef is provided, observe only that element (no subtree).
+    // Otherwise, find the nearest [data-theme] root and observe from there.
+    // This is narrower than watching document.body with subtree across the whole DOM.
+    const observeTarget: Element = elementRef?.value
+      ? elementRef.value
+      : (document.querySelector('[data-theme]') ?? document.documentElement)
+
     const observer = new MutationObserver(() => {
       themeRevision.value++
     })
-    observer.observe(document.body, {
+    observer.observe(observeTarget, {
       attributes: true,
       attributeFilter: ['data-theme', 'data-mode'],
-      subtree: true,
+      subtree: !elementRef?.value,
     })
 
     onScopeDispose(() => {

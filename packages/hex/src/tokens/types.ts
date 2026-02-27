@@ -1,8 +1,8 @@
 /**
  * Hex Token Types
  *
- * Five themes, five places. A journey from hearth to cove.
- * Hearth (creation) → Abyss (void) → Hollow (growth) → Keep (construction) → Cove (shelter)
+ * Nine themes in spectral order: ember, hearth, grove, reef, abyss, cove, linen, keep, slate.
+ * Each theme ships dark and light modes (18 variants total via hex-origins).
  */
 
 // ---------------------------------------------------------------------------

@@ -1,54 +1,54 @@
-<template>
-  <section class="py-20">
-    <div class="max-w-5xl mx-auto px-6">
-      <h2 class="text-3xl font-display mb-6">Texture & Ornament</h2>
-      <p class="text-text-secondary mb-6">
-        Preview of noise grain, ornaments, and the maker's stamp across the active theme.
-      </p>
-
-      <div class="space-y-8">
-        <div class="p-6 bg-surface-raised border border-border-subtle rounded-theme">
-          <div class="mb-4">Noise Grain (demo)</div>
-          <div class="relative h-40 bg-surface-base">
-            <RigNoiseGrain :opacity="0.03" :frequency="0.8" />
-            <div class="absolute inset-0 flex items-center justify-center">
-              <div class="px-4 py-2 bg-surface-elevated rounded">Surface with grain</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="p-6 bg-surface-raised border border-border-subtle rounded-theme">
-          <div class="mb-4">Ornaments</div>
-          <div class="space-y-4">
-            <RigOrnament motif="geological" />
-            <RigOrnament motif="technical" />
-            <RigOrnament motif="typographic" />
-          </div>
-        </div>
-
-        <div
-          class="p-6 bg-surface-raised border border-border-subtle rounded-theme flex items-center justify-between"
-        >
-          <div>
-            <div class="mb-2">Maker's stamp</div>
-            <RigMakerStamp :size="28" />
-          </div>
-          <div class="text-text-muted">Corpus fragment: Low tide.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-</template>
-
 <script setup lang="ts">
-import { RigNoiseGrain, RigOrnament, RigMakerStamp } from '@amulet-laboratories/rig'
-</script>
-<script setup lang="ts">
-import { RigNoiseGrain, RigMakerStamp, RigOrnament } from '@amulet-laboratories/rig'
+import { RigNoiseGrain, RigText, RigDivider } from '@amulet-laboratories/rig'
+import RigMakerStamp from '../components/RigMakerStamp.vue'
+import RigOrnament from '../components/RigOrnament.vue'
 
-defineProps<{
-  activeTheme: string
-}>()
+const motifs = [
+  {
+    id: 'geological',
+    label: 'geological',
+    room: 'linen',
+    description: 'Sediment layers and fault lines',
+  },
+  {
+    id: 'technical',
+    label: 'technical',
+    room: 'slate',
+    description: 'Blueprint drafting and calibration marks',
+  },
+  {
+    id: 'typographic',
+    label: 'typographic',
+    room: 'hearth',
+    description: 'Letterform fragments and baseline grids',
+  },
+  {
+    id: 'toolmarks',
+    label: 'toolmarks',
+    room: 'keep',
+    description: 'Workshop impressions and hand traces',
+  },
+  { id: 'waveform', label: 'waveform', room: 'reef', description: 'Oscillation and signal traces' },
+  {
+    id: 'organic',
+    label: 'organic',
+    room: 'grove',
+    description: 'Growth patterns and cellular forms',
+  },
+  {
+    id: 'minimal',
+    label: 'minimal',
+    room: 'abyss',
+    description: 'Sparse punctuation and resting line',
+  },
+]
+
+const grainPresets = [
+  { label: 'parchment', room: 'linen', opacity: 0.04, frequency: 0.65 },
+  { label: 'worn', room: 'hearth', opacity: 0.05, frequency: 0.75 },
+  { label: 'heavy', room: 'keep', opacity: 0.07, frequency: 0.85 },
+  { label: 'ghost', room: 'abyss', opacity: 0.02, frequency: 0.55 },
+]
 </script>
 
 <template>

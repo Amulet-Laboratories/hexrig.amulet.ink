@@ -19,7 +19,7 @@ describe('useTheme', () => {
     })
   })
 
-  it('returns theme, mode, setTheme, setMode, toggleMode', () => {
+  it('returns theme, mode, setTheme, setMode, toggleMode, resetToAuto', () => {
     const scope = effectScope()
     scope.run(() => {
       const api = useTheme()
@@ -28,6 +28,7 @@ describe('useTheme', () => {
       expect(typeof api.setTheme).toBe('function')
       expect(typeof api.setMode).toBe('function')
       expect(typeof api.toggleMode).toBe('function')
+      expect(typeof api.resetToAuto).toBe('function')
     })
     scope.stop()
   })
@@ -105,6 +106,59 @@ describe('useTheme', () => {
     scope.run(() => {
       const api = useTheme({ mode: 'auto' })
       // jsdom matchMedia returns dark=true from our mock
+      expect(api.mode.value).toBe('dark')
+    })
+    scope.stop()
+  })
+
+  it('resetToAuto re-reads system preference and clears explicit lock', () => {
+    const scope = effectScope()
+    scope.run(() => {
+      const api = useTheme()
+      // Explicitly set light mode (locks userExplicitMode)
+      api.setMode('light')
+      expect(api.mode.value).toBe('light')
+
+      // resetToAuto should restore to system preference (dark per mock)
+      api.resetToAuto()
+      expect(api.mode.value).toBe('dark')
+    })
+    scope.stop()
+  })
+
+  it('resetToAuto allows subsequent OS preference changes to apply', () => {
+    const scope = effectScope()
+    let mqHandler: ((e: Partial<MediaQueryListEvent>) => void) | null = null
+
+    // Override matchMedia to capture the event listener
+    Object.defineProperty(window, 'matchMedia', {
+      writable: true,
+      value: (query: string) => ({
+        matches: query === '(prefers-color-scheme: dark)',
+        media: query,
+        onchange: null,
+        addEventListener: (_: string, handler: (e: Partial<MediaQueryListEvent>) => void) => {
+          if (query === '(prefers-color-scheme: dark)') mqHandler = handler
+        },
+        removeEventListener: () => {},
+        dispatchEvent: () => false,
+      }),
+    })
+
+    scope.run(() => {
+      const api = useTheme()
+      // Lock to light via explicit set
+      api.setMode('light')
+      // Simulate OS change — should be ignored while locked
+      mqHandler?.({ matches: false })
+      expect(api.mode.value).toBe('light')
+
+      // Reset to auto — OS changes now apply again
+      api.resetToAuto()
+      mqHandler?.({ matches: false })
+      expect(api.mode.value).toBe('light')
+
+      mqHandler?.({ matches: true })
       expect(api.mode.value).toBe('dark')
     })
     scope.stop()

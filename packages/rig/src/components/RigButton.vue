@@ -18,7 +18,7 @@ const emit = defineEmits<{
 // Size classes — note optical centering: pt-[7px] pb-[9px] for md
 const sizeClasses: Record<NonNullable<RigButtonProps['size']>, string> = {
   sm: 'px-3 pt-[5px] pb-[7px] text-sm min-h-[44px]',
-  md: 'px-4 pt-[7px] pb-[9px] text-base min-h-[40px]',
+  md: 'px-4 pt-[7px] pb-[9px] text-base min-h-[44px]',
   lg: 'px-6 pt-[9px] pb-[11px] text-lg min-h-[48px]',
 }
 
@@ -45,6 +45,16 @@ const variantToneClasses = computed(() => {
     'link-accent': `inline-flex items-center font-body font-medium text-accent underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring`,
     'link-neutral': `inline-flex items-center font-body font-medium text-text-secondary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring`,
     'link-danger': `inline-flex items-center font-body font-medium text-status-error underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring`,
+  }
+
+  if (import.meta.env.DEV) {
+    const key = `${variant}-${tone}`
+    if (!(key in map)) {
+      console.warn(
+        `[RigButton] Unknown variant/tone combination "${key}". Falling back to "solid-accent". ` +
+          `Valid variants: solid, outline, ghost, link. Valid tones: accent, neutral, danger.`,
+      )
+    }
   }
 
   return map[`${variant}-${tone}`] ?? map['solid-accent']

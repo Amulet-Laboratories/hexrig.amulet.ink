@@ -1,17 +1,34 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
-import type { RigOrnamentProps } from '../types'
 import { generateOrnamentPath } from './ornament-paths'
 
-const props = withDefaults(defineProps<RigOrnamentProps>(), {
-  motif: 'minimal',
-  color: 'currentColor',
-  animated: true,
-  strokeWidth: 1.5,
-  width: 800,
-  height: 60,
-  seed: undefined,
-})
+const props = withDefaults(
+  defineProps<{
+    motif?:
+      | 'geological'
+      | 'technical'
+      | 'typographic'
+      | 'toolmarks'
+      | 'waveform'
+      | 'organic'
+      | 'minimal'
+    color?: string
+    animated?: boolean
+    strokeWidth?: number
+    width?: number
+    height?: number
+    seed?: number
+  }>(),
+  {
+    motif: 'minimal',
+    color: 'currentColor',
+    animated: true,
+    strokeWidth: 1.5,
+    width: 800,
+    height: 60,
+    seed: undefined,
+  },
+)
 
 const svgRef = ref<SVGSVGElement | null>(null)
 const pathRef = ref<SVGPathElement | null>(null)

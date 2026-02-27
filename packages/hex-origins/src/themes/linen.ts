@@ -92,7 +92,7 @@ export const linen: HexTheme = {
       muted: '#706a64',
       inverse: '#1a1816',
       link: '#c88050',
-      onAccent: '#ffffff',
+      onAccent: '#1a1816',
     },
     borders: { default: '#383430', subtle: '#282420', strong: '#504c48' },
     accents: {

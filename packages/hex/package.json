@@ -1,6 +1,6 @@
 {
   "name": "@amulet-laboratories/hex",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Hex design token engine — type system, CSS generation, validation, and Tailwind preset for themed design systems.",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -41,6 +41,9 @@
   ],
   "license": "MIT",
   "sideEffects": false,
+  "engines": {
+    "node": ">=22"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/Amulet-Laboratories/hexrig.amulet.ink"

@@ -91,4 +91,15 @@ describe('useToast', () => {
       expect(toasts.value[0].dismissible).toBe(true)
     })
   })
+
+  it('does not auto-dismiss when duration is 0', () => {
+    scope.run(() => {
+      const { show, toasts } = useToast()
+      show({ title: 'Persistent', duration: 0 })
+      expect(toasts.value).toHaveLength(1)
+      // Advancing time should not remove a duration:0 toast
+      vi.advanceTimersByTime(10000)
+      expect(toasts.value).toHaveLength(1)
+    })
+  })
 })
