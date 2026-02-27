@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
+import { RigToast } from '@amulet-laboratories/rig'
 import HeroSection from './sections/HeroSection.vue'
 import ThesisSection from './sections/ThesisSection.vue'
 import ThemesSection from './sections/ThemesSection.vue'
 import ComponentsSection from './sections/ComponentsSection.vue'
+import InteractiveSection from './sections/InteractiveSection.vue'
 import TokensSection from './sections/TokensSection.vue'
+import TextureSection from './sections/TextureSection.vue'
 import CredentialsSection from './sections/CredentialsSection.vue'
 import FooterSection from './sections/FooterSection.vue'
 import FloatingToolbar from './components/FloatingToolbar.vue'
@@ -84,9 +87,12 @@ onUnmounted(() => window.removeEventListener('keydown', onKeydown))
     <ThesisSection />
     <ThemesSection :active-theme="activeTheme" @select-theme="setTheme" />
     <ComponentsSection :active-theme="activeTheme" />
+    <InteractiveSection />
     <TokensSection :active-theme="activeTheme" />
+    <TextureSection />
     <CredentialsSection />
     <FooterSection />
+    <RigToast />
     <FloatingToolbar
       :active-theme="activeTheme"
       :active-mode="activeMode"

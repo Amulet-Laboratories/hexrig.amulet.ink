@@ -1,9 +1,25 @@
 <script setup lang="ts">
 const stats = [
-  { value: '28', label: 'Components' },
+  { value: '29', label: 'Components' },
   { value: '9', label: 'Themes' },
   { value: '18', label: 'Color Modes' },
+  { value: '473', label: 'Tests' },
   { value: 'AAA', label: 'WCAG Level' },
+]
+
+const composables = [
+  {
+    name: 'useToast()',
+    surface: 'show \u00b7 dismiss \u00b7 dismissAll \u00b7 toasts',
+  },
+  {
+    name: 'useTheme()',
+    surface: 'theme \u00b7 mode \u00b7 setMode \u00b7 toggleMode \u00b7 resetToAuto',
+  },
+  {
+    name: 'useMotion()',
+    surface: 'duration \u00b7 easing \u00b7 prefersReducedMotion',
+  },
 ]
 
 const techStack = [
@@ -54,7 +70,7 @@ const links = [
       </p>
 
       <!-- Stats row -->
-      <div v-reveal class="grid grid-cols-2 sm:grid-cols-4 gap-6 mb-16">
+      <div v-reveal class="grid grid-cols-2 sm:grid-cols-5 gap-6 mb-16">
         <div v-for="stat in stats" :key="stat.label" class="text-center">
           <div class="font-display text-4xl sm:text-5xl text-accent leading-none mb-2">
             {{ stat.value }}
@@ -77,6 +93,18 @@ const links = [
         >
           {{ tech.label }}
         </a>
+      </div>
+
+      <!-- Composables -->
+      <div v-reveal class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-16">
+        <div
+          v-for="c in composables"
+          :key="c.name"
+          class="bg-surface-raised border border-border-subtle rounded-lg p-5"
+        >
+          <span class="font-mono text-xs text-accent block mb-1">{{ c.name }}</span>
+          <p class="text-xs text-text-muted font-body">{{ c.surface }}</p>
+        </div>
       </div>
 
       <!-- Ecosystem links -->

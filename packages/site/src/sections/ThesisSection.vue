@@ -49,7 +49,7 @@
             <span class="text-xs font-mono uppercase tracking-[0.2em] text-accent">Rig</span>
           </div>
           <p class="text-sm text-text-secondary font-body leading-relaxed">
-            Twenty-eight Vue 3 components. WCAG AAA accessible, polymorphic, token-driven. Built to
+            Twenty-nine Vue 3 components. WCAG AAA accessible, polymorphic, token-driven. Built to
             feel considered in any theme.
           </p>
         </div>
