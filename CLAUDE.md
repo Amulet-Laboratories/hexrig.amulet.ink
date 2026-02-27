@@ -1,6 +1,6 @@
 # hexrig.amulet.ink — AI Context
 
-Design system monorepo. Hex token engine, Hex Origins theme collection, Rig Vue 3 component library, and documentation site. Published to GitHub Packages. WCAG AAA compliant, 473 tests.
+Design system monorepo. Hex token engine, Hex Origins theme collection, Rig Vue 3 component library, and documentation site. Published to GitHub Packages. WCAG AAA compliant, 472 tests.
 
 - **ID:** x-hrg
 - **Category:** software (design system)
@@ -13,9 +13,9 @@ pnpm workspace (`pnpm-workspace.yaml: packages/*`):
 
 ```
 packages/
-├── hex/          @amulet-laboratories/hex v2.0.0        (published — GitHub Packages)
-├── hex-origins/  @amulet-laboratories/hex-origins v2.0.0 (published — GitHub Packages)
-├── rig/          @amulet-laboratories/rig v2.0.0         (published — GitHub Packages)
+├── hex/          @amulet-laboratories/hex v2.0.0         (published — GitHub Packages)
+├── hex-origins/  @amulet-laboratories/hex-origins v2.0.0  (published — GitHub Packages)
+├── rig/          @amulet-laboratories/rig v2.1.0          (published — GitHub Packages)
 └── site/         @amulet-laboratories/site               (private — docs + Storybook)
 ```
 
@@ -77,7 +77,7 @@ pnpm build:deploy    # full deploy: hex → origins → rig → site → storybo
 pnpm dev             # dev all packages in parallel (-r --parallel)
 pnpm lint            # eslint packages/
 pnpm format          # prettier --write .
-pnpm test            # vitest run (473 tests)
+pnpm test            # vitest run (472 tests)
 pnpm test:watch      # vitest
 pnpm type-check      # pnpm -r typecheck
 pnpm storybook       # storybook dev -p 6006
@@ -139,6 +139,25 @@ grep -r "RigMakerStamp\|RigOrnament\|RigNotifyForm\|RigSiteFooter" src/
 ### 3. `RigThemeProvider` `mode` prop (was `scheme`)
 
 Template usage: `scheme="dark"` becomes `mode="dark"`. `mode="auto"` (the default) follows OS preference.
+
+---
+
+## v2.1.0 Changes (Rig only)
+
+Non-breaking component transition and animation improvements. Hex and Hex Origins unchanged.
+
+### Component transitions added
+
+- **RigAccordion:** Smooth expand/collapse via CSS `grid-template-rows: 0fr → 1fr` transition with opacity fade. Uses `aria-hidden` instead of `hidden` attribute.
+- **RigTabs:** Cross-fade panel transition via `<Transition mode="out-in">`. Only the active panel renders in the DOM (keyed by `activeTab`). **Note:** tab panel content remounts on switch — consumers relying on panel state persistence should use external state.
+- **RigDialog:** Dialog panel now scales up from 95% + slides from `translate-y-3` on open. Nested `<Transition appear>` inside the backdrop transition.
+- **RigButton:** Press feedback `active:scale-[0.97]` on solid/outline/ghost variants. Transition scope broadened to include `transform` and `opacity`.
+- **RigCard:** Interactive cards get `hover:-translate-y-0.5` lift and `active:translate-y-0` press. Transition scope broadened to include `transform`.
+- **RigTooltip:** Scale entrance `scale-95 → scale-100` alongside existing opacity transition.
+
+### Consumer impact
+
+These are additive/visual-only changes **except** for RigTabs panel lifecycle. Previously all panels stayed mounted with `hidden`; now only the active panel is in the DOM. If a consumer stores form state inside a tab panel without lifting it to a parent, that state will reset on tab switch. Workaround: lift state to the parent component or use `v-model` with external refs.
 
 ---
 

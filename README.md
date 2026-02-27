@@ -170,7 +170,7 @@ packages/
 │   │   ├── composables/       # useTheme, useMotion, useToast
 │   │   ├── types/index.ts     # All prop + composable interfaces
 │   │   ├── stories/           # Meta-stories: KitchenSink, Palette, Typography, EditorPreview
-│   │   └── __tests__/         # 5 test suites
+│   │   └── __tests__/         # 14 test suites
 │   ├── tailwind.config.ts     # Token-to-CSS-variable mapping
 │   └── vite.config.ts         # Library build, vite-plugin-dts
 │
@@ -179,7 +179,7 @@ packages/
 │   │   ├── main.ts            # Entry: imports all 9 Hex theme CSS files
 │   │   ├── App.vue            # Root: theme/mode state, keyboard shortcuts
 │   │   ├── style.css          # Tailwind directives, base styles
-│   │   └── sections/          # 5 sections (see below)
+│   │   └── sections/          # 9 sections (see below)
 │   ├── tailwind.config.ts     # Full token-to-CSS-variable mapping
 │   └── vite.config.ts
 │
@@ -190,13 +190,17 @@ packages/
 
 The site at [hexrig.amulet.ink](https://hexrig.amulet.ink) demonstrates the design system live — almost no copy, everything is shown working.
 
-| Section        | Purpose                                                                     |
-| -------------- | --------------------------------------------------------------------------- |
-| **Hero**       | Full-screen intro, animated theme word, install command, theme dot selector |
-| **Themes**     | Grid of dark/light preview cards for all 9 themes                           |
-| **Components** | Live-styled buttons, cards, inputs, alerts, badges, typography              |
-| **Tokens**     | Color swatch grid, motion animation bars, typography preview                |
-| **Footer**     | Package links, Storybook link, tech badges                                  |
+| Section         | Purpose                                                                     |
+| --------------- | --------------------------------------------------------------------------- |
+| **Hero**        | Full-screen intro, animated theme word, install command, theme dot selector |
+| **Thesis**      | Three-pillar narrative — Hex token engine, Origins themes, Rig components   |
+| **Themes**      | Grid of dark/light preview cards for all 9 themes                           |
+| **Components**  | All 29 components in 8 categorized rows with interactive demos              |
+| **Interactive** | 15-component settings panel demonstrating composition                       |
+| **Tokens**      | Color swatch grid, motion animation bars, typography preview                |
+| **Texture**     | Noise grain overlay demo                                                    |
+| **Credentials** | Stats (29 components, 9 themes, 472 tests, AAA), composables, ecosystem     |
+| **Footer**      | Package links, Storybook link, tech badges                                  |
 
 **Keyboard shortcuts:** `T` cycles themes, `M` toggles dark/light.
 
@@ -208,26 +212,26 @@ Storybook is served at `/storybook/` and cross-linked from the nav and footer.
 
 **General**
 
-| Component   | Key Features                                                                    |
-| ----------- | ------------------------------------------------------------------------------- |
-| `RigButton` | solid/outline/ghost/link × accent/neutral/danger, 3 sizes, loading, polymorphic |
-| `RigIcon`   | Iconify integration, xs–xl sizes, decorative mode, a11y warnings                |
-| `RigText`   | display/heading/subheading/body/caption/overline/mono, semantic `as`            |
-| `RigBadge`  | solid/soft/outline × 6 tones, dot indicator, removable — presentational label   |
-| `RigTag`    | solid/soft/outline, removable, disabled state — interactive user-managed chip   |
-| `RigAvatar` | Image with fallback initials, 5 sizes, rounded                                  |
+| Component   | Key Features                                                                                    |
+| ----------- | ----------------------------------------------------------------------------------------------- |
+| `RigButton` | solid/outline/ghost/link × accent/neutral/danger, 3 sizes, loading, press feedback, polymorphic |
+| `RigIcon`   | Iconify integration, xs–xl sizes, decorative mode, a11y warnings                                |
+| `RigText`   | display/heading/subheading/body/caption/overline/mono, semantic `as`                            |
+| `RigBadge`  | solid/soft/outline × 6 tones, dot indicator, removable — presentational label                   |
+| `RigTag`    | solid/soft/outline, removable, disabled state — interactive user-managed chip                   |
+| `RigAvatar` | Image with fallback initials, 5 sizes, rounded                                                  |
 
 **Layout**
 
-| Component      | Key Features                                                    |
-| -------------- | --------------------------------------------------------------- |
-| `RigSurface`   | Semantic element `as`, 4 elevations, border/padding/rounded     |
-| `RigCard`      | flat/raised/prominent elevation, interactive mode with keyboard |
-| `RigContainer` | Max-width wrapper with responsive padding                       |
-| `RigGrid`      | CSS Grid wrapper, configurable columns and gap                  |
-| `RigStack`     | Flex column/row with configurable gap                           |
-| `RigSpacer`    | Flexible spacer for flex/grid layouts                           |
-| `RigDivider`   | Horizontal/vertical, optional label slot                        |
+| Component      | Key Features                                                                |
+| -------------- | --------------------------------------------------------------------------- |
+| `RigSurface`   | Semantic element `as`, 4 elevations, border/padding/rounded                 |
+| `RigCard`      | flat/raised/prominent elevation, interactive mode with keyboard, hover lift |
+| `RigContainer` | Max-width wrapper with responsive padding                                   |
+| `RigGrid`      | CSS Grid wrapper, configurable columns and gap                              |
+| `RigStack`     | Flex column/row with configurable gap                                       |
+| `RigSpacer`    | Flexible spacer for flex/grid layouts                                       |
+| `RigDivider`   | Horizontal/vertical, optional label slot                                    |
 
 **Form**
 
@@ -240,23 +244,23 @@ Storybook is served at `/storybook/` and cross-linked from the nav and footer.
 
 **Navigation**
 
-| Component       | Key Features                                                    |
-| --------------- | --------------------------------------------------------------- |
-| `RigTabs`       | ARIA tab list, keyboard nav (Arrow/Home/End), disabled tabs     |
-| `RigAccordion`  | Multiple/single mode, defaultOpen, disabled items, keyboard nav |
-| `RigBreadcrumb` | Semantic `<nav>`, aria-current on last item, polymorphic links  |
+| Component       | Key Features                                                                            |
+| --------------- | --------------------------------------------------------------------------------------- |
+| `RigTabs`       | ARIA tab list, keyboard nav (Arrow/Home/End), disabled tabs, panel cross-fade           |
+| `RigAccordion`  | Multiple/single mode, defaultOpen, disabled items, keyboard nav, smooth expand/collapse |
+| `RigBreadcrumb` | Semantic `<nav>`, aria-current on last item, polymorphic links                          |
 
 **Feedback**
 
-| Component     | Key Features                                                                  |
-| ------------- | ----------------------------------------------------------------------------- |
-| `RigAlert`    | 4 tones, dismissible, icon, v-model:visible                                   |
-| `RigDialog`   | Focus trapping, Esc close, ref-counted scroll lock, persistent mode, Teleport |
-| `RigToast`    | Auto-dismiss, action slot, 5 tones, theme-aware Teleport                      |
-| `RigProgress` | Value/indeterminate mode, accessible progressbar role                         |
-| `RigSpinner`  | Animated loading indicator, 5 sizes, 6 tones                                  |
-| `RigSkeleton` | Animated loading placeholder, configurable dimensions                         |
-| `RigTooltip`  | CSS-positioned, 4 placements, delay, Esc close, focus/hover triggers          |
+| Component     | Key Features                                                                                  |
+| ------------- | --------------------------------------------------------------------------------------------- |
+| `RigAlert`    | 4 tones, dismissible, icon, v-model:visible                                                   |
+| `RigDialog`   | Focus trapping, Esc close, ref-counted scroll lock, persistent mode, scale entrance, Teleport |
+| `RigToast`    | Auto-dismiss, action slot, 5 tones, theme-aware Teleport                                      |
+| `RigProgress` | Value/indeterminate mode, accessible progressbar role                                         |
+| `RigSpinner`  | Animated loading indicator, 5 sizes, 6 tones                                                  |
+| `RigSkeleton` | Animated loading placeholder, configurable dimensions                                         |
+| `RigTooltip`  | CSS-positioned, 4 placements, delay, Esc close, focus/hover triggers, scale entrance          |
 
 **Texture**
 
@@ -325,7 +329,7 @@ rounded-theme          → var(--radius-theme, 8px)
 
 ## Production Readiness
 
-- **400+ tests** passing across 17 test suites (Vitest + jsdom)
+- **472 tests** passing across 22 test suites (Vitest + jsdom)
 - **Full type safety** — `vue-tsc --noEmit` and `tsc --noEmit` clean, rolled-up `.d.ts` declarations
 - **SSR-safe** — runtime helpers and composables guard against missing `document`/`window`
 - **Tree-shakable** — `sideEffects: false` (hex), `sideEffects: ["**/*.css"]` (hex-origins, rig)

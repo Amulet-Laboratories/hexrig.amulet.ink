@@ -174,15 +174,50 @@
 }
 
 /*
- * View Transition overrides.
- * When the View Transitions API is used (theme/mode switch), this controls
- * the cross-fade timing. The brief 200ms fade masks font-family reflow
- * while CSS property transitions handle color smoothing.
+ * View Transition overrides — blur-morph.
+ * When themes switch, fonts change (each theme has a unique typeface pair).
+ * Instead of a simple cross-fade that exposes the text reflow, we dissolve
+ * through a soft-focus state: old content blurs out while new content
+ * sharpens in. This creates a "morphing" feel that masks layout shift.
  */
+::view-transition-old(root) {
+  animation: 300ms ease-out both vt-morph-out;
+}
+
+::view-transition-new(root) {
+  animation: 300ms ease-in both vt-morph-in;
+}
+
+/* Prevent both snapshots from compositing additively */
 ::view-transition-old(root),
 ::view-transition-new(root) {
-  animation-duration: 200ms;
-  animation-timing-function: ease;
+  mix-blend-mode: normal;
+}
+
+@keyframes vt-morph-out {
+  0% {
+    opacity: 1;
+    filter: blur(0);
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    filter: blur(4px);
+    transform: scale(0.99);
+  }
+}
+
+@keyframes vt-morph-in {
+  0% {
+    opacity: 0;
+    filter: blur(4px);
+    transform: scale(1.01);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: scale(1);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

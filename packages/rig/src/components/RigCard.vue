@@ -35,8 +35,8 @@ const classes = computed(() => {
 
   if (props.interactive) {
     parts.push(
-      'cursor-pointer transition-shadow duration-normal ease-standard',
-      'hover:shadow-lg active:shadow-sm',
+      'cursor-pointer transition-[box-shadow,transform] duration-normal ease-standard',
+      'hover:shadow-lg hover:-translate-y-0.5 active:shadow-sm active:translate-y-0',
       'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring',
     )
   }

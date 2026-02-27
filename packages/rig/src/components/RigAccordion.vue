@@ -90,12 +90,18 @@ const handleKeydown = (event: KeyboardEvent, index: number) => {
         :id="panelId(item.value)"
         role="region"
         :aria-labelledby="triggerId(item.value)"
-        :hidden="!isOpen(item.value)"
-        class="pb-4 px-1 text-text-secondary font-body leading-relaxed"
+        :aria-hidden="!isOpen(item.value)"
+        class="grid transition-[grid-template-rows,opacity] duration-normal ease-standard"
+        :style="{ gridTemplateRows: isOpen(item.value) ? '1fr' : '0fr' }"
+        :class="isOpen(item.value) ? 'opacity-100' : 'opacity-0'"
       >
-        <slot :name="item.value" :item="item">
-          {{ item.content }}
-        </slot>
+        <div class="overflow-hidden">
+          <div class="pb-4 px-1 text-text-secondary font-body leading-relaxed">
+            <slot :name="item.value" :item="item">
+              {{ item.content }}
+            </slot>
+          </div>
+        </div>
       </div>
     </div>
   </div>

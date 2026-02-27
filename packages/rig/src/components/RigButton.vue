@@ -27,7 +27,7 @@ const variantToneClasses = computed(() => {
   const { variant, tone } = props
 
   const base =
-    'inline-flex items-center justify-center rounded font-body font-medium transition-colors duration-normal ease-standard focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring'
+    'inline-flex items-center justify-center rounded font-body font-medium transition-[color,background-color,border-color,box-shadow,transform,opacity] duration-normal ease-standard focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring active:scale-[0.97]'
 
   const map: Record<string, string> = {
     'solid-accent': `${base} bg-accent text-text-on-accent hover:bg-accent-hover active:bg-accent-active`,
@@ -42,9 +42,9 @@ const variantToneClasses = computed(() => {
     'ghost-neutral': `${base} text-text-secondary hover:bg-surface-raised active:bg-surface-overlay`,
     'ghost-danger': `${base} text-status-error hover:bg-status-error/10 active:bg-status-error/20`,
 
-    'link-accent': `inline-flex items-center font-body font-medium text-accent underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring`,
-    'link-neutral': `inline-flex items-center font-body font-medium text-text-secondary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring`,
-    'link-danger': `inline-flex items-center font-body font-medium text-status-error underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring`,
+    'link-accent': `inline-flex items-center font-body font-medium text-accent underline-offset-4 hover:underline transition-[color,opacity] duration-normal ease-standard focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring`,
+    'link-neutral': `inline-flex items-center font-body font-medium text-text-secondary underline-offset-4 hover:underline transition-[color,opacity] duration-normal ease-standard focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring`,
+    'link-danger': `inline-flex items-center font-body font-medium text-status-error underline-offset-4 hover:underline transition-[color,opacity] duration-normal ease-standard focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring`,
   }
 
   if (import.meta.env.DEV) {

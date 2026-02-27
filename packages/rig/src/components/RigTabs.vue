@@ -109,17 +109,25 @@ const tabId = (value: string) => `${tablistId}-tab-${value}`
       </button>
     </div>
 
-    <div
-      v-for="tab in tabs"
-      :key="tab.value"
-      :id="panelId(tab.value)"
-      role="tabpanel"
-      :aria-labelledby="tabId(tab.value)"
-      :tabindex="0"
-      :hidden="tab.value !== activeTab"
-      class="pt-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring rounded"
+    <Transition
+      mode="out-in"
+      enter-active-class="transition-[opacity,transform] duration-fast ease-entrance"
+      enter-from-class="opacity-0 translate-y-1"
+      enter-to-class="opacity-100 translate-y-0"
+      leave-active-class="transition-[opacity,transform] duration-fast ease-exit"
+      leave-from-class="opacity-100 translate-y-0"
+      leave-to-class="opacity-0 -translate-y-1"
     >
-      <slot :name="tab.value" />
-    </div>
+      <div
+        :key="activeTab"
+        :id="panelId(activeTab)"
+        role="tabpanel"
+        :aria-labelledby="tabId(activeTab)"
+        :tabindex="0"
+        class="pt-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring rounded"
+      >
+        <slot :name="activeTab" />
+      </div>
+    </Transition>
   </div>
 </template>

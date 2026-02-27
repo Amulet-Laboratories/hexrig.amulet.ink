@@ -21,7 +21,10 @@ const placementClasses: Record<NonNullable<RigTooltipProps['placement']>, string
 }
 
 const tooltipClasses = computed(() => {
-  return `absolute z-50 px-3 py-1.5 text-sm font-body rounded bg-surface-overlay text-text-primary shadow-lg border border-border-subtle whitespace-nowrap pointer-events-none transition-opacity duration-fast ease-standard ${placementClasses[props.placement]} ${visible.value ? 'opacity-100' : 'opacity-0'}`
+  const base =
+    'absolute z-50 px-3 py-1.5 text-sm font-body rounded bg-surface-overlay text-text-primary shadow-lg border border-border-subtle whitespace-nowrap pointer-events-none transition-[opacity,transform] duration-fast ease-standard'
+  const visibility = visible.value ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+  return `${base} ${placementClasses[props.placement]} ${visibility}`
 })
 
 const show = () => {

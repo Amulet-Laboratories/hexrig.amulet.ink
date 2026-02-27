@@ -15,9 +15,9 @@ describe('RigTabs', () => {
     expect(wrapper.findAll('[role="tab"]')).toHaveLength(3)
   })
 
-  it('renders a tabpanel for each tab', () => {
+  it('renders a tabpanel for the active tab', () => {
     const wrapper = mount(RigTabs, { props: { tabs: TABS, modelValue: 'first' } })
-    expect(wrapper.findAll('[role="tabpanel"]')).toHaveLength(3)
+    expect(wrapper.findAll('[role="tabpanel"]')).toHaveLength(1)
   })
 
   it('active tab has aria-selected="true"', () => {
@@ -93,16 +93,11 @@ describe('RigTabs', () => {
     expect(wrapper.find('[role="tablist"]').classes()).toContain('bg-surface-sunken')
   })
 
-  it('non-active panel is hidden', () => {
+  it('only the active panel is rendered', () => {
     const wrapper = mount(RigTabs, { props: { tabs: TABS, modelValue: 'first' } })
     const panels = wrapper.findAll('[role="tabpanel"]')
-    expect(panels[1].attributes('hidden')).toBeDefined()
-  })
-
-  it('active panel is not hidden', () => {
-    const wrapper = mount(RigTabs, { props: { tabs: TABS, modelValue: 'first' } })
-    const panels = wrapper.findAll('[role="tabpanel"]')
-    expect(panels[0].attributes('hidden')).toBeUndefined()
+    expect(panels).toHaveLength(1)
+    expect(panels[0].attributes('aria-labelledby')).toContain('first')
   })
 })
 
@@ -185,17 +180,17 @@ describe('RigAccordion', () => {
     expect(buttons[1].attributes('disabled')).toBeDefined()
   })
 
-  it('open panel is not hidden', async () => {
+  it('open panel has aria-hidden=false', async () => {
     const wrapper = mount(RigAccordion, { props: { items: ITEMS } })
     await wrapper.findAll('button')[0].trigger('click')
     const panels = wrapper.findAll('[role="region"]')
-    expect(panels[0].attributes('hidden')).toBeUndefined()
+    expect(panels[0].attributes('aria-hidden')).toBe('false')
   })
 
-  it('closed panel is hidden', () => {
+  it('closed panel has aria-hidden', () => {
     const wrapper = mount(RigAccordion, { props: { items: ITEMS } })
     const panels = wrapper.findAll('[role="region"]')
-    expect(panels[0].attributes('hidden')).toBeDefined()
+    expect(panels[0].attributes('aria-hidden')).toBe('true')
   })
 
   it('each panel is labelled by its trigger', async () => {

@@ -169,57 +169,68 @@ onUnmounted(() => {
         class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
         @click="onBackdropClick"
       >
-        <div
-          ref="dialogRef"
-          role="dialog"
-          aria-modal="true"
-          :aria-labelledby="title ? titleId : undefined"
-          :aria-label="!title ? 'Dialog' : undefined"
-          :aria-describedby="description ? descriptionId : undefined"
-          :class="classes"
-          tabindex="-1"
-          @keydown="onKeydown"
+        <Transition
+          appear
+          enter-active-class="transition-[opacity,transform] duration-normal ease-entrance"
+          enter-from-class="opacity-0 scale-95 translate-y-3"
+          enter-to-class="opacity-100 scale-100 translate-y-0"
+          leave-active-class="transition-[opacity,transform] duration-fast ease-exit"
+          leave-from-class="opacity-100 scale-100 translate-y-0"
+          leave-to-class="opacity-0 scale-95 translate-y-3"
         >
-          <!-- Header -->
-          <div v-if="title" class="mb-4">
-            <h2 :id="titleId" class="font-display text-lg font-semibold text-text-primary">
-              {{ title }}
-            </h2>
-            <p v-if="description" :id="descriptionId" class="mt-1 text-sm text-text-muted">
-              {{ description }}
-            </p>
-          </div>
-
-          <!-- Close button -->
-          <button
-            v-if="dismissible"
-            type="button"
-            class="absolute right-4 top-4 inline-flex h-11 w-11 items-center justify-center rounded text-text-muted hover:text-text-primary hover:bg-surface-overlay focus:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring"
-            aria-label="Close dialog"
-            @click="close"
+          <div
+            v-if="modelValue"
+            ref="dialogRef"
+            role="dialog"
+            aria-modal="true"
+            :aria-labelledby="title ? titleId : undefined"
+            :aria-label="!title ? 'Dialog' : undefined"
+            :aria-describedby="description ? descriptionId : undefined"
+            :class="classes"
+            tabindex="-1"
+            @keydown="onKeydown"
           >
-            <svg
-              class="h-4 w-4"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              aria-hidden="true"
+            <!-- Header -->
+            <div v-if="title" class="mb-4">
+              <h2 :id="titleId" class="font-display text-lg font-semibold text-text-primary">
+                {{ title }}
+              </h2>
+              <p v-if="description" :id="descriptionId" class="mt-1 text-sm text-text-muted">
+                {{ description }}
+              </p>
+            </div>
+
+            <!-- Close button -->
+            <button
+              v-if="dismissible"
+              type="button"
+              class="absolute right-4 top-4 inline-flex h-11 w-11 items-center justify-center rounded text-text-muted hover:text-text-primary hover:bg-surface-overlay focus:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring"
+              aria-label="Close dialog"
+              @click="close"
             >
-              <path :d="ICON_DISMISS" />
-            </svg>
-          </button>
+              <svg
+                class="h-4 w-4"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
+                <path :d="ICON_DISMISS" />
+              </svg>
+            </button>
 
-          <!-- Body -->
-          <div>
-            <slot />
-          </div>
+            <!-- Body -->
+            <div>
+              <slot />
+            </div>
 
-          <!-- Footer -->
-          <div v-if="$slots.footer" class="mt-6 flex justify-end gap-3">
-            <slot name="footer" />
+            <!-- Footer -->
+            <div v-if="$slots.footer" class="mt-6 flex justify-end gap-3">
+              <slot name="footer" />
+            </div>
           </div>
-        </div>
+        </Transition>
       </div>
     </Transition>
   </Teleport>
