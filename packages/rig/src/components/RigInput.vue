@@ -53,6 +53,7 @@ const onInput = (event: Event) => {
 
     <input
       :id="inputId"
+      :name="name"
       :type="type"
       :value="modelValue"
       :placeholder="placeholder"

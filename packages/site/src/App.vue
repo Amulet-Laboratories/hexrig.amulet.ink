@@ -7,6 +7,7 @@ import ComponentsSection from './sections/ComponentsSection.vue'
 import TokensSection from './sections/TokensSection.vue'
 import CredentialsSection from './sections/CredentialsSection.vue'
 import FooterSection from './sections/FooterSection.vue'
+import TextureSection from './sections/TextureSection.vue'
 import FloatingToolbar from './components/FloatingToolbar.vue'
 
 import type { ThemeId } from '@amulet-laboratories/hex'
@@ -86,6 +87,7 @@ onUnmounted(() => window.removeEventListener('keydown', onKeydown))
     <ComponentsSection :active-theme="activeTheme" />
     <TokensSection :active-theme="activeTheme" />
     <CredentialsSection />
+    <TextureSection />
     <FooterSection />
     <FloatingToolbar
       :active-theme="activeTheme"

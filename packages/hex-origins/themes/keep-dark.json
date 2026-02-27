@@ -162,10 +162,7 @@
   "tokenColors": [
     {
       "name": "Comment",
-      "scope": [
-        "comment",
-        "punctuation.definition.comment"
-      ],
+      "scope": ["comment", "punctuation.definition.comment"],
       "settings": {
         "foreground": "#6e7476",
         "fontStyle": "italic"
@@ -173,68 +170,42 @@
     },
     {
       "name": "Keyword",
-      "scope": [
-        "keyword",
-        "keyword.control",
-        "keyword.operator.logical",
-        "keyword.operator.new"
-      ],
+      "scope": ["keyword", "keyword.control", "keyword.operator.logical", "keyword.operator.new"],
       "settings": {
         "foreground": "#ea603e"
       }
     },
     {
       "name": "Storage",
-      "scope": [
-        "storage",
-        "storage.type",
-        "storage.modifier",
-        "entity.name.tag"
-      ],
+      "scope": ["storage", "storage.type", "storage.modifier", "entity.name.tag"],
       "settings": {
         "foreground": "#e0c050"
       }
     },
     {
       "name": "String",
-      "scope": [
-        "string",
-        "string.quoted",
-        "string.template"
-      ],
+      "scope": ["string", "string.quoted", "string.template"],
       "settings": {
         "foreground": "#8a9e78"
       }
     },
     {
       "name": "Number",
-      "scope": [
-        "constant.numeric",
-        "constant.language",
-        "constant.character"
-      ],
+      "scope": ["constant.numeric", "constant.language", "constant.character"],
       "settings": {
         "foreground": "#cf7f8f"
       }
     },
     {
       "name": "Function",
-      "scope": [
-        "entity.name.function",
-        "support.function",
-        "meta.function-call"
-      ],
+      "scope": ["entity.name.function", "support.function", "meta.function-call"],
       "settings": {
         "foreground": "#90a088"
       }
     },
     {
       "name": "Operator",
-      "scope": [
-        "keyword.operator",
-        "keyword.operator.assignment",
-        "keyword.operator.arithmetic"
-      ],
+      "scope": ["keyword.operator", "keyword.operator.assignment", "keyword.operator.arithmetic"],
       "settings": {
         "foreground": "#90a088"
       }
@@ -266,69 +237,49 @@
     },
     {
       "name": "Variable",
-      "scope": [
-        "variable",
-        "variable.other",
-        "variable.parameter"
-      ],
+      "scope": ["variable", "variable.other", "variable.parameter"],
       "settings": {
         "foreground": "#8c8c8c"
       }
     },
     {
       "name": "String escape",
-      "scope": [
-        "constant.character.escape"
-      ],
+      "scope": ["constant.character.escape"],
       "settings": {
         "foreground": "#cf7f8f"
       }
     },
     {
       "name": "Decorator / annotation",
-      "scope": [
-        "meta.decorator",
-        "punctuation.decorator"
-      ],
+      "scope": ["meta.decorator", "punctuation.decorator"],
       "settings": {
         "foreground": "#90a088"
       }
     },
     {
       "name": "CSS property",
-      "scope": [
-        "support.type.property-name"
-      ],
+      "scope": ["support.type.property-name"],
       "settings": {
         "foreground": "#788870"
       }
     },
     {
       "name": "CSS value",
-      "scope": [
-        "support.constant.property-value",
-        "meta.property-value"
-      ],
+      "scope": ["support.constant.property-value", "meta.property-value"],
       "settings": {
         "foreground": "#8a9e78"
       }
     },
     {
       "name": "JSON key",
-      "scope": [
-        "support.type.property-name.json"
-      ],
+      "scope": ["support.type.property-name.json"],
       "settings": {
         "foreground": "#ea603e"
       }
     },
     {
       "name": "Markdown heading",
-      "scope": [
-        "heading.1.markdown",
-        "heading.2.markdown",
-        "heading.3.markdown"
-      ],
+      "scope": ["heading.1.markdown", "heading.2.markdown", "heading.3.markdown"],
       "settings": {
         "foreground": "#ea603e",
         "fontStyle": "bold"
@@ -336,37 +287,28 @@
     },
     {
       "name": "Markdown bold",
-      "scope": [
-        "markup.bold"
-      ],
+      "scope": ["markup.bold"],
       "settings": {
         "fontStyle": "bold"
       }
     },
     {
       "name": "Markdown italic",
-      "scope": [
-        "markup.italic"
-      ],
+      "scope": ["markup.italic"],
       "settings": {
         "fontStyle": "italic"
       }
     },
     {
       "name": "Markdown link",
-      "scope": [
-        "markup.underline.link"
-      ],
+      "scope": ["markup.underline.link"],
       "settings": {
         "foreground": "#90a088"
       }
     },
     {
       "name": "Markdown code",
-      "scope": [
-        "markup.inline.raw",
-        "markup.fenced_code.block"
-      ],
+      "scope": ["markup.inline.raw", "markup.fenced_code.block"],
       "settings": {
         "foreground": "#8a9e78"
       }
