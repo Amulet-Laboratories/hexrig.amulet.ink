@@ -6,6 +6,7 @@ export default defineConfig({
   plugins: [vue()],
   resolve: {
     alias: {
+      '@amulet-laboratories/hex': resolve(__dirname, 'packages/hex/src/index.ts'),
       '@hex': resolve(__dirname, 'packages/hex/src'),
       '@rig': resolve(__dirname, 'packages/rig/src'),
     },
