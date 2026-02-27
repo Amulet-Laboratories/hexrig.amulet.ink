@@ -1,0 +1,16 @@
+{
+  "name": "hexrig.amulet.ink",
+  "short_name": "hexrig.amulet.ink",
+  "description": "Design system monorepo — Hex tokens + Rig Vue 3 components",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f0d0a",
+  "theme_color": "#0f0d0a",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

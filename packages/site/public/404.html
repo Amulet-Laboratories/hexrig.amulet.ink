@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page Not Found</title>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #0f0d0a;
+        color: #f5f1ed;
+        font-family: 'Crimson Text', Georgia, serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      .container {
+        text-align: center;
+        padding: 2rem;
+        max-width: 480px;
+      }
+      .code {
+        font-size: 5rem;
+        font-weight: 700;
+        color: #c9956d;
+        line-height: 1;
+        margin-bottom: 1rem;
+      }
+      .message {
+        font-size: 1.25rem;
+        color: rgba(245, 241, 237, 0.6);
+        margin-bottom: 2rem;
+        line-height: 1.6;
+      }
+      .link {
+        display: inline-block;
+        color: #c9956d;
+        text-decoration: none;
+        font-size: 1rem;
+        padding: 0.75rem 1.5rem;
+        border: 1px solid rgba(201, 149, 109, 0.3);
+        transition: border-color 0.2s, background 0.2s;
+      }
+      .link:hover {
+        border-color: #c9956d;
+        background: rgba(201, 149, 109, 0.08);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="code">404</div>
+      <p class="message">This page does not exist.</p>
+      <a href="/" class="link">Return home</a>
+    </div>
+  </body>
+</html>

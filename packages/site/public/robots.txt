@@ -1,0 +1,12 @@
+# robots.txt
+# https://www.robotstxt.org/
+
+User-agent: *
+Allow: /
+
+# Build artifacts
+Disallow: /_redirects
+Disallow: /_headers
+
+# Sitemap
+Sitemap: https://hexrig.amulet.ink/sitemap.xml

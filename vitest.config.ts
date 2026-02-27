@@ -16,12 +16,18 @@ export default defineConfig({
     include: ['packages/*/src/**/*.test.ts'],
     coverage: {
       provider: 'v8',
-      include: ['packages/*/src/**/*.{ts,vue}'],
+      include: ['packages/hex/src/**/*.{ts,vue}', 'packages/rig/src/**/*.{ts,vue}'],
       exclude: [
         'packages/*/src/**/*.test.ts',
         'packages/*/src/**/*.stories.ts',
         'packages/*/src/build/**',
       ],
+      thresholds: {
+        statements: 25,
+        branches: 15,
+        functions: 15,
+        lines: 25,
+      },
     },
   },
 })
