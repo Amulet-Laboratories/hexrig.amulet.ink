@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, watchEffect, onMounted, onUnmounted } from 'vue'
 import { RigToast } from '@amulet-laboratories/rig'
 import HeroSection from './sections/HeroSection.vue'
 import ThesisSection from './sections/ThesisSection.vue'
@@ -16,6 +16,12 @@ import type { ThemeId } from '@amulet-laboratories/hex'
 
 const activeTheme = ref<ThemeId>('hearth')
 const activeMode = ref<'dark' | 'light'>('dark')
+
+// Sync theme/mode to <html> so Teleported content (Dialog, Toast) inherits tokens
+watchEffect(() => {
+  document.documentElement.dataset.theme = activeTheme.value
+  document.documentElement.dataset.mode = activeMode.value
+})
 
 const themes: ThemeId[] = [
   'ember',

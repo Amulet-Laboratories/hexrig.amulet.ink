@@ -75,7 +75,7 @@ const onReset = () => {
       </p>
 
       <!-- Interactive settings panel -->
-      <div v-reveal>
+      <div v-reveal:scale>
         <RigCard elevation="prominent">
           <!-- Header -->
           <div class="px-6 pt-6 pb-4 border-b border-border-subtle">

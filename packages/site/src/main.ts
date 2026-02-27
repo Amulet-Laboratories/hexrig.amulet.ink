@@ -30,8 +30,8 @@ const observer = new IntersectionObserver(
 )
 
 app.directive('reveal', {
-  mounted(el: HTMLElement) {
-    el.classList.add('reveal')
+  mounted(el: HTMLElement, binding) {
+    el.classList.add(binding.arg === 'scale' ? 'reveal-scale' : 'reveal')
     observer.observe(el)
   },
   unmounted(el: HTMLElement) {

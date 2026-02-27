@@ -99,11 +99,18 @@ onUnmounted(() => {
       </p>
     </div>
 
-    <div class="max-w-6xl mx-auto space-y-6">
+    <div class="max-w-6xl mx-auto space-y-6 reveal-stagger">
       <!-- ================================================================ -->
       <!-- ROW 1: Buttons                                                   -->
       <!-- ================================================================ -->
-      <RigSurface v-reveal elevation="raised" border="subtle" rounded padding="lg">
+      <RigSurface
+        v-reveal:scale
+        elevation="raised"
+        border="subtle"
+        rounded
+        padding="lg"
+        class="panel-lift"
+      >
         <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted block mb-8"
           >RigButton</span
         >
@@ -123,9 +130,9 @@ onUnmounted(() => {
       <!-- ================================================================ -->
       <!-- ROW 2: Card + Input                                              -->
       <!-- ================================================================ -->
-      <div v-reveal class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div v-reveal:scale class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <!-- Cards -->
-        <RigSurface elevation="raised" border="subtle" rounded padding="lg">
+        <RigSurface elevation="raised" border="subtle" rounded padding="lg" class="panel-lift">
           <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted block mb-8"
             >RigCard</span
           >
@@ -160,7 +167,7 @@ onUnmounted(() => {
         </RigSurface>
 
         <!-- Input -->
-        <RigSurface elevation="raised" border="subtle" rounded padding="lg">
+        <RigSurface elevation="raised" border="subtle" rounded padding="lg" class="panel-lift">
           <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted block mb-8"
             >RigInput</span
           >
@@ -179,9 +186,9 @@ onUnmounted(() => {
       <!-- ================================================================ -->
       <!-- ROW 3: Avatar + Tag + Text                                       -->
       <!-- ================================================================ -->
-      <div v-reveal class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div v-reveal:scale class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <!-- Avatar + Tag -->
-        <RigSurface elevation="raised" border="subtle" rounded padding="lg">
+        <RigSurface elevation="raised" border="subtle" rounded padding="lg" class="panel-lift">
           <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted block mb-8"
             >RigAvatar · RigTag</span
           >
@@ -224,7 +231,7 @@ onUnmounted(() => {
         </RigSurface>
 
         <!-- Text variants -->
-        <RigSurface elevation="raised" border="subtle" rounded padding="lg">
+        <RigSurface elevation="raised" border="subtle" rounded padding="lg" class="panel-lift">
           <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted block mb-8"
             >RigText</span
           >
@@ -252,7 +259,14 @@ onUnmounted(() => {
       <!-- ================================================================ -->
       <!-- ROW 4: Select + Checkbox + Switch                                -->
       <!-- ================================================================ -->
-      <RigSurface v-reveal elevation="raised" border="subtle" rounded padding="lg">
+      <RigSurface
+        v-reveal:scale
+        elevation="raised"
+        border="subtle"
+        rounded
+        padding="lg"
+        class="panel-lift"
+      >
         <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted block mb-8"
           >RigSelect · RigCheckbox · RigSwitch</span
         >
@@ -313,9 +327,9 @@ onUnmounted(() => {
       <!-- ================================================================ -->
       <!-- ROW 5: Alerts + Tabs / Badge / Tooltip                           -->
       <!-- ================================================================ -->
-      <div v-reveal class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div v-reveal:scale class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <!-- Alerts -->
-        <RigSurface elevation="raised" border="subtle" rounded padding="lg">
+        <RigSurface elevation="raised" border="subtle" rounded padding="lg" class="panel-lift">
           <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted block mb-8"
             >RigAlert</span
           >
@@ -328,7 +342,7 @@ onUnmounted(() => {
         </RigSurface>
 
         <!-- Tabs + Badges + Tooltip -->
-        <RigSurface elevation="raised" border="subtle" rounded padding="lg">
+        <RigSurface elevation="raised" border="subtle" rounded padding="lg" class="panel-lift">
           <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted block mb-8"
             >RigTabs · RigBadge · RigTooltip</span
           >
@@ -380,9 +394,9 @@ onUnmounted(() => {
       <!-- ================================================================ -->
       <!-- ROW 6: Accordion + Breadcrumb                                    -->
       <!-- ================================================================ -->
-      <div v-reveal class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div v-reveal:scale class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <!-- Accordion -->
-        <RigSurface elevation="raised" border="subtle" rounded padding="lg">
+        <RigSurface elevation="raised" border="subtle" rounded padding="lg" class="panel-lift">
           <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted block mb-8"
             >RigAccordion</span
           >
@@ -412,7 +426,7 @@ onUnmounted(() => {
         </RigSurface>
 
         <!-- Breadcrumb -->
-        <RigSurface elevation="raised" border="subtle" rounded padding="lg">
+        <RigSurface elevation="raised" border="subtle" rounded padding="lg" class="panel-lift">
           <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted block mb-8"
             >RigBreadcrumb</span
           >
@@ -460,7 +474,14 @@ onUnmounted(() => {
       <!-- ================================================================ -->
       <!-- ROW 7: Progress + Spinner + Skeleton                             -->
       <!-- ================================================================ -->
-      <RigSurface v-reveal elevation="raised" border="subtle" rounded padding="lg">
+      <RigSurface
+        v-reveal:scale
+        elevation="raised"
+        border="subtle"
+        rounded
+        padding="lg"
+        class="panel-lift"
+      >
         <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted block mb-8"
           >RigProgress · RigSpinner · RigSkeleton</span
         >
@@ -512,9 +533,9 @@ onUnmounted(() => {
       <!-- ================================================================ -->
       <!-- ROW 8: Dialog + Toast (interactive)                              -->
       <!-- ================================================================ -->
-      <div v-reveal class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div v-reveal:scale class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <!-- Dialog -->
-        <RigSurface elevation="raised" border="subtle" rounded padding="lg">
+        <RigSurface elevation="raised" border="subtle" rounded padding="lg" class="panel-lift">
           <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted block mb-8"
             >RigDialog</span
           >
@@ -532,7 +553,7 @@ onUnmounted(() => {
         </RigSurface>
 
         <!-- Toast -->
-        <RigSurface elevation="raised" border="subtle" rounded padding="lg">
+        <RigSurface elevation="raised" border="subtle" rounded padding="lg" class="panel-lift">
           <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted block mb-8"
             >RigToast</span
           >
