@@ -1,6 +1,6 @@
 {
   "name": "@amulet-laboratories/hex-origins",
-  "version": "2.0.0",
+  "version": "2.2.0",
   "description": "Origins collection — nine themes in spectral order for the Hex design token system.",
   "type": "module",
   "main": "./dist/index.cjs",
