@@ -1,9 +1,9 @@
 <script setup lang="ts">
 const stats = [
-  { value: '29', label: 'Components' },
+  { value: '48', label: 'Components' },
   { value: '9', label: 'Themes' },
   { value: '18', label: 'Color Modes' },
-  { value: '473', label: 'Tests' },
+  { value: '699', label: 'Tests' },
   { value: 'AAA', label: 'WCAG Level' },
 ]
 
@@ -19,6 +19,30 @@ const composables = [
   {
     name: 'useMotion()',
     surface: 'duration \u00b7 easing \u00b7 prefersReducedMotion',
+  },
+  {
+    name: 'useKeyboard()',
+    surface: 'register \u00b7 unregister \u00b7 shortcuts',
+  },
+  {
+    name: 'useClipboard()',
+    surface: 'copy \u00b7 copied \u00b7 isSupported',
+  },
+  {
+    name: 'useLocalStorage()',
+    surface: 'value \u00b7 remove',
+  },
+  {
+    name: 'useBreakpoint()',
+    surface: 'current \u00b7 gte \u00b7 lt',
+  },
+  {
+    name: 'useSort()',
+    surface: 'sorted \u00b7 sortBy \u00b7 sortDir \u00b7 toggleSort',
+  },
+  {
+    name: 'useFilter()',
+    surface: 'filtered \u00b7 query \u00b7 filters \u00b7 activeCount \u00b7 reset',
   },
 ]
 

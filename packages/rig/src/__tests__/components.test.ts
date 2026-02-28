@@ -30,6 +30,27 @@ const componentNames = [
   'RigSwitch',
   'RigTag',
   'RigNoiseGrain',
+  // Tier 1 — Tower baseline
+  'RigStatus',
+  'RigEmpty',
+  'RigConfirm',
+  'RigHeader',
+  'RigPage',
+  'RigPanel',
+  'RigSidebar',
+  'RigSidebarSection',
+  'RigSidebarItem',
+  'RigAppShell',
+  'RigTable',
+  // Tier 2 — Tower full experience
+  'RigRadio',
+  'RigStat',
+  'RigMetadata',
+  'RigList',
+  'RigTimeline',
+  'RigTree',
+  'RigSplit',
+  'RigFooter',
 ] as const
 
 describe('rig component exports', () => {

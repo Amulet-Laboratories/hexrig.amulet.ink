@@ -23,6 +23,24 @@ import {
   RigSkeleton,
   RigDialog,
   useToast,
+  RigStatus,
+  RigRadio,
+  RigStat,
+  RigTable,
+  RigMetadata,
+  RigList,
+  RigTimeline,
+  RigTree,
+  RigSplit,
+  RigHeader,
+  RigFooter,
+  RigPanel,
+  RigEmpty,
+  RigConfirm,
+  RigSidebar,
+  RigSidebarSection,
+  RigSidebarItem,
+  RigPage,
 } from '@amulet-laboratories/rig'
 
 import type { ThemeId } from '@amulet-laboratories/hex'
@@ -65,6 +83,23 @@ const showToast = (tone: 'success' | 'warning' | 'error' | 'info') => {
   show({ tone, ...messages[tone] })
 }
 
+// --- Radio ---
+const radioValue = ref('hearth')
+
+// --- Table ---
+const tableSortBy = ref('name')
+const tableSortDir = ref<'asc' | 'desc'>('asc')
+
+// --- Tree ---
+const treeSelected = ref('')
+const treeExpanded = ref(['sites', 'software'])
+
+// --- Confirm dialog ---
+const confirmOpen = ref(false)
+
+// --- Sidebar ---
+const sidebarCollapsed = ref(false)
+
 // --- Animated progress ---
 const progressValue = ref(0)
 let progressTimer: ReturnType<typeof setInterval> | null = null
@@ -92,7 +127,7 @@ onUnmounted(() => {
         v-reveal
         class="font-display text-4xl sm:text-5xl lg:text-6xl text-text-primary leading-tight mb-4"
       >
-        Twenty-nine components.<br />Every piece, considered.
+        Forty-eight components.<br />Every piece, considered.
       </h2>
       <p v-reveal class="text-text-muted font-body text-lg max-w-xl">
         Real Rig components below — not mockups. Switch themes above and watch them transform.
@@ -576,6 +611,373 @@ onUnmounted(() => {
           </div>
         </RigSurface>
       </div>
+
+      <!-- ================================================================ -->
+      <!-- ROW 9: Status + Radio                                            -->
+      <!-- ================================================================ -->
+      <div v-reveal:scale class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Status -->
+        <RigSurface elevation="raised" border="subtle" rounded padding="lg" class="panel-lift">
+          <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted block mb-8"
+            >RigStatus</span
+          >
+          <div class="space-y-4">
+            <RigText variant="caption" color="muted" class="mb-3"
+              >System state indicators with pulse animation</RigText
+            >
+            <div class="space-y-3">
+              <div class="flex items-center gap-6">
+                <RigStatus status="healthy" label="Healthy" />
+                <RigStatus status="active" label="Active" pulse />
+                <RigStatus status="warning" label="Warning" />
+              </div>
+              <div class="flex items-center gap-6">
+                <RigStatus status="critical" label="Critical" pulse />
+                <RigStatus status="pending" label="Pending" />
+                <RigStatus status="archived" label="Archived" />
+              </div>
+              <div class="flex items-center gap-6">
+                <RigStatus status="wip" label="WIP" />
+                <RigStatus status="info" label="Info" />
+                <RigStatus status="neutral" label="Neutral" />
+              </div>
+            </div>
+            <RigDivider />
+            <div class="flex items-end gap-4">
+              <RigStatus status="active" label="Small" size="sm" />
+              <RigStatus status="active" label="Medium" size="md" />
+              <RigStatus status="active" label="Large" size="lg" />
+            </div>
+          </div>
+        </RigSurface>
+
+        <!-- Radio -->
+        <RigSurface elevation="raised" border="subtle" rounded padding="lg" class="panel-lift">
+          <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted block mb-8"
+            >RigRadio</span
+          >
+          <div class="space-y-6">
+            <RigRadio
+              v-model="radioValue"
+              name="theme-pick"
+              label="Select a theme"
+              :options="[
+                { value: 'hearth', label: 'Hearth' },
+                { value: 'abyss', label: 'Abyss' },
+                { value: 'ember', label: 'Ember' },
+                { value: 'grove', label: 'Grove' },
+              ]"
+              description="Themes define the entire visual language."
+            />
+            <RigDivider />
+            <RigRadio
+              model-value="a"
+              name="horizontal-demo"
+              label="Horizontal layout"
+              orientation="horizontal"
+              :options="[
+                { value: 'a', label: 'Option A' },
+                { value: 'b', label: 'Option B' },
+                { value: 'c', label: 'Option C', disabled: true },
+              ]"
+            />
+          </div>
+        </RigSurface>
+      </div>
+
+      <!-- ================================================================ -->
+      <!-- ROW 10: Stat                                                     -->
+      <!-- ================================================================ -->
+      <RigSurface
+        v-reveal:scale
+        elevation="raised"
+        border="subtle"
+        rounded
+        padding="lg"
+        class="panel-lift"
+      >
+        <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted block mb-8"
+          >RigStat</span
+        >
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+          <RigStat label="Components" :value="48" icon="mdi:puzzle" trend="up" trend-label="+19" />
+          <RigStat label="Tests" :value="699" icon="mdi:check-circle" trend="up" trend-label="+227" />
+          <RigStat label="Themes" :value="9" icon="mdi:palette" trend="flat" />
+          <RigStat label="Composables" :value="9" icon="mdi:function-variant" trend="up" trend-label="+5" />
+        </div>
+      </RigSurface>
+
+      <!-- ================================================================ -->
+      <!-- ROW 11: Table                                                    -->
+      <!-- ================================================================ -->
+      <RigSurface
+        v-reveal:scale
+        elevation="raised"
+        border="subtle"
+        rounded
+        padding="lg"
+        class="panel-lift"
+      >
+        <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted block mb-8"
+          >RigTable</span
+        >
+        <RigTable
+          :columns="[
+            { key: 'name', label: 'Repository', sortable: true },
+            { key: 'category', label: 'Category' },
+            { key: 'status', label: 'Status' },
+            { key: 'version', label: 'Version', align: 'right' },
+          ]"
+          :rows="[
+            { id: '1', name: 'hexrig.amulet.ink', category: 'software', status: 'active', version: '2.2.0' },
+            { id: '2', name: 'codex.amulet.ink', category: 'software', status: 'wip', version: '0.3.0' },
+            { id: '3', name: 'salt.amulet.ink', category: 'software', status: 'wip', version: '0.1.0' },
+            { id: '4', name: 'rune.amulet.ink', category: 'software', status: 'wip', version: '0.2.0' },
+            { id: '5', name: 'amulet.ink', category: 'sites', status: 'active', version: '1.0.0' },
+          ]"
+          :sort-by="tableSortBy"
+          :sort-dir="tableSortDir"
+          hoverable
+          striped
+          compact
+          @update:sort-by="tableSortBy = $event"
+          @update:sort-dir="tableSortDir = $event"
+        />
+      </RigSurface>
+
+      <!-- ================================================================ -->
+      <!-- ROW 12: Metadata + List                                          -->
+      <!-- ================================================================ -->
+      <div v-reveal:scale class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Metadata -->
+        <RigSurface elevation="raised" border="subtle" rounded padding="lg" class="panel-lift">
+          <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted block mb-8"
+            >RigMetadata</span
+          >
+          <RigMetadata
+            :items="[
+              { label: 'Package', value: '@amulet-laboratories/rig' },
+              { label: 'Version', value: '2.2.0', type: 'badge', tone: 'accent' },
+              { label: 'Status', value: 'active', type: 'status', tone: 'success' },
+              { label: 'License', value: 'MIT' },
+              { label: 'Components', value: '48' },
+              { label: 'Docs', value: 'hexrig.amulet.ink', type: 'link', href: '/' },
+            ]"
+            :columns="2"
+            separator
+          />
+        </RigSurface>
+
+        <!-- List -->
+        <RigSurface elevation="raised" border="subtle" rounded padding="lg" class="panel-lift">
+          <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted block mb-8"
+            >RigList</span
+          >
+          <RigList
+            :items="[
+              { id: '1', label: 'Design Tokens', description: 'CSS custom properties for every primitive', icon: 'mdi:palette' },
+              { id: '2', label: 'Components', description: '48 accessible Vue 3 components', icon: 'mdi:puzzle' },
+              { id: '3', label: 'Themes', description: '9 themes, 18 variants', icon: 'mdi:brush' },
+              { id: '4', label: 'Composables', description: '9 reactive utility functions', icon: 'mdi:function-variant' },
+            ]"
+            hoverable
+            divided
+          />
+        </RigSurface>
+      </div>
+
+      <!-- ================================================================ -->
+      <!-- ROW 13: Timeline + Tree                                          -->
+      <!-- ================================================================ -->
+      <div v-reveal:scale class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Timeline -->
+        <RigSurface elevation="raised" border="subtle" rounded padding="lg" class="panel-lift">
+          <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted block mb-8"
+            >RigTimeline</span
+          >
+          <RigTimeline
+            :items="[
+              { id: '1', label: 'v1.0.0', description: 'Initial release — 33 components', tone: 'neutral', timestamp: 'Feb 20' },
+              { id: '2', label: 'v2.0.0', description: 'Token overhaul, brand split', tone: 'success', timestamp: 'Feb 27' },
+              { id: '3', label: 'v2.1.0', description: 'Component transitions', tone: 'success', timestamp: 'Feb 27' },
+              { id: '4', label: 'v2.2.0', description: '48 components, 9 composables', tone: 'accent', timestamp: 'Feb 28' },
+            ]"
+          />
+        </RigSurface>
+
+        <!-- Tree -->
+        <RigSurface elevation="raised" border="subtle" rounded padding="lg" class="panel-lift">
+          <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted block mb-8"
+            >RigTree</span
+          >
+          <RigTree
+            :nodes="[
+              {
+                id: 'sites',
+                label: 'Sites',
+                icon: 'mdi:web',
+                children: [
+                  { id: 's-ink', label: 'amulet.ink' },
+                  { id: 's-lab', label: 'labs.amulet.ink' },
+                  { id: 's-pub', label: 'press.amulet.ink' },
+                ],
+              },
+              {
+                id: 'software',
+                label: 'Software',
+                icon: 'mdi:package-variant-closed',
+                children: [
+                  { id: 'x-hrg', label: 'hexrig.amulet.ink' },
+                  { id: 'x-cod', label: 'codex.amulet.ink' },
+                ],
+              },
+            ]"
+            v-model:selected="treeSelected"
+            v-model:expanded="treeExpanded"
+            selectable
+          />
+          <RigText variant="caption" color="muted" class="mt-3"
+            >Selected: {{ treeSelected || 'none' }}</RigText
+          >
+        </RigSurface>
+      </div>
+
+      <!-- ================================================================ -->
+      <!-- ROW 14: Panel + Empty + Confirm                                  -->
+      <!-- ================================================================ -->
+      <div v-reveal:scale class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Panel -->
+        <RigSurface elevation="raised" border="subtle" rounded padding="lg" class="panel-lift">
+          <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted block mb-8"
+            >RigPanel</span
+          >
+          <RigPanel title="Collapsible section" description="Click to toggle" collapsible bordered>
+            <RigText variant="caption" color="secondary">
+              Panel content with smooth expand/collapse transition.
+            </RigText>
+          </RigPanel>
+        </RigSurface>
+
+        <!-- Empty -->
+        <RigSurface elevation="raised" border="subtle" rounded padding="lg" class="panel-lift">
+          <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted block mb-8"
+            >RigEmpty</span
+          >
+          <RigEmpty
+            icon="mdi:inbox-outline"
+            title="No results"
+            description="Try adjusting your filters."
+            action-label="Reset filters"
+          />
+        </RigSurface>
+
+        <!-- Confirm -->
+        <RigSurface elevation="raised" border="subtle" rounded padding="lg" class="panel-lift">
+          <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted block mb-8"
+            >RigConfirm</span
+          >
+          <RigText variant="caption" color="muted" class="mb-4">
+            Preconfigured confirmation dialog with tone-matched actions.
+          </RigText>
+          <div class="flex flex-wrap gap-3">
+            <RigButton variant="outline" tone="danger" size="sm" @click="confirmOpen = true"
+              >Delete item</RigButton
+            >
+          </div>
+        </RigSurface>
+      </div>
+
+      <!-- ================================================================ -->
+      <!-- ROW 15: Split                                                    -->
+      <!-- ================================================================ -->
+      <RigSurface
+        v-reveal:scale
+        elevation="raised"
+        border="subtle"
+        rounded
+        padding="lg"
+        class="panel-lift"
+      >
+        <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted block mb-8"
+          >RigSplit</span
+        >
+        <div class="h-[200px] border border-border-subtle rounded overflow-hidden">
+          <RigSplit :initial-size="240" :min-size="120" :max-size="400">
+            <template #first>
+              <div class="p-4 h-full bg-surface-sunken">
+                <RigText variant="overline" color="accent">Sidebar</RigText>
+                <RigText variant="caption" color="muted" class="mt-2"
+                  >Drag the handle to resize.</RigText
+                >
+              </div>
+            </template>
+            <template #second>
+              <div class="p-4 h-full">
+                <RigText variant="overline" color="accent">Content</RigText>
+                <RigText variant="caption" color="muted" class="mt-2"
+                  >Double-click handle to reset.</RigText
+                >
+              </div>
+            </template>
+          </RigSplit>
+        </div>
+      </RigSurface>
+
+      <!-- ================================================================ -->
+      <!-- ROW 16: App Layout                                               -->
+      <!-- ================================================================ -->
+      <RigSurface
+        v-reveal:scale
+        elevation="raised"
+        border="subtle"
+        rounded
+        padding="lg"
+        class="panel-lift"
+      >
+        <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted block mb-8"
+          >RigAppShell · RigHeader · RigSidebar · RigPage · RigFooter</span
+        >
+        <div class="h-[320px] flex flex-col border border-border-subtle rounded overflow-hidden bg-surface-base">
+          <RigHeader title="Tower" bordered>
+            <template #trailing>
+              <RigButton
+                size="sm"
+                variant="ghost"
+                tone="neutral"
+                @click="sidebarCollapsed = !sidebarCollapsed"
+              >
+                {{ sidebarCollapsed ? 'Expand' : 'Collapse' }}
+              </RigButton>
+            </template>
+          </RigHeader>
+          <div class="flex flex-1 min-h-0">
+            <RigSidebar
+              :collapsed="sidebarCollapsed"
+              :width="160"
+              :collapsed-width="48"
+              bordered
+              @update:collapsed="sidebarCollapsed = $event"
+            >
+              <RigSidebarSection title="Navigation">
+                <RigSidebarItem icon="mdi:view-dashboard" label="Dashboard" active />
+                <RigSidebarItem icon="mdi:chart-bar" label="Analytics" />
+                <RigSidebarItem icon="mdi:cog" label="Settings" />
+              </RigSidebarSection>
+            </RigSidebar>
+            <RigPage title="Dashboard" description="System overview" max-width="full" class="flex-1">
+              <RigText variant="caption" color="muted"
+                >RigPage wraps page-level content with title, description, and optional actions.</RigText
+              >
+            </RigPage>
+          </div>
+          <RigFooter bordered>
+            <div class="flex items-center justify-between">
+              <RigText variant="caption" color="muted">Amulet Laboratories</RigText>
+              <RigText variant="caption" color="muted">v2.2.0</RigText>
+            </div>
+          </RigFooter>
+        </div>
+      </RigSurface>
     </div>
 
     <!-- Dialogs (teleported to body) -->
@@ -611,13 +1013,22 @@ onUnmounted(() => {
       </template>
     </RigDialog>
 
+    <RigConfirm
+      v-model="confirmOpen"
+      title="Delete this item?"
+      description="This action cannot be undone. The item and all associated data will be permanently removed."
+      confirm-label="Delete"
+      cancel-label="Keep"
+      tone="danger"
+    />
+
     <!-- See all CTA -->
     <div v-reveal class="max-w-6xl mx-auto mt-12 text-center">
       <a
         href="/storybook/?path=/docs/overview-introduction--docs"
         class="inline-flex items-center gap-2 text-accent hover:text-accent-hover transition-colors font-body text-base"
       >
-        See all 29 components in Storybook
+        See all 48 components in Storybook
         <span class="text-lg">&rarr;</span>
       </a>
     </div>

@@ -1,6 +1,6 @@
 # hexrig.amulet.ink — AI Context
 
-Design system monorepo. Hex token engine, Hex Origins theme collection, Rig Vue 3 component library, and documentation site. Published to GitHub Packages. WCAG AAA compliant, 472 tests.
+Design system monorepo. Hex token engine, Hex Origins theme collection, Rig Vue 3 component library, and documentation site. Published to GitHub Packages. WCAG AAA compliant, 699 tests.
 
 - **ID:** x-hrg
 - **Category:** software (design system)
@@ -42,7 +42,7 @@ Token system, CSS custom property generation, validation, and Tailwind preset.
 
 ### `packages/rig` — Vue 3 Component Library
 
-29 accessible components consuming Hex tokens via Tailwind CSS.
+48 accessible components and 9 composables consuming Hex tokens via Tailwind CSS.
 
 - **Build:** `vite` in library mode + `vite-plugin-dts`
 - **Exports:** `.` (components + composables) and `./style.css`
@@ -77,7 +77,7 @@ pnpm build:deploy    # full deploy: hex → origins → rig → site → storybo
 pnpm dev             # dev all packages in parallel (-r --parallel)
 pnpm lint            # eslint packages/
 pnpm format          # prettier --write .
-pnpm test            # vitest run (472 tests)
+pnpm test            # vitest run (699 tests)
 pnpm test:watch      # vitest
 pnpm type-check      # pnpm -r typecheck
 pnpm storybook       # storybook dev -p 6006
@@ -158,6 +158,50 @@ Non-breaking component transition and animation improvements. Hex and Hex Origin
 ### Consumer impact
 
 These are additive/visual-only changes **except** for RigTabs panel lifecycle. Previously all panels stayed mounted with `hidden`; now only the active panel is in the DOM. If a consumer stores form state inside a tab panel without lifting it to a parent, that state will reset on tab switch. Workaround: lift state to the parent component or use `v-model` with external refs.
+
+---
+
+## v2.2.0 Changes (Rig only)
+
+Non-breaking addition of 19 components and 6 composables. Rig grows from 29 to 48 components and from 3 to 9 composables. Hex and Hex Origins unchanged.
+
+### Tier 1 — Tower baseline (11 components)
+
+- **RigStatus** — Status indicator with colored dot, pulse animation, and label
+- **RigEmpty** — Empty state placeholder with icon, title, description, and action button
+- **RigConfirm** — Preconfigured confirmation dialog with tone-matched actions
+- **RigHeader** — Sticky navigation header with leading/title/center/trailing slots
+- **RigPage** — Page container with title, description, actions, and max-width control
+- **RigPanel** — Collapsible container with title, description, actions, and footer
+- **RigSidebar** — Vertical navigation sidebar with collapsed state and smooth width transition
+- **RigSidebarSection** — Grouping container within RigSidebar
+- **RigSidebarItem** — Clickable navigation item within RigSidebarSection
+- **RigAppShell** — Complete app layout shell combining header, sidebar, main, and footer
+- **RigTable** — Full-featured data table with sorting, selection, expansion, and loading states
+
+### Tier 2 — Tower full experience (8 components)
+
+- **RigRadio** — Radio button group with vertical/horizontal layout
+- **RigStat** — Statistic display with trend indicator and icon
+- **RigMetadata** — Definition list with badge, status, and link type rendering
+- **RigList** — Item list with icons, descriptions, and action slots
+- **RigTimeline** — Vertical/horizontal timeline with tone-colored dots
+- **RigTree** — Recursive tree view with keyboard navigation and ARIA tree roles
+- **RigSplit** — Resizable two-pane splitter with pointer events
+- **RigFooter** — Footer component with optional border
+
+### New composables (6)
+
+- **useKeyboard** — Global keyboard shortcut registration with mod key normalization
+- **useClipboard** — Clipboard API wrapper with copied feedback state
+- **useLocalStorage** — Reactive localStorage with cross-tab sync via storage events
+- **useBreakpoint** — Reactive Tailwind breakpoint tracking via matchMedia
+- **useSort** — Reactive array sorting by key and direction
+- **useFilter** — Reactive array filtering with text search and debounce
+
+### Consumer impact
+
+Purely additive — no breaking changes. All new components and composables are opt-in imports.
 
 ---
 

@@ -6,6 +6,13 @@
  * for internal UI chrome (dismiss buttons, status indicators).
  */
 
+import type { InjectionKey, Ref } from 'vue'
+
+/** Sidebar collapsed state injection key */
+export const SIDEBAR_COLLAPSED_KEY: InjectionKey<Ref<boolean>> = Symbol.for(
+  'rig-sidebar-collapsed',
+) as InjectionKey<Ref<boolean>>
+
 /** Close / dismiss X icon path */
 export const ICON_DISMISS = 'M18 6L6 18M6 6l12 12'
 
