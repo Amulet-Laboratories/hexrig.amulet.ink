@@ -51,6 +51,15 @@ const componentNames = [
   'RigTree',
   'RigSplit',
   'RigFooter',
+  // Tier 3 — Client engagement site components
+  'RigNavbar',
+  'RigHero',
+  'RigCardGrid',
+  'RigContactForm',
+  'RigTestimonial',
+  'RigHoursDisplay',
+  'RigPricingTable',
+  'RigGallery',
 ] as const
 
 describe('rig component exports', () => {

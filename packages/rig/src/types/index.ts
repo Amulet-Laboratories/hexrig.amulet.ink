@@ -666,3 +666,140 @@ export interface UseFilterReturn<T> {
   activeCount: ComputedRef<number>
   reset: () => void
 }
+
+// ---------------------------------------------------------------------------
+// Tier 3 — Client engagement site components
+// ---------------------------------------------------------------------------
+
+// RigNavbar helper types
+export interface NavbarDropdownItem {
+  label: string
+  href?: string
+  to?: RouteLocationRaw
+}
+
+export interface NavbarItem {
+  label: string
+  href?: string
+  to?: RouteLocationRaw
+  children?: NavbarDropdownItem[]
+}
+
+// RigNavbar
+export interface RigNavbarProps {
+  brand?: string
+  brandHref?: string
+  items?: NavbarItem[]
+  sticky?: boolean
+  transparent?: boolean
+  bordered?: boolean
+}
+
+// RigHero
+export interface RigHeroProps {
+  headline?: string
+  subheadline?: string
+  ctaLabel?: string
+  ctaHref?: string
+  secondaryCtaLabel?: string
+  secondaryCtaHref?: string
+  align?: 'left' | 'center' | 'right'
+  size?: 'sm' | 'md' | 'lg' | 'xl'
+  overlay?: boolean
+  overlayOpacity?: number
+}
+
+// RigCardGrid
+export interface RigCardGridProps {
+  minCardWidth?: string
+  maxColumns?: number
+  gap?: 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+  masonry?: boolean
+}
+
+// RigContactForm helper types
+export interface ContactFormField {
+  name: string
+  label: string
+  type?: 'text' | 'email' | 'tel' | 'textarea' | 'select'
+  placeholder?: string
+  required?: boolean
+  options?: { value: string; label: string }[]
+}
+
+// RigContactForm
+export interface RigContactFormProps {
+  formName: string
+  fields?: ContactFormField[]
+  submitLabel?: string
+  successMessage?: string
+  errorMessage?: string
+  compact?: boolean
+}
+
+// RigTestimonial
+export interface RigTestimonialProps {
+  quote: string
+  author: string
+  role?: string
+  avatar?: string
+  rating?: number
+  variant?: 'card' | 'inline' | 'featured'
+}
+
+// RigHoursDisplay helper types
+export interface BusinessHours {
+  day: string
+  open?: string
+  close?: string
+  closed?: boolean
+}
+
+// RigHoursDisplay
+export interface RigHoursDisplayProps {
+  hours: BusinessHours[]
+  timezone?: string
+  highlightToday?: boolean
+  showStatus?: boolean
+  compact?: boolean
+}
+
+// RigPricingTable helper types
+export interface PricingItem {
+  name: string
+  description?: string
+  price: string | number
+  badge?: string
+}
+
+export interface PricingSection {
+  title: string
+  description?: string
+  items: PricingItem[]
+}
+
+// RigPricingTable
+export interface RigPricingTableProps {
+  sections: PricingSection[]
+  currency?: string
+  variant?: 'list' | 'card' | 'grid'
+  showDividers?: boolean
+  compact?: boolean
+}
+
+// RigGallery helper types
+export interface GalleryImage {
+  src: string
+  alt: string
+  caption?: string
+  thumbnail?: string
+}
+
+// RigGallery
+export interface RigGalleryProps {
+  images: GalleryImage[]
+  columns?: number
+  gap?: 'none' | 'xs' | 'sm' | 'md' | 'lg'
+  aspectRatio?: 'square' | '4/3' | '3/2' | '16/9' | 'auto'
+  lightbox?: boolean
+}

@@ -62,6 +62,16 @@ export { default as RigTree } from './components/RigTree.vue'
 export { default as RigSplit } from './components/RigSplit.vue'
 export { default as RigFooter } from './components/RigFooter.vue'
 
+// Tier 3 — Client engagement site components
+export { default as RigNavbar } from './components/RigNavbar.vue'
+export { default as RigHero } from './components/RigHero.vue'
+export { default as RigCardGrid } from './components/RigCardGrid.vue'
+export { default as RigContactForm } from './components/RigContactForm.vue'
+export { default as RigTestimonial } from './components/RigTestimonial.vue'
+export { default as RigHoursDisplay } from './components/RigHoursDisplay.vue'
+export { default as RigPricingTable } from './components/RigPricingTable.vue'
+export { default as RigGallery } from './components/RigGallery.vue'
+
 // Composables
 export { useTheme, provideTheme } from './composables/useTheme'
 export { useMotion } from './composables/useMotion'
@@ -149,4 +159,19 @@ export type {
   UseSortReturn,
   FilterConfig,
   UseFilterReturn,
+  NavbarDropdownItem,
+  NavbarItem,
+  RigNavbarProps,
+  RigHeroProps,
+  RigCardGridProps,
+  ContactFormField,
+  RigContactFormProps,
+  RigTestimonialProps,
+  BusinessHours,
+  RigHoursDisplayProps,
+  PricingItem,
+  PricingSection,
+  RigPricingTableProps,
+  GalleryImage,
+  RigGalleryProps,
 } from './types'
