@@ -6,6 +6,7 @@ withDefaults(defineProps<RigAppShellProps>(), {
   sidebarCollapsed: false,
   sidebarWidth: 240,
   sidebarCollapsedWidth: 56,
+  statusbarHeight: 28,
 })
 
 const emit = defineEmits<{
@@ -47,6 +48,15 @@ const emit = defineEmits<{
       <main class="flex-1 overflow-y-auto overflow-x-hidden">
         <slot />
       </main>
+    </div>
+
+    <!-- Statusbar — full width, VS Code-style bottom bar -->
+    <div
+      v-if="$slots.statusbar"
+      class="shrink-0 flex items-center overflow-hidden border-t border-border bg-surface-base"
+      :style="{ height: `${statusbarHeight}px` }"
+    >
+      <slot name="statusbar" />
     </div>
 
     <!-- Footer — full width -->

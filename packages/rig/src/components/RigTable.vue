@@ -12,6 +12,7 @@ const props = withDefaults(defineProps<RigTableProps>(), {
   striped: false,
   hoverable: true,
   compact: false,
+  dense: false,
   loading: false,
 })
 
@@ -90,8 +91,19 @@ const alignClasses: Record<string, string> = {
   right: 'text-right',
 }
 
-const cellPadding = computed(() => (props.compact ? 'px-3 py-1.5' : 'px-4 py-3'))
-const headerPadding = computed(() => (props.compact ? 'px-3 py-1.5' : 'px-4 py-2.5'))
+const cellPadding = computed(() => {
+  if (props.dense) return 'px-2 py-1'
+  if (props.compact) return 'px-3 py-1.5'
+  return 'px-4 py-3'
+})
+const headerPadding = computed(() => {
+  if (props.dense) return 'px-2 py-1'
+  if (props.compact) return 'px-3 py-1.5'
+  return 'px-4 py-2.5'
+})
+const cellTextClass = computed(() => (props.dense ? 'text-xs' : 'text-sm'))
+const headerTextClass = computed(() => (props.dense ? 'text-[10px]' : 'text-xs'))
+const expandedPadding = computed(() => (props.dense ? 'px-3 py-2' : 'px-4 py-3'))
 
 const totalCols = computed(() => {
   let cols = props.columns.length
@@ -140,7 +152,8 @@ const ariaSortValue = (column: RigTableColumn): 'ascending' | 'descending' | 'no
             :class="[
               headerPadding,
               alignClasses[column.align ?? 'left'],
-              'text-xs font-semibold uppercase tracking-wider text-text-muted whitespace-nowrap',
+              headerTextClass,
+              'font-semibold uppercase tracking-wider text-text-muted whitespace-nowrap',
               column.sortable && 'cursor-pointer select-none hover:text-text-primary transition-colors duration-fast ease-standard',
             ]"
             :style="column.width ? { width: column.width } : undefined"
@@ -273,7 +286,7 @@ const ariaSortValue = (column: RigTableColumn): 'ascending' | 'descending' | 'no
               <td
                 v-for="column in columns"
                 :key="column.key"
-                :class="[cellPadding, alignClasses[column.align ?? 'left'], 'text-sm text-text-primary']"
+                :class="[cellPadding, alignClasses[column.align ?? 'left'], cellTextClass, 'text-text-primary']"
               >
                 <slot :name="`cell-${column.key}`" :row="row" :value="row[column.key]">
                   {{ row[column.key] ?? '' }}
@@ -283,7 +296,7 @@ const ariaSortValue = (column: RigTableColumn): 'ascending' | 'descending' | 'no
 
             <!-- Expanded row -->
             <tr v-if="expandable && isExpanded(row)" role="row">
-              <td :colspan="totalCols" class="bg-surface-sunken px-4 py-3 border-b border-border-subtle">
+              <td :colspan="totalCols" :class="['bg-surface-sunken border-b border-border-subtle', expandedPadding]">
                 <slot name="expanded" :row="row"></slot>
               </td>
             </tr>

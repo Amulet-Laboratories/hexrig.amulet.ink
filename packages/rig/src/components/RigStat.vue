@@ -5,9 +5,18 @@ import RigIcon from './RigIcon.vue'
 
 const props = withDefaults(defineProps<RigStatProps>(), {
   size: 'md',
+  mono: false,
 })
 
 const valueSizeClass = computed(() => {
+  if (props.mono) {
+    const monoMap: Record<string, string> = {
+      sm: 'text-lg font-semibold',
+      md: 'text-2xl font-bold',
+      lg: 'text-3xl font-bold',
+    }
+    return monoMap[props.size] ?? monoMap.md
+  }
   const map: Record<string, string> = {
     sm: 'text-xl font-semibold',
     md: 'text-3xl font-bold',
@@ -44,7 +53,7 @@ const trendIcon = computed(() => {
     </div>
 
     <div class="flex items-baseline gap-2">
-      <span :class="['text-text-primary font-display', valueSizeClass]">
+      <span :class="['text-text-primary', mono ? 'font-mono' : 'font-display', valueSizeClass]">
         {{ value }}
       </span>
 

@@ -61,7 +61,9 @@ const handleClick = (event: MouseEvent) => {
     :title="isCollapsed ? label : undefined"
     @click="handleClick"
   >
-    <RigIcon v-if="icon" :name="icon" size="sm" :color="active ? 'accent' : 'muted'" />
+    <slot name="icon">
+      <RigIcon v-if="icon" :name="icon" size="sm" :color="active ? 'accent' : 'muted'" />
+    </slot>
 
     <span v-if="!isCollapsed" class="flex-1 truncate text-left">
       <slot>{{ label }}</slot>

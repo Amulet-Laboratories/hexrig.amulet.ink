@@ -52,6 +52,9 @@ export { default as RigSidebarItem } from './components/RigSidebarItem.vue'
 export { default as RigAppShell } from './components/RigAppShell.vue'
 export { default as RigTable } from './components/RigTable.vue'
 
+export { default as RigStatusBar } from './components/RigStatusBar.vue'
+export { default as RigStatusBarItem } from './components/RigStatusBarItem.vue'
+
 // Tier 2 — Tower full experience
 export { default as RigRadio } from './components/RigRadio.vue'
 export { default as RigStat } from './components/RigStat.vue'
@@ -174,4 +177,6 @@ export type {
   RigPricingTableProps,
   GalleryImage,
   RigGalleryProps,
+  RigStatusBarProps,
+  RigStatusBarItemProps,
 } from './types'

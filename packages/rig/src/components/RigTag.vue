@@ -27,6 +27,7 @@ const tagClasses = computed(() => {
     solid: 'bg-accent text-surface-base',
     soft: 'bg-accent/15 text-accent',
     outline: 'border border-border text-text-primary',
+    technical: 'font-mono text-xs bg-border/50 text-text-secondary px-1.5 py-0.5 rounded-sm tracking-wide',
   }
 
   const disabled = props.disabled ? 'opacity-50 cursor-not-allowed' : ''

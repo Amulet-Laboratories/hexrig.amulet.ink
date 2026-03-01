@@ -117,6 +117,9 @@ export interface RigCardProps {
   href?: string
   to?: RouteLocationRaw
   ariaLabel?: string
+  accentColor?: string
+  accentPosition?: 'left' | 'top' | 'right'
+  selected?: boolean
 }
 
 // RigContainer
@@ -273,7 +276,7 @@ export interface RigSwitchProps {
 // RigTag
 export interface RigTagProps {
   label?: string
-  variant?: 'solid' | 'soft' | 'outline'
+  variant?: 'solid' | 'soft' | 'outline' | 'technical'
   size?: 'sm' | 'md' | 'lg'
   removable?: boolean
   disabled?: boolean
@@ -383,6 +386,7 @@ export interface RigStatusProps {
   label?: string
   size?: 'sm' | 'md' | 'lg'
   pulse?: boolean
+  glow?: boolean
 }
 
 // RigEmpty
@@ -458,6 +462,7 @@ export interface RigAppShellProps {
   sidebarCollapsed?: boolean
   sidebarWidth?: number
   sidebarCollapsedWidth?: number
+  statusbarHeight?: number
 }
 
 // RigTable
@@ -481,6 +486,7 @@ export interface RigTableProps {
   striped?: boolean
   hoverable?: boolean
   compact?: boolean
+  dense?: boolean
   emptyTitle?: string
   emptyDescription?: string
   loading?: boolean
@@ -536,6 +542,7 @@ export interface RigStatProps {
   trend?: 'up' | 'down' | 'flat'
   trendLabel?: string
   size?: 'sm' | 'md' | 'lg'
+  mono?: boolean
 }
 
 // RigMetadata
@@ -614,6 +621,18 @@ export interface RigSplitProps {
 // RigFooter
 export interface RigFooterProps {
   bordered?: boolean
+}
+
+// RigStatusBar
+export interface RigStatusBarProps {
+  as?: 'footer' | 'div'
+  height?: number
+  bordered?: boolean
+}
+
+// RigStatusBarItem
+export interface RigStatusBarItemProps {
+  separator?: boolean
 }
 
 // ---------------------------------------------------------------------------

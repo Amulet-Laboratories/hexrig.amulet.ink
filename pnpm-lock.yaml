@@ -88,11 +88,10 @@ importers:
         version: 3.5.29(typescript@5.9.3)
 
   packages/hex:
-    dependencies:
+    devDependencies:
       '@amulet-laboratories/hex-engine':
         specifier: workspace:*
         version: link:../hex-engine
-    devDependencies:
       '@types/node':
         specifier: ^25.3.0
         version: 25.3.0

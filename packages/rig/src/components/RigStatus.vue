@@ -5,6 +5,7 @@ import type { RigStatusProps } from '../types'
 const props = withDefaults(defineProps<RigStatusProps>(), {
   size: 'md',
   pulse: false,
+  glow: false,
 })
 
 const statusColorClasses: Record<RigStatusProps['status'], string> = {
@@ -47,6 +48,25 @@ const pulseSizeClasses: Record<NonNullable<RigStatusProps['size']>, string> = {
   lg: 'h-2.5 w-2.5',
 }
 
+const glowColorMap: Record<RigStatusProps['status'], string> = {
+  healthy: 'var(--hex-success, #22C55E)',
+  active: 'var(--hex-success, #22C55E)',
+  warning: 'var(--hex-warning, #F59E0B)',
+  wip: 'var(--hex-warning, #F59E0B)',
+  critical: 'var(--hex-error, #EF4444)',
+  error: 'var(--hex-error, #EF4444)',
+  info: 'var(--hex-info, #3B82F6)',
+  neutral: 'var(--hex-text-muted, #64748B)',
+  stub: 'var(--hex-text-muted, #64748B)',
+  pending: 'var(--hex-text-muted, #64748B)',
+  archived: 'var(--hex-text-muted, #64748B)',
+}
+
+const glowStyle = computed(() => {
+  if (!props.glow) return {}
+  return { boxShadow: `0 0 6px ${glowColorMap[props.status]}` }
+})
+
 const dotClasses = computed(() => {
   return `rounded-full shrink-0 ${sizeClasses[props.size]} ${statusColorClasses[props.status]}`
 })
@@ -59,7 +79,7 @@ const pulseClasses = computed(() => {
 <template>
   <span class="inline-flex items-center gap-1.5 font-body">
     <span class="relative inline-flex shrink-0">
-      <span :class="dotClasses" />
+      <span :class="dotClasses" :style="glowStyle" />
       <span v-if="pulse" :class="pulseClasses" />
     </span>
     <span v-if="label" class="text-sm text-text-secondary">{{ label }}</span>
