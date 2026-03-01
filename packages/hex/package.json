@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "@amulet-laboratories/hex-engine": "workspace:*",
-    "@types/node": "^25.3.0",
+    "@types/node": "^25.3.3",
     "tailwindcss": "^3.4.0",
     "tsup": "^8.3.0",
     "typescript": "^5.7.0"
