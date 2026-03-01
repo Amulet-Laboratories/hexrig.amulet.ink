@@ -36,8 +36,7 @@ import { RigButton, RigCard } from '@amulet-laboratories/rig'
         From zero to component in three steps.
       </h2>
       <p v-reveal class="text-text-muted font-body text-lg mb-16 max-w-xl">
-        No bundler magic. No peer-dependency maze. Add one package, set one attribute, import a
-        component.
+        One package. One attribute. One component.
       </p>
 
       <!-- Steps -->
@@ -57,7 +56,7 @@ import { RigButton, RigCard } from '@amulet-laboratories/rig'
           </div>
           <CodeBlock :code="installCode" lang="shell" />
           <p class="text-xs text-text-muted font-body mt-3">
-            Published on GitHub Packages. Node 22+ required.
+            Node 22+
           </p>
         </RigSurface>
 
@@ -87,7 +86,7 @@ import { RigButton, RigCard } from '@amulet-laboratories/rig'
             </div>
           </div>
           <p class="text-xs text-text-muted font-body mt-3">
-            Nine themes available: hearth, ember, grove, reef, abyss, cove, linen, keep, slate.
+            9 themes. 2 modes.
           </p>
         </RigSurface>
 
@@ -106,7 +105,7 @@ import { RigButton, RigCard } from '@amulet-laboratories/rig'
           </div>
           <CodeBlock :code="useCode" lang="vue" filename="App.vue" />
           <p class="text-xs text-text-muted font-body mt-3">
-            Switch to any theme above. Every component responds instantly.
+            56 components ready to use.
           </p>
         </RigSurface>
       </div>

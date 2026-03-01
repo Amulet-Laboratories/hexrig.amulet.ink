@@ -475,18 +475,13 @@ const { filtered, query } = useFilter(docsRef, ['name', 'description'])
       >
         Every prop, documented.
       </h2>
-      <p v-reveal class="text-text-muted font-body text-lg mb-8 max-w-xl">
-        Type-safe props for all 56 components. Filter by name or description.
-      </p>
-
       <!-- Search bar -->
       <div v-reveal class="mb-8">
         <RigInput
           v-model="query"
-          placeholder="Search components..."
-          description="Type to filter by name or description"
+          placeholder="Search..."
+          description="Find any of 56 components"
         />
-        <p class="text-xs text-text-muted font-mono mt-2">{{ filtered.length }} component(s)</p>
       </div>
 
       <!-- Components grid -->
