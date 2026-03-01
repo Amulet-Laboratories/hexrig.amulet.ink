@@ -1,144 +1,59 @@
 <script setup lang="ts">
-import type { ThemeId } from '@amulet-laboratories/hex'
-import { ref, watch, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import {
-  RigButton, RigBadge, RigInput, RigAlert, RigDivider,
+  RigButton, RigInput, RigAlert, RigDivider,
 } from '@amulet-laboratories/rig'
+import { useHexEngine, generateRecommendedThemes, applyThemeCSS } from '../composables/useHexEngine'
+import type { RecommendedTheme } from '../composables/useHexEngine'
 
-const props = defineProps<{ activeTheme: ThemeId }>()
-const emit = defineEmits<{ 'select-theme': [theme: ThemeId] }>()
+const {
+  selectedArchetype,
+  selectedWeight,
+  selectedAttitude,
+  selectedMode,
+  currentTheme,
+  currentArchetype,
+  archetypes,
+  weights,
+  attitudes,
+  modes,
+} = useHexEngine()
 
-const themes: {
-  id: ThemeId
-  name: string
-  word: string
-  series: string
-  narrative: string
-  accent: string
-  display: string
-  body: string
-}[] = [
-  // Spectrum (Red → Gold → Green → Cyan → Blue → Purple)
-  {
-    id: 'ember',
-    name: 'Ember',
-    word: 'Intensity',
-    series: 'Spectrum',
-    narrative: 'Crimson against char — the loudest theme.',
-    accent: '#e04030',
-    display: 'Bungee',
-    body: 'Exo 2',
+// Apply CSS whenever theme builder selection changes
+watch(
+  () => ({ selectedArchetype, selectedWeight, selectedAttitude, selectedMode }),
+  () => {
+    applyThemeCSS({
+      archetype: selectedArchetype.value,
+      weight: selectedWeight.value,
+      attitude: selectedAttitude.value,
+      mode: selectedMode.value,
+    })
   },
-  {
-    id: 'hearth',
-    name: 'Hearth',
-    word: 'Creation',
-    series: 'Spectrum',
-    narrative: 'Amber light, golden purpose — warm and deliberate.',
-    accent: '#d4a840',
-    display: 'Sorts Mill Goudy',
-    body: 'Lora',
-  },
-  {
-    id: 'grove',
-    name: 'Grove',
-    word: 'Approachability',
-    series: 'Spectrum',
-    narrative: 'Green light through leaves. Dappled and friendly.',
-    accent: '#7cba7e',
-    display: 'Libre Baskerville',
-    body: 'Plus Jakarta Sans',
-  },
-  {
-    id: 'reef',
-    name: 'Reef',
-    word: 'Clarity',
-    series: 'Spectrum',
-    narrative: 'Shallow water over white sand — cool precision.',
-    accent: '#40c0b8',
-    display: 'DM Sans',
-    body: 'Libre Franklin',
-  },
-  {
-    id: 'abyss',
-    name: 'Abyss',
-    word: 'Nothingness',
-    series: 'Spectrum',
-    narrative: 'The space between stars — vast, electric, alive.',
-    accent: '#4080f0',
-    display: 'League Gothic',
-    body: 'Lexend',
-  },
-  {
-    id: 'cove',
-    name: 'Cove',
-    word: 'Shelter',
-    series: 'Spectrum',
-    narrative: 'The hidden chamber — warm, intimate, otherworldly.',
-    accent: '#c040a0',
-    display: 'Crimson Pro',
-    body: 'Nunito Sans',
-  },
-  // Neutrals (Warm → Pure → Cool)
-  {
-    id: 'linen',
-    name: 'Linen',
-    word: 'Precision',
-    series: 'Neutral',
-    narrative: 'Off-white with warmth. Not snow — linen.',
-    accent: '#b87040',
-    display: 'Manrope',
-    body: 'Outfit',
-  },
-  {
-    id: 'keep',
-    name: 'Keep',
-    word: 'Construction',
-    series: 'Neutral',
-    narrative: 'Steel and purpose — the raw made precise.',
-    accent: '#90a088',
-    display: 'IBM Plex Serif',
-    body: 'IBM Plex Sans',
-  },
-  {
-    id: 'slate',
-    name: 'Slate',
-    word: 'Nothing',
-    series: 'Neutral',
-    narrative: 'Cool monochrome. The theme that disappears.',
-    accent: '#8090a0',
-    display: 'Sora',
-    body: 'Work Sans',
-  },
-]
+  { immediate: true, deep: true },
+)
 
-const spectrumThemes = computed(() => themes.filter((t) => t.series === 'Spectrum'))
-const neutralThemes = computed(() => themes.filter((t) => t.series === 'Neutral'))
+const recommendedThemes = computed(() => generateRecommendedThemes())
 
-// Theme preview state
-const previewTheme = ref<ThemeId>(props.activeTheme)
-const previewMode = ref<'dark' | 'light'>('dark')
-const hoveredTheme = ref<ThemeId | null>(null)
+// Preview state
+const previewTheme = ref<RecommendedTheme | null>(null)
+const hoveredTheme = ref<string | null>(null)
 
-// Sync preview when global theme changes (keyboard T, hero dots)
-watch(() => props.activeTheme, (t) => {
-  previewTheme.value = t
+const currentPreview = computed(() => {
+  if (hoveredTheme.value) {
+    return recommendedThemes.value.find(t => t.id === hoveredTheme.value)
+  }
+  return previewTheme.value ?? recommendedThemes.value[0]
 })
 
-// The theme shown in the large preview: hovered theme while hovering, else the clicked theme
-const currentPreview = computed(() => hoveredTheme.value ?? previewTheme.value)
-const currentPreviewData = computed(() => themes.find(t => t.id === currentPreview.value)!)
-
-// Card interactions
-const onCardEnter = (id: ThemeId) => {
+const onCardEnter = (id: string) => {
   hoveredTheme.value = id
 }
 const onCardLeave = () => {
   hoveredTheme.value = null
 }
-const applyTheme = (id: ThemeId) => {
-  previewTheme.value = id
-  emit('select-theme', id)
+const applyTheme = (theme: RecommendedTheme) => {
+  previewTheme.value = theme
 }
 </script>
 
@@ -148,95 +63,79 @@ const applyTheme = (id: ThemeId) => {
     <div class="max-w-6xl mx-auto mb-20">
       <div v-reveal class="flex items-center gap-3 mb-6">
         <div class="h-px w-8 bg-accent" />
-        <span class="text-xs font-mono uppercase tracking-[0.25em] text-accent">Nine Themes</span>
+        <span class="text-xs font-mono uppercase tracking-[0.25em] text-accent">Theme System</span>
       </div>
       <h2
         v-reveal
         class="font-display text-4xl sm:text-5xl lg:text-6xl text-text-primary leading-tight mb-4"
       >
-        Nine worlds.<br />One system.
+        Generative design tokens.<br />Infinite combinations.
       </h2>
       <p v-reveal class="text-text-muted font-body text-lg max-w-xl">
-        Each theme is a complete visual language — palette, typography, motion, and personality.
-        Hover to preview in isolation. Click to apply sitewide.
+        Eight archetypes × three weights × four attitudes × two modes = 192 complete theme systems.
+        Built with hex-engine for precision and control.
       </p>
     </div>
 
-    <!-- Spectrum themes (rainbow: Red → Gold → Green → Cyan → Blue → Purple) -->
+    <!-- Recommended themes showcase -->
     <div class="max-w-6xl mx-auto">
       <div v-reveal class="flex items-center gap-3 mb-4">
-        <span class="text-[10px] font-mono uppercase tracking-[0.25em] text-text-muted"
-          >Spectrum</span
-        >
+        <span class="text-[10px] font-mono uppercase tracking-[0.25em] text-text-muted">Recommended</span>
         <div class="h-px flex-1 bg-border-subtle" />
       </div>
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-20">
         <button
-          v-for="t in spectrumThemes"
+          v-for="t in recommendedThemes"
           :key="t.id"
           class="group relative text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring rounded-theme"
           @mouseenter="onCardEnter(t.id)"
           @mouseleave="onCardLeave"
-          @click="applyTheme(t.id)"
+          @click="applyTheme(t)"
         >
           <!-- Dark preview -->
           <div
             class="rounded-t-theme transition-transform duration-normal ease-standard"
-            :class="t.id === previewTheme ? 'scale-[1.02]' : 'group-hover:scale-[1.01]'"
-            :data-theme="t.id"
-            data-mode="dark"
+            :class="currentPreview?.id === t.id ? 'scale-[1.02]' : 'group-hover:scale-[1.01]'"
+            :data-theme="`${t.archetype}-${t.weight}-${t.attitude}`"
+            :data-mode="t.mode"
           >
             <div
-              class="h-56 sm:h-64 w-full rounded-t-theme bg-surface-base border border-border-subtle p-4 flex flex-col justify-between"
+              class="h-40 sm:h-48 w-full rounded-t-theme bg-surface-base border border-border-subtle p-4 flex flex-col justify-between"
             >
-              <!-- Mini UI vignette -->
               <div class="space-y-2">
                 <div class="flex items-center gap-2">
-                  <div class="w-2 h-2 rounded-full" :style="{ backgroundColor: t.accent }" />
+                  <div
+                    class="w-2 h-2 rounded-full"
+                    :style="{ backgroundColor: t.tokens?.accent || '#888' }"
+                  />
                   <div class="h-1.5 w-16 rounded-full bg-text-muted opacity-30" />
                 </div>
                 <div class="h-1.5 w-full rounded-full bg-text-muted opacity-15" />
-                <div class="h-1.5 w-3/4 rounded-full bg-text-muted opacity-15" />
-                <div class="mt-3 flex gap-1.5">
-                  <div
-                    class="h-5 w-14 rounded text-[8px] flex items-center justify-center text-text-on-accent font-mono"
-                    :style="{ backgroundColor: t.accent }"
-                  >
-                    button
-                  </div>
-                  <div
-                    class="h-5 w-14 rounded border border-border-subtle text-[8px] flex items-center justify-center text-text-muted font-mono"
-                  >
-                    ghost
-                  </div>
-                </div>
               </div>
 
-              <!-- Theme identity -->
               <div>
                 <div
                   class="w-6 h-1 rounded-full mb-3 transition-all duration-normal"
-                  :style="{ backgroundColor: t.accent }"
-                  :class="t.id === previewTheme ? 'w-10' : ''"
+                  :style="{ backgroundColor: t.tokens?.accent || '#888' }"
+                  :class="currentPreview?.id === t.id ? 'w-10' : ''"
                 />
-                <div class="font-display text-lg" :style="{ color: t.accent }">{{ t.name }}</div>
-                <div class="text-[10px] text-text-muted mt-0.5 font-mono uppercase tracking-wider">
-                  {{ t.word }}
+                <div class="font-display text-lg" :style="{ color: t.tokens?.accent || '#888' }">
+                  {{ t.name }}
+                </div>
+                <div class="text-[9px] text-text-muted mt-0.5 font-mono uppercase tracking-wider">
+                  {{ t.attitude }}
                 </div>
               </div>
             </div>
           </div>
 
           <!-- Light preview -->
-          <div class="rounded-b-theme" :data-theme="t.id" data-mode="light">
+          <div class="rounded-b-theme" :data-theme="`${t.archetype}-${t.weight}-${t.attitude}`" data-mode="day">
             <div
-              class="h-20 sm:h-24 w-full rounded-b-theme bg-surface-base border border-t-0 border-border-subtle p-4 flex flex-col justify-between"
+              class="h-16 sm:h-20 w-full rounded-b-theme bg-surface-base border border-t-0 border-border-subtle p-4 flex items-start"
             >
-              <div class="text-xs text-text-muted font-body leading-snug line-clamp-2">
+              <div class="text-[10px] text-text-muted font-body leading-tight line-clamp-2">
                 {{ t.narrative }}
-              </div>
-              <div class="text-[9px] font-mono text-text-muted opacity-60 mt-1">
-                {{ t.display }} · {{ t.body }}
               </div>
             </div>
           </div>
@@ -244,147 +143,99 @@ const applyTheme = (id: ThemeId) => {
           <!-- Selection indicator -->
           <div
             class="absolute -bottom-3 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full transition-all duration-normal"
-            :class="t.id === previewTheme ? 'bg-accent scale-150' : 'bg-transparent'"
+            :class="currentPreview?.id === t.id ? 'bg-accent scale-150' : 'bg-transparent'"
           />
         </button>
       </div>
     </div>
 
-    <!-- Neutrals (Warm → Pure → Cool) -->
-    <div class="max-w-6xl mx-auto mt-12">
-      <div v-reveal class="flex items-center gap-3 mb-4">
-        <span class="text-[10px] font-mono uppercase tracking-[0.25em] text-text-muted"
-          >Neutrals</span
-        >
-        <div class="h-px flex-1 bg-border-subtle" />
-      </div>
-      <div class="grid grid-cols-3 gap-3 max-w-3xl">
-        <button
-          v-for="t in neutralThemes"
-          :key="t.id"
-          class="group relative text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring rounded-theme"
-          @mouseenter="onCardEnter(t.id)"
-          @mouseleave="onCardLeave"
-          @click="applyTheme(t.id)"
-        >
-          <!-- Dark preview -->
-          <div
-            class="rounded-t-theme transition-transform duration-normal ease-standard"
-            :class="t.id === previewTheme ? 'scale-[1.02]' : 'group-hover:scale-[1.01]'"
-            :data-theme="t.id"
-            data-mode="dark"
-          >
-            <div
-              class="h-56 sm:h-64 w-full rounded-t-theme bg-surface-base border border-border-subtle p-4 flex flex-col justify-between"
-            >
-              <!-- Mini UI vignette -->
-              <div class="space-y-2">
-                <div class="flex items-center gap-2">
-                  <div class="w-2 h-2 rounded-full" :style="{ backgroundColor: t.accent }" />
-                  <div class="h-1.5 w-16 rounded-full bg-text-muted opacity-30" />
-                </div>
-                <div class="h-1.5 w-full rounded-full bg-text-muted opacity-15" />
-                <div class="h-1.5 w-3/4 rounded-full bg-text-muted opacity-15" />
-                <div class="mt-3 flex gap-1.5">
-                  <div
-                    class="h-5 w-14 rounded text-[8px] flex items-center justify-center text-text-on-accent font-mono"
-                    :style="{ backgroundColor: t.accent }"
-                  >
-                    button
-                  </div>
-                  <div
-                    class="h-5 w-14 rounded border border-border-subtle text-[8px] flex items-center justify-center text-text-muted font-mono"
-                  >
-                    ghost
-                  </div>
-                </div>
-              </div>
-
-              <!-- Theme identity -->
-              <div>
-                <div
-                  class="w-6 h-1 rounded-full mb-3 transition-all duration-normal"
-                  :style="{ backgroundColor: t.accent }"
-                  :class="t.id === previewTheme ? 'w-10' : ''"
-                />
-                <div class="font-display text-lg" :style="{ color: t.accent }">{{ t.name }}</div>
-                <div class="text-[10px] text-text-muted mt-0.5 font-mono uppercase tracking-wider">
-                  {{ t.word }}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Light preview -->
-          <div class="rounded-b-theme" :data-theme="t.id" data-mode="light">
-            <div
-              class="h-20 sm:h-24 w-full rounded-b-theme bg-surface-base border border-t-0 border-border-subtle p-4 flex flex-col justify-between"
-            >
-              <div class="text-xs text-text-muted font-body leading-snug line-clamp-2">
-                {{ t.narrative }}
-              </div>
-              <div class="text-[9px] font-mono text-text-muted opacity-60 mt-1">
-                {{ t.display }} · {{ t.body }}
-              </div>
-            </div>
-          </div>
-
-          <!-- Selection indicator -->
-          <div
-            class="absolute -bottom-3 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full transition-all duration-normal"
-            :class="t.id === previewTheme ? 'bg-accent scale-150' : 'bg-transparent'"
-          />
-        </button>
-      </div>
-    </div>
-
-    <!-- Theme Preview Panel -->
+    <!-- Theme Builder -->
     <div class="max-w-6xl mx-auto mt-20">
       <div v-reveal class="flex items-center gap-3 mb-6">
-        <span class="text-[10px] font-mono uppercase tracking-[0.25em] text-text-muted">Live Preview</span>
+        <span class="text-[10px] font-mono uppercase tracking-[0.25em] text-text-muted">Theme Builder</span>
         <div class="h-px flex-1 bg-border-subtle" />
       </div>
 
+      <!-- Axis selectors -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+        <div>
+          <label class="text-[10px] font-mono uppercase tracking-wider text-text-muted block mb-2">
+            Archetype
+          </label>
+          <select
+            v-model="selectedArchetype"
+            class="w-full px-3 py-2 text-sm bg-surface-base border border-border-subtle rounded text-text-primary focus:outline-none focus:border-accent"
+          >
+            <option v-for="a in archetypes" :key="a.key" :value="a.key">
+              {{ a.name }}
+            </option>
+          </select>
+        </div>
+        <div>
+          <label class="text-[10px] font-mono uppercase tracking-wider text-text-muted block mb-2">
+            Weight
+          </label>
+          <select
+            v-model="selectedWeight"
+            class="w-full px-3 py-2 text-sm bg-surface-base border border-border-subtle rounded text-text-primary focus:outline-none focus:border-accent"
+          >
+            <option v-for="w in weights" :key="w" :value="w">
+              {{ w }}
+            </option>
+          </select>
+        </div>
+        <div>
+          <label class="text-[10px] font-mono uppercase tracking-wider text-text-muted block mb-2">
+            Attitude
+          </label>
+          <select
+            v-model="selectedAttitude"
+            class="w-full px-3 py-2 text-sm bg-surface-base border border-border-subtle rounded text-text-primary focus:outline-none focus:border-accent"
+          >
+            <option v-for="a in attitudes" :key="a" :value="a">
+              {{ a }}
+            </option>
+          </select>
+        </div>
+        <div>
+          <label class="text-[10px] font-mono uppercase tracking-wider text-text-muted block mb-2">
+            Mode
+          </label>
+          <select
+            v-model="selectedMode"
+            class="w-full px-3 py-2 text-sm bg-surface-base border border-border-subtle rounded text-text-primary focus:outline-none focus:border-accent"
+          >
+            <option v-for="m in modes" :key="m" :value="m">
+              {{ m }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Live preview -->
       <div
-        :data-theme="currentPreview"
-        :data-mode="previewMode"
+        id="hex-theme-builder"
         class="rounded-theme border border-border-subtle overflow-hidden bg-surface-base"
       >
-        <!-- Preview header: identity + mode toggle -->
-        <div class="flex items-start justify-between p-6 border-b border-border-subtle gap-6">
-          <div>
-            <div
-              class="font-display text-4xl sm:text-5xl leading-tight mb-1"
-              :style="{ color: currentPreviewData.accent }"
-            >
-              {{ currentPreviewData.name }}
+        <!-- Preview header -->
+        <div class="p-6 border-b border-border-subtle">
+          <div class="mb-4">
+            <div class="font-display text-3xl sm:text-4xl leading-tight text-text-primary mb-2">
+              {{ currentArchetype?.name }}
             </div>
-            <div class="text-xs font-mono uppercase tracking-[0.2em] text-text-muted mb-2">
-              {{ currentPreviewData.word }} · {{ currentPreviewData.series }}
+            <div class="text-xs font-mono uppercase tracking-widest text-text-muted">
+              {{ selectedWeight }} · {{ selectedAttitude }} · {{ selectedMode }}
             </div>
-            <p class="text-sm text-text-secondary font-body max-w-xs">
-              {{ currentPreviewData.narrative }}
-            </p>
           </div>
-          <div class="flex-shrink-0 flex gap-2">
-            <button
-              class="px-3 py-1.5 text-xs font-mono rounded border transition-colors duration-fast"
-              :class="previewMode === 'dark'
-                ? 'bg-accent text-text-on-accent border-accent'
-                : 'border-border-subtle text-text-muted hover:border-border-strong hover:text-text-primary'"
-              @click="previewMode = 'dark'"
-            >dark</button>
-            <button
-              class="px-3 py-1.5 text-xs font-mono rounded border transition-colors duration-fast"
-              :class="previewMode === 'light'
-                ? 'bg-accent text-text-on-accent border-accent'
-                : 'border-border-subtle text-text-muted hover:border-border-strong hover:text-text-primary'"
-              @click="previewMode = 'light'"
-            >light</button>
-          </div>
+          <p class="text-sm text-text-secondary font-body max-w-2xl">
+            {{ currentArchetype?.key }} archetype with
+            <span class="font-mono">{{ selectedWeight }}</span> weight and
+            <span class="font-mono">{{ selectedAttitude }}</span> attitude in
+            <span class="font-mono">{{ selectedMode }}</span> mode.
+          </p>
         </div>
 
-        <!-- Typography + palette row -->
+        <!-- Typography + palette -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-0 border-b border-border-subtle">
           <!-- Typography -->
           <div class="p-6 border-b sm:border-b-0 sm:border-r border-border-subtle">
@@ -394,11 +245,11 @@ const applyTheme = (id: ThemeId) => {
             <div class="space-y-3">
               <div>
                 <div class="text-[9px] font-mono text-text-muted uppercase tracking-widest mb-1">Display</div>
-                <div class="font-display text-2xl text-text-primary">{{ currentPreviewData.display }}</div>
+                <div class="font-display text-2xl text-text-primary">{{ currentArchetype?.typography.fontDisplay.split(',')[0] }}</div>
               </div>
               <div>
                 <div class="text-[9px] font-mono text-text-muted uppercase tracking-widest mb-1">Body</div>
-                <div class="font-body text-base text-text-primary">{{ currentPreviewData.body }}</div>
+                <div class="font-body text-base text-text-primary">{{ currentArchetype?.typography.fontBody.split(',')[0] }}</div>
               </div>
             </div>
           </div>
@@ -406,25 +257,20 @@ const applyTheme = (id: ThemeId) => {
           <!-- Color tokens -->
           <div class="p-6">
             <div class="text-[10px] font-mono uppercase tracking-[0.25em] text-text-muted mb-4">
-              Color tokens
+              Generated tokens
             </div>
-            <div class="space-y-3">
-              <div class="flex items-center gap-2 flex-wrap">
-                <div class="w-6 h-6 rounded-full bg-accent" title="accent" />
-                <div class="w-6 h-6 rounded-full bg-accent-muted" title="accent-muted" />
-                <div class="w-6 h-6 rounded-full bg-surface-raised border border-border-subtle" title="surface-raised" />
-                <div class="w-6 h-6 rounded-full bg-surface-sunken border border-border-subtle" title="surface-sunken" />
-                <div class="w-px h-5 bg-border-subtle mx-1" />
-                <div class="w-6 h-6 rounded-full bg-status-success" title="success" />
-                <div class="w-6 h-6 rounded-full bg-status-warning" title="warning" />
-                <div class="w-6 h-6 rounded-full bg-status-error" title="error" />
-                <div class="w-6 h-6 rounded-full bg-status-info" title="info" />
+            <div class="space-y-2 text-sm font-mono">
+              <div class="flex justify-between">
+                <span class="text-text-muted">accent</span>
+                <span class="text-text-primary" :style="{ color: currentTheme?.accent }">{{ currentTheme?.accent }}</span>
               </div>
-              <div class="flex gap-2">
-                <RigBadge variant="solid" tone="accent">accent</RigBadge>
-                <RigBadge variant="soft" tone="success">success</RigBadge>
-                <RigBadge variant="soft" tone="warning">warning</RigBadge>
-                <RigBadge variant="soft" tone="error">error</RigBadge>
+              <div class="flex justify-between">
+                <span class="text-text-muted">primary</span>
+                <span class="text-text-primary" :style="{ color: currentTheme?.primary }">{{ currentTheme?.primary }}</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-text-muted">success</span>
+                <span class="text-text-primary" :style="{ color: currentTheme?.success }">{{ currentTheme?.success }}</span>
               </div>
             </div>
           </div>
@@ -436,46 +282,28 @@ const applyTheme = (id: ThemeId) => {
             Components
           </div>
 
-          <!-- Button matrix -->
-          <div class="space-y-2">
-            <div class="flex flex-wrap gap-2">
-              <RigButton variant="solid" tone="accent" size="sm">Primary</RigButton>
-              <RigButton variant="outline" tone="accent" size="sm">Outline</RigButton>
-              <RigButton variant="ghost" tone="accent" size="sm">Ghost</RigButton>
-              <RigButton variant="link" tone="accent" size="sm">Link</RigButton>
-              <RigButton variant="solid" tone="neutral" size="sm">Neutral</RigButton>
-              <RigButton variant="solid" tone="danger" size="sm">Danger</RigButton>
-              <RigButton variant="solid" tone="accent" size="sm" loading>Loading</RigButton>
-              <RigButton variant="solid" tone="accent" size="sm" disabled>Disabled</RigButton>
-            </div>
+          <div class="flex flex-wrap gap-2">
+            <RigButton variant="solid" tone="accent" size="sm">Primary</RigButton>
+            <RigButton variant="outline" tone="accent" size="sm">Outline</RigButton>
+            <RigButton variant="ghost" tone="accent" size="sm">Ghost</RigButton>
+            <RigButton variant="solid" tone="neutral" size="sm">Neutral</RigButton>
+            <RigButton variant="solid" tone="danger" size="sm">Danger</RigButton>
           </div>
 
           <RigDivider variant="subtle" />
 
-          <!-- Form + alerts -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div class="space-y-4">
               <RigInput
                 label="Display name"
                 placeholder="Your name here"
-                description="Used across all interfaces."
-              />
-              <RigInput
-                label="Email"
-                type="email"
-                placeholder="you@example.com"
               />
             </div>
             <div class="space-y-3">
               <RigAlert
-                tone="info"
-                title="Theme preview"
-                description="These components use this theme's complete token set."
-              />
-              <RigAlert
                 tone="success"
-                title="WCAG AAA"
-                description="Every color combination meets the highest contrast standard."
+                title="192 combinations"
+                description="8 archetypes × 3 weights × 4 attitudes × 2 modes."
               />
             </div>
           </div>
