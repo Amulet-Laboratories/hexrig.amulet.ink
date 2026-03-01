@@ -16,15 +16,16 @@ export function useTheme(defaults?: { theme?: string; mode?: ModeId | 'auto' }):
   if (injected) return injected
 
   // Standalone usage — create new state
-  const theme = ref<string>(defaults?.theme ?? 'hearth')
+  const theme = ref<string>(defaults?.theme ?? 'command')
 
   // Resolve 'auto' mode via prefers-color-scheme
+  // Maps browser dark/light preference to hex-engine's day/night vocabulary
   const resolveMode = (): ModeId => {
     if (defaults?.mode && defaults.mode !== 'auto') return defaults.mode
     if (typeof window !== 'undefined') {
-      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'night' : 'day'
     }
-    return 'dark'
+    return 'night'
   }
 
   const mode = ref<ModeId>(resolveMode())
@@ -37,7 +38,7 @@ export function useTheme(defaults?: { theme?: string; mode?: ModeId | 'auto' }):
     const mq = window.matchMedia('(prefers-color-scheme: dark)')
     const handler = (e: MediaQueryListEvent) => {
       if (!userExplicitMode.value) {
-        mode.value = e.matches ? 'dark' : 'light'
+        mode.value = e.matches ? 'night' : 'day'
       }
     }
     mq.addEventListener('change', handler)
@@ -53,12 +54,12 @@ export function useTheme(defaults?: { theme?: string; mode?: ModeId | 'auto' }):
   }
   const toggleMode = () => {
     userExplicitMode.value = true
-    mode.value = mode.value === 'dark' ? 'light' : 'dark'
+    mode.value = mode.value === 'night' ? 'day' : 'night'
   }
   const resetToAuto = () => {
     userExplicitMode.value = false
     if (typeof window !== 'undefined') {
-      mode.value = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+      mode.value = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'night' : 'day'
     }
   }
 

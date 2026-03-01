@@ -33,20 +33,20 @@ describe('useTheme', () => {
     scope.stop()
   })
 
-  it('defaults to hearth theme', () => {
+  it('defaults to command theme', () => {
     const scope = effectScope()
     scope.run(() => {
       const api = useTheme()
-      expect(api.theme.value).toBe('hearth')
+      expect(api.theme.value).toBe('command')
     })
     scope.stop()
   })
 
-  it('defaults to dark mode when prefers-color-scheme: dark', () => {
+  it('defaults to night mode when prefers-color-scheme: dark', () => {
     const scope = effectScope()
     scope.run(() => {
       const api = useTheme()
-      expect(api.mode.value).toBe('dark')
+      expect(api.mode.value).toBe('night')
     })
     scope.stop()
   })
@@ -54,8 +54,8 @@ describe('useTheme', () => {
   it('accepts explicit default theme', () => {
     const scope = effectScope()
     scope.run(() => {
-      const api = useTheme({ theme: 'abyss' })
-      expect(api.theme.value).toBe('abyss')
+      const api = useTheme({ theme: 'ledger' })
+      expect(api.theme.value).toBe('ledger')
     })
     scope.stop()
   })
@@ -63,8 +63,8 @@ describe('useTheme', () => {
   it('accepts explicit default mode', () => {
     const scope = effectScope()
     scope.run(() => {
-      const api = useTheme({ mode: 'light' })
-      expect(api.mode.value).toBe('light')
+      const api = useTheme({ mode: 'day' })
+      expect(api.mode.value).toBe('day')
     })
     scope.stop()
   })
@@ -73,8 +73,8 @@ describe('useTheme', () => {
     const scope = effectScope()
     scope.run(() => {
       const api = useTheme()
-      api.setTheme('cove')
-      expect(api.theme.value).toBe('cove')
+      api.setTheme('stage')
+      expect(api.theme.value).toBe('stage')
     })
     scope.stop()
   })
@@ -83,20 +83,20 @@ describe('useTheme', () => {
     const scope = effectScope()
     scope.run(() => {
       const api = useTheme()
-      api.setMode('light')
-      expect(api.mode.value).toBe('light')
+      api.setMode('day')
+      expect(api.mode.value).toBe('day')
     })
     scope.stop()
   })
 
-  it('toggleMode toggles between dark and light', () => {
+  it('toggleMode toggles between night and day', () => {
     const scope = effectScope()
     scope.run(() => {
-      const api = useTheme({ mode: 'dark' })
+      const api = useTheme({ mode: 'night' })
       api.toggleMode()
-      expect(api.mode.value).toBe('light')
+      expect(api.mode.value).toBe('day')
       api.toggleMode()
-      expect(api.mode.value).toBe('dark')
+      expect(api.mode.value).toBe('night')
     })
     scope.stop()
   })
@@ -105,8 +105,8 @@ describe('useTheme', () => {
     const scope = effectScope()
     scope.run(() => {
       const api = useTheme({ mode: 'auto' })
-      // jsdom matchMedia returns dark=true from our mock
-      expect(api.mode.value).toBe('dark')
+      // jsdom matchMedia returns dark=true from our mock → night
+      expect(api.mode.value).toBe('night')
     })
     scope.stop()
   })
@@ -115,13 +115,13 @@ describe('useTheme', () => {
     const scope = effectScope()
     scope.run(() => {
       const api = useTheme()
-      // Explicitly set light mode (locks userExplicitMode)
-      api.setMode('light')
-      expect(api.mode.value).toBe('light')
+      // Explicitly set day mode (locks userExplicitMode)
+      api.setMode('day')
+      expect(api.mode.value).toBe('day')
 
-      // resetToAuto should restore to system preference (dark per mock)
+      // resetToAuto should restore to system preference (night per mock)
       api.resetToAuto()
-      expect(api.mode.value).toBe('dark')
+      expect(api.mode.value).toBe('night')
     })
     scope.stop()
   })
@@ -147,19 +147,19 @@ describe('useTheme', () => {
 
     scope.run(() => {
       const api = useTheme()
-      // Lock to light via explicit set
-      api.setMode('light')
+      // Lock to day via explicit set
+      api.setMode('day')
       // Simulate OS change — should be ignored while locked
       mqHandler?.({ matches: false })
-      expect(api.mode.value).toBe('light')
+      expect(api.mode.value).toBe('day')
 
       // Reset to auto — OS changes now apply again
       api.resetToAuto()
       mqHandler?.({ matches: false })
-      expect(api.mode.value).toBe('light')
+      expect(api.mode.value).toBe('day')
 
       mqHandler?.({ matches: true })
-      expect(api.mode.value).toBe('dark')
+      expect(api.mode.value).toBe('night')
     })
     scope.stop()
   })

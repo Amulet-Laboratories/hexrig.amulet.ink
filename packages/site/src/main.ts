@@ -2,17 +2,9 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import './style.css'
 
-// Import all Origins theme CSS — Spectrum (Red → Gold → Green → Cyan → Blue → Purple)
-import '@amulet-laboratories/hex-origins/themes/ember.css'
-import '@amulet-laboratories/hex-origins/themes/hearth.css'
-import '@amulet-laboratories/hex-origins/themes/grove.css'
-import '@amulet-laboratories/hex-origins/themes/reef.css'
-import '@amulet-laboratories/hex-origins/themes/abyss.css'
-import '@amulet-laboratories/hex-origins/themes/cove.css'
-// Neutrals (Warm → Pure → Cool)
-import '@amulet-laboratories/hex-origins/themes/linen.css'
-import '@amulet-laboratories/hex-origins/themes/keep.css'
-import '@amulet-laboratories/hex-origins/themes/slate.css'
+// Apply default theme — command archetype, night mode
+import { applyTheme } from '@amulet-laboratories/hex'
+applyTheme({ archetype: 'command', mode: 'night', weight: 'standard', attitude: 'kinetic' })
 
 const app = createApp(App)
 

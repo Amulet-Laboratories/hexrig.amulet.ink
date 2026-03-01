@@ -1,7 +1,7 @@
 {
-  "name": "@amulet-laboratories/hex",
-  "version": "3.0.0",
-  "description": "Hex design token system — DOM integration, CSS custom properties, and Tailwind preset for the Amulet ecosystem.",
+  "name": "@amulet-laboratories/hex-engine",
+  "version": "1.0.0",
+  "description": "Generative design token engine — OKLCH color generation, typography, spacing, and motion for the Amulet ecosystem.",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -11,11 +11,6 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
-    },
-    "./tailwind": {
-      "types": "./dist/tailwind/index.d.ts",
-      "import": "./dist/tailwind/index.js",
-      "require": "./dist/tailwind/index.cjs"
     }
   },
   "files": [
@@ -24,21 +19,21 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
+    "test": "vitest run",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
-    "@amulet-laboratories/hex-engine": "workspace:*",
     "@types/node": "^25.3.0",
-    "tailwindcss": "^3.4.0",
     "tsup": "^8.3.0",
-    "typescript": "^5.7.0"
+    "typescript": "^5.7.0",
+    "vitest": "^3.0.0"
   },
   "keywords": [
     "design-tokens",
-    "themes",
     "oklch",
-    "css-custom-properties",
-    "hex"
+    "generative",
+    "themes",
+    "hex-engine"
   ],
   "license": "MIT",
   "sideEffects": false,

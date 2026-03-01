@@ -1,7 +1,7 @@
 /**
  * Hex Tailwind CSS Preset
  *
- * Maps Hex CSS custom properties to Tailwind utility classes.
+ * Maps --hex-* CSS custom properties to Tailwind utility classes.
  * Import as `amuletPreset` from `@amulet-laboratories/hex/tailwind`.
  *
  * Usage:
@@ -10,9 +10,9 @@
  * export default { presets: [amuletPreset], content: [...] } satisfies Config
  * ```
  *
- * Theme tokens will expand over time — this preset is the single source
- * of truth for the CSS-variable-to-Tailwind mapping. Adding a token here
- * propagates it to every consumer automatically.
+ * Backward-compat aliases are provided for existing Rig class names
+ * (surface.raised, surface.elevated, etc.) so Rig components require no changes.
+ * Phase 5d will gradually migrate components to the new token names.
  */
 
 import type { Config } from 'tailwindcss'
@@ -22,79 +22,129 @@ export const amuletPreset: Config = {
   theme: {
     extend: {
       colors: {
-        /* ── Semantic tokens (CSS custom properties) ───────────── */
+        /* ── Surface tokens ────────────────────────────────────── */
         surface: {
-          base: 'var(--surface-base)',
-          raised: 'var(--surface-raised)',
-          elevated: 'var(--surface-elevated)',
-          sunken: 'var(--surface-sunken)',
-          overlay: 'var(--surface-overlay)',
+          // New canonical names
+          DEFAULT: 'var(--hex-surface)',
+          alt:     'var(--hex-surface-alt)',
+          // Backward-compat aliases (Rig Phase 5d migration target)
+          base:     'var(--hex-surface)',
+          raised:   'var(--hex-surface-alt)',
+          elevated: 'var(--hex-surface-alt)',
+          sunken:   'var(--hex-surface)',
+          overlay:  'var(--hex-surface-alt)',
         },
+
+        /* ── Text tokens ───────────────────────────────────────── */
         text: {
-          primary: 'var(--text-primary)',
-          secondary: 'var(--text-secondary)',
-          muted: 'var(--text-muted)',
-          inverse: 'var(--text-inverse)',
-          link: 'var(--text-link)',
-          'on-accent': 'var(--text-on-accent)',
+          // New canonical names
+          DEFAULT: 'var(--hex-text)',
+          muted:   'var(--hex-text-muted)',
+          // Backward-compat aliases
+          primary:     'var(--hex-text)',
+          secondary:   'var(--hex-text-muted)',
+          inverse:     'var(--hex-surface)',
+          link:        'var(--hex-accent)',
+          'on-accent': 'var(--hex-surface)',
         },
+
+        /* ── Border tokens ─────────────────────────────────────── */
         border: {
-          DEFAULT: 'var(--border-default)',
-          subtle: 'var(--border-subtle)',
-          strong: 'var(--border-strong)',
+          DEFAULT: 'var(--hex-border)',
+          // Backward-compat aliases (single border token now)
+          subtle: 'var(--hex-border)',
+          strong: 'var(--hex-border)',
         },
+
+        /* ── Primary / accent tokens ───────────────────────────── */
+        primary: {
+          DEFAULT: 'var(--hex-primary)',
+          hover:   'var(--hex-primary-hover)',
+        },
+        secondary: 'var(--hex-secondary)',
         accent: {
-          DEFAULT: 'var(--accent-primary)',
-          secondary: 'var(--accent-secondary)',
-          hover: 'var(--accent-hover)',
-          active: 'var(--accent-active)',
-          muted: 'var(--accent-muted)',
+          DEFAULT:   'var(--hex-accent)',
+          hover:     'var(--hex-accent-hover)',
+          // Backward-compat aliases
+          primary:   'var(--hex-primary)',
+          secondary: 'var(--hex-secondary)',
+          active:    'var(--hex-accent)',
+          muted:     'var(--hex-muted)',
         },
+
+        /* ── Status tokens ─────────────────────────────────────── */
         status: {
-          success: 'var(--status-success)',
-          warning: 'var(--status-warning)',
-          error: 'var(--status-error)',
-          info: 'var(--status-info)',
+          success: 'var(--hex-success)',
+          warning: 'var(--hex-warning)',
+          error:   'var(--hex-error)',
+          info:    'var(--hex-info)',
         },
-        focus: {
-          ring: 'var(--focus-ring)',
-          outline: 'var(--focus-outline)',
-        },
+
+        /* ── Muted (placeholder/disabled) ──────────────────────── */
+        muted: 'var(--hex-muted)',
       },
+
+      /* ── Font families ─────────────────────────────────────────── */
       fontFamily: {
-        display: 'var(--font-display)',
-        body: 'var(--font-body)',
-        sans: 'var(--font-sans)',
-        mono: 'var(--font-mono)',
+        display: 'var(--hex-font-display)',
+        body:    'var(--hex-font-body)',
+        mono:    'var(--hex-font-mono)',
+        // Backward-compat alias
+        sans: 'var(--hex-font-body)',
       },
+
+      /* ── Spacing (hex-N classes) ───────────────────────────────── */
       spacing: {
-        'hex-xs': 'var(--spacing-xs)',
-        'hex-sm': 'var(--spacing-sm)',
-        'hex-md': 'var(--spacing-md)',
-        'hex-lg': 'var(--spacing-lg)',
-        'hex-xl': 'var(--spacing-xl)',
-        'hex-2xl': 'var(--spacing-2xl)',
-        'hex-3xl': 'var(--spacing-3xl)',
+        'hex-1':  'var(--hex-space-1)',
+        'hex-2':  'var(--hex-space-2)',
+        'hex-3':  'var(--hex-space-3)',
+        'hex-4':  'var(--hex-space-4)',
+        'hex-6':  'var(--hex-space-6)',
+        'hex-8':  'var(--hex-space-8)',
+        'hex-12': 'var(--hex-space-12)',
+        'hex-16': 'var(--hex-space-16)',
+        // Old naming preserved for gradual migration
+        'hex-xs':  'var(--hex-space-2)',
+        'hex-sm':  'var(--hex-space-3)',
+        'hex-md':  'var(--hex-space-4)',
+        'hex-lg':  'var(--hex-space-6)',
+        'hex-xl':  'var(--hex-space-8)',
+        'hex-2xl': 'var(--hex-space-12)',
+        'hex-3xl': 'var(--hex-space-16)',
       },
+
+      /* ── Border radius ─────────────────────────────────────────── */
       borderRadius: {
-        DEFAULT: 'var(--radius)',
-        full: 'var(--radius-full)',
+        DEFAULT:  'var(--hex-radius-md)',
+        full:     'var(--hex-radius-full)',
+        'hex-sm': 'var(--hex-radius-sm)',
+        'hex-md': 'var(--hex-radius-md)',
+        'hex-lg': 'var(--hex-radius-lg)',
       },
+
+      /* ── Box shadows ───────────────────────────────────────────── */
       boxShadow: {
-        sm: 'var(--shadow-sm)',
-        md: 'var(--shadow-md)',
-        lg: 'var(--shadow-lg)',
+        sm:    'var(--hex-shadow-sm)',
+        md:    'var(--hex-shadow-md)',
+        lg:    'var(--hex-shadow-lg)',
+        xl:    'var(--hex-shadow-xl)',
+        inner: 'var(--hex-shadow-inner)',
       },
+
+      /* ── Transition durations ──────────────────────────────────── */
       transitionDuration: {
-        fast: 'var(--duration-fast)',
-        normal: 'var(--duration-normal)',
-        slow: 'var(--duration-slow)',
+        fast:   'var(--hex-duration-fast)',
+        normal: 'var(--hex-duration-normal)',
+        slow:   'var(--hex-duration-slow)',
       },
+
+      /* ── Transition timing functions ───────────────────────────── */
       transitionTimingFunction: {
-        standard: 'var(--easing-default)',
-        entrance: 'var(--easing-entrance)',
-        exit: 'var(--easing-exit)',
-        expressive: 'var(--easing-expressive)',
+        standard:   'var(--hex-easing-default)',
+        entrance:   'var(--hex-easing-enter)',
+        exit:       'var(--hex-easing-exit)',
+        // Backward-compat alias
+        expressive: 'var(--hex-easing-default)',
       },
     },
   },

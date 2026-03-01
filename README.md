@@ -1,388 +1,199 @@
-# Hex + Rig
+# Hexrig
 
-> A Gesamtkunstwerk for the web — by Amulet Laboratories.
+> Design system — Hex tokens (9 themes × 2 modes) + Rig Vue 3 component library. WCAG AAA. Published to GitHub Packages.
 
-**[hexrig.amulet.ink](https://hexrig.amulet.ink)** · **[Storybook](https://hexrig.amulet.ink/storybook/)** · **[GitHub](https://github.com/apassanisi/hexrig.amulet.ink)**
+![Status](https://img.shields.io/badge/status-active-22C55E) ![Category](https://img.shields.io/badge/category-Software%3A%20Platform-F59E0B) ![Hexrig](https://img.shields.io/badge/hexrig-yes%20%E2%9C%93-22C55E)
 
 ---
 
-**Hex** (`@amulet-laboratories/hex`) — Design token engine. Type system, validation, CSS generation, and Tailwind preset.
+## Identity
 
-**Hex Origins** (`@amulet-laboratories/hex-origins`) — Nine themes in spectral order (ember, hearth, grove, reef, abyss, cove, linen, keep, slate) with dark + light modes, CSS custom properties, and VS Code themes.
+| Field | Value |
+|-------|-------|
+| **ID** | `x-hrg` |
+| **Category** | Software: Platform |
+| **Status** | Active |
+| **Priority** | Critical |
+| **Brand** | Amulet Laboratories |
+| **Theme** | All 9 (Ember, Hearth, Grove, Reef, Abyss, Cove, Linen, Keep, Slate) |
 
-**Rig** (`@amulet-laboratories/rig`) — Production-grade Vue 3 component library consuming Hex tokens via Tailwind CSS.
+## Links
 
-## Install
+| Resource | URL |
+|----------|-----|
+| **Live** | https://hexrig.amulet.ink |
+| **Repo** | https://github.com/Amulet-Laboratories/hexrig.amulet.ink |
+| **Obelisk** | tower.amulet.ink |
+| **Netlify** | https://app.netlify.com/sites/amulet-hexrig |
+| **npm** | https://github.com/orgs/Amulet-Laboratories/packages |
 
-Packages are published to [GitHub Packages](https://github.com/orgs/Amulet-Laboratories/packages). Configure the scope in your consuming project:
+## Purpose
 
-```ini
-# .npmrc
-@amulet-laboratories:registry=https://npm.pkg.github.com
+Hexrig is the Amulet Laboratories design system — the single source of visual truth for every project in the ecosystem. It is a pnpm monorepo with three packages: Hex (design token engine), Hex Origins (9 theme × 2 mode token data), and Rig (29 Vue 3 UI components). Every component is WCAG AAA compliant, validated across all 18 theme/mode combinations. Published to GitHub Packages under the `@amulet-laboratories` scope.
+
+## Architecture
+
+Three-package monorepo. Hex provides the token type system, CSS custom property generation, WCAG validation utilities, and a Tailwind preset. Hex Origins provides raw theme data for nine themes (Ember, Hearth, Grove, Reef, Abyss, Cove, Linen, Keep, Slate) — each with dark and light modes. Rig provides 29 Vue 3 components that consume Hex tokens exclusively via CSS custom properties; no colors or spacing are hardcoded. A fourth package (`packages/site`) hosts the marketing and documentation site at hexrig.amulet.ink, which includes an embedded Storybook at `/storybook/`.
+
+Nine themes span the color spectrum at ~60° intervals plus three neutrals, each with a named personality and paired display font: Ember (industrial urgency, Bungee), Hearth (craft weight, Sorts Mill Goudy), Grove (organic persistence, Libre Baskerville), Reef (shallow water clarity, DM Sans), Abyss (cold cosmos, League Gothic), Cove (intimate warmth, Crimson Pro), Linen (understated professional, Manrope), Keep (structure and purpose, IBM Plex Serif), Slate (cool reduction, Sora).
+
+## Stack
+
+| Layer | Technology |
+|-------|-----------|
+| **Framework** | Vue 3 (Composition API) |
+| **Build** | Vite (site), tsup (hex, hex-origins, rig) |
+| **Styling** | Tailwind CSS + Hex CSS custom properties |
+| **State** | None (library) |
+| **Backend** | None |
+| **Auth** | None |
+| **Database** | None |
+| **Email** | None |
+| **Payments** | None |
+| **Hosting** | GitHub Packages (packages) + Netlify (site) |
+| **CI** | GitHub Actions (shared workflow) — lint → typecheck → test → build |
+
+## Ecosystem Position
+
+### Consumes
+- None — foundation layer. No Amulet dependencies.
+
+### Consumed By
+- **Obelisk** — sole UI library for the dashboard
+- **Codex** — theming and components
+- **All sites (s-\*)** — theming and components, except s-lab (uses Tailwind only)
+- **All engagements (e-\*)** — theming and components, except Greyline (uses Slate theme via Tailwind)
+- **Tome** — theming for generated sites (planned)
+- **Filigree** — theme personality alignment (planned)
+
+### Related
+- **Rune** — Rig will include RigRune component in Tier 4
+
+## Directory Structure
+
 ```
-
-Then install:
-
-```bash
-pnpm add @amulet-laboratories/hex @amulet-laboratories/hex-origins @amulet-laboratories/rig
+hexrig.amulet.ink/
+├── packages/
+│   ├── hex/               ← @amulet-laboratories/hex — design token engine
+│   │   ├── src/
+│   │   │   ├── index.ts           ← Barrel: types, utils, runtime helpers, Tailwind preset
+│   │   │   ├── tokens/types.ts    ← Full token type system
+│   │   │   └── utils/             ← css.ts, validate.ts, vscode.ts
+│   │   └── tsup.config.ts
+│   ├── hex-origins/       ← @amulet-laboratories/hex-origins — theme collection
+│   │   ├── src/
+│   │   │   ├── themes/            ← ember, hearth, grove, reef, abyss, cove, linen, keep, slate
+│   │   │   └── build/             ← CSS and VS Code theme generators
+│   │   └── tsup.config.ts
+│   ├── rig/               ← @amulet-laboratories/rig — Vue 3 components
+│   │   ├── src/
+│   │   │   ├── components/        ← 29 Rig* components + Storybook stories
+│   │   │   ├── composables/       ← useTheme, useMotion, useToast
+│   │   │   └── types/index.ts
+│   │   └── vite.config.ts
+│   └── site/              ← hexrig.amulet.ink marketing + docs site
+│       └── src/sections/  ← Hero, Themes, Components, Interactive, Tokens, etc.
+└── .storybook/            ← Root Storybook config (port 6006)
 ```
-
-### Quick Start
-
-```ts
-// main.ts
-import '@amulet-laboratories/hex-origins/themes/hearth.css' // theme tokens
-import '@amulet-laboratories/rig/style.css' // component styles
-```
-
-```vue
-<script setup>
-import { RigThemeProvider, RigButton, RigCard } from '@amulet-laboratories/rig'
-</script>
-
-<template>
-  <RigThemeProvider theme="hearth" mode="dark">
-    <RigCard elevation="raised" interactive @activate="handleClick">
-      <RigButton variant="solid" tone="accent">Click me</RigButton>
-    </RigCard>
-  </RigThemeProvider>
-</template>
-```
-
-### Tailwind Setup
-
-If your project uses Tailwind CSS, add the Hex preset to your config:
-
-```ts
-// tailwind.config.ts
-import hexPreset from '@amulet-laboratories/hex/tailwind'
-
-export default {
-  presets: [hexPreset],
-  content: ['./src/**/*.{vue,ts}', './node_modules/@amulet-laboratories/rig/dist/**/*.js'],
-}
-```
-
-This maps all Hex token CSS variables to Tailwind utilities (`bg-surface-base`, `text-text-primary`, `duration-fast`, etc.).
-
-### Loading Multiple Themes
-
-Import additional theme CSS files to enable runtime theme switching:
-
-```ts
-// Spectrum
-import '@amulet-laboratories/hex-origins/themes/ember.css'
-import '@amulet-laboratories/hex-origins/themes/hearth.css'
-import '@amulet-laboratories/hex-origins/themes/grove.css'
-import '@amulet-laboratories/hex-origins/themes/reef.css'
-import '@amulet-laboratories/hex-origins/themes/abyss.css'
-import '@amulet-laboratories/hex-origins/themes/cove.css'
-
-// Neutrals
-import '@amulet-laboratories/hex-origins/themes/linen.css'
-import '@amulet-laboratories/hex-origins/themes/keep.css'
-import '@amulet-laboratories/hex-origins/themes/slate.css'
-
-// Switch at runtime via data-theme attribute or useTheme() composable
-```
-
-## Nine Themes, Spectral Order
-
-Nine themes: six chromatic hues at ~60° intervals around the color wheel, plus three neutrals.
-
-### Spectrum
-
-| Theme      | Hue   | World       | Accent    | Display Font      | Character                                |
-| ---------- | ----- | ----------- | --------- | ----------------- | ---------------------------------------- |
-| **Ember**  | ~10°  | Intensity   | `#e04030` | Bungee            | True red, industrial urgency             |
-| **Hearth** | ~45°  | Warmth      | `#d4a840` | Sorts Mill Goudy  | Gold and amber, the weight of craft      |
-| **Grove**  | ~120° | Growth      | `#7cba7e` | Libre Baskerville | Organic persistence, roots finding water |
-| **Reef**   | ~180° | Clarity     | `#40c0b8` | DM Sans           | Shallow water over white sand            |
-| **Abyss**  | ~230° | Nothingness | `#aef66d` | League Gothic     | Cold cosmos humming with latent energy   |
-| **Cove**   | ~280° | Shelter     | `#c040a0` | Crimson Pro       | Warm, intimate, otherworldly             |
-
-### Neutrals
-
-| Theme     | Bias | World     | Accent    | Display Font   | Character                                  |
-| --------- | ---- | --------- | --------- | -------------- | ------------------------------------------ |
-| **Linen** | Warm | Softness  | `#b87040` | Manrope        | Warm off-white, understated professional   |
-| **Keep**  | Pure | Structure | `#90a088` | IBM Plex Serif | Steel and purpose, industry and discipline |
-| **Slate** | Cool | Reduction | `#8090a0` | Sora           | Cool monochrome, blue-grey steel           |
-
-Each theme ships with **dark** and **light** modes (18 total combinations), applied via `data-theme` and `data-mode` HTML attributes.
-
-## Setup
-
-```bash
-pnpm install
-pnpm build
-```
-
-Requires Node ≥ 22 and pnpm ≥ 10.
 
 ## Development
 
 ```bash
-pnpm dev               # Watch mode (all packages)
-pnpm build             # Full build (all packages)
-pnpm build:deploy      # Full deploy pipeline (hex → rig → site → storybook)
-pnpm test              # Run test suite (Vitest)
-pnpm typecheck         # Type-check (all packages)
-pnpm lint              # ESLint packages/
-pnpm format            # Prettier --write .
-pnpm storybook         # Storybook dev on port 6006
-pnpm build:storybook   # Static Storybook build
+# Clone
+git clone https://github.com/Amulet-Laboratories/hexrig.amulet.ink.git
+cd hexrig.amulet.ink
+
+# Install
+pnpm install
+
+# Dev (watch mode, all packages)
+pnpm dev
+
+# Build (all packages)
+pnpm build
+
+# Full deploy pipeline (hex → rig → site → storybook)
+pnpm build:deploy
+
+# Test
+pnpm test
+
+# Lint
+pnpm lint
+
+# Storybook
+pnpm storybook
 ```
 
-### Hex-specific
+Requires Node ≥ 22 and pnpm ≥ 10. Packages publish to GitHub Packages — configure `.npmrc` with `@amulet-laboratories:registry=https://npm.pkg.github.com` and a `NODE_AUTH_TOKEN` before publishing.
+
+## Configuration
+
+No configuration required for development. For publishing:
 
 ```bash
-cd packages/hex
-pnpm build:css         # Generate CSS custom properties
-pnpm build:vscode      # Generate VS Code themes
-pnpm validate          # Validate all themes against WCAG AAA
-```
-
-## Architecture
-
-```
-packages/
-├── hex/               # @amulet-laboratories/hex — design token engine
-│   ├── src/
-│   │   ├── index.ts           # Barrel: types, utils, runtime helpers, Tailwind preset
-│   │   ├── tokens/types.ts    # Full token type system
-│   │   ├── utils/             # css.ts, validate.ts, vscode.ts
-│   │   └── __tests__/         # 7 test suites
-│   └── tsup.config.ts         # ESM + CJS + DTS
-│
-├── hex-origins/       # @amulet-laboratories/hex-origins — theme collection
-│   ├── src/
-│   │   ├── index.ts           # Barrel: all 9 theme objects
-│   │   ├── themes/            # ember, hearth, grove, reef, abyss, cove, linen, keep, slate
-│   │   └── build/             # generate-css.ts, generate-vscode-themes.ts
-│   ├── themes/                # Generated VS Code theme JSON files
-│   └── tsup.config.ts         # ESM + CJS + DTS, per-theme entry points
-│
-├── rig/               # @amulet-laboratories/rig — Vue 3 components
-│   ├── src/
-│   │   ├── index.ts           # Barrel: all components + composables + types
-│   │   ├── components/        # 29 Rig* components + Storybook stories
-│   │   ├── composables/       # useTheme, useMotion, useToast
-│   │   ├── types/index.ts     # All prop + composable interfaces
-│   │   ├── stories/           # Meta-stories: KitchenSink, Palette, Typography, EditorPreview
-│   │   └── __tests__/         # 14 test suites
-│   ├── tailwind.config.ts     # Token-to-CSS-variable mapping
-│   └── vite.config.ts         # Library build, vite-plugin-dts
-│
-├── site/              # Marketing site — hexrig.amulet.ink
-│   ├── src/
-│   │   ├── main.ts            # Entry: imports all 9 Hex theme CSS files
-│   │   ├── App.vue            # Root: theme/mode state, keyboard shortcuts
-│   │   ├── style.css          # Tailwind directives, base styles
-│   │   └── sections/          # 9 sections (see below)
-│   ├── tailwind.config.ts     # Full token-to-CSS-variable mapping
-│   └── vite.config.ts
-│
-└── .storybook/                # Root Storybook config (port 6006)
-```
-
-### Marketing Site (`packages/site`)
-
-The site at [hexrig.amulet.ink](https://hexrig.amulet.ink) demonstrates the design system live — almost no copy, everything is shown working.
-
-| Section         | Purpose                                                                     |
-| --------------- | --------------------------------------------------------------------------- |
-| **Hero**        | Full-screen intro, animated theme word, install command, theme dot selector |
-| **Thesis**      | Three-pillar narrative — Hex token engine, Origins themes, Rig components   |
-| **Themes**      | Grid of dark/light preview cards for all 9 themes                           |
-| **Components**  | All 29 components in 8 categorized rows with interactive demos              |
-| **Interactive** | 15-component settings panel demonstrating composition                       |
-| **Tokens**      | Color swatch grid, motion animation bars, typography preview                |
-| **Texture**     | Noise grain overlay demo                                                    |
-| **Credentials** | Stats (29 components, 9 themes, 472 tests, AAA), composables, ecosystem     |
-| **Footer**      | Package links, Storybook link, tech badges                                  |
-
-**Keyboard shortcuts:** `T` cycles themes, `M` toggles dark/light.
-
-Storybook is served at `/storybook/` and cross-linked from the nav and footer.
-
-## Components
-
-29 components, all WCAG AAA, `Rig` prefix:
-
-**General**
-
-| Component   | Key Features                                                                                    |
-| ----------- | ----------------------------------------------------------------------------------------------- |
-| `RigButton` | solid/outline/ghost/link × accent/neutral/danger, 3 sizes, loading, press feedback, polymorphic |
-| `RigIcon`   | Iconify integration, xs–xl sizes, decorative mode, a11y warnings                                |
-| `RigText`   | display/heading/subheading/body/caption/overline/mono, semantic `as`                            |
-| `RigBadge`  | solid/soft/outline × 6 tones, dot indicator, removable — presentational label                   |
-| `RigTag`    | solid/soft/outline, removable, disabled state — interactive user-managed chip                   |
-| `RigAvatar` | Image with fallback initials, 5 sizes, rounded                                                  |
-
-**Layout**
-
-| Component      | Key Features                                                                |
-| -------------- | --------------------------------------------------------------------------- |
-| `RigSurface`   | Semantic element `as`, 4 elevations, border/padding/rounded                 |
-| `RigCard`      | flat/raised/prominent elevation, interactive mode with keyboard, hover lift |
-| `RigContainer` | Max-width wrapper with responsive padding                                   |
-| `RigGrid`      | CSS Grid wrapper, configurable columns and gap                              |
-| `RigStack`     | Flex column/row with configurable gap                                       |
-| `RigSpacer`    | Flexible spacer for flex/grid layouts                                       |
-| `RigDivider`   | Horizontal/vertical, optional label slot                                    |
-
-**Form**
-
-| Component     | Key Features                                                               |
-| ------------- | -------------------------------------------------------------------------- |
-| `RigInput`    | 7 input types, label/description/error, full ARIA                          |
-| `RigSelect`   | Native select with custom styling, option groups, error/description states |
-| `RigCheckbox` | Controlled checkbox with label, description, error, indeterminate          |
-| `RigSwitch`   | Toggle switch with keyboard activation (Space/Enter), label, ARIA          |
-
-**Navigation**
-
-| Component       | Key Features                                                                            |
-| --------------- | --------------------------------------------------------------------------------------- |
-| `RigTabs`       | ARIA tab list, keyboard nav (Arrow/Home/End), disabled tabs, panel cross-fade           |
-| `RigAccordion`  | Multiple/single mode, defaultOpen, disabled items, keyboard nav, smooth expand/collapse |
-| `RigBreadcrumb` | Semantic `<nav>`, aria-current on last item, polymorphic links                          |
-
-**Feedback**
-
-| Component     | Key Features                                                                                  |
-| ------------- | --------------------------------------------------------------------------------------------- |
-| `RigAlert`    | 4 tones, dismissible, icon, v-model:visible                                                   |
-| `RigDialog`   | Focus trapping, Esc close, ref-counted scroll lock, persistent mode, scale entrance, Teleport |
-| `RigToast`    | Auto-dismiss, action slot, 5 tones, theme-aware Teleport                                      |
-| `RigProgress` | Value/indeterminate mode, accessible progressbar role                                         |
-| `RigSpinner`  | Animated loading indicator, 5 sizes, 6 tones                                                  |
-| `RigSkeleton` | Animated loading placeholder, configurable dimensions                                         |
-| `RigTooltip`  | CSS-positioned, 4 placements, delay, Esc close, focus/hover triggers, scale entrance          |
-
-**Texture**
-
-| Component       | Key Features                                                        |
-| --------------- | ------------------------------------------------------------------- |
-| `RigNoiseGrain` | SVG feTurbulence overlay, configurable opacity/frequency/blend mode |
-
-**Theming**
-
-| Component          | Key Features                                                       |
-| ------------------ | ------------------------------------------------------------------ |
-| `RigThemeProvider` | `data-theme`/`data-mode` attributes, auto OS preference, `as` prop |
-
-## Composables
-
-| Composable    | Purpose                                                                                        |
-| ------------- | ---------------------------------------------------------------------------------------------- |
-| `useTheme()`  | Read/write active theme + mode, `auto` resolves system pref, explicit override + `resetToAuto` |
-| `useMotion()` | Theme-aware motion values, respects `prefers-reduced-motion`, observes closest `[data-theme]`  |
-| `useToast()`  | Notification queue with auto-dismiss, SSR-safe, timer cleanup on scope dispose                 |
-
-Provider pattern: `provideTheme()` and `provideToast()` at app root; composables inject or create local state.
-
-## Token Namespaces
-
-| Namespace  | CSS Custom Properties                                                                                     |
-| ---------- | --------------------------------------------------------------------------------------------------------- |
-| `surface`  | `--surface-base`, `--surface-raised`, `--surface-elevated`, `--surface-sunken`, `--surface-overlay`       |
-| `text`     | `--text-primary`, `--text-secondary`, `--text-muted`, `--text-inverse`, `--text-link`, `--text-on-accent` |
-| `border`   | `--border-default`, `--border-subtle`, `--border-strong`                                                  |
-| `accent`   | `--accent-primary`, `--accent-secondary`, `--accent-hover`, `--accent-active`, `--accent-muted`           |
-| `status`   | `--status-success`, `--status-warning`, `--status-error`, `--status-info`                                 |
-| `focus`    | `--focus-ring`, `--focus-outline`                                                                         |
-| `syntax`   | 9 editor syntax tokens                                                                                    |
-| `terminal` | 16 terminal colors (kebab-case: `--terminal-bright-black`, etc.)                                          |
-| `font`     | `--font-display`, `--font-body`, `--font-sans`, `--font-mono`                                             |
-| `duration` | `--duration-fast`, `--duration-normal`, `--duration-slow`                                                 |
-| `easing`   | `--easing-default`, `--easing-entrance`, `--easing-exit`                                                  |
-
-## Tailwind Integration
-
-Rig and Site map CSS variables to Tailwind classes via `tailwind.config.ts`:
-
-```
-bg-surface-base        → var(--surface-base)
-text-text-primary      → var(--text-primary)
-border-border-subtle   → var(--border-subtle)
-bg-accent              → var(--accent-primary)
-bg-status-success      → var(--status-success)
-font-display           → var(--font-display)
-duration-fast          → var(--duration-fast)
-ease-standard          → var(--easing-default)
-rounded-theme          → var(--radius-theme, 8px)
-```
-
-## Accessibility
-
-- **WCAG 2.1 Level AAA** — 7:1 contrast for primary text, 4.5:1 for secondary, 3:1 for UI
-- Validated across all 9 themes × 2 modes (18 combinations, 15 contrast pairs each)
-- Full keyboard navigation + focus trapping (`RigDialog`)
-- `prefers-reduced-motion` respected via `useMotion()` composable
-- 44×44px minimum touch targets on all interactive controls
-- Semantic HTML via polymorphic `as` prop pattern
-- `aria-labelledby`, `aria-describedby`, `aria-busy`, `aria-disabled` throughout
-- Dev-mode warnings for accessibility violations (`RigIcon` missing labels)
-
-## Production Readiness
-
-- **472 tests** passing across 22 test suites (Vitest + jsdom)
-- **Full type safety** — `vue-tsc --noEmit` and `tsc --noEmit` clean, rolled-up `.d.ts` declarations
-- **SSR-safe** — runtime helpers and composables guard against missing `document`/`window`
-- **Tree-shakable** — `sideEffects: false` (hex), `sideEffects: ["**/*.css"]` (hex-origins, rig)
-- **Build validation** — build scripts fail fast with `process.exit(1)` on errors
-- **CSS injection prevention** — all generated CSS values sanitized (`url()`, `expression()`, newlines stripped)
-- **CI/CD** — GitHub Actions workflow: lint → typecheck → test → build (Node 20 + 22)
-- **Prettier + ESLint** — consistent code formatting and linting
-- **Coverage** — Vitest v8 coverage provider configured
-
-## Deployment
-
-The marketing site deploys to [hexrig.amulet.ink](https://hexrig.amulet.ink) via Netlify.
-
-```bash
-pnpm build:deploy   # hex → rig → site → storybook → copies storybook into site/dist/storybook/
-```
-
-The deploy output is `packages/site/dist/` — a static directory containing:
-
-- `/` — The marketing landing page (Vue 3 SPA)
-- `/storybook/` — Full Storybook with all 29 components + meta-stories
-
-### Netlify Configuration
-
-Build command: `pnpm build:deploy`
-Publish directory: `packages/site/dist`
-
-## Design Documentation
-
-See [docs/](docs/) for the living design prompts, manifesto, and reference library.
-
-## CI/CD
-
-Continuous integration runs via the [org-wide reusable workflow](https://github.com/Amulet-Laboratories/.github/blob/main/.github/workflows/ci.yml) on every push and pull request. Checks: type-check (`--if-present` for monorepo packages), lint, format, test, build (`pnpm -r build`), audit (`--audit-level=critical`). Deploys the documentation site automatically to Netlify on push to `main`.
-
-### GitHub Packages
-
-This repo publishes three packages to [GitHub Packages](https://github.com/orgs/Amulet-Laboratories/packages):
-
-- `@amulet-laboratories/hex` — token engine
-- `@amulet-laboratories/hex-origins` — theme collection
-- `@amulet-laboratories/rig` — component library
-
-Publish in dependency order:
-
-```bash
+# Publish in dependency order
 cd packages/hex && pnpm publish --no-git-checks
 cd packages/hex-origins && pnpm publish --no-git-checks
 cd packages/rig && pnpm publish --no-git-checks
 ```
 
-See the [GitHub Packages reference](https://github.com/Amulet-Laboratories/library.amulet.ink/blob/main/AmuletLabsVault/01-Operations/github-packages.md) for the full auth architecture.
+Consuming projects need an `.npmrc`:
+```ini
+@amulet-laboratories:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}
+```
+
+## Changelog
+
+### Unreleased
+- Tier 2 components (advanced data display, composables expansion)
+- RigRune component (Tier 4)
+
+### v1.0.0 — Active
+#### Components (29 shipping)
+- General: RigButton, RigIcon, RigText, RigBadge, RigTag, RigAvatar
+- Layout: RigSurface, RigCard, RigContainer, RigGrid, RigStack, RigSpacer, RigDivider
+- Form: RigInput, RigSelect, RigCheckbox, RigSwitch
+- Navigation: RigTabs, RigAccordion, RigBreadcrumb
+- Feedback: RigAlert, RigDialog, RigToast, RigProgress, RigSpinner, RigSkeleton, RigTooltip
+- Texture: RigNoiseGrain
+- Theming: RigThemeProvider
+#### Stats
+- 472 tests passing (22 suites, Vitest + jsdom)
+- 9 themes × 2 modes = 18 validated combinations
+- WCAG 2.1 Level AAA throughout
+- Full TypeScript declarations, SSR-safe, tree-shakable
+
+## Roadmap
+
+- [ ] Tier 2: RigCardGrid, RigSplit, RigAppShell, RigTree, RigTimeline, RigTable, RigMetadata, RigStat, RigPage, RigPanel, RigHeader, RigFooter, RigSidebarSection, RigSidebarItem, RigEmpty
+- [ ] Tier 3: client site components (hero sections, feature grids, testimonial cards)
+- [ ] Tier 4: RigRune (deterministic SVG identity glyph component)
+- [ ] VS Code themes published to marketplace
+- [ ] Figma token sync
+
+## Design Decisions
+
+### Token-first architecture
+**Context:** Components need to support 9 themes × 2 modes without maintaining 18 separate stylesheets.
+**Decision:** All visual properties — colors, typography, spacing, motion — are defined as CSS custom properties set by the active theme. Components never hardcode values.
+**Reasoning:** Theme switching is instantaneous (swap CSS vars). Any new theme automatically works with all components. Adding a 10th theme requires zero component changes.
+
+### pnpm monorepo with separate packages
+**Context:** Design tokens, theme data, and components could all ship as one package or be split.
+**Decision:** Three packages with strict dependency order: hex → hex-origins → rig.
+**Reasoning:** Consumers can install only what they need. Token engine (hex) has no runtime dependency on Vue. Separating concerns enables independent versioning and publishing.
+
+### GitHub Packages over npm
+**Context:** Publishing design system packages to a registry.
+**Decision:** GitHub Packages under `@amulet-laboratories` scope, private visibility.
+**Reasoning:** Keeps ecosystem tooling co-located with source. Org members authenticate automatically. No separate registry infrastructure.
 
 ## License
 
-[MIT](LICENSE) — Amulet Laboratories
+MIT — Amulet Laboratories
+
+---
+
+*Managed by [Obelisk](https://tower.amulet.ink) · Part of the [Amulet Laboratories](https://amulet.ink) ecosystem*

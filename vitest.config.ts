@@ -6,7 +6,9 @@ export default defineConfig({
   plugins: [vue()],
   resolve: {
     alias: {
+      '@amulet-laboratories/hex-engine': resolve(__dirname, 'packages/hex-engine/src/index.ts'),
       '@amulet-laboratories/hex': resolve(__dirname, 'packages/hex/src/index.ts'),
+      '@hex-engine': resolve(__dirname, 'packages/hex-engine/src'),
       '@hex': resolve(__dirname, 'packages/hex/src'),
       '@rig': resolve(__dirname, 'packages/rig/src'),
     },
@@ -17,7 +19,11 @@ export default defineConfig({
     include: ['packages/*/src/**/*.test.ts'],
     coverage: {
       provider: 'v8',
-      include: ['packages/hex/src/**/*.{ts,vue}', 'packages/rig/src/**/*.{ts,vue}'],
+      include: [
+        'packages/hex-engine/src/**/*.{ts,vue}',
+        'packages/hex/src/**/*.{ts,vue}',
+        'packages/rig/src/**/*.{ts,vue}',
+      ],
       exclude: [
         'packages/*/src/**/*.test.ts',
         'packages/*/src/**/*.stories.ts',

@@ -1,110 +1,193 @@
 /**
- * Hex — Design Token System
- *
  * @amulet-laboratories/hex
  *
- * Five-theme system with dark and light modes (10 total).
- * VSCode extension + CSS custom properties + TypeScript.
+ * DOM integration layer for hex-engine.
+ * Applies generated tokens as CSS custom properties on the document root.
+ *
+ * @example
+ * ```ts
+ * import { applyTheme } from '@amulet-laboratories/hex'
+ *
+ * // Simple — named archetype with defaults (night/standard/kinetic)
+ * applyTheme('command')
+ *
+ * // Full control
+ * applyTheme({ archetype: 'command', mode: 'night', weight: 'heavy', attitude: 'kinetic' })
+ *
+ * // Custom archetype
+ * applyTheme({ archetype: { key: 'greyline', name: 'Greyline', baseHue: 220, accentHue: 45, chroma: 0.04 } })
+ * ```
  */
 
-// Types
-export type {
-  ThemeId,
-  ModeId,
-  HexSurfaces,
-  HexText,
-  HexBorders,
-  HexAccents,
-  HexStatus,
-  HexFocus,
-  HexSyntaxTokens,
-  HexTerminalColors,
-  HexMotion,
-  HexSpacing,
-  HexShape,
-  HexElevation,
-  HexFont,
-  HexFonts,
-  HexModeTokens,
-  HexTheme,
-  HexThemeRegistry,
-  HexCollection,
-} from './tokens/types'
+import { generate, toCustomProperties } from '@amulet-laboratories/hex-engine'
+import type {
+  ThemeConfig,
+  TokenSet,
+  ArchetypeKey,
+  WeightKey,
+  AttitudeKey,
+  Mode,
+} from '@amulet-laboratories/hex-engine'
+
+// ---------------------------------------------------------------------------
+// Re-exports — full engine API available from hex
+// ---------------------------------------------------------------------------
 
 export {
-  HEX_THEME_ATTR,
-  HEX_MODE_ATTR,
-  SURFACE_KEYS,
-  TEXT_KEYS,
-  BORDER_KEYS,
-  ACCENT_KEYS,
-  STATUS_KEYS,
-  FOCUS_KEYS,
-  ELEVATION_KEYS,
-  SPACING_KEYS,
-  SHAPE_KEYS,
-  SYNTAX_TOKEN_KEYS,
-  TERMINAL_KEYS,
-} from './tokens/types'
+  generate,
+  audit,
+  toCSS,
+  toCustomProperties,
+  archetypes,
+  ARCHETYPES,
+  ARCHETYPE_ALIASES,
+  weights,
+  attitudes,
+  WEIGHTS,
+  ATTITUDES,
+  checkContrast,
+  oklchContrastRatio,
+  parseOklch,
+  formatOklch,
+} from '@amulet-laboratories/hex-engine'
 
-// Validation
-export { validateTheme } from './utils/validate'
-export type { ValidationResult, ValidationError } from './utils/validate'
-
-// CSS generation
-export { generateThemeCSS } from './utils/css'
-
-// VSCode theme generation
-export { generateVSCodeTheme } from './utils/vscode'
+export type {
+  ThemeConfig,
+  TokenSet,
+  ArchetypeKey,
+  WeightKey,
+  AttitudeKey,
+  Mode,
+  // Backward-compat alias — Rig uses ModeId; new name is Mode
+  Mode as ModeId,
+  ColorTokens,
+  ShadowTokens,
+  TypographyTokens,
+  SpacingTokens,
+  RadiusTokens,
+  MotionTokens,
+  ArchetypeDefinition,
+  CustomArchetype,
+  WeightDefinition,
+  AttitudeDefinition,
+  TypographyProfile,
+  ContrastResult,
+  AuditResult,
+  AuditPair,
+} from '@amulet-laboratories/hex-engine'
 
 // ---------------------------------------------------------------------------
-// Runtime helpers
+// Active theme tracking
 // ---------------------------------------------------------------------------
 
-import type { HexTheme, ModeId } from './tokens/types'
-import { HEX_THEME_ATTR, HEX_MODE_ATTR } from './tokens/types'
+let _activeConfig: ThemeConfig | null = null
+
+// ---------------------------------------------------------------------------
+// Config normalization
+// ---------------------------------------------------------------------------
+
+function normalizeConfig(
+  archetypeOrConfig: ArchetypeKey | ThemeConfig | string,
+  mode?: string,
+  weight?: string,
+  attitude?: string,
+): ThemeConfig {
+  if (typeof archetypeOrConfig === 'string') {
+    return {
+      archetype: archetypeOrConfig as ArchetypeKey,
+      mode: (mode ?? 'night') as Mode,
+      weight: (weight ?? 'standard') as WeightKey,
+      attitude: (attitude ?? 'kinetic') as AttitudeKey,
+    }
+  }
+  return archetypeOrConfig as ThemeConfig
+}
+
+// ---------------------------------------------------------------------------
+// applyTheme — set CSS custom properties on :root
+// ---------------------------------------------------------------------------
 
 /**
- * Apply a Hex theme to a DOM element by setting data attributes.
- * Typically called on `document.documentElement`.
+ * Apply a theme to the document root by setting --hex-* CSS custom properties.
+ *
+ * @param config - ThemeConfig object or archetype key string
  */
-export function applyTheme(element: HTMLElement, theme: HexTheme, mode: ModeId): void {
+export function applyTheme(config: ThemeConfig): void
+/**
+ * @param archetype - Named archetype key (e.g. 'command')
+ * @param mode - 'day' | 'night' (default: 'night')
+ * @param weight - 'light' | 'standard' | 'heavy' (default: 'standard')
+ * @param attitude - 'kinetic' | 'tranquil' | 'intimate' | 'luminous' (default: 'kinetic')
+ */
+export function applyTheme(
+  archetype: string,
+  mode?: string,
+  weight?: string,
+  attitude?: string,
+): void
+export function applyTheme(
+  archetypeOrConfig: ArchetypeKey | ThemeConfig | string,
+  mode?: string,
+  weight?: string,
+  attitude?: string,
+): void {
   if (typeof document === 'undefined') return
-  if (!element) {
-    throw new Error('applyTheme: element must be a valid HTMLElement')
+
+  const config = normalizeConfig(archetypeOrConfig, mode, weight, attitude)
+  _activeConfig = config
+
+  const tokens = generate(config)
+  const props = toCustomProperties(tokens)
+  const root = document.documentElement
+
+  for (const [key, value] of Object.entries(props)) {
+    root.style.setProperty(key, value)
   }
-  element.setAttribute(HEX_THEME_ATTR, theme.id)
-  element.setAttribute(HEX_MODE_ATTR, mode)
 }
 
-/** Validate that a string is a valid ModeId */
-function asModeId(value: string | null): ModeId | null {
-  return value === 'dark' || value === 'light' ? value : null
-}
+// ---------------------------------------------------------------------------
+// getTokens — SSR-safe token generation (no DOM side effects)
+// ---------------------------------------------------------------------------
 
 /**
- * Toggle between dark and light modes on an element.
- * Returns the new mode. Treats absent/invalid mode as 'dark' (the default).
+ * Generate tokens without applying them to the DOM.
+ * Safe to use in SSR, build-time scripts, or testing.
  */
-export function toggleMode(element: HTMLElement): ModeId {
-  if (typeof document === 'undefined') return 'dark'
-  const current = asModeId(element.getAttribute(HEX_MODE_ATTR))
-  // If no valid mode is set, assume dark so toggling goes to light
-  const next: ModeId = (current ?? 'dark') === 'dark' ? 'light' : 'dark'
-  element.setAttribute(HEX_MODE_ATTR, next)
-  return next
+export function getTokens(config: ThemeConfig): TokenSet {
+  return generate(config)
 }
 
+// ---------------------------------------------------------------------------
+// getCSS — generate CSS string for SSR injection or static files
+// ---------------------------------------------------------------------------
+
 /**
- * Read the current theme id and mode from an element.
+ * Generate a CSS block string for a given selector.
+ *
+ * @param config - ThemeConfig
+ * @param selector - CSS selector (default: ':root')
+ *
+ * @example
+ * ```ts
+ * const css = getCSS({ archetype: 'command', mode: 'night' })
+ * // → ':root {\n  --hex-surface: oklch(...);\n  ...\n}\n'
+ * ```
  */
-export function getThemeState(element: HTMLElement): {
-  themeId: string | null
-  mode: ModeId | null
-} {
-  if (typeof document === 'undefined') return { themeId: null, mode: null }
-  return {
-    themeId: element.getAttribute(HEX_THEME_ATTR),
-    mode: asModeId(element.getAttribute(HEX_MODE_ATTR)),
-  }
+export function getCSS(config: ThemeConfig, selector: string = ':root'): string {
+  const tokens = generate(config)
+  const props = toCustomProperties(tokens)
+  const lines = Object.entries(props).map(([k, v]) => `  ${k}: ${v};`)
+  return `${selector} {\n${lines.join('\n')}\n}\n`
+}
+
+// ---------------------------------------------------------------------------
+// getActiveArchetype — read last applied config
+// ---------------------------------------------------------------------------
+
+/**
+ * Returns the ThemeConfig most recently passed to applyTheme(), or null.
+ * Useful for Filigree and other systems that need to read the active archetype.
+ */
+export function getActiveArchetype(): ThemeConfig | null {
+  return _activeConfig
 }

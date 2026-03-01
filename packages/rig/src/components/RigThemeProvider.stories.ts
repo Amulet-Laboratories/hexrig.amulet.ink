@@ -19,11 +19,11 @@ const meta = {
   argTypes: {
     theme: {
       control: 'select',
-      options: ['ember', 'hearth', 'grove', 'reef', 'abyss', 'cove', 'linen', 'keep', 'slate'],
+      options: ['command', 'ledger', 'journal', 'market', 'gallery', 'signal', 'stage', 'guide'],
     },
     mode: {
       control: 'select',
-      options: ['dark', 'light', 'auto'],
+      options: ['night', 'day', 'auto'],
     },
   },
 } satisfies Meta<typeof RigThemeProvider>
@@ -39,7 +39,7 @@ export const Default: Story = {
       <RigThemeProvider v-bind="args">
         <RigSurface elevation="raised" padding="lg" border>
           <RigText variant="heading" class="mb-2">Theme Preview</RigText>
-          <RigText color="secondary" class="mb-4">This content uses the {{ args.theme }} theme in {{ args.mode }} mode.</RigText>
+          <RigText color="secondary" class="mb-4">This content uses the {{ args.theme }} archetype in {{ args.mode }} mode.</RigText>
           <div class="flex gap-3">
             <RigButton>Primary Action</RigButton>
             <RigButton variant="outline">Secondary</RigButton>
@@ -50,22 +50,22 @@ export const Default: Story = {
     `,
   }),
   args: {
-    theme: 'hearth',
-    mode: 'dark',
+    theme: 'command',
+    mode: 'night',
   },
 }
 
 export const SideBySide: Story = {
-  name: 'Side by Side Comparison',
+  name: 'All Archetypes',
   render: () => ({
     components: { RigThemeProvider, RigText, RigButton, RigSurface },
     template: `
       <div class="grid grid-cols-2 gap-4">
-         <RigThemeProvider v-for="theme in ['ember', 'hearth', 'grove', 'reef', 'abyss', 'cove', 'linen', 'keep', 'slate']" :key="theme" :theme="theme" mode="dark">
+         <RigThemeProvider v-for="theme in ['command', 'ledger', 'journal', 'market', 'gallery', 'signal', 'stage', 'guide']" :key="theme" :theme="theme" mode="night">
           <RigSurface elevation="raised" padding="md" border>
             <RigText variant="overline" color="muted" class="mb-1">{{ theme }}</RigText>
             <RigText variant="heading" class="mb-3">Heading</RigText>
-            <RigText color="secondary" class="mb-3">Body text renders in the theme's palette.</RigText>
+            <RigText color="secondary" class="mb-3">Body text renders in the archetype's palette.</RigText>
             <RigButton size="sm">Action</RigButton>
           </RigSurface>
         </RigThemeProvider>
@@ -75,27 +75,27 @@ export const SideBySide: Story = {
 }
 
 export const ModeToggle: Story = {
-  name: 'Dark vs Light',
+  name: 'Night vs Day',
   render: () => ({
     components: { RigThemeProvider, RigText, RigButton, RigSurface },
     template: `
       <div class="grid grid-cols-2 gap-4">
-        <RigThemeProvider theme="hearth" mode="dark">
+        <RigThemeProvider theme="command" mode="night">
           <RigSurface elevation="raised" padding="md" border>
-            <RigText variant="overline" color="muted" class="mb-1">Dark</RigText>
-            <RigText variant="heading" class="mb-3">Hearth Dark</RigText>
-            <RigText color="secondary" class="mb-3">The hearth at night.</RigText>
+            <RigText variant="overline" color="muted" class="mb-1">Night</RigText>
+            <RigText variant="heading" class="mb-3">Command Night</RigText>
+            <RigText color="secondary" class="mb-3">Dark background, light content.</RigText>
             <div class="flex gap-2">
               <RigButton size="sm">Action</RigButton>
               <RigButton size="sm" variant="outline">Outline</RigButton>
             </div>
           </RigSurface>
         </RigThemeProvider>
-        <RigThemeProvider theme="hearth" mode="light">
+        <RigThemeProvider theme="command" mode="day">
           <RigSurface elevation="raised" padding="md" border>
-            <RigText variant="overline" color="muted" class="mb-1">Light</RigText>
-            <RigText variant="heading" class="mb-3">Hearth Light</RigText>
-            <RigText color="secondary" class="mb-3">The hearth in daylight.</RigText>
+            <RigText variant="overline" color="muted" class="mb-1">Day</RigText>
+            <RigText variant="heading" class="mb-3">Command Day</RigText>
+            <RigText color="secondary" class="mb-3">Light background, dark content.</RigText>
             <div class="flex gap-2">
               <RigButton size="sm">Action</RigButton>
               <RigButton size="sm" variant="outline">Outline</RigButton>

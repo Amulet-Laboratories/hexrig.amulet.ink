@@ -19,7 +19,7 @@ describe('RigThemeProvider', () => {
 
   it('renders slot content', () => {
     const wrapper = mount(RigThemeProvider, {
-      props: { theme: 'hearth', mode: 'dark' },
+      props: { theme: 'command', mode: 'night' },
       slots: { default: 'Hello world' },
     })
     expect(wrapper.text()).toContain('Hello world')
@@ -27,43 +27,43 @@ describe('RigThemeProvider', () => {
 
   it('sets data-theme attribute from theme prop', () => {
     const wrapper = mount(RigThemeProvider, {
-      props: { theme: 'abyss', mode: 'dark' },
+      props: { theme: 'ledger', mode: 'night' },
     })
-    expect(wrapper.attributes('data-theme')).toBe('abyss')
+    expect(wrapper.attributes('data-theme')).toBe('ledger')
   })
 
   it('sets data-mode attribute from mode prop', () => {
     const wrapper = mount(RigThemeProvider, {
-      props: { theme: 'hearth', mode: 'dark' },
+      props: { theme: 'command', mode: 'night' },
     })
-    expect(wrapper.attributes('data-mode')).toBe('dark')
+    expect(wrapper.attributes('data-mode')).toBe('night')
   })
 
   it('updates data-theme when theme prop changes', async () => {
     const wrapper = mount(RigThemeProvider, {
-      props: { theme: 'hearth', mode: 'dark' },
+      props: { theme: 'command', mode: 'night' },
     })
-    await wrapper.setProps({ theme: 'ember' })
-    expect(wrapper.attributes('data-theme')).toBe('ember')
+    await wrapper.setProps({ theme: 'stage' })
+    expect(wrapper.attributes('data-theme')).toBe('stage')
   })
 
   it('renders as <div> by default', () => {
     const wrapper = mount(RigThemeProvider, {
-      props: { theme: 'hearth', mode: 'dark' },
+      props: { theme: 'command', mode: 'night' },
     })
     expect(wrapper.element.tagName).toBe('DIV')
   })
 
   it('renders as <main> when as="main"', () => {
     const wrapper = mount(RigThemeProvider, {
-      props: { theme: 'hearth', mode: 'dark', as: 'main' },
+      props: { theme: 'command', mode: 'night', as: 'main' },
     })
     expect(wrapper.element.tagName).toBe('MAIN')
   })
 
   it('renders as <section> when as="section"', () => {
     const wrapper = mount(RigThemeProvider, {
-      props: { theme: 'hearth', mode: 'dark', as: 'section' },
+      props: { theme: 'command', mode: 'night', as: 'section' },
     })
     expect(wrapper.element.tagName).toBe('SECTION')
   })

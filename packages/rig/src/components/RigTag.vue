@@ -18,7 +18,7 @@ const tagClasses = computed(() => {
     'inline-flex items-center gap-1.5 font-body transition-colors duration-fast ease-standard'
 
   const sizes: Record<string, string> = {
-    sm: 'px-2 py-0.5 text-xs rounded-sm',
+    sm: 'px-2 py-0.5 text-xs rounded-hex-sm',
     md: 'px-2.5 py-1 text-sm rounded',
     lg: 'px-3 py-1.5 text-sm rounded',
   }
