@@ -146,7 +146,11 @@ function onTouchStart(e: TouchEvent) {
 function onTouchEnd(e: TouchEvent) {
   const dx = e.changedTouches[0].clientX - touchStartX
   if (Math.abs(dx) > 50) {
-    if (dx > 0) { prevImage() } else { nextImage() }
+    if (dx > 0) {
+      prevImage()
+    } else {
+      nextImage()
+    }
   }
 }
 
@@ -161,7 +165,11 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div :class="['grid', responsiveColClasses, gapClasses[gap]]" role="group" aria-label="Image gallery">
+  <div
+    :class="['grid', responsiveColClasses, gapClasses[gap]]"
+    role="group"
+    aria-label="Image gallery"
+  >
     <button
       v-for="(image, index) in images"
       :key="image.src"
@@ -212,7 +220,14 @@ onUnmounted(() => {
           aria-label="Close lightbox"
           @click="closeLightbox"
         >
-          <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <svg
+            class="h-6 w-6"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            aria-hidden="true"
+          >
             <path :d="ICON_DISMISS" />
           </svg>
         </button>
@@ -224,7 +239,14 @@ onUnmounted(() => {
           aria-label="Previous image"
           @click="prevImage"
         >
-          <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <svg
+            class="h-6 w-6"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            aria-hidden="true"
+          >
             <path d="M15 18l-6-6 6-6" />
           </svg>
         </button>
@@ -249,7 +271,14 @@ onUnmounted(() => {
           aria-label="Next image"
           @click="nextImage"
         >
-          <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <svg
+            class="h-6 w-6"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            aria-hidden="true"
+          >
             <path d="M9 18l6-6-6-6" />
           </svg>
         </button>

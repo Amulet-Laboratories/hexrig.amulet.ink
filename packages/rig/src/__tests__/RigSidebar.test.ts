@@ -7,7 +7,10 @@ import RigSidebarItem from '@rig/components/RigSidebarItem.vue'
 import { SIDEBAR_COLLAPSED_KEY } from '@rig/components/shared'
 
 describe('RigSidebar', () => {
-  const mountSidebar = (props: Record<string, unknown> = {}, slots: Record<string, string> = {}) => {
+  const mountSidebar = (
+    props: Record<string, unknown> = {},
+    slots: Record<string, string> = {},
+  ) => {
     return mount(RigSidebar, {
       props: { collapsed: false, ...props },
       slots: { default: '<div class="sidebar-content">Items</div>', ...slots },

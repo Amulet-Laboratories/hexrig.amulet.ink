@@ -701,9 +701,21 @@ onUnmounted(() => {
         >
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
           <RigStat label="Components" :value="48" icon="mdi:puzzle" trend="up" trend-label="+19" />
-          <RigStat label="Tests" :value="699" icon="mdi:check-circle" trend="up" trend-label="+227" />
+          <RigStat
+            label="Tests"
+            :value="699"
+            icon="mdi:check-circle"
+            trend="up"
+            trend-label="+227"
+          />
           <RigStat label="Themes" :value="9" icon="mdi:palette" trend="flat" />
-          <RigStat label="Composables" :value="9" icon="mdi:function-variant" trend="up" trend-label="+5" />
+          <RigStat
+            label="Composables"
+            :value="9"
+            icon="mdi:function-variant"
+            trend="up"
+            trend-label="+5"
+          />
         </div>
       </RigSurface>
 
@@ -729,10 +741,34 @@ onUnmounted(() => {
             { key: 'version', label: 'Version', align: 'right' },
           ]"
           :rows="[
-            { id: '1', name: 'hexrig.amulet.ink', category: 'software', status: 'active', version: '2.2.0' },
-            { id: '2', name: 'codex.amulet.ink', category: 'software', status: 'wip', version: '0.3.0' },
-            { id: '3', name: 'salt.amulet.ink', category: 'software', status: 'wip', version: '0.1.0' },
-            { id: '4', name: 'rune.amulet.ink', category: 'software', status: 'wip', version: '0.2.0' },
+            {
+              id: '1',
+              name: 'hexrig.amulet.ink',
+              category: 'software',
+              status: 'active',
+              version: '2.2.0',
+            },
+            {
+              id: '2',
+              name: 'codex.amulet.ink',
+              category: 'software',
+              status: 'wip',
+              version: '0.3.0',
+            },
+            {
+              id: '3',
+              name: 'salt.amulet.ink',
+              category: 'software',
+              status: 'wip',
+              version: '0.1.0',
+            },
+            {
+              id: '4',
+              name: 'rune.amulet.ink',
+              category: 'software',
+              status: 'wip',
+              version: '0.2.0',
+            },
             { id: '5', name: 'amulet.ink', category: 'sites', status: 'active', version: '1.0.0' },
           ]"
           :sort-by="tableSortBy"
@@ -775,10 +811,25 @@ onUnmounted(() => {
           >
           <RigList
             :items="[
-              { id: '1', label: 'Design Tokens', description: 'CSS custom properties for every primitive', icon: 'mdi:palette' },
-              { id: '2', label: 'Components', description: '48 accessible Vue 3 components', icon: 'mdi:puzzle' },
+              {
+                id: '1',
+                label: 'Design Tokens',
+                description: 'CSS custom properties for every primitive',
+                icon: 'mdi:palette',
+              },
+              {
+                id: '2',
+                label: 'Components',
+                description: '48 accessible Vue 3 components',
+                icon: 'mdi:puzzle',
+              },
               { id: '3', label: 'Themes', description: '9 themes, 18 variants', icon: 'mdi:brush' },
-              { id: '4', label: 'Composables', description: '9 reactive utility functions', icon: 'mdi:function-variant' },
+              {
+                id: '4',
+                label: 'Composables',
+                description: '9 reactive utility functions',
+                icon: 'mdi:function-variant',
+              },
             ]"
             hoverable
             divided
@@ -797,10 +848,34 @@ onUnmounted(() => {
           >
           <RigTimeline
             :items="[
-              { id: '1', label: 'v1.0.0', description: 'Initial release — 33 components', tone: 'neutral', timestamp: 'Feb 20' },
-              { id: '2', label: 'v2.0.0', description: 'Token overhaul, brand split', tone: 'success', timestamp: 'Feb 27' },
-              { id: '3', label: 'v2.1.0', description: 'Component transitions', tone: 'success', timestamp: 'Feb 27' },
-              { id: '4', label: 'v2.2.0', description: '48 components, 9 composables', tone: 'accent', timestamp: 'Feb 28' },
+              {
+                id: '1',
+                label: 'v1.0.0',
+                description: 'Initial release — 33 components',
+                tone: 'neutral',
+                timestamp: 'Feb 20',
+              },
+              {
+                id: '2',
+                label: 'v2.0.0',
+                description: 'Token overhaul, brand split',
+                tone: 'success',
+                timestamp: 'Feb 27',
+              },
+              {
+                id: '3',
+                label: 'v2.1.0',
+                description: 'Component transitions',
+                tone: 'success',
+                timestamp: 'Feb 27',
+              },
+              {
+                id: '4',
+                label: 'v2.2.0',
+                description: '48 components, 9 composables',
+                tone: 'accent',
+                timestamp: 'Feb 28',
+              },
             ]"
           />
         </RigSurface>
@@ -937,7 +1012,9 @@ onUnmounted(() => {
         <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted block mb-8"
           >RigAppShell · RigHeader · RigSidebar · RigPage · RigFooter</span
         >
-        <div class="h-[320px] flex flex-col border border-border-subtle rounded overflow-hidden bg-surface-base">
+        <div
+          class="h-[320px] flex flex-col border border-border-subtle rounded overflow-hidden bg-surface-base"
+        >
           <RigHeader title="Tower" bordered>
             <template #trailing>
               <RigButton
@@ -964,9 +1041,15 @@ onUnmounted(() => {
                 <RigSidebarItem icon="mdi:cog" label="Settings" />
               </RigSidebarSection>
             </RigSidebar>
-            <RigPage title="Dashboard" description="System overview" max-width="full" class="flex-1">
+            <RigPage
+              title="Dashboard"
+              description="System overview"
+              max-width="full"
+              class="flex-1"
+            >
               <RigText variant="caption" color="muted"
-                >RigPage wraps page-level content with title, description, and optional actions.</RigText
+                >RigPage wraps page-level content with title, description, and optional
+                actions.</RigText
               >
             </RigPage>
           </div>

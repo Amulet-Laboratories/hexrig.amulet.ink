@@ -62,7 +62,9 @@ const focusedIndex = ref(0)
 
 const focusNode = (index: number) => {
   focusedIndex.value = index
-  const treeEl = document.querySelector(`[data-tree-node="${flatNodes.value[index]?.node.id}"]`) as HTMLElement | null
+  const treeEl = document.querySelector(
+    `[data-tree-node="${flatNodes.value[index]?.node.id}"]`,
+  ) as HTMLElement | null
   treeEl?.focus()
 }
 
@@ -124,11 +126,7 @@ const onKeydown = (event: KeyboardEvent) => {
 </script>
 
 <template>
-  <ul
-    role="tree"
-    class="font-body"
-    @keydown="onKeydown"
-  >
+  <ul role="tree" class="font-body" @keydown="onKeydown">
     <template v-for="(flat, index) in flatNodes" :key="flat.node.id">
       <li
         role="treeitem"
@@ -145,9 +143,16 @@ const onKeydown = (event: KeyboardEvent) => {
           'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring',
           flat.node.disabled && 'opacity-50 cursor-not-allowed',
           selectable && selected === flat.node.id && 'bg-accent-muted text-accent',
-          !flat.node.disabled && !(selectable && selected === flat.node.id) && 'text-text-primary hover:bg-surface-raised',
+          !flat.node.disabled &&
+            !(selectable && selected === flat.node.id) &&
+            'text-text-primary hover:bg-surface-raised',
         ]"
-        @click="() => { selectNode(flat.node); if (flat.hasChildren) toggleExpand(flat.node) }"
+        @click="
+          () => {
+            selectNode(flat.node)
+            if (flat.hasChildren) toggleExpand(flat.node)
+          }
+        "
       >
         <!-- Expand/collapse chevron -->
         <svg

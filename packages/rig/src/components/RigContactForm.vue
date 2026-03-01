@@ -128,7 +128,11 @@ async function handleSubmit() {
             :aria-invalid="errors[field.name] ? true : undefined"
             rows="4"
             class="block w-full rounded border bg-surface-sunken px-3 py-2 font-body text-base text-text-primary placeholder:text-text-muted shadow-inner transition-colors duration-fast ease-standard focus:outline-none focus:border-focus-ring focus:ring-2 focus:ring-focus-ring"
-            :class="errors[field.name] ? 'border-status-error' : 'border-border hover:border-border-strong'"
+            :class="
+              errors[field.name]
+                ? 'border-status-error'
+                : 'border-border hover:border-border-strong'
+            "
           />
           <p v-if="errors[field.name]" class="text-sm text-status-error" role="alert">
             {{ errors[field.name] }}

@@ -35,7 +35,8 @@ const containerClasses = computed(() => {
       v-if="title || $slots.header"
       class="flex items-center justify-between gap-3 px-4 py-3"
       :class="[
-        collapsible && 'cursor-pointer select-none hover:bg-surface-raised transition-colors duration-fast ease-standard',
+        collapsible &&
+          'cursor-pointer select-none hover:bg-surface-raised transition-colors duration-fast ease-standard',
         isOpen && (bordered || $slots.footer) && 'border-b border-border-subtle',
       ]"
       :role="collapsible ? 'button' : undefined"
@@ -48,7 +49,9 @@ const containerClasses = computed(() => {
       <slot name="header">
         <div class="min-w-0">
           <p class="text-sm font-semibold text-text-primary truncate">{{ title }}</p>
-          <p v-if="description" class="text-xs text-text-muted mt-0.5 truncate">{{ description }}</p>
+          <p v-if="description" class="text-xs text-text-muted mt-0.5 truncate">
+            {{ description }}
+          </p>
         </div>
       </slot>
 

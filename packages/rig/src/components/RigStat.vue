@@ -41,12 +41,7 @@ const trendIcon = computed(() => {
 <template>
   <div class="flex flex-col gap-1 font-body">
     <div class="flex items-center gap-2">
-      <RigIcon
-        v-if="icon"
-        :name="icon"
-        size="sm"
-        color="muted"
-      />
+      <RigIcon v-if="icon" :name="icon" size="sm" color="muted" />
       <span class="text-sm font-medium text-text-muted uppercase tracking-wider">
         {{ label }}
       </span>
@@ -57,8 +52,20 @@ const trendIcon = computed(() => {
         {{ value }}
       </span>
 
-      <span v-if="trend" :class="['inline-flex items-center gap-0.5 text-sm font-medium', trendColor]">
-        <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <span
+        v-if="trend"
+        :class="['inline-flex items-center gap-0.5 text-sm font-medium', trendColor]"
+      >
+        <svg
+          class="h-3.5 w-3.5"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
           <path :d="trendIcon" />
         </svg>
         <span v-if="trendLabel">{{ trendLabel }}</span>

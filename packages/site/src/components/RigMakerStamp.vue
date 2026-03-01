@@ -4,7 +4,7 @@ withDefaults(
     size?: number
     href?: string
   }>(),
-  { size: 20 },
+  { size: 20, href: undefined },
 )
 </script>
 

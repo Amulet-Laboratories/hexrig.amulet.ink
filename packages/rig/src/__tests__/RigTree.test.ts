@@ -121,7 +121,12 @@ describe('RigTree', () => {
 
   it('handles keyboard ArrowDown navigation', async () => {
     const wrapper = mount(RigTree, {
-      props: { nodes: [{ id: 'a', label: 'A' }, { id: 'b', label: 'B' }] },
+      props: {
+        nodes: [
+          { id: 'a', label: 'A' },
+          { id: 'b', label: 'B' },
+        ],
+      },
       global: { stubs: { RigIcon: true } },
     })
     await wrapper.find('[role="tree"]').trigger('keydown', { key: 'ArrowDown' })

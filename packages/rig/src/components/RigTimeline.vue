@@ -42,10 +42,7 @@ const dotColor = (item: TimelineItem): string => {
           >
             <RigIcon :name="item.icon" size="xs" color="current" class="text-surface-base" />
           </div>
-          <div
-            v-else
-            :class="['h-3 w-3 rounded-full mt-1', dotColor(item)]"
-          ></div>
+          <div v-else :class="['h-3 w-3 rounded-full mt-1', dotColor(item)]"></div>
           <div
             v-if="index < items.length - 1"
             class="w-px flex-1 min-h-[24px] bg-border-subtle mt-1"
@@ -54,7 +51,9 @@ const dotColor = (item: TimelineItem): string => {
 
         <div class="pb-6 min-w-0">
           <p class="text-sm font-medium text-text-primary">{{ item.label }}</p>
-          <p v-if="item.description" class="text-xs text-text-muted mt-0.5">{{ item.description }}</p>
+          <p v-if="item.description" class="text-xs text-text-muted mt-0.5">
+            {{ item.description }}
+          </p>
           <p v-if="item.timestamp" class="text-xs text-text-muted mt-1">{{ item.timestamp }}</p>
         </div>
       </template>
@@ -68,14 +67,13 @@ const dotColor = (item: TimelineItem): string => {
           >
             <RigIcon :name="item.icon" size="xs" color="current" class="text-surface-base" />
           </div>
-          <div
-            v-else
-            :class="['h-3 w-3 rounded-full', dotColor(item)]"
-          ></div>
+          <div v-else :class="['h-3 w-3 rounded-full', dotColor(item)]"></div>
         </div>
         <div class="mt-2 min-w-0">
           <p class="text-sm font-medium text-text-primary">{{ item.label }}</p>
-          <p v-if="item.description" class="text-xs text-text-muted mt-0.5">{{ item.description }}</p>
+          <p v-if="item.description" class="text-xs text-text-muted mt-0.5">
+            {{ item.description }}
+          </p>
           <p v-if="item.timestamp" class="text-xs text-text-muted mt-1">{{ item.timestamp }}</p>
         </div>
       </template>

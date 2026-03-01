@@ -15,13 +15,7 @@ const emit = defineEmits<{
 <template>
   <div class="flex flex-col items-center justify-center py-12 px-4 text-center font-body">
     <slot>
-      <RigIcon
-        v-if="icon"
-        :name="icon"
-        size="xl"
-        color="muted"
-        class="mb-4"
-      />
+      <RigIcon v-if="icon" :name="icon" size="xl" color="muted" class="mb-4" />
 
       <p class="text-base font-medium text-text-primary">
         {{ title }}
@@ -33,12 +27,7 @@ const emit = defineEmits<{
 
       <div v-if="actionLabel || $slots.action" class="mt-4">
         <slot name="action">
-          <RigButton
-            :variant="actionVariant"
-            tone="accent"
-            size="sm"
-            @click="emit('action')"
-          >
+          <RigButton :variant="actionVariant" tone="accent" size="sm" @click="emit('action')">
             {{ actionLabel }}
           </RigButton>
         </slot>

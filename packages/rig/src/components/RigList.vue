@@ -36,13 +36,7 @@ const paddingClass = computed(() => {
       ]"
       @click="$emit('item-click', item)"
     >
-      <RigIcon
-        v-if="item.icon"
-        :name="item.icon"
-        size="sm"
-        color="muted"
-        class="shrink-0"
-      />
+      <RigIcon v-if="item.icon" :name="item.icon" size="sm" color="muted" class="shrink-0" />
 
       <div class="flex-1 min-w-0">
         <component

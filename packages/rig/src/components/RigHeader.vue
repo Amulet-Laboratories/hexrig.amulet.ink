@@ -7,9 +7,7 @@ const props = withDefaults(defineProps<RigHeaderProps>(), {
 })
 
 const classes = computed(() => {
-  const parts = [
-    'sticky top-0 z-40 flex items-center gap-3 px-4 h-14 bg-surface-base font-body',
-  ]
+  const parts = ['sticky top-0 z-40 flex items-center gap-3 px-4 h-14 bg-surface-base font-body']
   if (props.bordered) parts.push('border-b border-border')
   return parts.join(' ')
 })

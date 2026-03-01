@@ -57,7 +57,7 @@ const statusMap: Record<string, string> = {
         <!-- Status type -->
         <RigStatus
           v-else-if="item.type === 'status'"
-          :status="(statusMap[item.tone ?? 'neutral'] as 'healthy')"
+          :status="statusMap[item.tone ?? 'neutral'] as 'healthy'"
           :label="String(item.value)"
         />
 

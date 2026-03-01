@@ -77,7 +77,7 @@ describe('RigContactForm', () => {
     await wrapper.find('form').trigger('submit')
     // Wait for async fetch to complete
     await vi.waitFor(() => {
-      expect(wrapper.text()).toContain("Thank you")
+      expect(wrapper.text()).toContain('Thank you')
     })
   })
 

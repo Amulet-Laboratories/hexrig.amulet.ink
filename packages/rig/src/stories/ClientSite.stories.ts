@@ -201,7 +201,7 @@ export const PricingTable: Story = {
         {
           title: 'Pour Over',
           items: [
-            { name: 'Single Origin', price: 5.0, description: 'Ask about today\'s selection' },
+            { name: 'Single Origin', price: 5.0, description: "Ask about today's selection" },
             { name: 'Cold Brew', price: 5.5 },
             { name: 'Seasonal Special', price: 'Market price', badge: 'New' },
           ],

@@ -27,13 +27,55 @@ export const Table: Story = {
       ]
 
       const rows = [
-        { id: 's-ink', name: 'amulet.ink', category: 'site', status: 'active', url: 'https://amulet.ink' },
-        { id: 's-lab', name: 'labs.amulet.ink', category: 'site', status: 'active', url: 'https://labs.amulet.ink' },
-        { id: 'x-hrg', name: 'hexrig.amulet.ink', category: 'software', status: 'active', url: 'https://hexrig.amulet.ink' },
-        { id: 'e-htl', name: 'hotel.amulet.ink', category: 'engagement', status: 'wip', url: 'https://hotel.amulet.ink' },
-        { id: 'i-twr', name: 'tower.amulet.ink', category: 'internal', status: 'wip', url: 'https://tower.amulet.ink' },
-        { id: 's-pub', name: 'press.amulet.ink', category: 'site', status: 'pending', url: 'https://press.amulet.ink' },
-        { id: 'x-cod', name: 'codex.amulet.ink', category: 'software', status: 'wip', url: 'https://codex.amulet.ink' },
+        {
+          id: 's-ink',
+          name: 'amulet.ink',
+          category: 'site',
+          status: 'active',
+          url: 'https://amulet.ink',
+        },
+        {
+          id: 's-lab',
+          name: 'labs.amulet.ink',
+          category: 'site',
+          status: 'active',
+          url: 'https://labs.amulet.ink',
+        },
+        {
+          id: 'x-hrg',
+          name: 'hexrig.amulet.ink',
+          category: 'software',
+          status: 'active',
+          url: 'https://hexrig.amulet.ink',
+        },
+        {
+          id: 'e-htl',
+          name: 'hotel.amulet.ink',
+          category: 'engagement',
+          status: 'wip',
+          url: 'https://hotel.amulet.ink',
+        },
+        {
+          id: 'i-twr',
+          name: 'tower.amulet.ink',
+          category: 'internal',
+          status: 'wip',
+          url: 'https://tower.amulet.ink',
+        },
+        {
+          id: 's-pub',
+          name: 'press.amulet.ink',
+          category: 'site',
+          status: 'pending',
+          url: 'https://press.amulet.ink',
+        },
+        {
+          id: 'x-cod',
+          name: 'codex.amulet.ink',
+          category: 'software',
+          status: 'wip',
+          url: 'https://codex.amulet.ink',
+        },
       ]
 
       const sortBy = ref('name')
@@ -135,9 +177,28 @@ export const TableExpandable: Story = {
         { key: 'stack', label: 'Stack' },
       ]
       const rows = [
-        { id: 'x-hrg', name: 'hexrig.amulet.ink', status: 'active', stack: 'Vue 3, Vite, pnpm', detail: 'Design system monorepo. Hex token engine, Rig component library, and documentation site.' },
-        { id: 'x-cod', name: 'codex.amulet.ink', status: 'wip', stack: 'Vue 3, Vite', detail: 'Markdown editor with TTRPG preview and PDF export.' },
-        { id: 'x-sal', name: 'salt.amulet.ink', status: 'wip', stack: 'Vue 3, Vite', detail: 'Atmospheric mock data library for development and testing.' },
+        {
+          id: 'x-hrg',
+          name: 'hexrig.amulet.ink',
+          status: 'active',
+          stack: 'Vue 3, Vite, pnpm',
+          detail:
+            'Design system monorepo. Hex token engine, Rig component library, and documentation site.',
+        },
+        {
+          id: 'x-cod',
+          name: 'codex.amulet.ink',
+          status: 'wip',
+          stack: 'Vue 3, Vite',
+          detail: 'Markdown editor with TTRPG preview and PDF export.',
+        },
+        {
+          id: 'x-sal',
+          name: 'salt.amulet.ink',
+          status: 'wip',
+          stack: 'Vue 3, Vite',
+          detail: 'Atmospheric mock data library for development and testing.',
+        },
       ]
 
       return { columns, rows }

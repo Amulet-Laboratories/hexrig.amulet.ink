@@ -161,7 +161,15 @@ export const Panel: Story = {
 export const Sidebar: Story = {
   name: 'RigSidebar',
   render: () => ({
-    components: { RigText, RigButton, RigIcon, RigSidebar, RigSidebarSection, RigSidebarItem, RigStatus },
+    components: {
+      RigText,
+      RigButton,
+      RigIcon,
+      RigSidebar,
+      RigSidebarSection,
+      RigSidebarItem,
+      RigStatus,
+    },
     setup() {
       const collapsed = ref(false)
       const active = ref('dashboard')
@@ -245,8 +253,16 @@ export const AppShell: Story = {
   name: 'RigAppShell',
   render: () => ({
     components: {
-      RigText, RigButton, RigIcon, RigAppShell, RigHeader,
-      RigSidebarSection, RigSidebarItem, RigPage, RigPanel, RigStatus,
+      RigText,
+      RigButton,
+      RigIcon,
+      RigAppShell,
+      RigHeader,
+      RigSidebarSection,
+      RigSidebarItem,
+      RigPage,
+      RigPanel,
+      RigStatus,
     },
     setup() {
       const collapsed = ref(false)

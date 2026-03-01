@@ -160,7 +160,8 @@ const navClasses = computed(() => {
               v-if="!item.children"
               :href="item.href"
               class="px-3 py-2 rounded text-sm font-medium text-text-secondary hover:text-text-primary hover:bg-surface-raised transition-colors duration-fast ease-standard focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring"
-            >{{ item.label }}</a>
+              >{{ item.label }}</a
+            >
 
             <div v-else class="relative">
               <button
@@ -203,7 +204,8 @@ const navClasses = computed(() => {
                     :href="child.href"
                     class="block px-4 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-surface-overlay transition-colors duration-fast ease-standard focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring"
                     @click="closeDropdowns"
-                  >{{ child.label }}</a>
+                    >{{ child.label }}</a
+                  >
                 </div>
               </Transition>
             </div>
@@ -222,10 +224,26 @@ const navClasses = computed(() => {
           aria-label="Toggle navigation menu"
           @click="toggleMobile"
         >
-          <svg v-if="!mobileOpen" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <svg
+            v-if="!mobileOpen"
+            class="h-6 w-6"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            aria-hidden="true"
+          >
             <path d="M4 6h16M4 12h16M4 18h16" />
           </svg>
-          <svg v-else class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <svg
+            v-else
+            class="h-6 w-6"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            aria-hidden="true"
+          >
             <path :d="ICON_DISMISS" />
           </svg>
         </button>
@@ -270,7 +288,14 @@ const navClasses = computed(() => {
                 aria-label="Close menu"
                 @click="mobileOpen = false"
               >
-                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <svg
+                  class="h-5 w-5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  aria-hidden="true"
+                >
                   <path :d="ICON_DISMISS" />
                 </svg>
               </button>
@@ -283,7 +308,8 @@ const navClasses = computed(() => {
                       :href="item.href"
                       class="block px-3 py-3 rounded text-base font-medium text-text-primary hover:bg-surface-raised transition-colors duration-fast ease-standard"
                       @click="mobileOpen = false"
-                    >{{ item.label }}</a>
+                      >{{ item.label }}</a
+                    >
 
                     <div v-else>
                       <button
@@ -318,7 +344,8 @@ const navClasses = computed(() => {
                               :href="child.href"
                               class="block px-3 py-2 rounded text-sm text-text-secondary hover:text-text-primary hover:bg-surface-raised transition-colors duration-fast ease-standard"
                               @click="mobileOpen = false"
-                            >{{ child.label }}</a>
+                              >{{ child.label }}</a
+                            >
                           </div>
                         </div>
                       </div>

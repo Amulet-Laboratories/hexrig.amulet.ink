@@ -130,10 +130,7 @@ const ariaSortValue = (column: RigTableColumn): 'ascending' | 'descending' | 'no
       <thead>
         <tr class="border-b border-border">
           <!-- Select all -->
-          <th
-            v-if="selectable"
-            :class="[headerPadding, 'w-10']"
-          >
+          <th v-if="selectable" :class="[headerPadding, 'w-10']">
             <RigCheckbox
               :model-value="allSelected"
               label="Select all"
@@ -191,11 +188,7 @@ const ariaSortValue = (column: RigTableColumn): 'ascending' | 'descending' | 'no
               <RigSkeleton variant="rect" />
             </td>
             <td v-if="expandable" :class="cellPadding"></td>
-            <td
-              v-for="column in columns"
-              :key="column.key"
-              :class="cellPadding"
-            >
+            <td v-for="column in columns" :key="column.key" :class="cellPadding">
               <RigSkeleton variant="text" />
             </td>
           </tr>
@@ -215,7 +208,9 @@ const ariaSortValue = (column: RigTableColumn): 'ascending' | 'descending' | 'no
                     stroke-width="1.5"
                     aria-hidden="true"
                   >
-                    <path d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
+                    <path
+                      d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"
+                    />
                   </svg>
                   <p class="text-sm font-medium text-text-primary">
                     {{ emptyTitle ?? 'No data' }}
@@ -243,11 +238,7 @@ const ariaSortValue = (column: RigTableColumn): 'ascending' | 'descending' | 'no
               @click="handleRowClick(row)"
             >
               <!-- Selection checkbox -->
-              <td
-                v-if="selectable"
-                :class="cellPadding"
-                @click.stop
-              >
+              <td v-if="selectable" :class="cellPadding" @click.stop>
                 <RigCheckbox
                   :model-value="isSelected(row)"
                   :label="`Select row ${getRowId(row)}`"
@@ -257,11 +248,7 @@ const ariaSortValue = (column: RigTableColumn): 'ascending' | 'descending' | 'no
               </td>
 
               <!-- Expand toggle -->
-              <td
-                v-if="expandable"
-                :class="[cellPadding, 'w-10']"
-                @click.stop="toggleExpand(row)"
-              >
+              <td v-if="expandable" :class="[cellPadding, 'w-10']" @click.stop="toggleExpand(row)">
                 <button
                   type="button"
                   class="inline-flex items-center justify-center h-6 w-6 rounded text-text-muted hover:text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring"

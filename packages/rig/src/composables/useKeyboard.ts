@@ -5,7 +5,10 @@ const isMac =
   typeof navigator !== 'undefined' ? /mac|iphone|ipad|ipod/i.test(navigator.userAgent) : false
 
 function parseKeys(keys: string): { mod: boolean; shift: boolean; alt: boolean; key: string } {
-  const parts = keys.toLowerCase().split('+').map((p) => p.trim())
+  const parts = keys
+    .toLowerCase()
+    .split('+')
+    .map((p) => p.trim())
   return {
     mod: parts.includes('mod'),
     shift: parts.includes('shift'),

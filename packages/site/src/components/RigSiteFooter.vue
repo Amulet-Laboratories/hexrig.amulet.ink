@@ -11,6 +11,7 @@ withDefaults(
   }>(),
   {
     homeUrl: 'https://amulet.ink',
+    corpusFragment: undefined,
     year: new Date().getFullYear(),
   },
 )

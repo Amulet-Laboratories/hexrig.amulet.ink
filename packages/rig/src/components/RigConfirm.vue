@@ -54,13 +54,7 @@ const confirmToneMap: Record<NonNullable<RigConfirmProps['tone']>, 'danger' | 'a
     @update:model-value="handleDialogUpdate"
   >
     <template #footer>
-      <RigButton
-        variant="ghost"
-        tone="neutral"
-        size="sm"
-        :disabled="loading"
-        @click="handleCancel"
-      >
+      <RigButton variant="ghost" tone="neutral" size="sm" :disabled="loading" @click="handleCancel">
         {{ cancelLabel }}
       </RigButton>
       <RigButton

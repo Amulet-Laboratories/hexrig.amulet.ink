@@ -50,12 +50,7 @@ const radioClasses = (optionDisabled?: boolean) => {
       {{ label }}
     </legend>
 
-    <div
-      :class="[
-        'flex',
-        orientation === 'horizontal' ? 'flex-row gap-4' : 'flex-col gap-2',
-      ]"
-    >
+    <div :class="['flex', orientation === 'horizontal' ? 'flex-row gap-4' : 'flex-col gap-2']">
       <label
         v-for="option in options"
         :key="option.value"

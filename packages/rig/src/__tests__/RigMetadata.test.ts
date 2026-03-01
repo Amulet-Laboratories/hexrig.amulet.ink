@@ -45,7 +45,9 @@ describe('RigMetadata', () => {
 
   it('renders link type items', () => {
     const wrapper = mount(RigMetadata, {
-      props: { items: [{ label: 'URL', value: 'amulet.ink', type: 'link', href: 'https://amulet.ink' }] },
+      props: {
+        items: [{ label: 'URL', value: 'amulet.ink', type: 'link', href: 'https://amulet.ink' }],
+      },
       global: { stubs: { RigBadge: true, RigStatus: true } },
     })
     const link = wrapper.find('a')

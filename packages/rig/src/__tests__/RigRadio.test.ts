@@ -43,7 +43,12 @@ describe('RigRadio', () => {
 
   it('renders horizontal layout when orientation is horizontal', () => {
     const wrapper = mount(RigRadio, {
-      props: { name: 'test', label: 'Pick one', options: defaultOptions, orientation: 'horizontal' },
+      props: {
+        name: 'test',
+        label: 'Pick one',
+        options: defaultOptions,
+        orientation: 'horizontal',
+      },
     })
     expect(wrapper.find('.flex-row').exists()).toBe(true)
   })
@@ -75,7 +80,12 @@ describe('RigRadio', () => {
 
   it('shows description when provided', () => {
     const wrapper = mount(RigRadio, {
-      props: { name: 'test', label: 'Pick one', options: defaultOptions, description: 'Choose wisely' },
+      props: {
+        name: 'test',
+        label: 'Pick one',
+        options: defaultOptions,
+        description: 'Choose wisely',
+      },
     })
     expect(wrapper.text()).toContain('Choose wisely')
   })

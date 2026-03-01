@@ -63,10 +63,7 @@ describe('RigAppShell', () => {
   })
 
   it('passes sidebarCollapsed to sidebar', () => {
-    const wrapper = mountShell(
-      { sidebarCollapsed: true },
-      { sidebar: '<div>Nav</div>' },
-    )
+    const wrapper = mountShell({ sidebarCollapsed: true }, { sidebar: '<div>Nav</div>' })
     const sidebar = wrapper.findComponent({ name: 'RigSidebar' })
     expect(sidebar.props('collapsed')).toBe(true)
   })

@@ -11,12 +11,28 @@ export default meta
 type Story = StoryObj
 
 const placeholderImages = [
-  { src: 'https://picsum.photos/seed/a/800/600', alt: 'Landscape photo 1', caption: 'Mountain vista at sunrise' },
-  { src: 'https://picsum.photos/seed/b/800/600', alt: 'Landscape photo 2', caption: 'Coastal cliffs' },
+  {
+    src: 'https://picsum.photos/seed/a/800/600',
+    alt: 'Landscape photo 1',
+    caption: 'Mountain vista at sunrise',
+  },
+  {
+    src: 'https://picsum.photos/seed/b/800/600',
+    alt: 'Landscape photo 2',
+    caption: 'Coastal cliffs',
+  },
   { src: 'https://picsum.photos/seed/c/800/600', alt: 'Landscape photo 3' },
-  { src: 'https://picsum.photos/seed/d/800/600', alt: 'Landscape photo 4', caption: 'Forest trail' },
+  {
+    src: 'https://picsum.photos/seed/d/800/600',
+    alt: 'Landscape photo 4',
+    caption: 'Forest trail',
+  },
   { src: 'https://picsum.photos/seed/e/800/600', alt: 'Landscape photo 5' },
-  { src: 'https://picsum.photos/seed/f/800/600', alt: 'Landscape photo 6', caption: 'Desert sunset' },
+  {
+    src: 'https://picsum.photos/seed/f/800/600',
+    alt: 'Landscape photo 6',
+    caption: 'Desert sunset',
+  },
 ]
 
 export const Default: Story = {

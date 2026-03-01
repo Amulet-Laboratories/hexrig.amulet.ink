@@ -105,9 +105,7 @@ describe('useFilter', () => {
     scope.run(() => {
       result = useFilter(ref(data), ['name'])
     })
-    result!.filters.value = [
-      { key: 'role', value: 'admin', match: 'exact' },
-    ]
+    result!.filters.value = [{ key: 'role', value: 'admin', match: 'exact' }]
     await nextTick()
     expect(result!.filtered.value).toHaveLength(2)
     expect(result!.filtered.value.every((item) => item.role === 'admin')).toBe(true)

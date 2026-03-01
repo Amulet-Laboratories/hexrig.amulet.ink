@@ -26,7 +26,8 @@ const gridStyle = computed(() => {
 })
 
 const gutterClasses = computed(() => {
-  const base = 'flex items-center justify-center bg-surface-base transition-colors duration-fast ease-standard'
+  const base =
+    'flex items-center justify-center bg-surface-base transition-colors duration-fast ease-standard'
   const cursor = isHorizontal.value ? 'cursor-col-resize' : 'cursor-row-resize'
   const hover = dragging.value ? 'bg-accent/20' : 'hover:bg-surface-raised'
   return `${base} ${cursor} ${hover}`
@@ -64,10 +65,7 @@ const onDoubleClick = () => {
 </script>
 
 <template>
-  <div
-    class="grid h-full font-body"
-    :style="gridStyle"
-  >
+  <div class="grid h-full font-body" :style="gridStyle">
     <div class="overflow-auto">
       <slot name="first"></slot>
     </div>
@@ -83,12 +81,7 @@ const onDoubleClick = () => {
       @pointerdown="onPointerDown"
       @dblclick="onDoubleClick"
     >
-      <div
-        :class="[
-          'rounded-full bg-border',
-          isHorizontal ? 'h-8 w-1' : 'w-8 h-1',
-        ]"
-      ></div>
+      <div :class="['rounded-full bg-border', isHorizontal ? 'h-8 w-1' : 'w-8 h-1']"></div>
     </div>
 
     <div class="overflow-auto">

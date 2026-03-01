@@ -44,9 +44,7 @@ function parseTimeToMinutes(time: string): number {
   return hours * 60 + minutes
 }
 
-const currentDayHours = computed(() =>
-  props.hours.find((entry) => isToday(entry.day)),
-)
+const currentDayHours = computed(() => props.hours.find((entry) => isToday(entry.day)))
 
 const isCurrentlyOpen = computed(() => {
   const entry = currentDayHours.value
@@ -76,7 +74,9 @@ const statusText = computed(() => (isCurrentlyOpen.value ? 'Open Now' : 'Closed'
         :key="entry.day"
         class="flex items-center justify-between"
         :class="[
-          highlightToday && isToday(entry.day) && 'bg-accent-muted rounded px-2 py-1 -mx-2 border-l-2 border-accent',
+          highlightToday &&
+            isToday(entry.day) &&
+            'bg-accent-muted rounded px-2 py-1 -mx-2 border-l-2 border-accent',
           compact ? 'py-0.5' : 'py-1',
         ]"
       >

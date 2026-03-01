@@ -44,7 +44,12 @@ export const Metadata: Story = {
         { label: 'Version', value: '2.1.0', type: 'badge' as const, tone: 'accent' as const },
         { label: 'Status', value: 'Active', type: 'status' as const, tone: 'success' as const },
         { label: 'License', value: 'MIT' },
-        { label: 'Registry', value: 'GitHub Packages', type: 'link' as const, href: 'https://npm.pkg.github.com' },
+        {
+          label: 'Registry',
+          value: 'GitHub Packages',
+          type: 'link' as const,
+          href: 'https://npm.pkg.github.com',
+        },
         { label: 'Components', value: 48 },
       ]
       return { items }
@@ -74,11 +79,41 @@ export const List: Story = {
     components: { RigText, RigList },
     setup() {
       const items = [
-        { id: 'x-hrg', label: 'hexrig.amulet.ink', description: 'Design system monorepo', icon: 'mdi:puzzle-outline', meta: 'active' },
-        { id: 'x-cod', label: 'codex.amulet.ink', description: 'Markdown editor with TTRPG preview', icon: 'mdi:book-open-outline', meta: 'wip' },
-        { id: 'x-sal', label: 'salt.amulet.ink', description: 'Atmospheric mock data library', icon: 'mdi:flask-outline', meta: 'wip' },
-        { id: 'x-run', label: 'rune.amulet.ink', description: 'Deterministic SVG glyph generator', icon: 'mdi:draw', meta: 'wip' },
-        { id: 'x-vrd', label: 'vrd.amulet.ink', description: 'Wireless VR session manager', icon: 'mdi:virtual-reality', meta: 'wip' },
+        {
+          id: 'x-hrg',
+          label: 'hexrig.amulet.ink',
+          description: 'Design system monorepo',
+          icon: 'mdi:puzzle-outline',
+          meta: 'active',
+        },
+        {
+          id: 'x-cod',
+          label: 'codex.amulet.ink',
+          description: 'Markdown editor with TTRPG preview',
+          icon: 'mdi:book-open-outline',
+          meta: 'wip',
+        },
+        {
+          id: 'x-sal',
+          label: 'salt.amulet.ink',
+          description: 'Atmospheric mock data library',
+          icon: 'mdi:flask-outline',
+          meta: 'wip',
+        },
+        {
+          id: 'x-run',
+          label: 'rune.amulet.ink',
+          description: 'Deterministic SVG glyph generator',
+          icon: 'mdi:draw',
+          meta: 'wip',
+        },
+        {
+          id: 'x-vrd',
+          label: 'vrd.amulet.ink',
+          description: 'Wireless VR session manager',
+          icon: 'mdi:virtual-reality',
+          meta: 'wip',
+        },
       ]
       return { items }
     },
@@ -105,11 +140,40 @@ export const Timeline: Story = {
     components: { RigText, RigTimeline },
     setup() {
       const items = [
-        { id: '1', label: 'Project created', description: 'Initial repository scaffolded', timestamp: 'Jan 15, 2026', tone: 'accent' as const },
-        { id: '2', label: 'v1.0.0 released', description: 'First stable release to GitHub Packages', timestamp: 'Feb 1, 2026', tone: 'success' as const },
-        { id: '3', label: 'Breaking changes identified', description: 'useTheme API renamed, brand components removed', timestamp: 'Feb 20, 2026', tone: 'warning' as const },
-        { id: '4', label: 'v2.0.0 published', description: 'Major version with token engine rewrite', timestamp: 'Feb 27, 2026', tone: 'success' as const },
-        { id: '5', label: 'Tier 2 build started', timestamp: 'Feb 28, 2026', tone: 'info' as const },
+        {
+          id: '1',
+          label: 'Project created',
+          description: 'Initial repository scaffolded',
+          timestamp: 'Jan 15, 2026',
+          tone: 'accent' as const,
+        },
+        {
+          id: '2',
+          label: 'v1.0.0 released',
+          description: 'First stable release to GitHub Packages',
+          timestamp: 'Feb 1, 2026',
+          tone: 'success' as const,
+        },
+        {
+          id: '3',
+          label: 'Breaking changes identified',
+          description: 'useTheme API renamed, brand components removed',
+          timestamp: 'Feb 20, 2026',
+          tone: 'warning' as const,
+        },
+        {
+          id: '4',
+          label: 'v2.0.0 published',
+          description: 'Major version with token engine rewrite',
+          timestamp: 'Feb 27, 2026',
+          tone: 'success' as const,
+        },
+        {
+          id: '5',
+          label: 'Tier 2 build started',
+          timestamp: 'Feb 28, 2026',
+          tone: 'info' as const,
+        },
       ]
       return { items }
     },

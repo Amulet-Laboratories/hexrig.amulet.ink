@@ -59,13 +59,25 @@ const contentClasses = computed(
 
       <slot>
         <RigText v-if="headline" as="h1" variant="display" :align="align">{{ headline }}</RigText>
-        <RigText v-if="subheadline" as="p" variant="subheading" color="secondary" :align="align">{{ subheadline }}</RigText>
+        <RigText v-if="subheadline" as="p" variant="subheading" color="secondary" :align="align">{{
+          subheadline
+        }}</RigText>
       </slot>
 
       <slot name="cta">
         <div :class="['flex flex-wrap gap-3', ctaAlignClasses[align]]">
-          <RigButton v-if="ctaLabel" :as="ctaHref ? 'a' : 'button'" :href="ctaHref" size="lg">{{ ctaLabel }}</RigButton>
-          <RigButton v-if="secondaryCtaLabel" :as="secondaryCtaHref ? 'a' : 'button'" :href="secondaryCtaHref" variant="outline" tone="neutral" size="lg">{{ secondaryCtaLabel }}</RigButton>
+          <RigButton v-if="ctaLabel" :as="ctaHref ? 'a' : 'button'" :href="ctaHref" size="lg">{{
+            ctaLabel
+          }}</RigButton>
+          <RigButton
+            v-if="secondaryCtaLabel"
+            :as="secondaryCtaHref ? 'a' : 'button'"
+            :href="secondaryCtaHref"
+            variant="outline"
+            tone="neutral"
+            size="lg"
+            >{{ secondaryCtaLabel }}</RigButton
+          >
         </div>
       </slot>
     </div>
