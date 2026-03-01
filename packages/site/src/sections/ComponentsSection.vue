@@ -41,6 +41,9 @@ import {
   RigSidebarSection,
   RigSidebarItem,
   RigPage,
+  RigIcon,
+  RigStack,
+  RigGrid,
 } from '@amulet-laboratories/rig'
 
 import type { ThemeId } from '@amulet-laboratories/hex'
@@ -1063,6 +1066,177 @@ onUnmounted(() => {
       </RigSurface>
     </div>
 
+    <!-- Row 17: Layout Primitives & Icon -->
+    <div v-reveal class="grid gap-4 mb-8">
+      <RigSurface class="panel-lift">
+        <RigText variant="heading" class="mb-6">Layout Primitives</RigText>
+
+        <!-- RigIcon showcase -->
+        <div class="mb-8">
+          <RigText variant="subheading" class="mb-3">RigIcon — Sizes & Colors</RigText>
+          <div class="flex flex-wrap items-center gap-4">
+            <div class="flex flex-col items-center gap-1">
+              <RigIcon name="mdi:star" size="xs" />
+              <RigText variant="caption" color="muted">xs</RigText>
+            </div>
+            <div class="flex flex-col items-center gap-1">
+              <RigIcon name="mdi:star" size="sm" />
+              <RigText variant="caption" color="muted">sm</RigText>
+            </div>
+            <div class="flex flex-col items-center gap-1">
+              <RigIcon name="mdi:star" size="md" />
+              <RigText variant="caption" color="muted">md</RigText>
+            </div>
+            <div class="flex flex-col items-center gap-1">
+              <RigIcon name="mdi:star" size="lg" />
+              <RigText variant="caption" color="muted">lg</RigText>
+            </div>
+            <div class="flex flex-col items-center gap-1">
+              <RigIcon name="mdi:star" size="xl" />
+              <RigText variant="caption" color="muted">xl</RigText>
+            </div>
+            <div class="h-12 border-l border-border-subtle mx-2" />
+            <div class="flex flex-col items-center gap-1">
+              <RigIcon name="mdi:star" color="accent" />
+              <RigText variant="caption" color="muted">accent</RigText>
+            </div>
+            <div class="flex flex-col items-center gap-1">
+              <RigIcon name="mdi:star" color="success" />
+              <RigText variant="caption" color="muted">success</RigText>
+            </div>
+            <div class="flex flex-col items-center gap-1">
+              <RigIcon name="mdi:star" color="warning" />
+              <RigText variant="caption" color="muted">warning</RigText>
+            </div>
+            <div class="flex flex-col items-center gap-1">
+              <RigIcon name="mdi:star" color="error" />
+              <RigText variant="caption" color="muted">error</RigText>
+            </div>
+          </div>
+        </div>
+
+        <!-- RigSurface elevations -->
+        <div class="mb-8">
+          <RigText variant="subheading" class="mb-3">RigSurface — Elevations</RigText>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <RigSurface
+              elevation="sunken"
+              padding="md"
+              class="h-24 flex items-center justify-center"
+            >
+              <RigText variant="caption" color="muted">sunken</RigText>
+            </RigSurface>
+            <RigSurface elevation="base" padding="md" class="h-24 flex items-center justify-center">
+              <RigText variant="caption" color="muted">base</RigText>
+            </RigSurface>
+            <RigSurface
+              elevation="raised"
+              padding="md"
+              class="h-24 flex items-center justify-center"
+            >
+              <RigText variant="caption" color="muted">raised</RigText>
+            </RigSurface>
+            <RigSurface
+              elevation="overlay"
+              padding="md"
+              class="h-24 flex items-center justify-center"
+            >
+              <RigText variant="caption" color="muted">overlay</RigText>
+            </RigSurface>
+          </div>
+        </div>
+
+        <!-- RigDivider variants -->
+        <div class="mb-8">
+          <RigText variant="subheading" class="mb-3">RigDivider — Variants</RigText>
+          <div class="space-y-4">
+            <RigDivider variant="default" />
+            <RigDivider variant="subtle" />
+            <RigDivider label="With Label" />
+          </div>
+        </div>
+
+        <!-- RigStack layout -->
+        <div class="mb-8">
+          <RigText variant="subheading" class="mb-3">RigStack — Direction & Spacing</RigText>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <RigText variant="caption" color="muted" class="mb-2 block">Horizontal</RigText>
+              <RigStack direction="horizontal" gap="md">
+                <div class="h-12 w-12 bg-accent rounded" />
+                <div class="h-12 w-12 bg-accent-muted rounded" />
+                <div class="h-12 w-12 bg-accent-muted/50 rounded" />
+              </RigStack>
+            </div>
+            <div>
+              <RigText variant="caption" color="muted" class="mb-2 block">Vertical</RigText>
+              <RigStack direction="vertical" gap="md">
+                <div class="h-8 bg-accent rounded" />
+                <div class="h-8 bg-accent-muted rounded" />
+                <div class="h-8 bg-accent-muted/50 rounded" />
+              </RigStack>
+            </div>
+          </div>
+        </div>
+
+        <!-- RigGrid cols -->
+        <div class="mb-8">
+          <RigText variant="subheading" class="mb-3">RigGrid — Columns</RigText>
+          <div class="space-y-4">
+            <div>
+              <RigText variant="caption" color="muted" class="mb-2 block">2 columns</RigText>
+              <RigGrid :cols="2" gap="md">
+                <div class="h-16 bg-accent-muted rounded" />
+                <div class="h-16 bg-accent-muted rounded" />
+              </RigGrid>
+            </div>
+            <div>
+              <RigText variant="caption" color="muted" class="mb-2 block">3 columns</RigText>
+              <RigGrid :cols="3" gap="md">
+                <div class="h-16 bg-accent-muted rounded" />
+                <div class="h-16 bg-accent-muted rounded" />
+                <div class="h-16 bg-accent-muted rounded" />
+              </RigGrid>
+            </div>
+          </div>
+        </div>
+
+        <!-- RigContainer sizes -->
+        <div class="mb-8">
+          <RigText variant="subheading" class="mb-3">RigContainer — Size Variants</RigText>
+          <div class="border-l-2 border-accent space-y-2 pl-4">
+            <RigText variant="caption" color="muted">
+              Constrains content width: sm (max-w-2xl) | md (max-w-5xl) | lg (max-w-7xl) | full
+            </RigText>
+            <RigText variant="caption" color="muted">
+              Useful wrapper for page sections and consistent horizontal spacing.
+            </RigText>
+          </div>
+        </div>
+
+        <!-- RigSpacer note -->
+        <div class="mb-8">
+          <RigText variant="subheading" class="mb-3"
+            >RigSpacer — Vertical & Horizontal Spacing</RigText
+          >
+          <div class="flex items-center gap-2">
+            <div class="h-6 bg-accent-muted/50 rounded w-full" />
+            <RigText variant="caption" color="muted">Spacer (md)</RigText>
+            <div class="h-6 bg-accent-muted/50 rounded w-full" />
+          </div>
+        </div>
+
+        <!-- RigAppShell reference -->
+        <div class="bg-surface-raised border border-border-subtle rounded-lg p-4">
+          <RigText variant="subheading" class="mb-2">RigAppShell — Orchestrator</RigText>
+          <RigText variant="caption" color="muted">
+            Composes Header, Sidebar, Page, and Footer into a complete app layout. See Row 16 above
+            for a live example.
+          </RigText>
+        </div>
+      </RigSurface>
+    </div>
+
     <!-- Dialogs (teleported to body) -->
     <RigDialog v-model="dialogOpen" title="Component confirmed" size="md">
       <p class="text-text-secondary text-sm leading-relaxed">
@@ -1111,7 +1285,7 @@ onUnmounted(() => {
         href="/storybook/?path=/docs/overview-introduction--docs"
         class="inline-flex items-center gap-2 text-accent hover:text-accent-hover transition-colors font-body text-base"
       >
-        See all 48 components in Storybook
+        See all 56 components in Storybook
         <span class="text-lg">&rarr;</span>
       </a>
     </div>

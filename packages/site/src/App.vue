@@ -5,6 +5,7 @@ import HeroSection from './sections/HeroSection.vue'
 import ThesisSection from './sections/ThesisSection.vue'
 import ThemesSection from './sections/ThemesSection.vue'
 import ComponentsSection from './sections/ComponentsSection.vue'
+import ClientSiteSection from './sections/ClientSiteSection.vue'
 import InteractiveSection from './sections/InteractiveSection.vue'
 import TokensSection from './sections/TokensSection.vue'
 import TextureSection from './sections/TextureSection.vue'
@@ -93,6 +94,7 @@ onUnmounted(() => window.removeEventListener('keydown', onKeydown))
     <ThesisSection />
     <ThemesSection :active-theme="activeTheme" @select-theme="setTheme" />
     <ComponentsSection :active-theme="activeTheme" />
+    <ClientSiteSection />
     <InteractiveSection />
     <TokensSection :active-theme="activeTheme" />
     <TextureSection />

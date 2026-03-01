@@ -1,9 +1,9 @@
 <script setup lang="ts">
 const stats = [
-  { value: '48', label: 'Components' },
+  { value: '56', label: 'Components' },
   { value: '9', label: 'Themes' },
   { value: '18', label: 'Color Modes' },
-  { value: '699', label: 'Tests' },
+  { value: '764', label: 'Tests' },
   { value: 'AAA', label: 'WCAG Level' },
 ]
 
