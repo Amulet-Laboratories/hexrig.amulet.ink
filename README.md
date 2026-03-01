@@ -29,11 +29,11 @@
 
 ## Purpose
 
-Hexrig is the Amulet Laboratories design system — the single source of visual truth for every project in the ecosystem. It is a pnpm monorepo with three packages: Hex (design token engine), Hex Origins (9 theme × 2 mode token data), and Rig (29 Vue 3 UI components). Every component is WCAG AAA compliant, validated across all 18 theme/mode combinations. Published to GitHub Packages under the `@amulet-laboratories` scope.
+Hexrig is the Amulet Laboratories design system — the single source of visual truth for every project in the ecosystem. It is a pnpm monorepo with four packages: Hex (design token engine), Hex Engine (generative token engine), Hex Origins (9 theme × 2 mode pre-built token data), and Rig (58 Vue 3 UI components + 9 composables). Every component is WCAG AAA compliant, validated across all 18 theme/mode combinations. Published to GitHub Packages under the `@amulet-laboratories` scope.
 
 ## Architecture
 
-Three-package monorepo. Hex provides the token type system, CSS custom property generation, WCAG validation utilities, and a Tailwind preset. Hex Origins provides raw theme data for nine themes (Ember, Hearth, Grove, Reef, Abyss, Cove, Linen, Keep, Slate) — each with dark and light modes. Rig provides 29 Vue 3 components that consume Hex tokens exclusively via CSS custom properties; no colors or spacing are hardcoded. A fourth package (`packages/site`) hosts the marketing and documentation site at hexrig.amulet.ink, which includes an embedded Storybook at `/storybook/`.
+Four-package monorepo plus a site. Hex provides the token type system, CSS custom property generation, WCAG validation utilities, and a Tailwind preset. Hex Engine is a generative token engine that produces theme data from archetype + weight + attitude + mode parameters (8 archetypes × 3 weights × 4 attitudes × 2 modes = 192 combinations). Hex Origins provides pre-built theme data for nine themes (Ember, Hearth, Grove, Reef, Abyss, Cove, Linen, Keep, Slate) — each with dark and light modes. Rig provides 58 Vue 3 components and 9 composables that consume Hex tokens exclusively via CSS custom properties; no colors or spacing are hardcoded. A fifth package (`packages/site`) hosts the marketing and documentation site at hexrig.amulet.ink, which includes an embedded Storybook at `/storybook/`.
 
 Nine themes span the color spectrum at ~60° intervals plus three neutrals, each with a named personality and paired display font: Ember (industrial urgency, Bungee), Hearth (craft weight, Sorts Mill Goudy), Grove (organic persistence, Libre Baskerville), Reef (shallow water clarity, DM Sans), Abyss (cold cosmos, League Gothic), Cove (intimate warmth, Crimson Pro), Linen (understated professional, Manrope), Keep (structure and purpose, IBM Plex Serif), Slate (cool reduction, Sora).
 
@@ -80,15 +80,18 @@ hexrig.amulet.ink/
 │   │   │   ├── tokens/types.ts    ← Full token type system
 │   │   │   └── utils/             ← css.ts, validate.ts, vscode.ts
 │   │   └── tsup.config.ts
-│   ├── hex-origins/       ← @amulet-laboratories/hex-origins — theme collection
+│   ├── hex-engine/        ← @amulet-laboratories/hex-engine — generative token engine
 │   │   ├── src/
-│   │   │   ├── themes/            ← ember, hearth, grove, reef, abyss, cove, linen, keep, slate
-│   │   │   └── build/             ← CSS and VS Code theme generators
+│   │   │   ├── engine.ts          ← Core generation: archetype × weight × attitude × mode
+│   │   │   ├── archetypes/        ← 8 archetypes (industrial, artisan, organic, etc.)
+│   │   │   └── systems/           ← color, typography, spacing, motion, shadow, radius
 │   │   └── tsup.config.ts
+│   ├── hex-origins/       ← @amulet-laboratories/hex-origins — pre-built themes (dist only)
+│   │   └── dist/                  ← 9 themes × 2 modes, generated CSS + JS
 │   ├── rig/               ← @amulet-laboratories/rig — Vue 3 components
 │   │   ├── src/
-│   │   │   ├── components/        ← 29 Rig* components + Storybook stories
-│   │   │   ├── composables/       ← useTheme, useMotion, useToast
+│   │   │   ├── components/        ← 58 Rig* components + Storybook stories
+│   │   │   ├── composables/       ← 9 composables (useTheme, useMotion, useToast, useKeyboard, useClipboard, useLocalStorage, useBreakpoint, useSort, useFilter)
 │   │   │   └── types/index.ts
 │   │   └── vite.config.ts
 │   └── site/              ← hexrig.amulet.ink marketing + docs site
@@ -167,8 +170,9 @@ Consuming projects need an `.npmrc`:
 
 ## Roadmap
 
-- [ ] Tier 2: RigCardGrid, RigSplit, RigAppShell, RigTree, RigTimeline, RigTable, RigMetadata, RigStat, RigPage, RigPanel, RigHeader, RigFooter, RigSidebarSection, RigSidebarItem, RigEmpty
-- [ ] Tier 3: client site components (hero sections, feature grids, testimonial cards)
+- [x] Tier 1 — Tower (13): RigStatus, RigEmpty, RigAppShell, RigTable, RigStatusBar, RigStatusBarItem, etc.
+- [x] Tier 2 — Tower Full (8): RigRadio, RigStat, RigTree, RigSplit, RigTimeline, RigCardGrid, RigPagination, RigMetadata
+- [x] Tier 3 — Client Sites (8): RigNavbar, RigHero, RigGallery, RigContactForm, RigTestimonial, RigHoursDisplay, RigPricingTable, RigFooter
 - [ ] Tier 4: RigRune (deterministic SVG identity glyph component)
 - [ ] VS Code themes published to marketplace
 - [ ] Figma token sync

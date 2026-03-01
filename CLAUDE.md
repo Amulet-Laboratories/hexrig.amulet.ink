@@ -1,6 +1,6 @@
 # hexrig.amulet.ink — AI Context
 
-Design system monorepo. Hex token engine, Hex Origins theme collection, Rig Vue 3 component library, and documentation site. Published to GitHub Packages. WCAG AAA compliant, 699 tests.
+Design system monorepo. Hex token engine, Hex Origins theme collection, Rig Vue 3 component library, and documentation site. Published to GitHub Packages. WCAG AAA compliant, 1110 tests.
 
 - **ID:** x-hrg
 - **Category:** software (design system)
@@ -13,42 +13,58 @@ pnpm workspace (`pnpm-workspace.yaml: packages/*`):
 
 ```
 packages/
-├── hex/          @amulet-laboratories/hex v2.0.0         (published — GitHub Packages)
-├── hex-origins/  @amulet-laboratories/hex-origins v2.0.0  (published — GitHub Packages)
-├── rig/          @amulet-laboratories/rig v2.1.0          (published — GitHub Packages)
-└── site/         @amulet-laboratories/site               (private — docs + Storybook)
+├── hex/          @amulet-laboratories/hex v3.0.0          (published — GitHub Packages)
+├── hex-engine/   @amulet-laboratories/hex-engine v1.0.0   (published — GitHub Packages)
+├── hex-origins/  @amulet-laboratories/hex-origins          (generated — dist only, no source)
+├── rig/          @amulet-laboratories/rig v2.2.0           (published — GitHub Packages)
+└── site/         @amulet-laboratories/site                (private — docs + Storybook)
 ```
 
 ## Package Details
 
-### `packages/hex` — Design Token Engine
+### `packages/hex` — Design Token API + Tailwind Preset
 
 Token system, CSS custom property generation, validation, and Tailwind preset.
 
 - **Build:** `tsup` — CJS + ESM + `.d.ts`
 - **Exports:** `.` (token API) and `./tailwind` (`amuletPreset`)
 - **No runtime deps** — pure TypeScript
-- **Source:** `src/tokens/`, `src/tailwind/`, `src/utils/`, `src/__tests__/`
+- **Source:** `src/index.ts`, `src/tailwind/preset.ts`
 
-### `packages/hex-origins` — Theme Collection
+### `packages/hex-engine` — Generative Token Engine
+
+Computes design tokens from archetype + weight + attitude + mode parameters. OKLCH color generation, typography profiles (modular scales, font stacks), spacing, radius, shadows, and motion. Zero runtime dependencies.
+
+- **Build:** `tsup` — CJS + ESM + `.d.ts`
+- **Exports:** `.` (engine API)
+- **Source:** `src/` — `engine.ts` (orchestrator), `archetypes.ts` (8 archetypes), `color.ts` (OKLCH), `typography.ts`, `spacing.ts`, `radius.ts`, `shadow.ts`, `motion.ts`, `modifiers.ts` (weight/attitude), `contrast.ts` (WCAG validation), `css.ts`, `types.ts`
+- **Tests:** `src/color.test.ts`, `src/contrast.test.ts`, `src/audit.test.ts`
+- **8 archetypes:** command, ledger, journal, market, gallery, signal, stage, guide
+- **3 weights:** light, standard, heavy — **4 attitudes:** kinetic, tranquil, intimate, luminous
+- **192 possible theme combinations** (8 × 3 × 4 × 2 modes)
+
+### `packages/hex-origins` — Pre-built Theme Collection
 
 9 themes × 2 modes = 18 variants. Themes in spectral order: `abyss`, `cove`, `ember`, `grove`, `hearth`, `keep`, `linen`, `reef`, `slate`.
 
-- **Build:** `tsup` + `build:css` (CSS vars per theme) + `build:vscode` (VS Code themes)
-- **Exports:** `.` (token API), `./themes/*.css`, `./themes/*` (individual theme modules)
-- **Peer:** `@amulet-laboratories/hex >=2.0.0`
-- **Scripts:** `validate` — runs `src/build/validate-all.ts` to check theme integrity
-- **Source themes:** `src/themes/` (JSON) → `dist/themes/` (CSS + JS)
+- **Generated package:** Contains only `dist/` — no source files, no `package.json`. Built outputs are pre-compiled CSS + JS theme modules.
+- **dist/themes/:** Per-theme CSS files (`hearth.css`, etc.) and JS/CJS modules with token values
+- **Consumed by:** Storybook preview (imports all 9 theme CSS files), consuming repos (import one theme CSS)
 
 ### `packages/rig` — Vue 3 Component Library
 
-48 accessible components and 9 composables consuming Hex tokens via Tailwind CSS.
+58 accessible components and 9 composables consuming Hex tokens via Tailwind CSS.
 
 - **Build:** `vite` in library mode + `vite-plugin-dts`
 - **Exports:** `.` (components + composables) and `./style.css`
 - **Peers:** `@amulet-laboratories/hex >=2.0.0`, `@iconify/vue ^5.0.0`, `vue ^3.5.0`
 - **Source:** `src/components/`, `src/composables/`, `src/stories/`, `src/types/`
 - **Component prefix:** `Rig` — e.g., `RigButton`, `RigInput`, `RigThemeProvider`
+- **Component tiers** (all in `src/components/`, flat directory):
+  - **Core (29):** RigThemeProvider, RigText, RigButton, RigInput, RigIcon, RigSurface, RigDivider, RigBadge, RigAlert, RigCard, RigDialog, RigToast, RigContainer, RigStack, RigGrid, RigSpacer, RigSpinner, RigSkeleton, RigProgress, RigTooltip, RigTabs, RigAccordion, RigBreadcrumb, RigAvatar, RigSelect, RigCheckbox, RigSwitch, RigTag, RigNoiseGrain
+  - **Tier 1 — Tower (13):** RigStatus, RigEmpty, RigConfirm, RigHeader, RigPage, RigPanel, RigSidebar, RigSidebarSection, RigSidebarItem, RigAppShell, RigTable, RigStatusBar, RigStatusBarItem
+  - **Tier 2 — Tower Full (8):** RigRadio, RigStat, RigMetadata, RigList, RigTimeline, RigTree, RigSplit, RigFooter
+  - **Tier 3 — Client Sites (8):** RigNavbar, RigHero, RigCardGrid, RigContactForm, RigTestimonial, RigHoursDisplay, RigPricingTable, RigGallery
 - **`RigButton` tones:** `'accent' | 'neutral' | 'danger'` — never `'primary'`
 - **`RigInput`:** does **not** forward `name` to inner `<input>` — use raw `<input>` for Netlify forms
 - **`RigThemeProvider`:** required wrapper — all token-driven components depend on it. Supports `as` prop (default `'div'`) for semantic root element.
@@ -77,7 +93,7 @@ pnpm build:deploy    # full deploy: hex → origins → rig → site → storybo
 pnpm dev             # dev all packages in parallel (-r --parallel)
 pnpm lint            # eslint packages/
 pnpm format          # prettier --write .
-pnpm test            # vitest run (699 tests)
+pnpm test            # vitest run (1110 tests)
 pnpm test:watch      # vitest
 pnpm type-check      # pnpm -r typecheck
 pnpm storybook       # storybook dev -p 6006
@@ -165,7 +181,7 @@ These are additive/visual-only changes **except** for RigTabs panel lifecycle. P
 
 Non-breaking addition of 19 components and 6 composables. Rig grows from 29 to 48 components and from 3 to 9 composables. Hex and Hex Origins unchanged.
 
-### Tier 1 — Tower baseline (11 components)
+### Tier 1 — Tower baseline (13 components)
 
 - **RigStatus** — Status indicator with colored dot, pulse animation, and label
 - **RigEmpty** — Empty state placeholder with icon, title, description, and action button
@@ -178,6 +194,8 @@ Non-breaking addition of 19 components and 6 composables. Rig grows from 29 to 4
 - **RigSidebarItem** — Clickable navigation item within RigSidebarSection
 - **RigAppShell** — Complete app layout shell combining header, sidebar, main, and footer
 - **RigTable** — Full-featured data table with sorting, selection, expansion, and loading states
+- **RigStatusBar** — Fixed bottom bar for application status information
+- **RigStatusBarItem** — Individual item within RigStatusBar
 
 ### Tier 2 — Tower full experience (8 components)
 
@@ -199,9 +217,22 @@ Non-breaking addition of 19 components and 6 composables. Rig grows from 29 to 4
 - **useSort** — Reactive array sorting by key and direction
 - **useFilter** — Reactive array filtering with text search and debounce
 
+### Tier 3 — Client engagement site components (8 components)
+
+- **RigNavbar** — Full navigation bar with dropdown support, sticky mode, and transparent scroll
+- **RigHero** — Hero banner with headline, subheadline, CTA buttons, and alignment options
+- **RigCardGrid** — Responsive auto-fit card grid with configurable min width and gap
+- **RigContactForm** — Contact form with Netlify Forms integration, validation, and compact mode
+- **RigTestimonial** — Client testimonial with card, inline, and featured variants
+- **RigHoursDisplay** — Business hours with live "Open Now" status, timezone, and compact mode
+- **RigPricingTable** — Pricing display with list, card, and table variants
+- **RigGallery** — Responsive image gallery with optional lightbox
+
 ### Consumer impact
 
 Purely additive — no breaking changes. All new components and composables are opt-in imports.
+
+**Post-v2.2.0 additions (not yet published):** RigStatusBar, RigStatusBarItem (Tier 1), and 8 Tier 3 client site components. Total: 58 components, 9 composables.
 
 ---
 

@@ -1,49 +1,10 @@
 <script setup lang="ts">
 const stats = [
-  { value: '56', label: 'Components' },
+  { value: '58', label: 'Components' },
   { value: '9', label: 'Themes' },
   { value: '18', label: 'Color Modes' },
-  { value: '764', label: 'Tests' },
+  { value: '1110', label: 'Tests' },
   { value: 'AAA', label: 'WCAG Level' },
-]
-
-const composables = [
-  {
-    name: 'useToast()',
-    surface: 'show \u00b7 dismiss \u00b7 dismissAll \u00b7 toasts',
-  },
-  {
-    name: 'useTheme()',
-    surface: 'theme \u00b7 mode \u00b7 setMode \u00b7 toggleMode \u00b7 resetToAuto',
-  },
-  {
-    name: 'useMotion()',
-    surface: 'duration \u00b7 easing \u00b7 prefersReducedMotion',
-  },
-  {
-    name: 'useKeyboard()',
-    surface: 'register \u00b7 unregister \u00b7 shortcuts',
-  },
-  {
-    name: 'useClipboard()',
-    surface: 'copy \u00b7 copied \u00b7 isSupported',
-  },
-  {
-    name: 'useLocalStorage()',
-    surface: 'value \u00b7 remove',
-  },
-  {
-    name: 'useBreakpoint()',
-    surface: 'current \u00b7 gte \u00b7 lt',
-  },
-  {
-    name: 'useSort()',
-    surface: 'sorted \u00b7 sortBy \u00b7 sortDir \u00b7 toggleSort',
-  },
-  {
-    name: 'useFilter()',
-    surface: 'filtered \u00b7 query \u00b7 filters \u00b7 activeCount \u00b7 reset',
-  },
 ]
 
 const techStack = [
@@ -76,7 +37,7 @@ const links = [
 </script>
 
 <template>
-  <section class="relative py-32 px-6">
+  <section id="credentials" class="relative py-32 px-6">
     <div class="max-w-6xl mx-auto">
       <!-- Section header -->
       <div v-reveal class="flex items-center gap-3 mb-6">
@@ -117,18 +78,6 @@ const links = [
         >
           {{ tech.label }}
         </a>
-      </div>
-
-      <!-- Composables -->
-      <div v-reveal class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-16">
-        <div
-          v-for="c in composables"
-          :key="c.name"
-          class="bg-surface-raised border border-border-subtle rounded-lg p-5"
-        >
-          <span class="font-mono text-xs text-accent block mb-1">{{ c.name }}</span>
-          <p class="text-xs text-text-muted font-body">{{ c.surface }}</p>
-        </div>
       </div>
 
       <!-- Ecosystem links -->

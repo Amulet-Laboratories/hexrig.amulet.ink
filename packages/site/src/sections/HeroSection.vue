@@ -4,11 +4,9 @@ import { ref } from 'vue'
 
 defineProps<{
   theme: ThemeId
-  mode: 'dark' | 'light'
 }>()
 
 defineEmits<{
-  'toggle-mode': []
   'select-theme': [theme: ThemeId]
 }>()
 
@@ -62,35 +60,6 @@ const copyInstall = async () => {
       class="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-accent opacity-[0.04] blur-[200px]"
     />
 
-    <!-- Nav -->
-    <nav class="relative z-10 flex items-center justify-between px-6 sm:px-8 py-5">
-      <div class="font-display text-lg tracking-wide text-text-primary">
-        <span>Amulet</span>
-      </div>
-      <div class="flex items-center gap-3">
-        <button
-          class="px-3 py-1.5 text-xs font-mono text-text-muted border border-border-subtle rounded hover:border-border-strong hover:text-text-secondary transition-colors duration-fast"
-          @click="$emit('toggle-mode')"
-        >
-          {{ mode }}
-        </button>
-        <a
-          href="/storybook/"
-          class="px-3 py-1.5 text-xs font-mono text-text-muted border border-border-subtle rounded hover:border-accent hover:text-accent transition-colors duration-fast"
-        >
-          storybook
-        </a>
-        <a
-          href="https://github.com/Amulet-Laboratories/hexrig.amulet.ink"
-          target="_blank"
-          rel="noopener"
-          class="px-3 py-1.5 text-xs font-mono text-text-muted border border-border-subtle rounded hover:border-border-strong hover:text-text-secondary transition-colors duration-fast"
-        >
-          github
-        </a>
-      </div>
-    </nav>
-
     <!-- Center content -->
     <div class="relative flex-1 flex flex-col items-center justify-center px-6 text-center">
       <div class="max-w-4xl w-full">
@@ -117,7 +86,7 @@ const copyInstall = async () => {
           Design tokens and Vue&nbsp;3 components for interfaces that feel
           <em class="text-accent not-italic font-medium">considered</em>.<br />
           <span class="text-text-muted"
-            >Nine themes. Two modes. Fifty-six components. WCAG&nbsp;AAA.</span
+            >Nine themes. Two modes. Fifty-eight components. WCAG&nbsp;AAA.</span
           >
         </p>
 

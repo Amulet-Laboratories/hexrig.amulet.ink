@@ -18,42 +18,6 @@
           accents transform.
         </p>
       </blockquote>
-
-      <!-- Three pillars -->
-      <div v-reveal class="mt-20 grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-12 text-left">
-        <div>
-          <div class="flex items-center gap-2 mb-3">
-            <div class="w-1.5 h-1.5 rounded-full bg-accent" />
-            <span class="text-xs font-mono uppercase tracking-[0.2em] text-accent">Hex</span>
-          </div>
-          <p class="text-sm text-text-secondary font-body leading-relaxed">
-            The token engine. Design tokens as CSS custom properties — surfaces, text, borders,
-            accents, status, focus, motion, and typography.
-          </p>
-        </div>
-        <div>
-          <div class="flex items-center gap-2 mb-3">
-            <div class="w-1.5 h-1.5 rounded-full bg-accent" />
-            <span class="text-xs font-mono uppercase tracking-[0.2em] text-accent"
-              >Hex Origins</span
-            >
-          </div>
-          <p class="text-sm text-text-secondary font-body leading-relaxed">
-            Nine curated themes — six spectral hues and three neutrals. Each a complete visual
-            language with dark and light modes.
-          </p>
-        </div>
-        <div>
-          <div class="flex items-center gap-2 mb-3">
-            <div class="w-1.5 h-1.5 rounded-full bg-accent" />
-            <span class="text-xs font-mono uppercase tracking-[0.2em] text-accent">Rig</span>
-          </div>
-          <p class="text-sm text-text-secondary font-body leading-relaxed">
-            Forty-eight Vue 3 components. WCAG AAA accessible, polymorphic, token-driven. Built to
-            feel considered in any theme.
-          </p>
-        </div>
-      </div>
     </div>
   </section>
 </template>

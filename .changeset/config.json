@@ -3,7 +3,7 @@
   "changelog": "@changesets/cli/changelog",
   "commit": false,
   "fixed": [
-    ["@amulet-laboratories/hex", "@amulet-laboratories/hex-origins", "@amulet-laboratories/rig"]
+    ["@amulet-laboratories/hex", "@amulet-laboratories/rig"]
   ],
   "linked": [],
   "access": "public",

@@ -143,7 +143,7 @@ const buttonMatrix = [
         v-reveal
         class="font-display text-4xl sm:text-5xl lg:text-6xl text-text-primary leading-tight mb-4"
       >
-        Fifty-six components.<br />Every piece, considered.
+        Fifty-eight components.<br />Every piece, considered.
       </h2>
       <p v-reveal class="text-text-muted font-body text-lg max-w-xl">
         Real Rig components below — not mockups. Switch themes above and watch them transform.
@@ -729,10 +729,10 @@ const buttonMatrix = [
           >RigStat</span
         >
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
-          <RigStat label="Components" :value="48" icon="mdi:puzzle" trend="up" trend-label="+19" />
+          <RigStat label="Components" :value="58" icon="mdi:puzzle" trend="up" trend-label="+29" />
           <RigStat
             label="Tests"
-            :value="699"
+            :value="1110"
             icon="mdi:check-circle"
             trend="up"
             trend-label="+227"
@@ -849,7 +849,7 @@ const buttonMatrix = [
               {
                 id: '2',
                 label: 'Components',
-                description: '48 accessible Vue 3 components',
+                description: '58 accessible Vue 3 components',
                 icon: 'mdi:puzzle',
               },
               { id: '3', label: 'Themes', description: '9 themes, 18 variants', icon: 'mdi:brush' },
@@ -901,7 +901,7 @@ const buttonMatrix = [
               {
                 id: '4',
                 label: 'v2.2.0',
-                description: '48 components, 9 composables',
+                description: '58 components, 9 composables',
                 tone: 'accent',
                 timestamp: 'Feb 28',
               },
@@ -1311,7 +1311,7 @@ const buttonMatrix = [
         href="/storybook/?path=/docs/overview-introduction--docs"
         class="inline-flex items-center gap-2 text-accent hover:text-accent-hover transition-colors font-body text-base"
       >
-        See all 56 components in Storybook
+        See all 58 components in Storybook
         <span class="text-lg">&rarr;</span>
       </a>
     </div>

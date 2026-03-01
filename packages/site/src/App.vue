@@ -1,17 +1,12 @@
 <script setup lang="ts">
 import { ref, watchEffect, onMounted, onUnmounted } from 'vue'
 import { RigToast } from '@amulet-laboratories/rig'
+import SiteNav from './components/SiteNav.vue'
 import HeroSection from './sections/HeroSection.vue'
 import ThesisSection from './sections/ThesisSection.vue'
 import ThemesSection from './sections/ThemesSection.vue'
-import ComponentsSection from './sections/ComponentsSection.vue'
-import ClientSiteSection from './sections/ClientSiteSection.vue'
-import GettingStartedSection from './sections/GettingStartedSection.vue'
 import ComponentsReferenceSection from './sections/ComponentsReferenceSection.vue'
-import ApiDocsSection from './sections/ApiDocsSection.vue'
-import InteractiveSection from './sections/InteractiveSection.vue'
-import TokensSection from './sections/TokensSection.vue'
-import TextureSection from './sections/TextureSection.vue'
+import GettingStartedSection from './sections/GettingStartedSection.vue'
 import CredentialsSection from './sections/CredentialsSection.vue'
 import FooterSection from './sections/FooterSection.vue'
 import FloatingToolbar from './components/FloatingToolbar.vue'
@@ -88,22 +83,21 @@ onUnmounted(() => window.removeEventListener('keydown', onKeydown))
     :data-mode="activeMode"
     class="min-h-screen bg-surface-base text-text-primary font-body"
   >
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded focus:bg-surface-raised focus:px-4 focus:py-2 focus:text-text-primary focus:ring-2 focus:ring-focus-ring"
+    >
+      Skip to content
+    </a>
+    <SiteNav :active-mode="activeMode" @toggle-mode="toggleMode" />
     <HeroSection
       :theme="activeTheme"
-      :mode="activeMode"
-      @toggle-mode="toggleMode"
       @select-theme="setTheme"
     />
-    <GettingStartedSection />
     <ThesisSection />
-    <ThemesSection :active-theme="activeTheme" @select-theme="setTheme" />
-    <ComponentsSection :active-theme="activeTheme" />
+    <ThemesSection id="main-content" :active-theme="activeTheme" @select-theme="setTheme" />
     <ComponentsReferenceSection />
-    <ClientSiteSection />
-    <ApiDocsSection />
-    <InteractiveSection />
-    <TokensSection :active-theme="activeTheme" />
-    <TextureSection />
+    <GettingStartedSection />
     <CredentialsSection />
     <FooterSection />
     <RigToast />

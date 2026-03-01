@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 
 describe('rig barrel exports', () => {
-  it('exports all 56 components', async () => {
+  it('exports all 58 components', async () => {
     const mod = await import('@rig/index')
     const componentNames = [
       'RigThemeProvider',
@@ -45,6 +45,8 @@ describe('rig barrel exports', () => {
       'RigSidebarItem',
       'RigAppShell',
       'RigTable',
+      'RigStatusBar',
+      'RigStatusBarItem',
       // Tier 2 — Tower full experience
       'RigRadio',
       'RigStat',

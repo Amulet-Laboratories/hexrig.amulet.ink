@@ -126,7 +126,7 @@ const totalComponents = computed(() =>
 </script>
 
 <template>
-  <section class="relative py-32 px-6">
+  <section id="components" class="relative py-32 px-6">
     <!-- Section header -->
     <div class="max-w-6xl mx-auto mb-20">
       <div v-reveal class="flex items-center gap-3 mb-6">

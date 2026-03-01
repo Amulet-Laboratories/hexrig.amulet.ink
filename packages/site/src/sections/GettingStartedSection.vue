@@ -22,7 +22,7 @@ import { RigButton, RigCard } from '@amulet-laboratories/rig'
 </script>
 
 <template>
-  <section class="relative py-32 px-6">
+  <section id="get-started" class="relative py-32 px-6">
     <div class="max-w-6xl mx-auto">
       <!-- Section header -->
       <div v-reveal class="flex items-center gap-3 mb-6">
@@ -105,7 +105,7 @@ import { RigButton, RigCard } from '@amulet-laboratories/rig'
           </div>
           <CodeBlock :code="useCode" lang="vue" filename="App.vue" />
           <p class="text-xs text-text-muted font-body mt-3">
-            56 components ready to use.
+            58 components ready to use.
           </p>
         </RigSurface>
       </div>
