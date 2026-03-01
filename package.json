@@ -9,7 +9,7 @@
   },
   "scripts": {
     "build": "pnpm -r build",
-    "build:deploy": "pnpm --filter hex-engine build && pnpm --filter hex build && pnpm --filter hex-origins build && pnpm --filter rig build && pnpm --filter site build && pnpm exec storybook build -o storybook-static && cp -r storybook-static packages/site/dist/storybook",
+    "build:deploy": "pnpm --filter hex-engine build && pnpm --filter hex build && pnpm --filter hex-origins build && pnpm --filter rig build && pnpm --filter site build",
     "dev": "pnpm -r --parallel dev",
     "lint": "eslint packages/",
     "lint:fix": "eslint packages/ --fix",
