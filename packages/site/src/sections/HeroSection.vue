@@ -65,7 +65,7 @@ const copyInstall = async () => {
     <!-- Nav -->
     <nav class="relative z-10 flex items-center justify-between px-6 sm:px-8 py-5">
       <div class="font-display text-lg tracking-wide text-text-primary">
-        <span class="opacity-60">Amulet</span>
+        <span>Amulet</span>
       </div>
       <div class="flex items-center gap-3">
         <button
@@ -117,7 +117,7 @@ const copyInstall = async () => {
           Design tokens and Vue&nbsp;3 components for interfaces that feel
           <em class="text-accent not-italic font-medium">considered</em>.<br />
           <span class="text-text-muted"
-            >Nine themes. Two modes. Twenty-eight components. WCAG&nbsp;AAA.</span
+            >Nine themes. Two modes. Fifty-six components. WCAG&nbsp;AAA.</span
           >
         </p>
 

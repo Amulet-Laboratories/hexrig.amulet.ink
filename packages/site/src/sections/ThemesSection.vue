@@ -1,14 +1,12 @@
 <script setup lang="ts">
 import type { ThemeId } from '@amulet-laboratories/hex'
-import { computed } from 'vue'
+import { ref, watch, computed } from 'vue'
+import {
+  RigButton, RigBadge, RigInput, RigAlert, RigDivider,
+} from '@amulet-laboratories/rig'
 
-defineProps<{
-  activeTheme: ThemeId
-}>()
-
-defineEmits<{
-  'select-theme': [theme: ThemeId]
-}>()
+const props = defineProps<{ activeTheme: ThemeId }>()
+const emit = defineEmits<{ 'select-theme': [theme: ThemeId] }>()
 
 const themes: {
   id: ThemeId
@@ -116,6 +114,32 @@ const themes: {
 
 const spectrumThemes = computed(() => themes.filter((t) => t.series === 'Spectrum'))
 const neutralThemes = computed(() => themes.filter((t) => t.series === 'Neutral'))
+
+// Theme preview state
+const previewTheme = ref<ThemeId>(props.activeTheme)
+const previewMode = ref<'dark' | 'light'>('dark')
+const hoveredTheme = ref<ThemeId | null>(null)
+
+// Sync preview when global theme changes (keyboard T, hero dots)
+watch(() => props.activeTheme, (t) => {
+  previewTheme.value = t
+})
+
+// The theme shown in the large preview: hovered theme while hovering, else the clicked theme
+const currentPreview = computed(() => hoveredTheme.value ?? previewTheme.value)
+const currentPreviewData = computed(() => themes.find(t => t.id === currentPreview.value)!)
+
+// Card interactions
+const onCardEnter = (id: ThemeId) => {
+  hoveredTheme.value = id
+}
+const onCardLeave = () => {
+  hoveredTheme.value = null
+}
+const applyTheme = (id: ThemeId) => {
+  previewTheme.value = id
+  emit('select-theme', id)
+}
 </script>
 
 <template>
@@ -134,7 +158,7 @@ const neutralThemes = computed(() => themes.filter((t) => t.series === 'Neutral'
       </h2>
       <p v-reveal class="text-text-muted font-body text-lg max-w-xl">
         Each theme is a complete visual language — palette, typography, motion, and personality.
-        Click any to see every element on this page respond.
+        Hover to preview in isolation. Click to apply sitewide.
       </p>
     </div>
 
@@ -151,12 +175,14 @@ const neutralThemes = computed(() => themes.filter((t) => t.series === 'Neutral'
           v-for="t in spectrumThemes"
           :key="t.id"
           class="group relative text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring rounded-theme"
-          @click="$emit('select-theme', t.id)"
+          @mouseenter="onCardEnter(t.id)"
+          @mouseleave="onCardLeave"
+          @click="applyTheme(t.id)"
         >
           <!-- Dark preview -->
           <div
             class="rounded-t-theme transition-transform duration-normal ease-standard"
-            :class="t.id === activeTheme ? 'scale-[1.02]' : 'group-hover:scale-[1.01]'"
+            :class="t.id === previewTheme ? 'scale-[1.02]' : 'group-hover:scale-[1.01]'"
             :data-theme="t.id"
             data-mode="dark"
           >
@@ -191,7 +217,7 @@ const neutralThemes = computed(() => themes.filter((t) => t.series === 'Neutral'
                 <div
                   class="w-6 h-1 rounded-full mb-3 transition-all duration-normal"
                   :style="{ backgroundColor: t.accent }"
-                  :class="t.id === activeTheme ? 'w-10' : ''"
+                  :class="t.id === previewTheme ? 'w-10' : ''"
                 />
                 <div class="font-display text-lg" :style="{ color: t.accent }">{{ t.name }}</div>
                 <div class="text-[10px] text-text-muted mt-0.5 font-mono uppercase tracking-wider">
@@ -218,7 +244,7 @@ const neutralThemes = computed(() => themes.filter((t) => t.series === 'Neutral'
           <!-- Selection indicator -->
           <div
             class="absolute -bottom-3 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full transition-all duration-normal"
-            :class="t.id === activeTheme ? 'bg-accent scale-150' : 'bg-transparent'"
+            :class="t.id === previewTheme ? 'bg-accent scale-150' : 'bg-transparent'"
           />
         </button>
       </div>
@@ -237,12 +263,14 @@ const neutralThemes = computed(() => themes.filter((t) => t.series === 'Neutral'
           v-for="t in neutralThemes"
           :key="t.id"
           class="group relative text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring rounded-theme"
-          @click="$emit('select-theme', t.id)"
+          @mouseenter="onCardEnter(t.id)"
+          @mouseleave="onCardLeave"
+          @click="applyTheme(t.id)"
         >
           <!-- Dark preview -->
           <div
             class="rounded-t-theme transition-transform duration-normal ease-standard"
-            :class="t.id === activeTheme ? 'scale-[1.02]' : 'group-hover:scale-[1.01]'"
+            :class="t.id === previewTheme ? 'scale-[1.02]' : 'group-hover:scale-[1.01]'"
             :data-theme="t.id"
             data-mode="dark"
           >
@@ -277,7 +305,7 @@ const neutralThemes = computed(() => themes.filter((t) => t.series === 'Neutral'
                 <div
                   class="w-6 h-1 rounded-full mb-3 transition-all duration-normal"
                   :style="{ backgroundColor: t.accent }"
-                  :class="t.id === activeTheme ? 'w-10' : ''"
+                  :class="t.id === previewTheme ? 'w-10' : ''"
                 />
                 <div class="font-display text-lg" :style="{ color: t.accent }">{{ t.name }}</div>
                 <div class="text-[10px] text-text-muted mt-0.5 font-mono uppercase tracking-wider">
@@ -304,9 +332,154 @@ const neutralThemes = computed(() => themes.filter((t) => t.series === 'Neutral'
           <!-- Selection indicator -->
           <div
             class="absolute -bottom-3 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full transition-all duration-normal"
-            :class="t.id === activeTheme ? 'bg-accent scale-150' : 'bg-transparent'"
+            :class="t.id === previewTheme ? 'bg-accent scale-150' : 'bg-transparent'"
           />
         </button>
+      </div>
+    </div>
+
+    <!-- Theme Preview Panel -->
+    <div class="max-w-6xl mx-auto mt-20">
+      <div v-reveal class="flex items-center gap-3 mb-6">
+        <span class="text-[10px] font-mono uppercase tracking-[0.25em] text-text-muted">Live Preview</span>
+        <div class="h-px flex-1 bg-border-subtle" />
+      </div>
+
+      <div
+        :data-theme="currentPreview"
+        :data-mode="previewMode"
+        class="rounded-theme border border-border-subtle overflow-hidden bg-surface-base"
+      >
+        <!-- Preview header: identity + mode toggle -->
+        <div class="flex items-start justify-between p-6 border-b border-border-subtle gap-6">
+          <div>
+            <div
+              class="font-display text-4xl sm:text-5xl leading-tight mb-1"
+              :style="{ color: currentPreviewData.accent }"
+            >
+              {{ currentPreviewData.name }}
+            </div>
+            <div class="text-xs font-mono uppercase tracking-[0.2em] text-text-muted mb-2">
+              {{ currentPreviewData.word }} · {{ currentPreviewData.series }}
+            </div>
+            <p class="text-sm text-text-secondary font-body max-w-xs">
+              {{ currentPreviewData.narrative }}
+            </p>
+          </div>
+          <div class="flex-shrink-0 flex gap-2">
+            <button
+              class="px-3 py-1.5 text-xs font-mono rounded border transition-colors duration-fast"
+              :class="previewMode === 'dark'
+                ? 'bg-accent text-text-on-accent border-accent'
+                : 'border-border-subtle text-text-muted hover:border-border-strong hover:text-text-primary'"
+              @click="previewMode = 'dark'"
+            >dark</button>
+            <button
+              class="px-3 py-1.5 text-xs font-mono rounded border transition-colors duration-fast"
+              :class="previewMode === 'light'
+                ? 'bg-accent text-text-on-accent border-accent'
+                : 'border-border-subtle text-text-muted hover:border-border-strong hover:text-text-primary'"
+              @click="previewMode = 'light'"
+            >light</button>
+          </div>
+        </div>
+
+        <!-- Typography + palette row -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-0 border-b border-border-subtle">
+          <!-- Typography -->
+          <div class="p-6 border-b sm:border-b-0 sm:border-r border-border-subtle">
+            <div class="text-[10px] font-mono uppercase tracking-[0.25em] text-text-muted mb-4">
+              Typography
+            </div>
+            <div class="space-y-3">
+              <div>
+                <div class="text-[9px] font-mono text-text-muted uppercase tracking-widest mb-1">Display</div>
+                <div class="font-display text-2xl text-text-primary">{{ currentPreviewData.display }}</div>
+              </div>
+              <div>
+                <div class="text-[9px] font-mono text-text-muted uppercase tracking-widest mb-1">Body</div>
+                <div class="font-body text-base text-text-primary">{{ currentPreviewData.body }}</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Color tokens -->
+          <div class="p-6">
+            <div class="text-[10px] font-mono uppercase tracking-[0.25em] text-text-muted mb-4">
+              Color tokens
+            </div>
+            <div class="space-y-3">
+              <div class="flex items-center gap-2 flex-wrap">
+                <div class="w-6 h-6 rounded-full bg-accent" title="accent" />
+                <div class="w-6 h-6 rounded-full bg-accent-muted" title="accent-muted" />
+                <div class="w-6 h-6 rounded-full bg-surface-raised border border-border-subtle" title="surface-raised" />
+                <div class="w-6 h-6 rounded-full bg-surface-sunken border border-border-subtle" title="surface-sunken" />
+                <div class="w-px h-5 bg-border-subtle mx-1" />
+                <div class="w-6 h-6 rounded-full bg-status-success" title="success" />
+                <div class="w-6 h-6 rounded-full bg-status-warning" title="warning" />
+                <div class="w-6 h-6 rounded-full bg-status-error" title="error" />
+                <div class="w-6 h-6 rounded-full bg-status-info" title="info" />
+              </div>
+              <div class="flex gap-2">
+                <RigBadge variant="solid" tone="accent">accent</RigBadge>
+                <RigBadge variant="soft" tone="success">success</RigBadge>
+                <RigBadge variant="soft" tone="warning">warning</RigBadge>
+                <RigBadge variant="soft" tone="error">error</RigBadge>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Live components -->
+        <div class="p-6 space-y-6">
+          <div class="text-[10px] font-mono uppercase tracking-[0.25em] text-text-muted">
+            Components
+          </div>
+
+          <!-- Button matrix -->
+          <div class="space-y-2">
+            <div class="flex flex-wrap gap-2">
+              <RigButton variant="solid" tone="accent" size="sm">Primary</RigButton>
+              <RigButton variant="outline" tone="accent" size="sm">Outline</RigButton>
+              <RigButton variant="ghost" tone="accent" size="sm">Ghost</RigButton>
+              <RigButton variant="link" tone="accent" size="sm">Link</RigButton>
+              <RigButton variant="solid" tone="neutral" size="sm">Neutral</RigButton>
+              <RigButton variant="solid" tone="danger" size="sm">Danger</RigButton>
+              <RigButton variant="solid" tone="accent" size="sm" loading>Loading</RigButton>
+              <RigButton variant="solid" tone="accent" size="sm" disabled>Disabled</RigButton>
+            </div>
+          </div>
+
+          <RigDivider variant="subtle" />
+
+          <!-- Form + alerts -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div class="space-y-4">
+              <RigInput
+                label="Display name"
+                placeholder="Your name here"
+                description="Used across all interfaces."
+              />
+              <RigInput
+                label="Email"
+                type="email"
+                placeholder="you@example.com"
+              />
+            </div>
+            <div class="space-y-3">
+              <RigAlert
+                tone="info"
+                title="Theme preview"
+                description="These components use this theme's complete token set."
+              />
+              <RigAlert
+                tone="success"
+                title="WCAG AAA"
+                description="Every color combination meets the highest contrast standard."
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
