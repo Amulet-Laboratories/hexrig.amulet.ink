@@ -6,6 +6,8 @@ import ThesisSection from './sections/ThesisSection.vue'
 import ThemesSection from './sections/ThemesSection.vue'
 import ComponentsSection from './sections/ComponentsSection.vue'
 import ClientSiteSection from './sections/ClientSiteSection.vue'
+import GettingStartedSection from './sections/GettingStartedSection.vue'
+import ApiDocsSection from './sections/ApiDocsSection.vue'
 import InteractiveSection from './sections/InteractiveSection.vue'
 import TokensSection from './sections/TokensSection.vue'
 import TextureSection from './sections/TextureSection.vue'
@@ -91,10 +93,12 @@ onUnmounted(() => window.removeEventListener('keydown', onKeydown))
       @toggle-mode="toggleMode"
       @select-theme="setTheme"
     />
+    <GettingStartedSection />
     <ThesisSection />
     <ThemesSection :active-theme="activeTheme" @select-theme="setTheme" />
     <ComponentsSection :active-theme="activeTheme" />
     <ClientSiteSection />
+    <ApiDocsSection />
     <InteractiveSection />
     <TokensSection :active-theme="activeTheme" />
     <TextureSection />

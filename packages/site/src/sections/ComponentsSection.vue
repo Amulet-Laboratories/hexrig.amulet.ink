@@ -116,6 +116,19 @@ onMounted(() => {
 onUnmounted(() => {
   if (progressTimer) clearInterval(progressTimer)
 })
+
+const buttonMatrix = [
+  ['solid', 'accent'],
+  ['solid', 'neutral'],
+  ['solid', 'danger'],
+  ['outline', 'accent'],
+  ['outline', 'neutral'],
+  ['outline', 'danger'],
+  ['ghost', 'accent'],
+  ['ghost', 'neutral'],
+  ['ghost', 'danger'],
+  ['link', 'accent'],
+] as const
 </script>
 
 <template>
@@ -130,7 +143,7 @@ onUnmounted(() => {
         v-reveal
         class="font-display text-4xl sm:text-5xl lg:text-6xl text-text-primary leading-tight mb-4"
       >
-        Forty-eight components.<br />Every piece, considered.
+        Fifty-six components.<br />Every piece, considered.
       </h2>
       <p v-reveal class="text-text-muted font-body text-lg max-w-xl">
         Real Rig components below — not mockups. Switch themes above and watch them transform.
@@ -162,6 +175,19 @@ onUnmounted(() => {
           <RigButton variant="solid" tone="accent" loading>Loading</RigButton>
           <RigButton variant="solid" tone="accent" size="sm">Small</RigButton>
           <RigButton variant="solid" tone="accent" size="lg">Large</RigButton>
+        </div>
+        <RigDivider variant="subtle" class="my-6" />
+        <RigText variant="caption" color="muted" class="mb-3">All variants × tones</RigText>
+        <div class="grid grid-cols-3 sm:grid-cols-4 gap-2">
+          <RigButton
+            v-for="[v, t] in buttonMatrix"
+            :key="`${v}-${t}`"
+            :variant="v as any"
+            :tone="t as any"
+            size="sm"
+          >
+            {{ v }} / {{ t }}
+          </RigButton>
         </div>
       </RigSurface>
 
