@@ -7,6 +7,7 @@ import ThemesSection from './sections/ThemesSection.vue'
 import ComponentsSection from './sections/ComponentsSection.vue'
 import ClientSiteSection from './sections/ClientSiteSection.vue'
 import GettingStartedSection from './sections/GettingStartedSection.vue'
+import ComponentsReferenceSection from './sections/ComponentsReferenceSection.vue'
 import ApiDocsSection from './sections/ApiDocsSection.vue'
 import InteractiveSection from './sections/InteractiveSection.vue'
 import TokensSection from './sections/TokensSection.vue'
@@ -97,6 +98,7 @@ onUnmounted(() => window.removeEventListener('keydown', onKeydown))
     <ThesisSection />
     <ThemesSection :active-theme="activeTheme" @select-theme="setTheme" />
     <ComponentsSection :active-theme="activeTheme" />
+    <ComponentsReferenceSection />
     <ClientSiteSection />
     <ApiDocsSection />
     <InteractiveSection />

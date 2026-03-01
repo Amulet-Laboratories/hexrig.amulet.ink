@@ -1,4 +1,33 @@
 <script setup lang="ts">
+/**
+ * RigDialog — Accessible modal dialog with focus management
+ *
+ * A modal that traps focus, locks body scroll, and restores focus on close.
+ * Supports custom sizes, dismissible/persistent modes, and keyboard navigation (Escape to close).
+ *
+ * Focus Behavior:
+ * - Saves the currently focused element before opening
+ * - Traps focus within the dialog (cycles through focusable elements)
+ * - Restores focus to the previously active element on close
+ *
+ * Scroll Lock:
+ * - Locks body scroll when dialog opens (ref-counted to support stacked dialogs)
+ * - Restores previous overflow value on close
+ *
+ * Keyboard Navigation:
+ * - Escape key: Closes dialog if dismissible=true
+ * - Tab: Cycles through focusable elements within dialog
+ *
+ * @example
+ * <RigDialog v-model="isOpen" title="Confirm action" dismissible>
+ *   <p>Are you sure you want to proceed?</p>
+ *   <template #footer>
+ *     <RigButton @click="confirm">Yes</RigButton>
+ *     <RigButton variant="ghost" @click="isOpen = false">Cancel</RigButton>
+ *   </template>
+ * </RigDialog>
+ */
+
 import { computed, watch, watchEffect, ref, onUnmounted, nextTick, useId, inject } from 'vue'
 import type { RigDialogProps } from '../types'
 import { THEME_INJECTION_KEY } from '../composables/useTheme'
